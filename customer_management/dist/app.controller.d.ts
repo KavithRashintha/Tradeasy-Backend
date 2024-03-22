@@ -6,4 +6,5 @@ export declare class AppController {
     constructor(customerManagement: AppService);
     createCustomer(createCustomerDto: CustomerDTO): Promise<Customer>;
     getCustomerById(getCustomerDto: GetCustomerDTO): Promise<Customer | null>;
+    getAllCustomers(): Promise<Customer[]>;
 }

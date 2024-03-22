@@ -28,6 +28,9 @@ let AppService = class AppService {
     async findCustomer(getCustomerDto) {
         return await this.customerRepository.findOneById(getCustomerDto.id);
     }
+    async getAllCustomers() {
+        return await this.customerRepository.find();
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

@@ -4,5 +4,6 @@ export declare class ApprController {
     private customerClient;
     constructor(customerClient: ClientProxy);
     createCustomer(payload: RegisterCustomerDTO): Promise<import("rxjs").Observable<any>>;
-    login(payload: GetCustomerDTO): Promise<import("rxjs").Observable<any>>;
+    findCustomerById(payload: GetCustomerDTO): Promise<import("rxjs").Observable<any>>;
+    getAllCustomers(): Promise<import("rxjs").Observable<any>>;
 }

@@ -23,8 +23,11 @@ let ApprController = class ApprController {
     async createCustomer(payload) {
         return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
     }
-    async login(payload) {
+    async findCustomerById(payload) {
         return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, payload);
+    }
+    async getAllCustomers() {
+        return this.customerClient.send({ cmd: 'GET_ALL_CUSTOMERS' }, {});
     }
 };
 exports.ApprController = ApprController;
@@ -41,7 +44,13 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [customerModel_1.GetCustomerDTO]),
     __metadata("design:returntype", Promise)
-], ApprController.prototype, "login", null);
+], ApprController.prototype, "findCustomerById", null);
+__decorate([
+    (0, common_1.Post)('getAllCustomers'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getAllCustomers", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)('customer'),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),

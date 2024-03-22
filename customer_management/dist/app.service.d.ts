@@ -6,4 +6,5 @@ export declare class AppService {
     constructor(customerRepository: Repository<Customer>);
     createCustomer(createCustomerDTO: CustomerDTO): Promise<Customer>;
     findCustomer(getCustomerDto: GetCustomerDTO): Promise<Customer | null>;
+    getAllCustomers(): Promise<Customer[]>;
 }

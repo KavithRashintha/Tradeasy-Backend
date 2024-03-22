@@ -14,7 +14,12 @@ export class ApprController {
   }
 
   @Post('findCustomer')
-  async login(@Body() payload:GetCustomerDTO) {
+  async findCustomerById(@Body() payload:GetCustomerDTO) {
     return this.customerClient.send({cmd:'GET_CUSTOMER'}, payload)
+  }
+
+  @Post('getAllCustomers')
+  async getAllCustomers(){
+    return this.customerClient.send({cmd: 'GET_ALL_CUSTOMERS'}, {});
   }
 }

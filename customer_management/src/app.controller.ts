@@ -21,4 +21,9 @@ export class AppController {
   ): Promise<Customer | null> {
     return await this.customerManagement.findCustomer(getCustomerDto);
   }
+
+  @MessagePattern({cmd: 'GET_ALL_CUSTOMERS'})
+  async getAllCustomers(): Promise<Customer[]>{
+    return await this.customerManagement.getAllCustomers();
+  }
 }
