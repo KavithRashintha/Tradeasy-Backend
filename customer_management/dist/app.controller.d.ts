@@ -7,4 +7,5 @@ export declare class AppController {
     createCustomer(createCustomerDto: CustomerDTO): Promise<Customer>;
     getCustomerById(getCustomerDto: GetCustomerDTO): Promise<Customer | null>;
     getAllCustomers(): Promise<Customer[]>;
+    findCustomer(): Promise<Customer[]>;
 }

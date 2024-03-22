@@ -1,6 +1,6 @@
-import {Body, Controller, Get, Inject, Param, Post, Query} from '@nestjs/common';
+import {Body, Controller, Get, Inject, Param, Post, Put, Query} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {GetCustomerDTO, RegisterCustomerDTO} from './models/customerModel';
+import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
 
 @Controller('customer')
 export class ApprController {
@@ -21,5 +21,10 @@ export class ApprController {
   @Post('getAllCustomers')
   async getAllCustomers(){
     return this.customerClient.send({cmd: 'GET_ALL_CUSTOMERS'}, {});
+  }
+
+  @Put(':id')
+  async updateCustomer(@Param('id') id: number, @Body() updateCustomerDto: UpdateCustomerDTO){
+    return this.customerClient.send({}, updateCustomerDto);
   }
 }

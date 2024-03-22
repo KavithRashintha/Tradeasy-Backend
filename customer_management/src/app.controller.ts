@@ -26,4 +26,14 @@ export class AppController {
   async getAllCustomers(): Promise<Customer[]>{
     return await this.customerManagement.getAllCustomers();
   }
+  
+  /*@MessagePattern({cmd: 'UPDATE_CUSTOMER'})
+  async updateCustomer(): Promise<Customer>{
+    
+  }*/
+  
+  /*@MessagePattern('FIND_CUSTOMER')
+  async findCustomer(): Promise<Customer[]>{
+    return await this.customerManagement.getCustomer();
+  }*/
 }

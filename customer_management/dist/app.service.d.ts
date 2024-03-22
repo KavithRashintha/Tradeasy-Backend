@@ -7,4 +7,5 @@ export declare class AppService {
     createCustomer(createCustomerDTO: CustomerDTO): Promise<Customer>;
     findCustomer(getCustomerDto: GetCustomerDTO): Promise<Customer | null>;
     getAllCustomers(): Promise<Customer[]>;
+    getCustomer(): Promise<Customer[]>;
 }

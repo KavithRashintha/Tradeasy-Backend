@@ -31,6 +31,9 @@ let AppService = class AppService {
     async getAllCustomers() {
         return await this.customerRepository.find();
     }
+    async getCustomer() {
+        return await this.customerRepository.find();
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

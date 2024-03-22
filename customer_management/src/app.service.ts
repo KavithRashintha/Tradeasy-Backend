@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Customer } from './customer.entity';
 import { Repository } from 'typeorm';
-import {CustomerDTO, GetCustomerDTO} from './dto/CustomerDTO';
+import {CustomerDTO, GetCustomerDTO, UpdateCustomerDTO} from './dto/CustomerDTO';
 
 @Injectable()
 export class AppService {
@@ -22,4 +22,12 @@ export class AppService {
   async getAllCustomers():Promise<Customer[]>{
     return await this.customerRepository.find();
   }
+
+  /*async updateCustomer(updateCustomerDto: UpdateCustomerDTO){
+    
+  }*/
+
+  /*async getCustomer(): Promise<Customer[]>{
+    return await this.customerRepository.find();
+  }*/
 }
