@@ -5,35 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="609dbdc1-8bb9-45ad-83ff-0f76126d249f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.module.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.module.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/main.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/src/models/customerModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/models/customerModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/customer.entity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/customer.entity.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/customer.entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/customer.entity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dto/CustomerDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/CustomerDTO.ts" afterDir="false" />
@@ -53,30 +49,30 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2e1sV3BKKPun1gDtR8JXajhJarn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Tradeasy Backend - Working with TCP/Tradeasy-Backend/api_gateway",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "D:\\University\\Projects\\L2\\Software Project\\Tradeasy Backend - Working with TCP\\Tradeasy-Backend\\customer_management\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Kavith&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/University/Projects/L2/Software Project/Tradeasy Backend - Working with TCP/Tradeasy-Backend/api_gateway&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.1.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -85,7 +81,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711083439284</updated>
-      <workItem from="1711083440610" duration="11621000" />
+      <workItem from="1711083440610" duration="12245000" />
+      <workItem from="1711100285848" duration="1330000" />
+      <workItem from="1711106210029" duration="837000" />
     </task>
     <servers />
   </component>

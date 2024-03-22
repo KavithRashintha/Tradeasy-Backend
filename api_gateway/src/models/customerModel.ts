@@ -5,3 +5,7 @@ export class RegisterCustomerDTO {
   readonly customerContact: number;
   readonly customerPassword: string;
 }
+
+export class GetCustomerDTO{
+  readonly id:number
+}
