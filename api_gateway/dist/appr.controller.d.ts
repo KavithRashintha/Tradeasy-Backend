@@ -7,5 +7,4 @@ export declare class ApprController {
     findCustomerById(payload: GetCustomerDTO): Promise<import("rxjs").Observable<any>>;
     getAllCustomers(): Promise<import("rxjs").Observable<any>>;
     updateCustomer(id: number, updateCustomerDto: UpdateCustomerDTO): Promise<import("rxjs").Observable<any>>;
-    getAll(): Promise<import("rxjs").Observable<any>>;
 }

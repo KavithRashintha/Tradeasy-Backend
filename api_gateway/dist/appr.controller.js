@@ -30,10 +30,7 @@ let ApprController = class ApprController {
         return this.customerClient.send({ cmd: 'GET_ALL_CUSTOMERS' }, {});
     }
     async updateCustomer(id, updateCustomerDto) {
-        return this.customerClient.send({}, updateCustomerDto);
-    }
-    async getAll() {
-        return this.customerClient.send({ cmd: 'FIND_CUSTOMER' }, {});
+        return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
     }
 };
 exports.ApprController = ApprController;
@@ -58,19 +55,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "getAllCustomers", null);
 __decorate([
-    (0, common_1.Put)(':id'),
+    (0, common_1.Put)('update/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, customerModel_1.UpdateCustomerDTO]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "updateCustomer", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], ApprController.prototype, "getAll", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)('customer'),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),

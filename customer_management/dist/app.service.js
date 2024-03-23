@@ -31,8 +31,9 @@ let AppService = class AppService {
     async getAllCustomers() {
         return await this.customerRepository.find();
     }
-    async getCustomer() {
-        return await this.customerRepository.find();
+    async updateCustomer(id, updateCustomerDto) {
+        await this.customerRepository.update(id, updateCustomerDto);
+        return await this.customerRepository.findOneById(id);
     }
 };
 exports.AppService = AppService;

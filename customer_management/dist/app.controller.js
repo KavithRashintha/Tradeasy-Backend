@@ -30,8 +30,9 @@ let AppController = class AppController {
     async getAllCustomers() {
         return await this.customerManagement.getAllCustomers();
     }
-    async findCustomer() {
-        return await this.customerManagement.getCustomer();
+    async updateCustomer(data) {
+        const { id, updateCustomerDto } = data;
+        return await this.customerManagement.updateCustomer(id, updateCustomerDto);
     }
 };
 exports.AppController = AppController;
@@ -56,11 +57,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getAllCustomers", null);
 __decorate([
-    (0, microservices_1.MessagePattern)('FIND_CUSTOMER'),
+    (0, microservices_1.MessagePattern)({ cmd: 'UPDATE_CUSTOMER' }),
+    __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], AppController.prototype, "findCustomer", null);
+], AppController.prototype, "updateCustomer", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

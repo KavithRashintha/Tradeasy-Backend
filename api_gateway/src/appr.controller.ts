@@ -23,8 +23,9 @@ export class ApprController {
     return this.customerClient.send({cmd: 'GET_ALL_CUSTOMERS'}, {});
   }
 
-  @Put(':id')
+  @Put('update/:id')
   async updateCustomer(@Param('id') id: number, @Body() updateCustomerDto: UpdateCustomerDTO){
-    return this.customerClient.send({}, updateCustomerDto);
+    return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
   }
+
 }

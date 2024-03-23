@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="609dbdc1-8bb9-45ad-83ff-0f76126d249f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/src/models/customerModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/models/customerModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.js" afterDir="false" />
@@ -25,9 +20,6 @@
       <change beforePath="$PROJECT_DIR$/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.service.ts" afterDir="false" />
@@ -40,6 +32,13 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -83,6 +82,7 @@
       <workItem from="1711083440610" duration="12245000" />
       <workItem from="1711100285848" duration="1330000" />
       <workItem from="1711106210029" duration="837000" />
+      <workItem from="1711176730961" duration="3632000" />
     </task>
     <servers />
   </component>
