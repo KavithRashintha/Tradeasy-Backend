@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
 const CustomerDTO_1 = require("./dto/CustomerDTO");
+const GetCustomerDTO_1 = require("./dto/GetCustomerDTO");
 let AppController = class AppController {
     constructor(customerManagement) {
         this.customerManagement = customerManagement;
@@ -34,6 +35,9 @@ let AppController = class AppController {
         const { id, updateCustomerDto } = data;
         return await this.customerManagement.updateCustomer(id, updateCustomerDto);
     }
+    async deleteCustomer(id) {
+        return await this.customerManagement.deleteCustomer(id);
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -47,7 +51,7 @@ __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER' }),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [CustomerDTO_1.GetCustomerDTO]),
+    __metadata("design:paramtypes", [GetCustomerDTO_1.GetCustomerDTO]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getCustomerById", null);
 __decorate([
@@ -63,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "updateCustomer", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'DELETE_CUSTOMER' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "deleteCustomer", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

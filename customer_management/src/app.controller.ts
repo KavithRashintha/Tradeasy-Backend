@@ -35,4 +35,9 @@ export class AppController {
     // @ts-ignore
     return await this.customerManagement.updateCustomer(id, updateCustomerDto);
   }
+
+  @MessagePattern({cmd: 'DELETE_CUSTOMER'})
+  async deleteCustomer(@Payload() id:number){
+    return await this.customerManagement.deleteCustomer(id);
+  }
 }

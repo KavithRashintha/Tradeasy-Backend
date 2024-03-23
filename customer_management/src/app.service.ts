@@ -31,4 +31,13 @@ export class AppService {
     await this.customerRepository.update(id, updateCustomerDto);
     return await this.customerRepository.findOneById(id);
   }
+  
+  async deleteCustomer(id: number){
+    const result = await this.customerRepository.delete(id);
+    if(!result){
+      return "Not Deleted";
+    }else{
+      return "Successfully Deleted";
+    }
+  }
 }

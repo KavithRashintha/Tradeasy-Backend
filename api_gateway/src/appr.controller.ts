@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Inject, Param, Post, Put, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
 
@@ -26,6 +26,11 @@ export class ApprController {
   @Put('update/:id')
   async updateCustomer(@Param('id') id: number, @Body() updateCustomerDto: UpdateCustomerDTO){
     return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
+  }
+
+  @Delete('delete/:id')
+  async deleteCustomer(@Param('id') id: number){
+    return this.customerClient.send({cmd: 'DELETE_CUSTOMER'}, id);
   }
 
 }

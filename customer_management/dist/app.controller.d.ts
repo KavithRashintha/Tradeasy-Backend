@@ -1,6 +1,8 @@
 import { AppService } from './app.service';
-import { CustomerDTO, GetCustomerDTO } from './dto/CustomerDTO';
+import { CustomerDTO } from './dto/CustomerDTO';
 import { Customer } from './customer.entity';
+import { GetCustomerDTO } from './dto/GetCustomerDTO';
+import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
 export declare class AppController {
     private readonly customerManagement;
     constructor(customerManagement: AppService);
@@ -9,6 +11,7 @@ export declare class AppController {
     getAllCustomers(): Promise<Customer[]>;
     updateCustomer(data: {
         id: number;
-        updateCustomerDto: CustomerDTO;
+        updateCustomerDto: UpdateCustomerDTO;
     }): Promise<Customer>;
+    deleteCustomer(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
 }

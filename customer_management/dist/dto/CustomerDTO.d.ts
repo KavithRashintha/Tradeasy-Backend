@@ -6,6 +6,3 @@ export declare class CustomerDTO {
     readonly customerContact: string;
     readonly customerPassword: string;
 }
-export declare class GetCustomerDTO {
-    readonly id: number;
-}

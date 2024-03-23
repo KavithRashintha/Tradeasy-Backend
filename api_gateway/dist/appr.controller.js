@@ -32,6 +32,9 @@ let ApprController = class ApprController {
     async updateCustomer(id, updateCustomerDto) {
         return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
     }
+    async deleteCustomer(id) {
+        return this.customerClient.send({ cmd: 'DELETE_CUSTOMER' }, id);
+    }
 };
 exports.ApprController = ApprController;
 __decorate([
@@ -62,6 +65,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, customerModel_1.UpdateCustomerDTO]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "updateCustomer", null);
+__decorate([
+    (0, common_1.Delete)('delete/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "deleteCustomer", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)('customer'),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
