@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="609dbdc1-8bb9-45ad-83ff-0f76126d249f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/GetCustomerDTO.ts" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory_management/.idea/inventory_management.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +43,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Kavith",
-    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Tradeasy Backend - Working with TCP/Tradeasy-Backend/api_gateway",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Work With TCP/Tradeasy-Backend/inventory_management",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,6 +71,7 @@
       <workItem from="1711688138663" duration="3400000" />
       <workItem from="1711766277480" duration="1114000" />
       <workItem from="1711787940831" duration="2438000" />
+      <workItem from="1711803694432" duration="1266000" />
     </task>
     <servers />
   </component>
