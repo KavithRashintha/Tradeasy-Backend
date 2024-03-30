@@ -37,5 +37,10 @@ export class ApprController {
   async deleteCustomer(@Param('id') id: number){
     return this.customerClient.send({cmd: 'DELETE_CUSTOMER'}, id);
   }
+  
+  
 
 }
+
+
+
