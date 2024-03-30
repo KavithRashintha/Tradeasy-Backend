@@ -3,7 +3,6 @@ import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import {CustomerDTO} from './dto/CustomerDTO';
 import { Customer } from './customer.entity';
-import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
 import * as bcrypt from 'bcrypt'
 
