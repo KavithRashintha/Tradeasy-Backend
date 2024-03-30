@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72922509-1f4c-420c-86a2-2f6a6542f41c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/appr.controller.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/appr.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/appr.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/appr.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.controller.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/src/app.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../customer_management/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/src/app.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer_management/src/dto/GetCustomerDTO.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +67,7 @@
       <workItem from="1711105867572" duration="12334000" />
       <workItem from="1711176723665" duration="5122000" />
       <workItem from="1711687636732" duration="2760000" />
-      <workItem from="1711789247801" duration="2464000" />
+      <workItem from="1711789247801" duration="2787000" />
     </task>
     <servers />
   </component>
