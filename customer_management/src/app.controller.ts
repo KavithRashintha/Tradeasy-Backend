@@ -5,6 +5,7 @@ import {CustomerDTO} from './dto/CustomerDTO';
 import { Customer } from './customer.entity';
 import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
+import * as bcrypt from 'bcrypt'
 
 @Controller()
 export class AppController {
@@ -14,14 +15,20 @@ export class AppController {
   async createCustomer(
       @Payload() createCustomerDto: CustomerDTO,
   ): Promise<Customer> {
-    return await this.customerManagement.createCustomer(createCustomerDto);
+    const saltOrRounds = 10;
+    const password = createCustomerDto.customerPassword;
+    const hash = await bcrypt.hash(password, saltOrRounds);
+
+    const dtoWithHashedPassword: CustomerDTO = { ...createCustomerDto, customerPassword: hash };
+
+    return await this.customerManagement.createCustomer(dtoWithHashedPassword);
   }
 
   @MessagePattern({ cmd: 'GET_CUSTOMER' })
   async getCustomerById(
-      @Payload() getCustomerDto: GetCustomerDTO
+      @Payload() id:any
   ): Promise<Customer | null> {
-    return await this.customerManagement.findCustomer(getCustomerDto);
+    return await this.customerManagement.findCustomer(id);
   }
 
   @MessagePattern({cmd: 'GET_ALL_CUSTOMERS'})
