@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const appr_controller_1 = require("./appr.controller");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
+const product_controller_1 = require("./product.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,9 +27,17 @@ exports.AppModule = AppModule = __decorate([
                         port: 3001,
                     },
                 },
+                {
+                    name: 'PRODUCT_MANAGEMENT',
+                    transport: microservices_1.Transport.TCP,
+                    options: {
+                        host: '127.0.0.1',
+                        port: 3002,
+                    },
+                },
             ]),
         ],
-        controllers: [appr_controller_1.ApprController],
+        controllers: [appr_controller_1.ApprController, product_controller_1.ProductController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);
