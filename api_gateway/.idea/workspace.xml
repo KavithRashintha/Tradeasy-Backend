@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72922509-1f4c-420c-86a2-2f6a6542f41c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/product.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/appr.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/appr.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-    </list>
+    <list default="true" id="72922509-1f4c-420c-86a2-2f6a6542f41c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +83,7 @@
       <workItem from="1711687636732" duration="2760000" />
       <workItem from="1711789247801" duration="2464000" />
       <workItem from="1711806229441" duration="5924000" />
-      <workItem from="1711813651976" duration="8332000" />
+      <workItem from="1711813651976" duration="8916000" />
     </task>
     <servers />
   </component>
