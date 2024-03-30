@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="609dbdc1-8bb9-45ad-83ff-0f76126d249f" name="Changes" comment="" />
+    <list default="true" id="609dbdc1-8bb9-45ad-83ff-0f76126d249f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appb.controller.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appb.controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appb.controller.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/productModel.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/productModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/productModel.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/src/product.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/product.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +102,7 @@
       <workItem from="1711766277480" duration="1114000" />
       <workItem from="1711787940831" duration="1968000" />
       <workItem from="1711806139291" duration="6852000" />
-      <workItem from="1711813783448" duration="10365000" />
+      <workItem from="1711813783448" duration="10372000" />
     </task>
     <servers />
   </component>

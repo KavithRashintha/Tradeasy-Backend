@@ -8,7 +8,7 @@ export class ProductController {
     ) {}
     
     @Get('getAllProducts')
-    async getAllCustomers(){
+    async getAllProducts(){
         return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
     }
 }

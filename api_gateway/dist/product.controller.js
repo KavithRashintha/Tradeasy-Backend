@@ -12,10 +12,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppbController = void 0;
+exports.ProductController = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
-let AppbController = class AppbController {
+let ProductController = class ProductController {
     constructor(productClient) {
         this.productClient = productClient;
     }
@@ -23,16 +23,16 @@ let AppbController = class AppbController {
         return this.productClient.send({ cmd: 'GET_ALL_PRODUCTS' }, {});
     }
 };
-exports.AppbController = AppbController;
+exports.ProductController = ProductController;
 __decorate([
     (0, common_1.Get)('getAllProducts'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], AppbController.prototype, "getAllProducts", null);
-exports.AppbController = AppbController = __decorate([
+], ProductController.prototype, "getAllProducts", null);
+exports.ProductController = ProductController = __decorate([
     (0, common_1.Controller)('product'),
-    __param(0, (0, common_1.Inject)('TEST_PRODUCT')),
+    __param(0, (0, common_1.Inject)('PRODUCT_MANAGEMENT')),
     __metadata("design:paramtypes", [microservices_1.ClientProxy])
-], AppbController);
-//# sourceMappingURL=appb.controller.js.map
+], ProductController);
+//# sourceMappingURL=product.controller.js.map

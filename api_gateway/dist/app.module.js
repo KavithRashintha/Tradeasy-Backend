@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const appr_controller_1 = require("./appr.controller");
-const appb_controller_1 = require("./appb.controller");
+const product_controller_1 = require("./product.controller");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
 let AppModule = class AppModule {
@@ -28,7 +28,7 @@ exports.AppModule = AppModule = __decorate([
                     },
                 },
                 {
-                    name: 'TEST_PRODUCT',
+                    name: 'PRODUCT_MANAGEMENT',
                     transport: microservices_1.Transport.TCP,
                     options: {
                         host: '127.0.0.1',
@@ -37,7 +37,7 @@ exports.AppModule = AppModule = __decorate([
                 },
             ]),
         ],
-        controllers: [appr_controller_1.ApprController, appb_controller_1.AppbController],
+        controllers: [appr_controller_1.ApprController, product_controller_1.ProductController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);
