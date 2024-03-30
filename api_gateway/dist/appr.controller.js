@@ -23,8 +23,8 @@ let ApprController = class ApprController {
     async createCustomer(payload) {
         return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
     }
-    async findCustomerById(payload) {
-        return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, payload);
+    async findCustomer(id) {
+        return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id);
     }
     async getAllCustomers() {
         return this.customerClient.send({ cmd: 'GET_ALL_CUSTOMERS' }, {});
@@ -45,14 +45,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "createCustomer", null);
 __decorate([
-    (0, common_1.Post)('findCustomer'),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Get)('findCustomer/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [customerModel_1.GetCustomerDTO]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ApprController.prototype, "findCustomerById", null);
+], ApprController.prototype, "findCustomer", null);
 __decorate([
-    (0, common_1.Post)('getAllCustomers'),
+    (0, common_1.Get)('getAllCustomers'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

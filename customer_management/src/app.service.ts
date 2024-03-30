@@ -19,8 +19,8 @@ export class AppService {
     return await this.customerRepository.save(newCustomer);
   }
 
-  async findCustomer(getCustomerDto: GetCustomerDTO): Promise<Customer | null>{
-    return await this.customerRepository.findOneById(getCustomerDto.id);
+  async findCustomer(id:any): Promise<Customer | null>{
+    return await this.customerRepository.findOneById(id);
   }
   async getAllCustomers():Promise<Customer[]>{
     return await this.customerRepository.find();

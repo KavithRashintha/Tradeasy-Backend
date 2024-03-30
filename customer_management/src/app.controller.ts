@@ -26,9 +26,9 @@ export class AppController {
 
   @MessagePattern({ cmd: 'GET_CUSTOMER' })
   async getCustomerById(
-      @Payload() getCustomerDto: GetCustomerDTO
+      @Payload() id:any
   ): Promise<Customer | null> {
-    return await this.customerManagement.findCustomer(getCustomerDto);
+    return await this.customerManagement.findCustomer(id);
   }
 
   @MessagePattern({cmd: 'GET_ALL_CUSTOMERS'})

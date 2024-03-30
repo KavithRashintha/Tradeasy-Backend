@@ -17,7 +17,6 @@ const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
 const CustomerDTO_1 = require("./dto/CustomerDTO");
-const GetCustomerDTO_1 = require("./dto/GetCustomerDTO");
 const bcrypt = require("bcrypt");
 let AppController = class AppController {
     constructor(customerManagement) {
@@ -30,8 +29,8 @@ let AppController = class AppController {
         const dtoWithHashedPassword = { ...createCustomerDto, customerPassword: hash };
         return await this.customerManagement.createCustomer(dtoWithHashedPassword);
     }
-    async getCustomerById(getCustomerDto) {
-        return await this.customerManagement.findCustomer(getCustomerDto);
+    async getCustomerById(id) {
+        return await this.customerManagement.findCustomer(id);
     }
     async getAllCustomers() {
         return await this.customerManagement.getAllCustomers();
@@ -56,7 +55,7 @@ __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER' }),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [GetCustomerDTO_1.GetCustomerDTO]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getCustomerById", null);
 __decorate([

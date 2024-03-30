@@ -25,8 +25,8 @@ let AppService = class AppService {
         const newCustomer = this.customerRepository.create(createCustomerDTO);
         return await this.customerRepository.save(newCustomer);
     }
-    async findCustomer(getCustomerDto) {
-        return await this.customerRepository.findOneById(getCustomerDto.id);
+    async findCustomer(id) {
+        return await this.customerRepository.findOneById(id);
     }
     async getAllCustomers() {
         return await this.customerRepository.find();
