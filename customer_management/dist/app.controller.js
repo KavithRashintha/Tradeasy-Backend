@@ -18,12 +18,17 @@ const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
 const CustomerDTO_1 = require("./dto/CustomerDTO");
 const GetCustomerDTO_1 = require("./dto/GetCustomerDTO");
+const bcrypt = require("bcrypt");
 let AppController = class AppController {
     constructor(customerManagement) {
         this.customerManagement = customerManagement;
     }
     async createCustomer(createCustomerDto) {
-        return await this.customerManagement.createCustomer(createCustomerDto);
+        const saltOrRounds = 10;
+        const password = createCustomerDto.customerPassword;
+        const hash = await bcrypt.hash(password, saltOrRounds);
+        const dtoWithHashedPassword = { ...createCustomerDto, customerPassword: hash };
+        return await this.customerManagement.createCustomer(dtoWithHashedPassword);
     }
     async getCustomerById(getCustomerDto) {
         return await this.customerManagement.findCustomer(getCustomerDto);
