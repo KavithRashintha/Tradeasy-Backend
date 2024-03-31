@@ -8,35 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const appr_controller_1 = require("./appr.controller");
+const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const microservices_1 = require("@nestjs/microservices");
+const typeorm_1 = require("@nestjs/typeorm");
+const inventoryItem_entity_1 = require("./inventoryItem.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            microservices_1.ClientsModule.register([
-                {
-                    name: 'CUSTOMER_MANAGEMENT',
-                    transport: microservices_1.Transport.TCP,
-                    options: {
-                        host: '127.0.0.1',
-                        port: 3001,
-                    },
-                },
-                {
-                    name: 'INVENTORY_MANAGEMENT',
-                    transport: microservices_1.Transport.TCP,
-                    options: {
-                        host: '127.0.0.1',
-                        port: 3002
-                    }
-                }
-            ]),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: 'localhost',
+                port: 5433,
+                username: 'postgres',
+                password: 'Kviper0824@',
+                database: 'Inventory',
+                entities: [inventoryItem_entity_1.Item],
+                synchronize: true,
+            }),
+            typeorm_1.TypeOrmModule.forFeature([inventoryItem_entity_1.Item]),
         ],
-        controllers: [appr_controller_1.ApprController],
+        controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

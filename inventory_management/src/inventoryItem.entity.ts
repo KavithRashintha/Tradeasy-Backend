@@ -1,7 +1,7 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
-export class InventoryItem{
+export class Item{
     @PrimaryGeneratedColumn()
     id: number
 
@@ -18,8 +18,8 @@ export class InventoryItem{
     itemUnitPrice: number
 
     @Column()
-    manufacturedDate: Date
+    manufacturedDate: string
 
     @Column()
-    expireDate: Date
+    expireDate: string
 }

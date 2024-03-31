@@ -1,5 +1,4 @@
-export class UpdateInventoryItemDTO{
-    readonly id: number;
+export class InventoryItemDTO {
     readonly itemDescription: string;
     readonly itemCategory: string;
     readonly itemQuantity: number;
