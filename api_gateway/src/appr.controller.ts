@@ -40,7 +40,7 @@ export class ApprController {
     return this.customerClient.send({cmd: 'DELETE_CUSTOMER'}, id);
   }
 
-  @Get('inventoryItem/add')
+  @Post('inventoryItem/add')
   async addInventoryItem(@Body() payload: InventoryItemDTO){
     return this.inventoryClient.send({cmd: 'ADD_INVENTORY_ITEM'}, payload);
   }

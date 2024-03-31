@@ -5,49 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72922509-1f4c-420c-86a2-2f6a6542f41c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/appr.controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/appr.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/appr.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/appr.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/appr.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/filters/custom-exception.filter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/filters/custom-exception.filter.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/filters/custom-exception.filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/filters/custom-exception.filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/customerModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/customerModel.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/customerModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/customerModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/appr.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.controller.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.module.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.module.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/app.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/app.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/customer.entity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/customer.entity.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/customer.entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/customer.entity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/dto/CustomerDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/dto/CustomerDTO.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/dto/CustomerDTO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/dto/CustomerDTO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/dto/GetCustomerDTO.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/dto/GetCustomerDTO.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/dto/GetCustomerDTO.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/dto/UpdateCustomerDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/dto/UpdateCustomerDTO.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/dto/UpdateCustomerDTO.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/dto/UpdateCustomerDTO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/main.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/dto/InventoryItemDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/dto/InventoryItemDTO.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/dto/UpdateInventoryItemDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/dto/UpdateInventoryItemDTO.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/inventoryItem.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/inventoryItem.entity.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Kavith",
     "last_opened_file_path": "D:/University/Projects/L2/Software Project/Work With TCP/Tradeasy-Backend/api_gateway",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -126,7 +88,7 @@
       <workItem from="1711789247801" duration="2787000" />
       <workItem from="1711849814757" duration="561000" />
       <workItem from="1711857715970" duration="1206000" />
-      <workItem from="1711861955545" duration="1289000" />
+      <workItem from="1711861955545" duration="2027000" />
     </task>
     <servers />
   </component>

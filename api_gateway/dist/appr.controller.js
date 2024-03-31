@@ -78,7 +78,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "deleteCustomer", null);
 __decorate([
-    (0, common_1.Get)('inventoryItem/add'),
+    (0, common_1.Post)('inventoryItem/add'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [inventoryModel_1.InventoryItemDTO]),
