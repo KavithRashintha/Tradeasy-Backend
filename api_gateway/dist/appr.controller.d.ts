@@ -11,4 +11,5 @@ export declare class ApprController {
     updateCustomer(id: number, updateCustomerDto: UpdateCustomerDTO): Promise<import("rxjs").Observable<any>>;
     deleteCustomer(id: number): Promise<import("rxjs").Observable<any>>;
     addInventoryItem(payload: InventoryItemDTO): Promise<import("rxjs").Observable<any>>;
+    getInventoryItem(id: any): Promise<import("rxjs").Observable<any>>;
 }

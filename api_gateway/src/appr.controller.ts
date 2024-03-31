@@ -10,6 +10,8 @@ export class ApprController {
       @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy
   ) {}
 
+  //--------------------------Customer Management-----------------------------------------------
+
   @Post('customer/create')
   async createCustomer(@Body() payload: RegisterCustomerDTO) {
     return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
@@ -40,9 +42,16 @@ export class ApprController {
     return this.customerClient.send({cmd: 'DELETE_CUSTOMER'}, id);
   }
 
+  //--------------------------Inventory Management-----------------------------------------------
+
   @Post('inventoryItem/add')
   async addInventoryItem(@Body() payload: InventoryItemDTO){
     return this.inventoryClient.send({cmd: 'ADD_INVENTORY_ITEM'}, payload);
+  }
+
+  @Get('inventoryItem/findItem/:id')
+  async getInventoryItem(@Param() id:any){
+    return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM'}, id);
   }
 
 }

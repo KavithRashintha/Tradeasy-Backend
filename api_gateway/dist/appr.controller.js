@@ -40,6 +40,9 @@ let ApprController = class ApprController {
     async addInventoryItem(payload) {
         return this.inventoryClient.send({ cmd: 'ADD_INVENTORY_ITEM' }, payload);
     }
+    async getInventoryItem(id) {
+        return this.inventoryClient.send({ cmd: 'GET_INVENTORY_ITEM' }, id);
+    }
 };
 exports.ApprController = ApprController;
 __decorate([
@@ -84,6 +87,13 @@ __decorate([
     __metadata("design:paramtypes", [inventoryModel_1.InventoryItemDTO]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "addInventoryItem", null);
+__decorate([
+    (0, common_1.Get)('inventoryItem/findItem/:id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getInventoryItem", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
