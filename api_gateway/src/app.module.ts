@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ApprController } from './appr.controller';
+import { ProductController } from './product.controller';
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ProductController } from './product.controller';
 
 @Module({
   imports: [
@@ -15,7 +15,6 @@ import { ProductController } from './product.controller';
           port: 3001,
         },
       },
-
       {
         name: 'PRODUCT_MANAGEMENT',
         transport: Transport.TCP,
@@ -26,7 +25,7 @@ import { ProductController } from './product.controller';
       },
     ]),
   ],
-  controllers: [ApprController,ProductController],
-  providers: [AppService],
+  controllers: [ApprController, ProductController],
+  providers: [AppService], 
 })
 export class AppModule {}

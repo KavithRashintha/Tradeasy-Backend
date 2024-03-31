@@ -13,12 +13,17 @@ export class ApprController {
     return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
   }
 
-  @Post('findCustomer')
+  /*@Post('findCustomer')
   async findCustomerById(@Body() payload:GetCustomerDTO) {
     return this.customerClient.send({cmd:'GET_CUSTOMER'}, payload)
+  }*/
+
+  @Get('findCustomer/:id')
+  async findCustomer(@Param('id') id: any){
+    return this.customerClient.send({cmd:'GET_CUSTOMER'}, id)
   }
 
-  @Post('getAllCustomers')
+  @Get('getAllCustomers')
   async getAllCustomers(){
     return this.customerClient.send({cmd: 'GET_ALL_CUSTOMERS'}, {});
   }
@@ -32,5 +37,10 @@ export class ApprController {
   async deleteCustomer(@Param('id') id: number){
     return this.customerClient.send({cmd: 'DELETE_CUSTOMER'}, id);
   }
+  
+  
 
 }
+
+
+

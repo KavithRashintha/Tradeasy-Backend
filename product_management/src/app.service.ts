@@ -7,10 +7,9 @@ import { Repository } from 'typeorm';
 export class AppService {
 
   constructor(
-      @InjectRepository(Product)
-      private readonly productRepository: Repository<Product>,
+    @InjectRepository(Product)
+    private readonly productRepository: Repository<Product>,
   ) {}
-
 
   async getAllProducts():Promise<Product[]>{
     return await this.productRepository.find();
