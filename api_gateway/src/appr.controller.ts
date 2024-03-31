@@ -54,4 +54,9 @@ export class ApprController {
     return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM'}, id);
   }
 
+  @Get('inventoryItem/getAllItems')
+  async getAllInventoryItems(){
+    return this.inventoryClient.send({cmd: 'GET_ALL_INVENTORY_ITEMS'}, {})
+  }
+
 }
