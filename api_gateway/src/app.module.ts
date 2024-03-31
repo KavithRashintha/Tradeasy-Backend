@@ -14,6 +14,15 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           port: 3001,
         },
       },
+
+      {
+        name: 'INVENTORY_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 3002
+        }
+      }
     ]),
   ],
   controllers: [ApprController],

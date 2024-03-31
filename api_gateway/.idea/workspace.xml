@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72922509-1f4c-420c-86a2-2f6a6542f41c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../customer_management/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../customer_management/src/app.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer_management/src/dto/GetCustomerDTO.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "Kavith",
-    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Tradeasy Backend - Working with TCP/Tradeasy-Backend/api_gateway",
+    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Work With TCP/Tradeasy-Backend/api_gateway",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,6 +68,7 @@
       <workItem from="1711176723665" duration="5122000" />
       <workItem from="1711687636732" duration="2760000" />
       <workItem from="1711789247801" duration="2787000" />
+      <workItem from="1711849814757" duration="561000" />
     </task>
     <servers />
   </component>
