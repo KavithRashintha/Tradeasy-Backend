@@ -1,7 +1,7 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
-import { InventoryItemDTO } from './models/inventoryModel';
+import {InventoryItemDTO, UpdateInventoryItemDTO} from './models/inventoryModel';
 
 @Controller()
 export class ApprController {
@@ -22,7 +22,7 @@ export class ApprController {
     return this.customerClient.send({cmd:'GET_CUSTOMER'}, payload)
   }*/
 
-  @Get('findCustomer/:id')
+  @Get('customer/findCustomer/:id')
   async findCustomer(@Param('id') id: any){
     return this.customerClient.send({cmd:'GET_CUSTOMER'}, id)
   }
@@ -57,6 +57,16 @@ export class ApprController {
   @Get('inventoryItem/getAllItems')
   async getAllInventoryItems(){
     return this.inventoryClient.send({cmd: 'GET_ALL_INVENTORY_ITEMS'}, {})
+  }
+
+  @Put('inventoryItem/updateItem/:id')
+  async updateInventoryItem(@Param('id') id:number, @Body() updateInventoryItemDto: UpdateInventoryItemDTO){
+    return this.inventoryClient.send({cmd: 'UPDATE_INVENTORY_ITEM'}, {id , updateInventoryItemDto})
+  }
+
+  @Delete('inventoryItem/delete/:id')
+  async deleteInventoryItem(@Param('id') id: number){
+    return this.inventoryClient.send({cmd: 'DELETE_INVENTORY_ITEM'}, id);
   }
 
 }

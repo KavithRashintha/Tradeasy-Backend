@@ -30,8 +30,8 @@ let AppService = class AppService {
     async getAllInventoryItems() {
         return await this.inventoryItemRepository.find();
     }
-    async updateInventoryItem(id, updatedInventoryItem) {
-        await this.inventoryItemRepository.update(id, updatedInventoryItem);
+    async updateInventoryItem(id, updateItemDto) {
+        await this.inventoryItemRepository.update(id, updateItemDto);
         return await this.inventoryItemRepository.findOneById(id);
     }
     async deleteInventoryItem(id) {

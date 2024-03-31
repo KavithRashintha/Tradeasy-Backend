@@ -8,6 +8,6 @@ export declare class AppService {
     addInventoryItem(inventoryItemDto: InventoryItemDTO): Promise<Item>;
     getInventoryItem(id: any): Promise<Item>;
     getAllInventoryItems(): Promise<Item[]>;
-    updateInventoryItem(id: any, updatedInventoryItem: UpdateInventoryItemDTO): Promise<Item>;
+    updateInventoryItem(id: number, updateItemDto: UpdateInventoryItemDTO): Promise<Item>;
     deleteInventoryItem(id: any): Promise<"Not Deleted" | "Successfully Deleted">;
 }

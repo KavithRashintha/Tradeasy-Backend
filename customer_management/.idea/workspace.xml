@@ -5,8 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="609dbdc1-8bb9-45ad-83ff-0f76126d249f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api_gateway/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/inventoryModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/inventoryModel.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/inventoryModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/inventoryModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/inventoryModel.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/inventoryModel.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/src/models/inventoryModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/models/inventoryModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.service.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/app.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/app.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +64,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "Kavith",
-    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Work With TCP/Tradeasy-Backend/api_gateway",
+    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Work With TCP/Tradeasy-Backend/customer_management",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,6 +90,7 @@
       <workItem from="1711766277480" duration="1114000" />
       <workItem from="1711787940831" duration="2438000" />
       <workItem from="1711803694432" duration="6380000" />
+      <workItem from="1711869050272" duration="2233000" />
     </task>
     <servers />
   </component>

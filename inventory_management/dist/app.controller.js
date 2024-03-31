@@ -17,7 +17,6 @@ const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
 const InventoryItemDTO_1 = require("./dto/InventoryItemDTO");
-const UpdateInventoryItemDTO_1 = require("./dto/UpdateInventoryItemDTO");
 let AppController = class AppController {
     constructor(inventoryManagement) {
         this.inventoryManagement = inventoryManagement;
@@ -31,8 +30,9 @@ let AppController = class AppController {
     async getAllInventoryItems() {
         return await this.inventoryManagement.getAllInventoryItems();
     }
-    async updateInventoryItem(id, updatedInventoryItemDto) {
-        return await this.inventoryManagement.updateInventoryItem(id, updatedInventoryItemDto);
+    async updateInventoryItem(data) {
+        const { id, updateItemDto } = data;
+        return await this.inventoryManagement.updateInventoryItem(id, updateItemDto);
     }
     async deleteInventoryItem(id) {
         return await this.inventoryManagement.deleteInventoryItem(id);
@@ -63,7 +63,7 @@ __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "UPDATE_INVENTORY_ITEM" }),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, UpdateInventoryItemDTO_1.UpdateInventoryItemDTO]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "updateInventoryItem", null);
 __decorate([

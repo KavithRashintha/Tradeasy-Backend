@@ -25,8 +25,9 @@ export class AppService {
     return await this.inventoryItemRepository.find();
   }
 
-  async updateInventoryItem(id:any, updatedInventoryItem: UpdateInventoryItemDTO): Promise<Item> {
-    await this.inventoryItemRepository.update(id, updatedInventoryItem);
+  async updateInventoryItem(id: number, updateItemDto: UpdateInventoryItemDTO): Promise<Item> {
+    // @ts-ignore
+    await this.inventoryItemRepository.update(id, updateItemDto);
     return await this.inventoryItemRepository.findOneById(id);
   }
 
