@@ -8,13 +8,18 @@ export class ProductController {
         @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,
     ) {}
 
-    @Post(create'create')
+    @Post('create')
     async createProduct(@Body() payload: RegisterProductDTO) {
         return this.productClient.send({ cmd: 'CREATE_PRODUCT' }, payload);
     }
     @Get('getAllProducts')
     async getAllProducts(){
         return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
+    }
+
+    @Delete('delete/:id')
+    async deleteProduct(@Param('id') id: number){
+        return this.productClient.send({cmd: 'DELETE_PRODUCT'}, id);
     }
 }
 

@@ -7,7 +7,7 @@ import {ProductDTO} from './DTO/ProductDTO';
 @Controller()
 export class AppController {
   constructor(private readonly productManagement: AppService) {}
-  @MessagePattern({cmd: 'CREATE_PRODUCTS'})
+  @MessagePattern({cmd: 'CREATE_PRODUCT'})
   async createProducts(@Payload() createProductDto: ProductDTO,)
       : Promise<Product>{
     return await this.productManagement.createProducts(createProductDto);
@@ -15,6 +15,11 @@ export class AppController {
   @MessagePattern({cmd: 'GET_ALL_PRODUCTS'})
   async getAllProducts(): Promise<Product[]>{
     return await this.productManagement.getAllProducts();
+  }
+
+  @MessagePattern({cmd: 'DELETE_PRODUCT'})
+  async deleteProduct(@Payload() id:number){
+    return await this.productManagement.deleteProduct(id);
   }
 
 }

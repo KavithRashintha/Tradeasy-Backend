@@ -21,4 +21,13 @@ export class AppService {
   async getAllProducts():Promise<Product[]>{
     return await this.productRepository.find();
   }
+
+  async deleteProduct(id: number){
+    const result = await this.productRepository.delete(id);
+    if(!result){
+      return "Not Deleted";
+    }else{
+      return "Successfully Deleted";
+    }
+  }
 }
