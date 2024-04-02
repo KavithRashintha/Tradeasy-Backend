@@ -11,7 +11,7 @@ import { Product } from './product.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'password',
+      password: 'backend123',
       database: 'Product',
       entities: [Product],
       synchronize: true,
