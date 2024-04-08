@@ -5,15 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="609dbdc1-8bb9-45ad-83ff-0f76126d249f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/Tradeasy-Backend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_gateway/.idea/api_gateway.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_gateway/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.module.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.module.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.service.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/app.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/appr.controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/filters/custom-exception.filter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/filters/custom-exception.filter.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/filters/custom-exception.filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/filters/custom-exception.filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/main.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/models/customerModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api_gateway/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/appr.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.module.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/customer.entity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/customer.entity.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/customer.entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/customer.entity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dto/CustomerDTO.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/CustomerDTO.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dto/GetCustomerDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/GetCustomerDTO.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dto/GetCustomerDTO.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/GetCustomerDTO.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dto/UpdateCustomerDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/UpdateCustomerDTO.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dto/UpdateCustomerDTO.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dto/UpdateCustomerDTO.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,22 +79,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Kavith",
-    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Tradeasy Backend - Working with TCP/Tradeasy-Backend/api_gateway",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.1.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dinuka#01&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/University/Projects/L2/Software Project/Tradeasy Backend - Working with TCP/Tradeasy-Backend/api_gateway&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\dinuk\\Desktop\\My Docs\\Projects\\Tradeasy-Backend\\customer_management\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -76,6 +110,8 @@
       <workItem from="1711688138663" duration="3400000" />
       <workItem from="1711766277480" duration="1114000" />
       <workItem from="1711787940831" duration="1968000" />
+      <workItem from="1712388271589" duration="258000" />
+      <workItem from="1712498705684" duration="13000" />
     </task>
     <servers />
   </component>

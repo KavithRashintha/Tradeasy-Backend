@@ -12,69 +12,71 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ApprController = void 0;
+exports.SupplierController = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
-const customerModel_1 = require("./models/customerModel");
-let ApprController = class ApprController {
-    constructor(customerClient) {
-        this.customerClient = customerClient;
+const supplierModel_1 = require("./models/supplierModel");
+const supplierModel_2 = require("./models/supplierModel");
+let SupplierController = class SupplierController {
+    constructor(supplierClient) {
+        this.supplierClient = supplierClient;
     }
-    async createCustomer(payload) {
-        return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
+    async createSupplier(payload) {
+        return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
     }
-    async findCustomer(id) {
-        return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id);
+    async getSupplier(id) {
+        return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id);
     }
-    async getAllCustomers() {
-        return this.customerClient.send({ cmd: 'GET_ALL_CUSTOMERS' }, {});
+    async getAllSuppliers() {
+        console.log("API - AC");
+        return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});
     }
-    async updateCustomer(id, updateCustomerDto) {
-        return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
+    async updateSupplier(id, updateSupplierDto) {
+        return this.supplierClient.send({ cmd: 'UPDATE_SUPPLIER' }, { id, updateSupplierDto });
     }
-    async deleteCustomer(id) {
-        return this.customerClient.send({ cmd: 'DELETE_CUSTOMER' }, id);
+    async deleteSupplier(id) {
+        return this.supplierClient.send({ cmd: 'DELETE_SUPPLIER' }, id);
     }
 };
-exports.ApprController = ApprController;
+exports.SupplierController = SupplierController;
 __decorate([
     (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [customerModel_1.RegisterCustomerDTO]),
+    __metadata("design:paramtypes", [supplierModel_1.RegisterSupplierDTO]),
     __metadata("design:returntype", Promise)
-], ApprController.prototype, "createCustomer", null);
+], SupplierController.prototype, "createSupplier", null);
 __decorate([
-    (0, common_1.Get)('/findCustomer/:id'),
+    (0, common_1.Get)('/getSupplier/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ApprController.prototype, "findCustomer", null);
+], SupplierController.prototype, "getSupplier", null);
 __decorate([
-    (0, common_1.Get)('/getAllCustomers'),
+    (0, common_1.Get)('/getAllSuppliers'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], ApprController.prototype, "getAllCustomers", null);
+], SupplierController.prototype, "getAllSuppliers", null);
 __decorate([
     (0, common_1.Put)('/update/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, customerModel_1.UpdateCustomerDTO]),
+    __metadata("design:paramtypes", [Number, supplierModel_2.UpdateSupplierDTO]),
     __metadata("design:returntype", Promise)
-], ApprController.prototype, "updateCustomer", null);
+], SupplierController.prototype, "updateSupplier", null);
 __decorate([
     (0, common_1.Delete)('/delete/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], ApprController.prototype, "deleteCustomer", null);
-exports.ApprController = ApprController = __decorate([
-    (0, common_1.Controller)('customer'),
-    __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
+], SupplierController.prototype, "deleteSupplier", null);
+exports.SupplierController = SupplierController = __decorate([
+    (0, common_1.Controller)('supplier'),
+    __param(0, (0, common_1.Inject)('SUPPLIER_MANAGEMENT')),
     __metadata("design:paramtypes", [microservices_1.ClientProxy])
-], ApprController);
-//# sourceMappingURL=appr.controller.js.map
+], SupplierController);
+//# sourceMappingURL=supplier.controller.js.map

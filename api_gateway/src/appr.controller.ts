@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
+// import {GetSupplierDTO,UpdateSupplierDTO } from './models/supplierModel';
 
 @Controller('customer')
 export class ApprController {
@@ -8,7 +9,7 @@ export class ApprController {
       @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
   ) {}
 
-  @Post('create')
+  @Post('/create')
   async createCustomer(@Body() payload: RegisterCustomerDTO) {
     return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
   }
@@ -18,24 +19,26 @@ export class ApprController {
     return this.customerClient.send({cmd:'GET_CUSTOMER'}, payload)
   }*/
 
-  @Get('findCustomer/:id')
+  @Get('/findCustomer/:id')
   async findCustomer(@Param('id') id: any){
     return this.customerClient.send({cmd:'GET_CUSTOMER'}, id)
   }
 
-  @Get('getAllCustomers')
+  @Get('/getAllCustomers')
   async getAllCustomers(){
     return this.customerClient.send({cmd: 'GET_ALL_CUSTOMERS'}, {});
   }
 
-  @Put('update/:id')
+  @Put('/update/:id')
   async updateCustomer(@Param('id') id: number, @Body() updateCustomerDto: UpdateCustomerDTO){
     return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
   }
 
-  @Delete('delete/:id')
+  @Delete('/delete/:id')
   async deleteCustomer(@Param('id') id: number){
     return this.customerClient.send({cmd: 'DELETE_CUSTOMER'}, id);
   }
+
+
 
 }
