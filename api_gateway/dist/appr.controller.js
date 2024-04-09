@@ -16,9 +16,11 @@ exports.ApprController = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 const customerModel_1 = require("./models/customerModel");
+const inventoryModel_1 = require("./models/inventoryModel");
 let ApprController = class ApprController {
-    constructor(customerClient) {
+    constructor(customerClient, inventoryClient) {
         this.customerClient = customerClient;
+        this.inventoryClient = inventoryClient;
     }
     async createCustomer(payload) {
         return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
@@ -35,30 +37,45 @@ let ApprController = class ApprController {
     async deleteCustomer(id) {
         return this.customerClient.send({ cmd: 'DELETE_CUSTOMER' }, id);
     }
+    async addInventoryItem(payload) {
+        return this.inventoryClient.send({ cmd: 'ADD_INVENTORY_ITEM' }, payload);
+    }
+    async getInventoryItem(id) {
+        return this.inventoryClient.send({ cmd: 'GET_INVENTORY_ITEM' }, id);
+    }
+    async getAllInventoryItems() {
+        return this.inventoryClient.send({ cmd: 'GET_ALL_INVENTORY_ITEMS' }, {});
+    }
+    async updateInventoryItem(id, updateInventoryItemDto) {
+        return this.inventoryClient.send({ cmd: 'UPDATE_INVENTORY_ITEM' }, { id, updateInventoryItemDto });
+    }
+    async deleteInventoryItem(id) {
+        return this.inventoryClient.send({ cmd: 'DELETE_INVENTORY_ITEM' }, id);
+    }
 };
 exports.ApprController = ApprController;
 __decorate([
-    (0, common_1.Post)('create'),
+    (0, common_1.Post)('customer/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [customerModel_1.RegisterCustomerDTO]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "createCustomer", null);
 __decorate([
-    (0, common_1.Get)('findCustomer/:id'),
+    (0, common_1.Get)('customer/findCustomer/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "findCustomer", null);
 __decorate([
-    (0, common_1.Get)('getAllCustomers'),
+    (0, common_1.Get)('customer/getAllCustomers'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "getAllCustomers", null);
 __decorate([
-    (0, common_1.Put)('update/:id'),
+    (0, common_1.Put)('customer/update/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -66,15 +83,52 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "updateCustomer", null);
 __decorate([
-    (0, common_1.Delete)('delete/:id'),
+    (0, common_1.Delete)('customer/delete/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "deleteCustomer", null);
+__decorate([
+    (0, common_1.Post)('inventory/add'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventoryModel_1.InventoryItemDTO]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "addInventoryItem", null);
+__decorate([
+    (0, common_1.Get)('inventory/get/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getInventoryItem", null);
+__decorate([
+    (0, common_1.Get)('inventory/getAll'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getAllInventoryItems", null);
+__decorate([
+    (0, common_1.Put)('inventory/update/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, inventoryModel_1.UpdateInventoryItemDTO]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "updateInventoryItem", null);
+__decorate([
+    (0, common_1.Delete)('inventory/delete/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "deleteInventoryItem", null);
 exports.ApprController = ApprController = __decorate([
-    (0, common_1.Controller)('customer'),
+    (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
-    __metadata("design:paramtypes", [microservices_1.ClientProxy])
+    __param(1, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
+    __metadata("design:paramtypes", [microservices_1.ClientProxy,
+        microservices_1.ClientProxy])
 ], ApprController);
 //# sourceMappingURL=appr.controller.js.map
