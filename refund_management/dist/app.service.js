@@ -25,6 +25,9 @@ let AppService = class AppService {
         const newCustomerRefund = this.refundManagement.create(customerRefundDto);
         return await this.refundManagement.save(newCustomerRefund);
     }
+    async getCustomerRefund(id) {
+        return await this.refundManagement.findOneById(id);
+    }
     async getAllCustomerRefunds() {
         return await this.refundManagement.find();
     }

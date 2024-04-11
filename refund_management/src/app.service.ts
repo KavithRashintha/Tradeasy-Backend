@@ -18,6 +18,10 @@ export class AppService {
     return await this.refundManagement.save(newCustomerRefund);
   }
 
+  async getCustomerRefund(id:number):Promise<CustomerRefund> {
+    return await this.refundManagement.findOneById(id);
+  }
+
   async getAllCustomerRefunds(): Promise<CustomerRefund[]> {
     return await this.refundManagement.find();
   }

@@ -5,5 +5,6 @@ export declare class AppService {
     private readonly refundManagement;
     constructor(refundManagement: Repository<CustomerRefund>);
     createCustomerRefund(customerRefundDto: CustomerRefundDTO): Promise<CustomerRefund>;
+    getCustomerRefund(id: number): Promise<CustomerRefund>;
     getAllCustomerRefunds(): Promise<CustomerRefund[]>;
 }

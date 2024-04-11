@@ -57,6 +57,9 @@ let ApprController = class ApprController {
     async createCustomerRefund(customerRefundDto) {
         return this.refundClient.send({ cmd: 'CREATE_CUSTOMER_REFUND' }, customerRefundDto);
     }
+    async getCustomerRefund(id) {
+        return this.refundClient.send({ cmd: 'GET_CUSTOMER_REFUND' }, id);
+    }
     async getAllCustomerRefunds() {
         return this.refundClient.send({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' }, {});
     }
@@ -139,6 +142,13 @@ __decorate([
     __metadata("design:paramtypes", [refundModel_1.CustomerRefundDTO]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "createCustomerRefund", null);
+__decorate([
+    (0, common_1.Get)('refund/customerRefund/get/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getCustomerRefund", null);
 __decorate([
     (0, common_1.Get)('refund/customerRefund/getAll'),
     __metadata("design:type", Function),

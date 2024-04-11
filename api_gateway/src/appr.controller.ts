@@ -82,6 +82,11 @@ export class ApprController {
     return this.refundClient.send({cmd: 'CREATE_CUSTOMER_REFUND'}, customerRefundDto)
   }
 
+  @Get('refund/customerRefund/get/:id')
+  async getCustomerRefund(@Param('id') id:number){
+    return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND'}, id);
+  }
+
   @Get('refund/customerRefund/getAll')
   async getAllCustomerRefunds(){
     return this.refundClient.send({cmd: 'GET_ALL_CUSTOMER_REFUNDS'}, {})

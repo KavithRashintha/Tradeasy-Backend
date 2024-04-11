@@ -24,6 +24,9 @@ let AppController = class AppController {
     async createCustomerRefund(customerRefundDto) {
         return await this.refundManagement.createCustomerRefund(customerRefundDto);
     }
+    async getCustomerRefund(id) {
+        return await this.refundManagement.getCustomerRefund(id);
+    }
     async getAllCustomerRefunds() {
         return await this.refundManagement.getAllCustomerRefunds();
     }
@@ -36,6 +39,13 @@ __decorate([
     __metadata("design:paramtypes", [customerRefundDTO_1.CustomerRefundDTO]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "createCustomerRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER_REFUND' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerRefund", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' }),
     __metadata("design:type", Function),

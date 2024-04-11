@@ -15,6 +15,11 @@ export class AppController {
     return await this.refundManagement.createCustomerRefund(customerRefundDto);
   }
 
+  @MessagePattern({cmd: 'GET_CUSTOMER_REFUND'})
+  async getCustomerRefund(@Payload() id:number):Promise<CustomerRefund> {
+    return await this.refundManagement.getCustomerRefund(id);
+  }
+
   @MessagePattern({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' })
   async getAllCustomerRefunds(): Promise<CustomerRefund[]> {
     return await this.refundManagement.getAllCustomerRefunds();
