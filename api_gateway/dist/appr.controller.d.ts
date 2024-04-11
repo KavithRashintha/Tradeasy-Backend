@@ -20,4 +20,5 @@ export declare class ApprController {
     createCustomerRefund(customerRefundDto: CustomerRefundDTO): Promise<import("rxjs").Observable<any>>;
     getCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
     getAllCustomerRefunds(): Promise<import("rxjs").Observable<any>>;
+    deleteCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
 }

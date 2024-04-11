@@ -18,18 +18,27 @@ const typeorm_1 = require("@nestjs/typeorm");
 const refunds_entity_1 = require("./refunds.entity");
 const typeorm_2 = require("typeorm");
 let AppService = class AppService {
-    constructor(refundManagement) {
-        this.refundManagement = refundManagement;
+    constructor(refundRepository) {
+        this.refundRepository = refundRepository;
     }
     async createCustomerRefund(customerRefundDto) {
-        const newCustomerRefund = this.refundManagement.create(customerRefundDto);
-        return await this.refundManagement.save(newCustomerRefund);
+        const newCustomerRefund = this.refundRepository.create(customerRefundDto);
+        return await this.refundRepository.save(newCustomerRefund);
     }
     async getCustomerRefund(id) {
-        return await this.refundManagement.findOneById(id);
+        return await this.refundRepository.findOneById(id);
     }
     async getAllCustomerRefunds() {
-        return await this.refundManagement.find();
+        return await this.refundRepository.find();
+    }
+    async deleteCustomerRefund(id) {
+        const result = await this.refundRepository.delete(id);
+        if (!result) {
+            return 'Not Deleted';
+        }
+        else {
+            return 'Successfully Deleted';
+        }
     }
 };
 exports.AppService = AppService;

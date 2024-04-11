@@ -8,21 +8,30 @@ import { CustomerRefundDTO } from './dto/customerRefundDTO';
 export class AppService {
   constructor(
     @InjectRepository(CustomerRefund)
-    private readonly refundManagement: Repository<CustomerRefund>,
+    private readonly refundRepository: Repository<CustomerRefund>,
   ) {}
 
   async createCustomerRefund(
     customerRefundDto: CustomerRefundDTO,
   ): Promise<CustomerRefund> {
-    const newCustomerRefund = this.refundManagement.create(customerRefundDto);
-    return await this.refundManagement.save(newCustomerRefund);
+    const newCustomerRefund = this.refundRepository.create(customerRefundDto);
+    return await this.refundRepository.save(newCustomerRefund);
   }
 
   async getCustomerRefund(id:number):Promise<CustomerRefund> {
-    return await this.refundManagement.findOneById(id);
+    return await this.refundRepository.findOneById(id);
   }
 
   async getAllCustomerRefunds(): Promise<CustomerRefund[]> {
-    return await this.refundManagement.find();
+    return await this.refundRepository.find();
+  }
+
+  async deleteCustomerRefund(id:number){
+    const result = await this.refundRepository.delete(id);
+    if (!result) {
+      return 'Not Deleted';
+    } else {
+      return 'Successfully Deleted';
+    }
   }
 }

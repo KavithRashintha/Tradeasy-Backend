@@ -63,6 +63,9 @@ let ApprController = class ApprController {
     async getAllCustomerRefunds() {
         return this.refundClient.send({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' }, {});
     }
+    async deleteCustomerRefund(id) {
+        return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
+    }
 };
 exports.ApprController = ApprController;
 __decorate([
@@ -155,6 +158,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "getAllCustomerRefunds", null);
+__decorate([
+    (0, common_1.Delete)('refund/customerRefund/delete/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "deleteCustomerRefund", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),

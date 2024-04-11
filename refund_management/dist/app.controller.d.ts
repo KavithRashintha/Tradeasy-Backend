@@ -7,4 +7,5 @@ export declare class AppController {
     createCustomerRefund(customerRefundDto: CustomerRefundDTO): Promise<CustomerRefund>;
     getCustomerRefund(id: number): Promise<CustomerRefund>;
     getAllCustomerRefunds(): Promise<CustomerRefund[]>;
+    deleteCustomerRefund(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
 }

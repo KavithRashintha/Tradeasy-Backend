@@ -24,4 +24,9 @@ export class AppController {
   async getAllCustomerRefunds(): Promise<CustomerRefund[]> {
     return await this.refundManagement.getAllCustomerRefunds();
   }
+
+  @MessagePattern({cmd: 'DELETE_CUSTOMER_REFUND'})
+  async deleteCustomerRefund(@Payload() id:number){
+    return await this.refundManagement.deleteCustomerRefund(id);
+  }
 }

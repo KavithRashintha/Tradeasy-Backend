@@ -92,4 +92,9 @@ export class ApprController {
     return this.refundClient.send({cmd: 'GET_ALL_CUSTOMER_REFUNDS'}, {})
   }
 
+  @Delete('refund/customerRefund/delete/:id')
+  async deleteCustomerRefund(@Param('id') id:number){
+    return this.refundClient.send({cmd: 'DELETE_CUSTOMER_REFUND'}, id);
+  }
+
 }
