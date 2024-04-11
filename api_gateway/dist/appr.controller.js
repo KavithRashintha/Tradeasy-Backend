@@ -17,10 +17,12 @@ const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 const customerModel_1 = require("./models/customerModel");
 const inventoryModel_1 = require("./models/inventoryModel");
+const refundModel_1 = require("./models/refundModel");
 let ApprController = class ApprController {
-    constructor(customerClient, inventoryClient) {
+    constructor(customerClient, inventoryClient, refundClient) {
         this.customerClient = customerClient;
         this.inventoryClient = inventoryClient;
+        this.refundClient = refundClient;
     }
     async createCustomer(payload) {
         return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
@@ -51,6 +53,18 @@ let ApprController = class ApprController {
     }
     async deleteInventoryItem(id) {
         return this.inventoryClient.send({ cmd: 'DELETE_INVENTORY_ITEM' }, id);
+    }
+    async createCustomerRefund(customerRefundDto) {
+        return this.refundClient.send({ cmd: 'CREATE_CUSTOMER_REFUND' }, customerRefundDto);
+    }
+    async getCustomerRefund(id) {
+        return this.refundClient.send({ cmd: 'GET_CUSTOMER_REFUND' }, id);
+    }
+    async getAllCustomerRefunds() {
+        return this.refundClient.send({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' }, {});
+    }
+    async deleteCustomerRefund(id) {
+        return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
     }
 };
 exports.ApprController = ApprController;
@@ -124,11 +138,40 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "deleteInventoryItem", null);
+__decorate([
+    (0, common_1.Post)('refund/customerRefund/create'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [refundModel_1.CustomerRefundDTO]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "createCustomerRefund", null);
+__decorate([
+    (0, common_1.Get)('refund/customerRefund/get/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getCustomerRefund", null);
+__decorate([
+    (0, common_1.Get)('refund/customerRefund/getAll'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getAllCustomerRefunds", null);
+__decorate([
+    (0, common_1.Delete)('refund/customerRefund/delete/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "deleteCustomerRefund", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
     __param(1, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
+    __param(2, (0, common_1.Inject)('REFUND_MANAGEMENT')),
     __metadata("design:paramtypes", [microservices_1.ClientProxy,
+        microservices_1.ClientProxy,
         microservices_1.ClientProxy])
 ], ApprController);
 //# sourceMappingURL=appr.controller.js.map

@@ -2,12 +2,14 @@ import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query} from '@n
 import { ClientProxy } from '@nestjs/microservices';
 import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
 import {InventoryItemDTO, UpdateInventoryItemDTO} from "./models/inventoryModel";
+import {CustomerRefundDTO} from "./models/refundModel";
 
 @Controller()
 export class ApprController {
   constructor(
       @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
       @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
+      @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
   ) {}
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -68,6 +70,31 @@ export class ApprController {
   @Delete('inventory/delete/:id')
   async deleteInventoryItem(@Param('id') id:number){
     return this.inventoryClient.send({cmd: 'DELETE_INVENTORY_ITEM'} , id);
+  }
+
+
+  //====================================================REFUND_MANAGEMENT==================================================
+
+  //----------------------------------------------------CUSTOMER_REFUND_MANAGEMENT-----------------------------------------
+
+  @Post('refund/customerRefund/create')
+  async createCustomerRefund(@Body() customerRefundDto: CustomerRefundDTO){
+    return this.refundClient.send({cmd: 'CREATE_CUSTOMER_REFUND'}, customerRefundDto)
+  }
+
+  @Get('refund/customerRefund/get/:id')
+  async getCustomerRefund(@Param('id') id:number){
+    return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND'}, id);
+  }
+
+  @Get('refund/customerRefund/getAll')
+  async getAllCustomerRefunds(){
+    return this.refundClient.send({cmd: 'GET_ALL_CUSTOMER_REFUNDS'}, {})
+  }
+
+  @Delete('refund/customerRefund/delete/:id')
+  async deleteCustomerRefund(@Param('id') id:number){
+    return this.refundClient.send({cmd: 'DELETE_CUSTOMER_REFUND'}, id);
   }
 
 }

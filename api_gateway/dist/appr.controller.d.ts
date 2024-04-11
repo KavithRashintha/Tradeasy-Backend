@@ -1,10 +1,12 @@
 import { ClientProxy } from '@nestjs/microservices';
 import { RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
+import { CustomerRefundDTO } from "./models/refundModel";
 export declare class ApprController {
     private customerClient;
     private inventoryClient;
-    constructor(customerClient: ClientProxy, inventoryClient: ClientProxy);
+    private refundClient;
+    constructor(customerClient: ClientProxy, inventoryClient: ClientProxy, refundClient: ClientProxy);
     createCustomer(payload: RegisterCustomerDTO): Promise<import("rxjs").Observable<any>>;
     findCustomer(id: any): Promise<import("rxjs").Observable<any>>;
     getAllCustomers(): Promise<import("rxjs").Observable<any>>;
@@ -15,4 +17,8 @@ export declare class ApprController {
     getAllInventoryItems(): Promise<import("rxjs").Observable<any>>;
     updateInventoryItem(id: number, updateInventoryItemDto: UpdateInventoryItemDTO): Promise<import("rxjs").Observable<any>>;
     deleteInventoryItem(id: number): Promise<import("rxjs").Observable<any>>;
+    createCustomerRefund(customerRefundDto: CustomerRefundDTO): Promise<import("rxjs").Observable<any>>;
+    getCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
+    getAllCustomerRefunds(): Promise<import("rxjs").Observable<any>>;
+    deleteCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
 }
