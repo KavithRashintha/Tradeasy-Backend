@@ -13,6 +13,14 @@ export class AppController {
       : Promise<Product>{
     return await this.productManagement.createProducts(createProductDto);
   }
+
+  @MessagePattern({ cmd: 'GET_PRODUCT' })
+  async getProductById(
+      @Payload() id:any
+  ): Promise<Product | null> {
+    return await this.productManagement.findProduct(id);
+  }
+
   @MessagePattern({cmd: 'GET_ALL_PRODUCTS'})
   async getAllProducts(): Promise<Product[]>{
     return await this.productManagement.getAllProducts();

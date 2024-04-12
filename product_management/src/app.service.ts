@@ -18,6 +18,9 @@ export class AppService {
     return await this.productRepository.save(newProduct);
   }
 
+  async findProduct(id:any): Promise<Product | null>{
+    return await this.productRepository.findOneById(id);
+  }
 
   async getAllProducts():Promise<Product[]>{
     return await this.productRepository.find();

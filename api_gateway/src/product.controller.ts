@@ -13,6 +13,13 @@ export class ProductController {
     async createProduct(@Body() payload: RegisterProductDTO) {
         return this.productClient.send({ cmd: 'CREATE_PRODUCT' }, payload);
     }
+
+    @Get('findProduct/:id')
+    async findProduct(@Param('id') id: any){
+        return this.productClient.send({cmd:'GET_PRODUCT'}, id)
+    }
+
+
     @Get('getAllProducts')
     async getAllProducts(){
         return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
