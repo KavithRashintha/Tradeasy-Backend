@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import {RegisterProductDTO} from "./models/productModel";
+import {UpdateProductDTO} from "./models/productModel";
 
 @Controller('product')
 export class ProductController {
@@ -15,6 +16,11 @@ export class ProductController {
     @Get('getAllProducts')
     async getAllProducts(){
         return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
+    }
+
+    @Put('update/:id')
+    async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
+        return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
     }
 
     @Delete('delete/:id')

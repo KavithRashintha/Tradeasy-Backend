@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { Product } from './product.entity';
 import {ProductDTO} from './DTO/ProductDTO';
+import {UpdateProductDTO} from "./DTO/UpdateProductDTO";
 
 @Controller()
 export class AppController {
@@ -15,6 +16,12 @@ export class AppController {
   @MessagePattern({cmd: 'GET_ALL_PRODUCTS'})
   async getAllProducts(): Promise<Product[]>{
     return await this.productManagement.getAllProducts();
+  }
+
+  @MessagePattern({cmd: 'UPDATE_PRODUCT'})
+  async updateProduct(@Payload() data: { id: number, updateProductDto: UpdateProductDTO }): Promise<Product> {
+    const { id, updateProductDto } = data;
+    return await this.productManagement.updateProduct(id, updateProductDto);
   }
 
   @MessagePattern({cmd: 'DELETE_PRODUCT'})
