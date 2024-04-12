@@ -28,10 +28,10 @@ let SupplierController = class SupplierController {
         return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id);
     }
     async getAllSuppliers() {
-        console.log("API - AC");
         return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});
     }
     async updateSupplier(id, updateSupplierDto) {
+        console.log("API - AC");
         return this.supplierClient.send({ cmd: 'UPDATE_SUPPLIER' }, { id, updateSupplierDto });
     }
     async deleteSupplier(id) {

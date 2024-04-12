@@ -2,7 +2,7 @@ export declare class RegisterSupplierDTO {
     readonly supplierName: string;
     readonly supplierEmail: string;
     readonly supplierAddress: string;
-    readonly supplierContact: number;
+    readonly supplierContact: string;
     readonly supplierPassword: string;
 }
 export declare class GetSupplierDTO {
@@ -13,6 +13,6 @@ export declare class UpdateSupplierDTO {
     readonly supplierName: string;
     readonly supplierEmail: string;
     readonly supplierAddress: string;
-    readonly supplierContact: number;
+    readonly supplierContact: string;
     readonly supplierPassword: string;
 }
