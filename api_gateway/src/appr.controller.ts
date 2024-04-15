@@ -3,6 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
 import {InventoryItemDTO, UpdateInventoryItemDTO} from "./models/inventoryModel";
 import {CustomerRefundDTO} from "./models/refundModel";
+import { RegisterSupplierDTO, UpdateSupplierDTO } from './models/supplierModel';
 
 @Controller()
 export class ApprController {
@@ -10,6 +11,7 @@ export class ApprController {
       @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
       @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
       @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
+      @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
   ) {}
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -42,6 +44,35 @@ export class ApprController {
   @Delete('customer/delete/:id')
   async deleteCustomer(@Param('id') id: number){
     return this.customerClient.send({cmd: 'DELETE_CUSTOMER'}, id);
+  }
+
+
+ //===================================SUPPLIER_MANAGEMENT===========================================================================
+
+ @Post('supplier/create')
+  async createSupplier(@Body() payload: RegisterSupplierDTO) {
+    return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
+  }
+
+  @Get('supplier/getSupplier/:id')
+  async getSupplier(@Param('id') id: any){
+    return this.supplierClient.send({cmd:'GET_SUPPLIER'}, id)
+  }
+  
+  @Get('supplier/getAllSuppliers')
+  async getAllSuppliers(){
+    return this.supplierClient.send({cmd: 'GET_ALL_SUPPLIERS'}, {});
+  }
+
+  @Put('supplier/update/:id')
+  async updateSupplier(@Param('id') id: number, @Body() updateSupplierDto: UpdateSupplierDTO){
+    console.log("API - AC");
+    return this.supplierClient.send({ cmd: 'UPDATE_SUPPLIER' }, { id, updateSupplierDto });
+  }
+
+  @Delete('supplier/delete/:id')
+  async deleteSupplier(@Param('id') id: number){
+    return this.supplierClient.send({cmd: 'DELETE_SUPPLIER'}, id);
   }
 
 

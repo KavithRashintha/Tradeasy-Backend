@@ -18,11 +18,13 @@ const microservices_1 = require("@nestjs/microservices");
 const customerModel_1 = require("./models/customerModel");
 const inventoryModel_1 = require("./models/inventoryModel");
 const refundModel_1 = require("./models/refundModel");
+const supplierModel_1 = require("./models/supplierModel");
 let ApprController = class ApprController {
-    constructor(customerClient, inventoryClient, refundClient) {
+    constructor(customerClient, inventoryClient, refundClient, supplierClient) {
         this.customerClient = customerClient;
         this.inventoryClient = inventoryClient;
         this.refundClient = refundClient;
+        this.supplierClient = supplierClient;
     }
     async createCustomer(payload) {
         return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
@@ -38,6 +40,22 @@ let ApprController = class ApprController {
     }
     async deleteCustomer(id) {
         return this.customerClient.send({ cmd: 'DELETE_CUSTOMER' }, id);
+    }
+    async createSupplier(payload) {
+        return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
+    }
+    async getSupplier(id) {
+        return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id);
+    }
+    async getAllSuppliers() {
+        return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});
+    }
+    async updateSupplier(id, updateSupplierDto) {
+        console.log("API - AC");
+        return this.supplierClient.send({ cmd: 'UPDATE_SUPPLIER' }, { id, updateSupplierDto });
+    }
+    async deleteSupplier(id) {
+        return this.supplierClient.send({ cmd: 'DELETE_SUPPLIER' }, id);
     }
     async addInventoryItem(payload) {
         return this.inventoryClient.send({ cmd: 'ADD_INVENTORY_ITEM' }, payload);
@@ -103,6 +121,41 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "deleteCustomer", null);
+__decorate([
+    (0, common_1.Post)('supplier/create'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [supplierModel_1.RegisterSupplierDTO]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "createSupplier", null);
+__decorate([
+    (0, common_1.Get)('supplier/getSupplier/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getSupplier", null);
+__decorate([
+    (0, common_1.Get)('supplier/getAllSuppliers'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getAllSuppliers", null);
+__decorate([
+    (0, common_1.Put)('supplier/update/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, supplierModel_1.UpdateSupplierDTO]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "updateSupplier", null);
+__decorate([
+    (0, common_1.Delete)('supplier/delete/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "deleteSupplier", null);
 __decorate([
     (0, common_1.Post)('inventory/add'),
     __param(0, (0, common_1.Body)()),
@@ -170,7 +223,9 @@ exports.ApprController = ApprController = __decorate([
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
     __param(1, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
     __param(2, (0, common_1.Inject)('REFUND_MANAGEMENT')),
+    __param(3, (0, common_1.Inject)('SUPPLIER_MANAGEMENT')),
     __metadata("design:paramtypes", [microservices_1.ClientProxy,
+        microservices_1.ClientProxy,
         microservices_1.ClientProxy,
         microservices_1.ClientProxy])
 ], ApprController);
