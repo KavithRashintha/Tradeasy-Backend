@@ -3,12 +3,14 @@ import { RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO } from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from './models/supplierModel';
+import { CustomerPaymentDTO } from './models/paymentModel';
 export declare class ApprController {
     private customerClient;
     private inventoryClient;
     private refundClient;
     private supplierClient;
-    constructor(customerClient: ClientProxy, inventoryClient: ClientProxy, refundClient: ClientProxy, supplierClient: ClientProxy);
+    private paymantClient;
+    constructor(customerClient: ClientProxy, inventoryClient: ClientProxy, refundClient: ClientProxy, supplierClient: ClientProxy, paymantClient: ClientProxy);
     createCustomer(payload: RegisterCustomerDTO): Promise<import("rxjs").Observable<any>>;
     findCustomer(id: any): Promise<import("rxjs").Observable<any>>;
     getAllCustomers(): Promise<import("rxjs").Observable<any>>;
@@ -28,4 +30,7 @@ export declare class ApprController {
     getCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
     getAllCustomerRefunds(): Promise<import("rxjs").Observable<any>>;
     deleteCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
+    createCustomerPayment(customerPaymentDto: CustomerPaymentDTO): Promise<import("rxjs").Observable<any>>;
+    getAllCustomerPayments(): Promise<import("rxjs").Observable<any>>;
+    getCustomerPaymentById(id: number): Promise<import("rxjs").Observable<any>>;
 }

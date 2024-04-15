@@ -11,7 +11,7 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3001,
+          port: 3002,
         },
       },
 
@@ -20,7 +20,7 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3002,
+          port: 3003,
         }
       },
 
@@ -29,7 +29,7 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3003,
+          port: 3004,
         }
       },
 
@@ -38,7 +38,16 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3004,
+          port: 3005,
+        }
+      },
+
+      {
+        name: 'PAYMENT_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 3006,
         }
       }
     ]),

@@ -19,12 +19,14 @@ const customerModel_1 = require("./models/customerModel");
 const inventoryModel_1 = require("./models/inventoryModel");
 const refundModel_1 = require("./models/refundModel");
 const supplierModel_1 = require("./models/supplierModel");
+const paymentModel_1 = require("./models/paymentModel");
 let ApprController = class ApprController {
-    constructor(customerClient, inventoryClient, refundClient, supplierClient) {
+    constructor(customerClient, inventoryClient, refundClient, supplierClient, paymantClient) {
         this.customerClient = customerClient;
         this.inventoryClient = inventoryClient;
         this.refundClient = refundClient;
         this.supplierClient = supplierClient;
+        this.paymantClient = paymantClient;
     }
     async createCustomer(payload) {
         return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
@@ -83,6 +85,15 @@ let ApprController = class ApprController {
     }
     async deleteCustomerRefund(id) {
         return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
+    }
+    async createCustomerPayment(customerPaymentDto) {
+        return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, customerPaymentDto);
+    }
+    async getAllCustomerPayments() {
+        return await this.paymantClient.send({ cmd: 'GET_ALL_CUSTOMER_PAYMENTS' }, {});
+    }
+    async getCustomerPaymentById(id) {
+        return await this.paymantClient.send({ cmd: 'GET_CUSTOMER_PAYMENT' }, id);
     }
 };
 exports.ApprController = ApprController;
@@ -218,13 +229,35 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "deleteCustomerRefund", null);
+__decorate([
+    (0, common_1.Post)('payment/customerPayment/create'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [paymentModel_1.CustomerPaymentDTO]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "createCustomerPayment", null);
+__decorate([
+    (0, common_1.Get)('payment/customerPayment/getAllCustomerPayments'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getAllCustomerPayments", null);
+__decorate([
+    (0, common_1.Get)('payment/customerPayment/get/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getCustomerPaymentById", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
     __param(1, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
     __param(2, (0, common_1.Inject)('REFUND_MANAGEMENT')),
     __param(3, (0, common_1.Inject)('SUPPLIER_MANAGEMENT')),
+    __param(4, (0, common_1.Inject)('PAYMENT_MANAGEMENT')),
     __metadata("design:paramtypes", [microservices_1.ClientProxy,
+        microservices_1.ClientProxy,
         microservices_1.ClientProxy,
         microservices_1.ClientProxy,
         microservices_1.ClientProxy])
