@@ -5,9 +5,6 @@ import { HttpExceptionFilter } from './filters/custom-exception.filter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new HttpExceptionFilter());
-
-  app.enableCors();
-
-  await app.listen(3001);
+  await app.listen(3000);
 }
 bootstrap();
