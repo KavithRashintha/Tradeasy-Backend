@@ -3,6 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
 import {InventoryItemDTO, UpdateInventoryItemDTO} from "./models/inventoryModel";
 import {CustomerRefundDTO} from "./models/refundModel";
+import {RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 
 @Controller()
 export class ApprController {
