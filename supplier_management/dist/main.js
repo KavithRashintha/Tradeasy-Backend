@@ -9,12 +9,12 @@ async function bootstrap() {
         transport: microservices_1.Transport.TCP,
         options: {
             host: '127.0.0.1',
-            port: 3005,
+            port: 9005,
         },
     });
     app.enableCors();
     await app.startAllMicroservices();
-    await app.listen(3005);
+    await app.listen(9005);
     console.log(`App is running on port ${await app.getUrl()}`);
 }
 bootstrap();

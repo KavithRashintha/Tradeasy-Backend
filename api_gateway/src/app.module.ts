@@ -12,7 +12,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 5001,
+          port: 9001,
         },
       },
       {
@@ -20,7 +20,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 5002,
+          port: 9002,
         },
       },
 
@@ -29,7 +29,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 5003,
+          port: 9003,
         },
       },
 
@@ -38,9 +38,27 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 5004,
+          port: 9004,
         },
       },
+
+      {
+        name: 'SUPPLIER_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 9005,
+        }
+      },
+
+      {
+        name: 'PAYMENT_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 9006,
+        }
+      }
     ]),
   ],
   controllers: [ApprController],
