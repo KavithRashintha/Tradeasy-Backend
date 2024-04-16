@@ -23,7 +23,7 @@ exports.AppModule = AppModule = __decorate([
                     transport: microservices_1.Transport.TCP,
                     options: {
                         host: '127.0.0.1',
-                        port: 3002,
+                        port: 3001,
                     },
                 },
                 {
@@ -31,7 +31,7 @@ exports.AppModule = AppModule = __decorate([
                     transport: microservices_1.Transport.TCP,
                     options: {
                         host: '127.0.0.1',
-                        port: 3003,
+                        port: 3002,
                     }
                 },
                 {
@@ -39,23 +39,7 @@ exports.AppModule = AppModule = __decorate([
                     transport: microservices_1.Transport.TCP,
                     options: {
                         host: '127.0.0.1',
-                        port: 3004,
-                    }
-                },
-                {
-                    name: 'SUPPLIER_MANAGEMENT',
-                    transport: microservices_1.Transport.TCP,
-                    options: {
-                        host: '127.0.0.1',
-                        port: 3005,
-                    }
-                },
-                {
-                    name: 'PAYMENT_MANAGEMENT',
-                    transport: microservices_1.Transport.TCP,
-                    options: {
-                        host: '127.0.0.1',
-                        port: 3006,
+                        port: 3003,
                     }
                 }
             ]),
