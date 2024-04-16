@@ -2,25 +2,16 @@ import { ClientProxy } from '@nestjs/microservices';
 import { RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO } from "./models/refundModel";
-import { RegisterSupplierDTO, UpdateSupplierDTO } from './models/supplierModel';
-import { CustomerPaymentDTO } from './models/paymentModel';
 export declare class ApprController {
     private customerClient;
     private inventoryClient;
     private refundClient;
-    private supplierClient;
-    private paymantClient;
-    constructor(customerClient: ClientProxy, inventoryClient: ClientProxy, refundClient: ClientProxy, supplierClient: ClientProxy, paymantClient: ClientProxy);
+    constructor(customerClient: ClientProxy, inventoryClient: ClientProxy, refundClient: ClientProxy);
     createCustomer(payload: RegisterCustomerDTO): Promise<import("rxjs").Observable<any>>;
     findCustomer(id: any): Promise<import("rxjs").Observable<any>>;
     getAllCustomers(): Promise<import("rxjs").Observable<any>>;
     updateCustomer(id: number, updateCustomerDto: UpdateCustomerDTO): Promise<import("rxjs").Observable<any>>;
     deleteCustomer(id: number): Promise<import("rxjs").Observable<any>>;
-    createSupplier(payload: RegisterSupplierDTO): Promise<import("rxjs").Observable<any>>;
-    getSupplier(id: any): Promise<import("rxjs").Observable<any>>;
-    getAllSuppliers(): Promise<import("rxjs").Observable<any>>;
-    updateSupplier(id: number, updateSupplierDto: UpdateSupplierDTO): Promise<import("rxjs").Observable<any>>;
-    deleteSupplier(id: number): Promise<import("rxjs").Observable<any>>;
     addInventoryItem(payload: InventoryItemDTO): Promise<import("rxjs").Observable<any>>;
     getInventoryItem(id: number): Promise<import("rxjs").Observable<any>>;
     getAllInventoryItems(): Promise<import("rxjs").Observable<any>>;
@@ -30,7 +21,4 @@ export declare class ApprController {
     getCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
     getAllCustomerRefunds(): Promise<import("rxjs").Observable<any>>;
     deleteCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
-    createCustomerPayment(customerPaymentDto: CustomerPaymentDTO): Promise<import("rxjs").Observable<any>>;
-    getAllCustomerPayments(): Promise<import("rxjs").Observable<any>>;
-    getCustomerPaymentById(id: number): Promise<import("rxjs").Observable<any>>;
 }
