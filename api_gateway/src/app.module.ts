@@ -23,6 +23,24 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           port: 5002,
         },
       },
+
+      {
+        name: 'INVENTORY_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 5003,
+        },
+      },
+
+      {
+        name: 'REFUND_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 5004,
+        },
+      },
     ]),
   ],
   controllers: [ApprController],
