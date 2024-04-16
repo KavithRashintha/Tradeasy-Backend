@@ -1,11 +1,15 @@
 /api_gateway/node_modules/
 /customer_management/node_modules/
 /product_management/node_modules/
+/order_management/node_modules/
 
 /api_gateway/.idea
 /customer_management/.idea
 /product_management/.idea
+/order_management/.idea
+
 
 /api_gateway/dist
 /customer_management/dist
 /product_management/dist
+/order_management/dist
