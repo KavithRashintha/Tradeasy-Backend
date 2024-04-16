@@ -1,7 +1,8 @@
-import {Module} from '@nestjs/common';
-import {ApprController} from './appr.controller';
-import {AppService} from './app.service';
-import {ClientsModule, Transport} from '@nestjs/microservices';
+import { Module } from '@nestjs/common';
+import { ApprController } from './appr.controller';
+import { ProductController } from './product.controller';
+import { AppService } from './app.service';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
   imports: [
@@ -11,30 +12,20 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3001,
+          port: 5001,
         },
       },
-
       {
-        name: 'INVENTORY_MANAGEMENT',
+        name: 'PRODUCT_MANAGEMENT',
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3002,
-        }
+          port: 5002,
+        },
       },
-
-      {
-        name: 'REFUND_MANAGEMENT',
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 3003,
-        }
-      }
     ]),
   ],
-  controllers: [ApprController],
-  providers: [AppService],
+  controllers: [ApprController, ProductController],
+  providers: [AppService], 
 })
 export class AppModule {}

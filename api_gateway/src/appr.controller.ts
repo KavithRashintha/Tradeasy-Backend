@@ -10,6 +10,7 @@ export class ApprController {
       @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
       @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
       @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
+      @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,
   ) {}
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -96,5 +97,36 @@ export class ApprController {
   async deleteCustomerRefund(@Param('id') id:number){
     return this.refundClient.send({cmd: 'DELETE_CUSTOMER_REFUND'}, id);
   }
+      
+  
 
+
+ //----------------------------------------------------PRODUCT_MANAGEMENT-----------------------------------------
+
+    @Post('product/create')
+    async createProduct(@Body() payload: RegisterProductDTO) {
+        return this.productClient.send({ cmd: 'CREATE_PRODUCT' }, payload);
+    }
+
+    @Get('product/findProduct/:id')
+    async findProduct(@Param('id') id: any){
+        return this.productClient.send({cmd:'GET_PRODUCT'}, id)
+    }
+
+
+    @Get('product/getAllProducts')
+    async getAllProducts(){
+        return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
+    }
+
+    @Put('product/update/:id')
+    async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
+        return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
+    }
+
+    @Delete('product/delete/:id')
+    async deleteProduct(@Param('id') id: number){
+        return this.productClient.send({cmd: 'DELETE_PRODUCT'}, id);
+    }
 }
+

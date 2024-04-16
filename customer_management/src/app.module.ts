@@ -9,9 +9,9 @@ import { Customer } from './customer.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5433,
+      port: 5432,
       username: 'postgres',
-      password: 'Kviper0824@',
+      password: 'password',
       database: 'Customer',
       entities: [Customer],
       synchronize: true,
