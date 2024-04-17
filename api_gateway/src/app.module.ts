@@ -61,7 +61,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       }
     ]),
   ],
-  controllers: [ApprController],
+  // controllers: [ApprController],
+  controllers: [ApprController, ProductController], //Separate Controller file for product Management CRUD
   providers: [AppService], 
 })
 export class AppModule {}
