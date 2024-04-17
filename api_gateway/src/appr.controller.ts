@@ -13,7 +13,7 @@ export class ApprController {
       @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
       @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
       @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
-      // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,
+      // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,   // Product Management Controller has been written on a separate file product.controller.ts
       @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
       @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy
   ) {}
