@@ -14,27 +14,27 @@ export class AppController {
     return await this.orderManagement.createOrders(createOrderDto);
   }
 
-  // @MessagePattern({ cmd: 'GET_PRODUCT' })
-  // async getProductById(
-  //     @Payload() id:any
-  // ): Promise<Product | null> {
-  //   return await this.productManagement.findProduct(id);
-  // }
-  //
-  // @MessagePattern({cmd: 'GET_ALL_PRODUCTS'})
-  // async getAllProducts(): Promise<Product[]>{
-  //   return await this.productManagement.getAllProducts();
-  // }
-  //
-  // @MessagePattern({cmd: 'UPDATE_PRODUCT'})
-  // async updateProduct(@Payload() data: { id: number, updateProductDto: UpdateProductDTO }): Promise<Product> {
-  //   const { id, updateProductDto } = data;
-  //   return await this.productManagement.updateProduct(id, updateProductDto);
-  // }
-  //
-  // @MessagePattern({cmd: 'DELETE_PRODUCT'})
-  // async deleteProduct(@Payload() id:number){
-  //   return await this.productManagement.deleteProduct(id);
-  // }
+  @MessagePattern({ cmd: 'GET_ORDER' })
+  async getOrderById(
+      @Payload() id:any
+  ): Promise<Order | null> {
+    return await this.orderManagement.findOrder(id);
+  }
+
+  @MessagePattern({cmd: 'GET_ALL_ORDERS'})
+  async getAllOrders(): Promise<Order[]>{
+    return await this.orderManagement.getAllOrders();
+  }
+
+  @MessagePattern({cmd: 'UPDATE_ORDER'})
+  async updateOrder(@Payload() data: { id: number, updateOrderDto: UpdateOrderDTO }): Promise<Order> {
+    const { id, updateOrderDto } = data;
+    return await this.orderManagement.updateOrder(id, updateOrderDto);
+  }
+
+  @MessagePattern({cmd: 'DELETE_ORDER'})
+  async deleteOrder(@Payload() id:number){
+    return await this.orderManagement.deleteOrder(id);
+  }
 
 }

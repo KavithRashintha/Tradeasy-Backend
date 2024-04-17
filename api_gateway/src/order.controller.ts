@@ -14,26 +14,26 @@ export class OrderController {
         return this.orderClient.send({ cmd: 'CREATE_ORDER' }, payload);
     }
 
-    // @Get('findProduct/:id')
-    // async findProduct(@Param('id') id: any){
-    //     return this.productClient.send({cmd:'GET_PRODUCT'}, id)
-    // }
-    //
-    //
-    // @Get('getAllProducts')
-    // async getAllProducts(){
-    //     return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
-    // }
-    //
-    // @Put('update/:id')
-    // async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
-    //     return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
-    // }
-    //
-    // @Delete('delete/:id')
-    // async deleteProduct(@Param('id') id: number){
-    //     return this.productClient.send({cmd: 'DELETE_PRODUCT'}, id);
-    // }
+    @Get('findOrder/:id')
+    async findOrder(@Param('id') id: any){
+        return this.orderClient.send({cmd:'GET_ORDER'}, id)
+    }
+
+
+    @Get('getAllOrders')
+    async getAllOrders(){
+        return this.orderClient.send({cmd: 'GET_ALL_ORDERS'}, {});
+    }
+
+    @Put('update/:id')
+    async updateOrder(@Param('id') id: number, @Body() updateOrderDto: UpdateOrderDTO){
+        return this.orderClient.send({ cmd: 'UPDATE_ORDER' }, { id, updateOrderDto });
+    }
+
+    @Delete('delete/:id')
+    async deleteOrder(@Param('id') id: number){
+        return this.orderClient.send({cmd: 'DELETE_ORDER'}, id);
+    }
 }
 
 

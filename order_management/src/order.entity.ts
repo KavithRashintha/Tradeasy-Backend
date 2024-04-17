@@ -16,7 +16,7 @@ export class Order {
     orderReceiverContact: string;
 
     @Column()
-    orderItems: number;
+    orderItems: string;
 
     @Column()
     orderPrice: number;
