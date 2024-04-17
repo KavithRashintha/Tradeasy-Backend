@@ -3,7 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import {GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO} from './models/customerModel';
 import {InventoryItemDTO, UpdateInventoryItemDTO} from "./models/inventoryModel";
 import {CustomerRefundDTO} from "./models/refundModel";
-import {RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
+// import {RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 import {RegisterSupplierDTO, UpdateSupplierDTO} from "./models/supplierModel";
 import {CustomerPaymentDTO} from "./models/paymentModel";
 
@@ -13,7 +13,7 @@ export class ApprController {
       @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
       @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
       @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
-      @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,
+      // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,
       @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
       @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy
   ) {}
@@ -107,32 +107,33 @@ export class ApprController {
 
 
  //----------------------------------------------------PRODUCT_MANAGEMENT-----------------------------------------
+// Product Management Controller has been written on a separate file product.controller.ts
 
-    @Post('product/create')
-    async createProduct(@Body() payload: RegisterProductDTO) {
-        return this.productClient.send({ cmd: 'CREATE_PRODUCT' }, payload);
-    }
+    // @Post('product/create')
+    // async createProduct(@Body() payload: RegisterProductDTO) {
+    //     return this.productClient.send({ cmd: 'CREATE_PRODUCT' }, payload);
+    // }
 
-    @Get('product/findProduct/:id')
-    async findProduct(@Param('id') id: any){
-        return this.productClient.send({cmd:'GET_PRODUCT'}, id)
-    }
+    // @Get('product/findProduct/:id')
+    // async findProduct(@Param('id') id: any){
+    //     return this.productClient.send({cmd:'GET_PRODUCT'}, id)
+    // }
 
 
-    @Get('product/getAllProducts')
-    async getAllProducts(){
-        return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
-    }
+    // @Get('product/getAllProducts')
+    // async getAllProducts(){
+    //     return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
+    // }
 
-    @Put('product/update/:id')
-    async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
-        return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
-    }
+    // @Put('product/update/:id')
+    // async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
+    //     return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
+    // }
 
-    @Delete('product/delete/:id')
-    async deleteProduct(@Param('id') id: number){
-        return this.productClient.send({cmd: 'DELETE_PRODUCT'}, id);
-    }
+    // @Delete('product/delete/:id')
+    // async deleteProduct(@Param('id') id: number){
+    //     return this.productClient.send({cmd: 'DELETE_PRODUCT'}, id);
+    // }
 
 
   //===================================SUPPLIER_MANAGEMENT===========================================================================
