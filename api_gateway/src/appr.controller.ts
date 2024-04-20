@@ -6,6 +6,7 @@ import {CustomerRefundDTO} from "./models/refundModel";
 // import {RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 import {RegisterSupplierDTO, UpdateSupplierDTO} from "./models/supplierModel";
 import {CustomerPaymentDTO} from "./models/paymentModel";
+import { InvnetoryRefundDTO } from './models/inventoryRefundModel';
 
 @Controller()
 export class ApprController {
@@ -105,10 +106,27 @@ export class ApprController {
     return this.refundClient.send({cmd: 'DELETE_CUSTOMER_REFUND'}, id);
   }
 
-   //----------------------------------------------------CUSTOMER_REFUND_MANAGEMENT-----------------------------------------
-
+   //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
+   @Post('refund/inventoryRefund/create')
+   async createInventoryRefund(@Body() inventoryRefundDTO:InvnetoryRefundDTO)
+    {
+      return this.inventoryRefund.send({cmd:'CREATE_INVENTORY_REFUND'},inventoryRefundDTO);
+    }
       
-  
+  @Get('refund/inventoryRefund/getAll')
+  async getAllInventoryRefunds(){
+    return this.inventoryRefund.send({cmd:'GET_ALL_INVENTORY_REFUND'},{})
+  }
+
+  @Get('refund/inventoryRefund/get/:id')
+  async getInventoryRefundById(@Param('id') id:number){
+    return this.inventoryRefund.send({cmd:'GET_INVENTORY_REFUND_BY_ID'},id)
+  }
+
+  @Delete('refund/inventoryRefund/delete/:id')
+  async deleteInventoryRefund(@Param('id') id:number){  
+    return this.inventoryRefund.send({cmd:'DELETE_CUSTOMER_REFUND'},id)
+  }
 
 
  //----------------------------------------------------PRODUCT_MANAGEMENT-----------------------------------------
