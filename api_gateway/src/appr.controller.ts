@@ -15,7 +15,9 @@ export class ApprController {
       @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
       // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,   // Product Management Controller has been written on a separate file product.controller.ts
       @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
-      @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy
+      @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
+      @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy
+
   ) {}
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -102,6 +104,9 @@ export class ApprController {
   async deleteCustomerRefund(@Param('id') id:number){
     return this.refundClient.send({cmd: 'DELETE_CUSTOMER_REFUND'}, id);
   }
+
+   //----------------------------------------------------CUSTOMER_REFUND_MANAGEMENT-----------------------------------------
+
       
   
 
