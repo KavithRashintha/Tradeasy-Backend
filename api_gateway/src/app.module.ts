@@ -68,6 +68,15 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           host: '127.0.0.1',
           port: 9007,
         }
+      },
+
+      {
+        name: 'DISCOUNT_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 9008,
+        }
       }
     ]),
   ],
