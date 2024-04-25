@@ -7,6 +7,7 @@ import {CustomerRefundDTO} from "./models/refundModel";
 import {RegisterSupplierDTO, UpdateSupplierDTO} from "./models/supplierModel";
 import {CustomerPaymentDTO} from "./models/paymentModel";
 import { InvnetoryRefundDTO } from './models/inventoryRefundModel';
+import { In } from 'typeorm';
 
 @Controller()
 export class ApprController {
@@ -18,6 +19,7 @@ export class ApprController {
       @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
       @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
       @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy
+      @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryPayment: ClientProxy
 
   ) {}
 
@@ -205,6 +207,22 @@ export class ApprController {
   @Get('payment/customerPayment/get/:id')
   async getCustomerPaymentById(@Param('id') id: number){
     return await this.paymantClient.send({cmd: 'GET_CUSTOMER_PAYMENT'}, id);
+  }
+
+
+  //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
+  @Post('payment/inventoryPayment/create')
+  async createInventoryPayment(@Body() inventoryPaymentDTO:InvnetoryRefundDTO)
+  {
+    return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
+  } 
+  @Get('payment/inventoryPayment/getAll')
+  async getAllInventoryPayments(){
+    return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
+  }
+  @Get('payment/inventoryPayment/get/:id')  
+  async getInventoryPaymentById(@Param('id') id:number){
+    return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
   }
 
 }

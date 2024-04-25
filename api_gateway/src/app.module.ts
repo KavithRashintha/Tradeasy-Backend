@@ -76,7 +76,16 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           host: '127.0.0.1',
           port:9008,
         }
+      },
+      {
+        name:'PURCHASE_ORDER_MANAGEMENT',
+        transport:Transport.TCP,
+        options:{
+          host:'127.0.0.1',
+          port:9009,
+        }
       }
+      
     ]),
   ],
   // controllers: [ApprController],
