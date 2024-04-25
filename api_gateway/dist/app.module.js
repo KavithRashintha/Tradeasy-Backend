@@ -75,7 +75,15 @@ exports.AppModule = AppModule = __decorate([
                         host: '127.0.0.1',
                         port: 9007,
                     }
-                }
+                },
+                {
+                    name: 'SUPPLIER_MANAGEMENT',
+                    transport: microservices_1.Transport.TCP,
+                    options: {
+                        host: '127.0.0.1',
+                        port: 9006,
+                    }
+                },
             ]),
         ],
         controllers: [appr_controller_1.ApprController, product_controller_1.ProductController, order_controller_1.OrderController],
