@@ -6,8 +6,6 @@ import { DiscountsDTO } from './dto/discountsDTO';
 
 @Injectable()
 export class AppService {
-  [x: string]: any;
-
   constructor(
       @InjectRepository(Discounts)
       private readonly discountManagement: Repository<Discounts>,

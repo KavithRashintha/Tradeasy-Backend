@@ -191,7 +191,7 @@ export class ApprController {
 
   @Post('discounts/create')
   async createDiscount(@Body() discountsDTO: DiscountsDTO){
-    return this.discountClient.send({cmd: 'CREATE_DISCOUNT'}, discountsDTO)
+    return this.discountClient.send({cmd:'CREATE_DISCOUNT'}, discountsDTO);
   }
 
   @Get('discounts/get/:id')
