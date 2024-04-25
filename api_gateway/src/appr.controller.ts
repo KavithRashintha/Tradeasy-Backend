@@ -225,7 +225,12 @@ export class ApprController {
     return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
   }
 
-}
+  //----------------------------------------------------Purchase_Order_MANAGEMENT-----------------------------------------
+ /* @Post('purchaseOrder/create')
+  async createPurchaseOrder(@Body() purchaseOrderDTO: PurchaseOrderDTO){
+    return this.inventoryPayment.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
+  }
+}*/
 
 
 
