@@ -225,13 +225,37 @@ export class ApprController {
   async getInventoryPaymentById(@Param('id') id:number){
     return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
   }
+ 
 
   //----------------------------------------------------Purchase_Order_MANAGEMENT-----------------------------------------
  @Post('purchaseOrder/create')
   async createPurchaseOrder(@Body() purchaseOrderDTO: PurchaseOrderDTO){
     return this.inventoryOrder.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
   }
+
+  @Get('purchaseOrder/getAll')
+  async getAllPurchaseOrder(){
+    return this.inventoryOrder.send({cmd: 'GET_ALL_PURCHASE_ORDER'}, {});
+  }
+
+  @Get('purchaseOrder/get/:id')
+  async getPurchaseOrderById(@Param('id') id:number){
+    return this.inventoryOrder.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
+  }
+
+  @Delete('purchaseOrder/delete/:id')
+  async deletePurchaseOrder(@Param('id') id:number){
+    return this.inventoryOrder.send({cmd: 'DELETE_PURCHASE_ORDER'}, id);
+  }
+
+  @Get('purchaseOrder/getCountOfOrdersByStatus/:status')
+  async getCountOfOrdersByStatus(@Param('status') status: string){
+    return this.inventoryOrder.send({cmd: 'GET_COUNT_OF_ORDERS_BY_STATUS'}, status);
+  }
+  
 }
+  
+
 
 
 
