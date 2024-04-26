@@ -7,6 +7,7 @@ import {CustomerRefundDTO} from "./models/refundModel";
 import {RegisterSupplierDTO, UpdateSupplierDTO} from "./models/supplierModel";
 import {CustomerPaymentDTO} from "./models/paymentModel";
 import { InvnetoryRefundDTO } from './models/inventoryRefundModel';
+import { PurchaseOrderDTO } from './models/purchaseOrderModel';
 import { In } from 'typeorm';
 
 @Controller()
@@ -18,8 +19,8 @@ export class ApprController {
       // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,   // Product Management Controller has been written on a separate file product.controller.ts
       @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
       @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
-      @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy
-      @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryPayment: ClientProxy
+      @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy,
+      @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryOrder: ClientProxy
 
   ) {}
 
@@ -226,11 +227,11 @@ export class ApprController {
   }
 
   //----------------------------------------------------Purchase_Order_MANAGEMENT-----------------------------------------
- /* @Post('purchaseOrder/create')
+ @Post('purchaseOrder/create')
   async createPurchaseOrder(@Body() purchaseOrderDTO: PurchaseOrderDTO){
-    return this.inventoryPayment.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
+    return this.inventoryOrder.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
   }
-}*/
+}
 
 
 
