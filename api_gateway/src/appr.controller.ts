@@ -6,6 +6,7 @@ import {CustomerRefundDTO} from "./models/refundModel";
 // import {RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 import {RegisterSupplierDTO, UpdateSupplierDTO} from "./models/supplierModel";
 import {CustomerPaymentDTO} from "./models/paymentModel";
+import { DiscountsDTO } from './models/discountModel';
 
 @Controller()
 export class ApprController {
@@ -15,7 +16,8 @@ export class ApprController {
       @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
       // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,   // Product Management Controller has been written on a separate file product.controller.ts
       @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
-      @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy
+      @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
+      @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy
   ) {}
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -182,6 +184,29 @@ export class ApprController {
   @Get('payment/customerPayment/get/:id')
   async getCustomerPaymentById(@Param('id') id: number){
     return await this.paymantClient.send({cmd: 'GET_CUSTOMER_PAYMENT'}, id);
+  }
+
+
+  //====================================================PAYMENT_MANAGEMENT==================================================
+
+  @Post('discounts/create')
+  async createDiscount(@Body() discountsDTO: DiscountsDTO){
+    return this.discountClient.send({cmd:'CREATE_DISCOUNT'}, discountsDTO);
+  }
+
+  @Get('discounts/get/:id')
+  async getDiscountById(@Param('id') id:number){
+    return this.discountClient.send({cmd: 'GET_DISCOUNT'}, id);
+  }
+
+  @Get('discounts/getAll')
+  async getAllDiscounts(){
+    return this.discountClient.send({cmd: 'GET_ALL_DISCOUNTS'}, {})
+  }
+
+  @Delete('discounts/delete/:id')
+  async deleteDiscount(@Param('id') id:number){
+    return this.discountClient.send({cmd: 'DELETE_DISCOUNT'}, id);
   }
 
 }

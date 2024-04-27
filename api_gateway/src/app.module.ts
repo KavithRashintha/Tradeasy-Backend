@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ApprController } from './appr.controller';
 import { ProductController } from './product.controller';
-import {OrderController} from "./order.controller";
+import { OrderController } from "./order.controller";
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
@@ -58,7 +58,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         options: {
           host: '127.0.0.1',
           port: 9006,
-        }
+        },
       },
 
       {
@@ -67,12 +67,21 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         options: {
           host: '127.0.0.1',
           port: 9007,
-        }
+        },
+      },
+
+      {
+        name: 'DISCOUNT_MANAGEMENT',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 9008,
+        },
       }
     ]),
   ],
   // controllers: [ApprController],
-  controllers: [ApprController, ProductController,OrderController], //Separate Controller file for product Management CRUD and Order Managemennt CRUD Tuks#02
-  providers: [AppService], 
+  controllers: [ApprController, ProductController, OrderController], //Separate Controller file for product Management CRUD and Order Managemennt CRUD Tuks#02
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
