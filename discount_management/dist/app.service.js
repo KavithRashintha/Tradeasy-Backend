@@ -29,15 +29,18 @@ let AppService = class AppService {
     async getAllDiscounts() {
         return await this.discountManagement.find();
     }
-    async getSearchDiscounts(productName) {
-        const allDiscounts = await this.discountManagement.find();
-        let filteredDiscounts = [];
-        if (productName) {
-            filteredDiscounts = await this.discountManagement.find({ where: { productName: (0, typeorm_3.ILike)(`%${productName}%`) } });
+    async searchAllDiscounts(query) {
+        console.log('Received query:', query);
+        const keyword = query.query.keyword;
+        try {
+            const filteredDiscounts = await this.discountManagement.find({ where: { productName: (0, typeorm_3.ILike)(`%${keyword}%`) } });
+            console.log('Filtered discounts:', filteredDiscounts);
+            return filteredDiscounts;
         }
-        console.log('All Discounts:', allDiscounts);
-        console.log('Filtered Discounts:', filteredDiscounts);
-        return filteredDiscounts;
+        catch (error) {
+            console.error('Error occurred while searching discounts:', error);
+            return [];
+        }
     }
     async getDiscountById(id) {
         return await this.discountManagement.findOneById(id);

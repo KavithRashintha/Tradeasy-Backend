@@ -39,3 +39,6 @@
 /discount_management/node_modules/
 /discount_management/.idea
 /discount_management/dist
+
+.idea/
+.vscode/
