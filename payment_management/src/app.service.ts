@@ -26,7 +26,6 @@ export class AppService {
   async getCustomerPaymentById(id: any): Promise<CustomerPayments | null>{
     return await this.customerPaymentManagement.findOneById(id);
   }
-
 }
 
 

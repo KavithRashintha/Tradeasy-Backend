@@ -13,6 +13,11 @@ export class AppController {
     return await this.discountManagement.createDiscount(discountsDTO);
   }
 
+  @MessagePattern({ cmd: 'SEARCH_DISCOUNT' })
+  async getSearchDiscounts(@Payload() productName: string): Promise<Discounts[]> {
+    return await this.discountManagement.getSearchDiscounts(productName);
+}
+
   @MessagePattern({cmd: 'GET_ALL_DISCOUNTS'})
   async getAllDiscounts(): Promise<Discounts[]>{
     return await this.discountManagement.getAllDiscounts();

@@ -6,6 +6,7 @@ export declare class AppService {
     constructor(discountManagement: Repository<Discounts>);
     createDiscount(discountsDTO: DiscountsDTO): Promise<Discounts>;
     getAllDiscounts(): Promise<Discounts[]>;
+    getSearchDiscounts(productName?: string): Promise<Discounts[]>;
     getDiscountById(id: any): Promise<Discounts | null>;
     deleteDiscount(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
 }

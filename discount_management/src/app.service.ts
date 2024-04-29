@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Discounts } from './discount.entity';
 import { Repository } from 'typeorm';
 import { DiscountsDTO } from './dto/discountsDTO';
-
+import { ILike } from "typeorm";
 @Injectable()
 export class AppService {
   constructor(
@@ -19,7 +19,29 @@ export class AppService {
   async getAllDiscounts(): Promise<Discounts[]>{
     return await this.discountManagement.find();
   }
+  async getSearchDiscounts(productName?: string): Promise<Discounts[] > {
+    // Fetch all discounts
+    const allDiscounts = await this.discountManagement.find();
 
+    let filteredDiscounts: Discounts[] = [];
+
+    // Filter discounts if productName is provided
+    
+
+    if (productName) {
+        filteredDiscounts = await this.discountManagement.find({ where: { productName: ILike(`%${productName}%`) } });
+    }
+    
+    // Print both sets of results
+    console.log('All Discounts:', allDiscounts);
+    console.log('Filtered Discounts:', filteredDiscounts);
+
+    return   filteredDiscounts 
+}
+
+  
+  
+  
   async getDiscountById(id: any): Promise<Discounts | null>{
     return await this.discountManagement.findOneById(id);
   }

@@ -32,8 +32,6 @@ export class AppService {
     return await this.productRepository.findOneById(id);
   }
 
-
-
   async deleteProduct(id: number){
     const result = await this.productRepository.delete(id);
     if(!result){

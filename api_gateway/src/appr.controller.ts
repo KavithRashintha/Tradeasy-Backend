@@ -171,10 +171,10 @@ export class ApprController {
 
 //----------------------------------------------------CUSTOMER_Payment_MANAGEMENT-----------------------------------------
 
-  @Post('payment/customerPayment/create')
-  async createCustomerPayment(@Body() customerPaymentDto: CustomerPaymentDTO) {
-    return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, customerPaymentDto);
-  }
+  // @Post('payment/customerPayment/create')
+  // async createCustomerPayment(@Body() customerPaymentDto: CustomerPaymentDTO) {
+  //   return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, customerPaymentDto);
+  // }
 
   @Get('payment/customerPayment/getAllCustomerPayments')
   async getAllCustomerPayments(){
@@ -192,6 +192,11 @@ export class ApprController {
   @Post('discounts/create')
   async createDiscount(@Body() discountsDTO: DiscountsDTO){
     return this.discountClient.send({cmd:'CREATE_DISCOUNT'}, discountsDTO);
+  }
+
+  @Post('discounts/search')
+  async getSearchDiscounts(@Body() payload: { productName: string }) {
+    return this.discountClient.send({ cmd: 'SEARCH_DISCOUNT' }, payload.productName)
   }
 
   @Get('discounts/get/:id')
