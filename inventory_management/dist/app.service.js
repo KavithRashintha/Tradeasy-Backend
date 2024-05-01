@@ -44,6 +44,12 @@ let AppService = class AppService {
             return 'Successfully Deleted';
         }
     }
+    async getInventoryItemByCategory(itemCategory) {
+        return await this.itemRepository
+            .createQueryBuilder('item')
+            .where('item.itemCategory = :itemCategory', { itemCategory })
+            .getMany();
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

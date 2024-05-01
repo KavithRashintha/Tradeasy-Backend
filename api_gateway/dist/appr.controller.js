@@ -15,29 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ApprController = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
-const customerModel_1 = require("./models/customerModel");
 const inventoryModel_1 = require("./models/inventoryModel");
 const refundModel_1 = require("./models/refundModel");
 let ApprController = class ApprController {
-    constructor(customerClient, inventoryClient, refundClient) {
-        this.customerClient = customerClient;
+    constructor(inventoryClient, refundClient) {
         this.inventoryClient = inventoryClient;
         this.refundClient = refundClient;
-    }
-    async createCustomer(payload) {
-        return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
-    }
-    async findCustomer(id) {
-        return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id);
-    }
-    async getAllCustomers() {
-        return this.customerClient.send({ cmd: 'GET_ALL_CUSTOMERS' }, {});
-    }
-    async updateCustomer(id, updateCustomerDto) {
-        return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
-    }
-    async deleteCustomer(id) {
-        return this.customerClient.send({ cmd: 'DELETE_CUSTOMER' }, id);
     }
     async addInventoryItem(payload) {
         return this.inventoryClient.send({ cmd: 'ADD_INVENTORY_ITEM' }, payload);
@@ -54,6 +37,9 @@ let ApprController = class ApprController {
     async deleteInventoryItem(id) {
         return this.inventoryClient.send({ cmd: 'DELETE_INVENTORY_ITEM' }, id);
     }
+    async getInventoryItemByCategory(itemCategory) {
+        return this.inventoryClient.send({ cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY' }, itemCategory);
+    }
     async createCustomerRefund(customerRefundDto) {
         return this.refundClient.send({ cmd: 'CREATE_CUSTOMER_REFUND' }, customerRefundDto);
     }
@@ -68,41 +54,6 @@ let ApprController = class ApprController {
     }
 };
 exports.ApprController = ApprController;
-__decorate([
-    (0, common_1.Post)('customer/create'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [customerModel_1.RegisterCustomerDTO]),
-    __metadata("design:returntype", Promise)
-], ApprController.prototype, "createCustomer", null);
-__decorate([
-    (0, common_1.Get)('customer/findCustomer/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], ApprController.prototype, "findCustomer", null);
-__decorate([
-    (0, common_1.Get)('customer/getAllCustomers'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], ApprController.prototype, "getAllCustomers", null);
-__decorate([
-    (0, common_1.Put)('customer/update/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, customerModel_1.UpdateCustomerDTO]),
-    __metadata("design:returntype", Promise)
-], ApprController.prototype, "updateCustomer", null);
-__decorate([
-    (0, common_1.Delete)('customer/delete/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], ApprController.prototype, "deleteCustomer", null);
 __decorate([
     (0, common_1.Post)('inventory/add'),
     __param(0, (0, common_1.Body)()),
@@ -139,6 +90,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ApprController.prototype, "deleteInventoryItem", null);
 __decorate([
+    (0, common_1.Get)('inventory/getByCategory'),
+    __param(0, (0, common_1.Query)('itemCategory')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ApprController.prototype, "getInventoryItemByCategory", null);
+__decorate([
     (0, common_1.Post)('refund/customerRefund/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -167,11 +125,9 @@ __decorate([
 ], ApprController.prototype, "deleteCustomerRefund", null);
 exports.ApprController = ApprController = __decorate([
     (0, common_1.Controller)(),
-    __param(0, (0, common_1.Inject)('CUSTOMER_MANAGEMENT')),
-    __param(1, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
-    __param(2, (0, common_1.Inject)('REFUND_MANAGEMENT')),
+    __param(0, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
+    __param(1, (0, common_1.Inject)('REFUND_MANAGEMENT')),
     __metadata("design:paramtypes", [microservices_1.ClientProxy,
-        microservices_1.ClientProxy,
         microservices_1.ClientProxy])
 ], ApprController);
 //# sourceMappingURL=appr.controller.js.map

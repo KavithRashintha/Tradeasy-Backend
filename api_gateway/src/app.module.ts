@@ -2,6 +2,7 @@ import {Module} from '@nestjs/common';
 import {ApprController} from './appr.controller';
 import {AppService} from './app.service';
 import {ClientsModule, Transport} from '@nestjs/microservices';
+import { CustomerController } from './customer/customer.controller';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3001,
+          port: 9001,
         },
       },
 
@@ -20,7 +21,7 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3002,
+          port: 9002,
         }
       },
 
@@ -29,12 +30,12 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
-          port: 3003,
+          port: 9003,
         }
       }
     ]),
   ],
-  controllers: [ApprController],
+  controllers: [ApprController, CustomerController],
   providers: [AppService],
 })
 export class AppModule {}

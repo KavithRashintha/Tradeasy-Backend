@@ -47,4 +47,9 @@ export class AppController {
   async deleteInventoryItem(@Payload() id: number) {
     return await this.inventoryManagement.deleteInventoryItem(id);
   }
+
+  @MessagePattern({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'})
+  async getInventoryItemByCategory(@Payload() itemCategory: string): Promise<Item[]> {
+    return await this.inventoryManagement.getInventoryItemByCategory(itemCategory);
+  }
 }
