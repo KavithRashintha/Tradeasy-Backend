@@ -7,6 +7,7 @@ import { CustomerRefundDTO } from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
+import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 
 @Controller()
@@ -18,7 +19,8 @@ export class ApprController {
     // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,   // Product Management Controller has been written on a separate file product.controller.ts
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
-    @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy
+    @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
+    @Inject('AUTH_MANAGEMENT') private authClient: ClientProxy
   ) { }
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -220,6 +222,18 @@ export class ApprController {
     return this.discountClient.send({ cmd: 'DELETE_DISCOUNT' }, id);
   }
 
+
+  //========================================================AUTHENTICATION=================================================================
+
+  @Post('auth/signup')
+  async signUp(@Body() payload: AuthDto) {
+    return this.authClient.send({ cmd: 'AUTH_SIGNUP' }, payload);
+  }
+
+  @Post('auth/login')
+  async login(@Body() payload: AuthDto){
+    return this.authClient.send({cmd: 'AUTH_LOGIN'}, payload);
+  }
 }
 
 
