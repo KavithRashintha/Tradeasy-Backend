@@ -157,6 +157,11 @@ export class ApprController {
     return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});
   }
 
+  @Get('supplier/search')
+  async searchAllSuppliers(@Query() query: ExpressQuery) {
+    return this.supplierClient.send({ cmd: 'SEARCH_ALL_SUPPLIERS' }, {query})
+  }
+
   @Put('supplier/update/:id')
   async updateSupplier(@Param('id') id: number, @Body() updateSupplierDto: UpdateSupplierDTO) {
     console.log("API - AC");
@@ -187,6 +192,11 @@ export class ApprController {
   @Get('payment/customerPayment/get/:id')
   async getCustomerPaymentById(@Param('id') id: number) {
     return await this.paymantClient.send({ cmd: 'GET_CUSTOMER_PAYMENT' }, id);
+  }
+
+  @Get('payment/customerPayment/search')
+  async searchAllPayments(@Query() query: ExpressQuery) {
+    return this.paymantClient.send({ cmd: 'SEARCH_ALL_PAYMENTS' }, {query});
   }
 
 
