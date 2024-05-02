@@ -10,7 +10,7 @@ export declare class ApprController {
     getAllInventoryItems(): Promise<import("rxjs").Observable<any>>;
     updateInventoryItem(id: number, updateInventoryItemDto: UpdateInventoryItemDTO): Promise<import("rxjs").Observable<any>>;
     deleteInventoryItem(id: number): Promise<import("rxjs").Observable<any>>;
-    getInventoryItemByCategory(itemCategory: string): Promise<import("rxjs").Observable<any>>;
+    getInventoryItemByCategory(productCategory: string): Promise<import("rxjs").Observable<any>>;
     createCustomerRefund(customerRefundDto: CustomerRefundDTO): Promise<import("rxjs").Observable<any>>;
     getCustomerRefund(id: number): Promise<import("rxjs").Observable<any>>;
     getAllCustomerRefunds(): Promise<import("rxjs").Observable<any>>;

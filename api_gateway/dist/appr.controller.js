@@ -37,8 +37,8 @@ let ApprController = class ApprController {
     async deleteInventoryItem(id) {
         return this.inventoryClient.send({ cmd: 'DELETE_INVENTORY_ITEM' }, id);
     }
-    async getInventoryItemByCategory(itemCategory) {
-        return this.inventoryClient.send({ cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY' }, itemCategory);
+    async getInventoryItemByCategory(productCategory) {
+        return this.inventoryClient.send({ cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY' }, productCategory);
     }
     async createCustomerRefund(customerRefundDto) {
         return this.refundClient.send({ cmd: 'CREATE_CUSTOMER_REFUND' }, customerRefundDto);
@@ -91,7 +91,7 @@ __decorate([
 ], ApprController.prototype, "deleteInventoryItem", null);
 __decorate([
     (0, common_1.Get)('inventory/getByCategory'),
-    __param(0, (0, common_1.Query)('itemCategory')),
+    __param(0, (0, common_1.Query)('productCategory')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

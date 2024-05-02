@@ -42,8 +42,8 @@ export class ApprController {
   }
 
   @Get('inventory/getByCategory')
-  async getInventoryItemByCategory(@Query('itemCategory') itemCategory:string){
-    return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'}, itemCategory);
+  async getInventoryItemByCategory(@Query('productCategory') productCategory:string){
+    return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'}, productCategory);
   }
 
   //====================================================REFUND_MANAGEMENT==================================================

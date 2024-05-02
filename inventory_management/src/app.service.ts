@@ -46,10 +46,10 @@ export class AppService {
     }
   }
 
-  async getInventoryItemByCategory(itemCategory:string):Promise<Item[]>{
+  async getInventoryItemByCategory(productCategory:string):Promise<Item[]>{
     return await this.itemRepository
         .createQueryBuilder('item')
-        .where('item.itemCategory = :itemCategory', {itemCategory})
+        .where('item.productCategory = :productCategory', {productCategory})
         .getMany();
   }
 

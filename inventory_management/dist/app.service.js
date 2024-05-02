@@ -44,10 +44,10 @@ let AppService = class AppService {
             return 'Successfully Deleted';
         }
     }
-    async getInventoryItemByCategory(itemCategory) {
+    async getInventoryItemByCategory(productCategory) {
         return await this.itemRepository
             .createQueryBuilder('item')
-            .where('item.itemCategory = :itemCategory', { itemCategory })
+            .where('item.productCategory = :productCategory', { productCategory })
             .getMany();
     }
 };

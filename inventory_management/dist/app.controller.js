@@ -37,8 +37,8 @@ let AppController = class AppController {
     async deleteInventoryItem(id) {
         return await this.inventoryManagement.deleteInventoryItem(id);
     }
-    async getInventoryItemByCategory(itemCategory) {
-        return await this.inventoryManagement.getInventoryItemByCategory(itemCategory);
+    async getInventoryItemByCategory(productCategory) {
+        return await this.inventoryManagement.getInventoryItemByCategory(productCategory);
     }
 };
 exports.AppController = AppController;

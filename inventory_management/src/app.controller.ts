@@ -49,7 +49,7 @@ export class AppController {
   }
 
   @MessagePattern({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'})
-  async getInventoryItemByCategory(@Payload() itemCategory: string): Promise<Item[]> {
-    return await this.inventoryManagement.getInventoryItemByCategory(itemCategory);
+  async getInventoryItemByCategory(@Payload() productCategory: string): Promise<Item[]> {
+    return await this.inventoryManagement.getInventoryItemByCategory(productCategory);
   }
 }

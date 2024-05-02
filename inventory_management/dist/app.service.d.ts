@@ -10,5 +10,5 @@ export declare class AppService {
     getAllInventoryItems(): Promise<Item[]>;
     updateInventoryItem(id: number, updateInventoryItemDto: UpdateInventoryItemDTO): Promise<Item>;
     deleteInventoryItem(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
-    getInventoryItemByCategory(itemCategory: string): Promise<Item[]>;
+    getInventoryItemByCategory(productCategory: string): Promise<Item[]>;
 }
