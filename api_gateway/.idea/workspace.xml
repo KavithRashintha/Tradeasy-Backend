@@ -6,52 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="72922509-1f4c-420c-86a2-2f6a6542f41c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/appr.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/customer/customer.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/customer/customer.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/customer/customer.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/filters/custom-exception.filter.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/filters/custom-exception.filter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/filters/custom-exception.filter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/customerModel.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/customerModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/customerModel.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/inventoryModel.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/inventoryModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/inventoryModel.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/refundModel.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/refundModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/refundModel.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/appr.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/appr.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/inventoryModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/inventoryModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.controller.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/app.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/app.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/dto/InventoryItemDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/dto/InventoryItemDTO.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/dto/InventoryItemDTO.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/dto/InventoryItemDTO.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/inventory.entity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/inventory.entity.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/inventory.entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/inventory.entity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/inventory.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/inventory.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/app.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/app.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/dto/InventoryItemDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/dto/InventoryItemDTO.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/inventory.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/inventory.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/src/dto/UpdateInventoryItemDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/dto/UpdateInventoryItemDTO.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +78,7 @@
       <workItem from="1714236042516" duration="5307000" />
       <workItem from="1714359354220" duration="4353000" />
       <workItem from="1714541086820" duration="4916000" />
-      <workItem from="1714624358953" duration="3221000" />
+      <workItem from="1714624358953" duration="4250000" />
     </task>
     <servers />
   </component>
