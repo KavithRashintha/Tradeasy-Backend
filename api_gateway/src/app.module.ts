@@ -80,14 +80,14 @@ import {AuthController} from "./auth.controller";
         },
       },
 
-      {
-        name: 'AUTH_MANAGEMENT',
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 9009,
-        },
-      },
+      // {
+      //   name: 'AUTH_MANAGEMENT',
+      //   transport: Transport.TCP,
+      //   options: {
+      //     host: '127.0.0.1',
+      //     port: 9009,
+      //   },
+      // },
 
       {
         name: 'AUTH_MANAGEMENT_2',
