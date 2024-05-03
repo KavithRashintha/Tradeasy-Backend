@@ -57,8 +57,8 @@ __decorate([
 __decorate([
     (0, public_decorator_1.Public)(),
     (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
-    (0, common_1.Post)('sign-in'),
-    __param(0, (0, common_1.Body)()),
+    (0, microservices_1.MessagePattern)({ cmd: 'signin' }),
+    __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [sign_in_dto_1.SignInDto]),
     __metadata("design:returntype", Promise)
@@ -80,7 +80,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "invalidateToken", null);
 exports.AuthController = AuthController = __decorate([
-    (0, common_1.Controller)(),
+    (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService,
         users_service_1.UsersService,
         jwt_1.JwtService])

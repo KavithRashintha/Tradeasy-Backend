@@ -11,3 +11,8 @@ export class AuthRegisterUserDto {
     username: string;
     password: string;
 }
+
+export class AuthLoginUserDto {
+    username: string;
+    password: string;
+}

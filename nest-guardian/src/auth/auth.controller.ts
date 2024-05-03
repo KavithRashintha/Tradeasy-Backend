@@ -18,7 +18,7 @@ import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { JwtRefreshTokenGuard } from './guards/jwt-refresh-token.guard';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { User } from '../users/user.entity';
-@Controller()
+@Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
@@ -36,10 +36,17 @@ export class AuthController {
     return this.usersService.create(registerUserDto);
   }
 
+  // @Public()
+  // @UseGuards(LocalAuthGuard)
+  // @Post('sign-in')
+  // async signIn(@Body() signInDto: SignInDto) {
+  //   return this.authService.signIn(signInDto);
+  // }
+
   @Public()
   @UseGuards(LocalAuthGuard)
-  @Post('sign-in')
-  async signIn(@Body() signInDto: SignInDto) {
+  @MessagePattern({cmd:'signin'})
+  async signIn(@Payload() signInDto: SignInDto) {
     return this.authService.signIn(signInDto);
   }
 
