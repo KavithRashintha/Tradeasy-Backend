@@ -6,3 +6,8 @@ export class AuthDto{
     readonly contactNo: string;
     readonly role: string;
 }
+
+export class AuthRegisterUserDto {
+    username: string;
+    password: string;
+}

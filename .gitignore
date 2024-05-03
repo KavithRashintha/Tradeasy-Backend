@@ -40,5 +40,13 @@
 /discount_management/.idea
 /discount_management/dist
 
+/nest-guardian/node_modules/
+/nest-guardian/.idea
+/nest-guardiant/dist
+
+/authentication/node_modules/
+/authentication/.idea
+/authentication/dist
+
 .idea/
 .vscode/
