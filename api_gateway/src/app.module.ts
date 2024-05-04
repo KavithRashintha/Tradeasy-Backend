@@ -8,7 +8,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { User } from './auth.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-//import { LocalStrategy } from './strategies/local.strategy';
+import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 
@@ -104,7 +104,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     JwtModule.register({
       secret: 'abc123',
       signOptions: {
-        expiresIn: '1h'
+        expiresIn: '60s'
       },
     }),
     PassportModule
@@ -112,6 +112,6 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   // controllers: [ApprController],
   controllers: [ApprController, ProductController, OrderController],
   //providers: [AppService],
-  providers: [AppService, JwtStrategy],
+  providers: [AppService, JwtStrategy, LocalStrategy],
 })
 export class AppModule { }

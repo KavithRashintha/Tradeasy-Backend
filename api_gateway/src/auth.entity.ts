@@ -16,7 +16,7 @@ export class User{
     email: string;
 
     @Column()
-    contact: string;
+    contactNo: string;
 
     @Column()
     role: string;

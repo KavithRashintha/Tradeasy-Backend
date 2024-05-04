@@ -5,7 +5,6 @@ import {AuthDto} from "./models/authModel";
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-//import { Response } from 'express';
 
 @Injectable()
 export class AppService {
@@ -48,15 +47,24 @@ export class AppService {
     const foundUser = await this.validateUser(username, password);
     if (foundUser) {
       const { password, ...result } = foundUser;
-      const token = this.jwtService.sign(result);
-      // response.cookie('access_token', token, {
-      //   httpOnly: true,
-      //   // Other cookie options can be added here, such as expiration, domain, etc.
-      // });
+      const token = this.jwtService.sign(result);;
       return {
         accessToken: token,
+        refreshToken: this.jwtService.sign(result, {expiresIn: '7d'}),
+      };
+    }
+  }  
+
+  async refreshToken(user: AuthDto): Promise<any> {
+    const { username, password } = user;
+    const foundUser = await this.validateUser(username, password);
+    if (foundUser) {
+      const { password, ...result } = foundUser;
+      const token = this.jwtService.sign(result);
+      
+      return {
+        accessToken: token
       };
     }
   }
-
 }

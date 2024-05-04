@@ -1,9 +1,8 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards,Res } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO } from "./models/refundModel";
-// import {RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
@@ -11,7 +10,11 @@ import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AppService } from './app.service';
 import {AuthGuard} from '@nestjs/passport';
-import {JwtGuard} from './guards/jwt.guards';
+import {JwtGuard} from './guards/jwt.guard';
+import {RefreshJwtGuard} from './guards/refresh.jwt.guard';
+import {LocalAuthGuard} from './guards/local.guard';
+import { Response } from 'express';
+
 
 @Controller()
 export class ApprController {
@@ -246,9 +249,25 @@ export class ApprController {
     return await this.authManagement.createUser(payload);
   }
   
+  @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async validateUser(@Body() user: AuthDto){
-    return await this.authManagement.login(user);
+  async validateUser(@Body() user: AuthDto, @Res() res: Response){
+    const token = await this.authManagement.login(user);
+    res.json(token);
+    return token;
+  }
+
+  // @Post('auth/login')
+  // async validateUser(@Request() req){
+  //   return await this.authManagement.login(req.user);
+  // }
+
+  @UseGuards(RefreshJwtGuard)
+  @Post('auth/refresh')
+  async refreshToken(@Body() user: AuthDto, @Res() res: Response){
+    const token = await this.authManagement.login(user);
+    res.json(token);
+    return token;
   }
 }
 
