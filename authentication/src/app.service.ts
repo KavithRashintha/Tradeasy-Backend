@@ -1,12 +1,13 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable, BadRequestException} from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './auth.entity';
-import { AuthDto } from './dto/auth.dto';
+import {AuthDto} from "./dto/auth.dto";
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { Response } from 'express';
 
 @Injectable()
 export class AppService {
@@ -14,11 +15,11 @@ export class AppService {
     @InjectRepository(User)
     private readonly authRepository: Repository<User>,
     private jwtService: JwtService,
-  ) { }
+  ) {}
 
   async createUser(createAuthDTO: AuthDto): Promise<User> {
-    const newUser = this.authRepository.create(createAuthDTO);
-    if (newUser) {
+    const existingUser = await this.authRepository.findOne({ where: { username: createAuthDTO.username } });
+    if (existingUser) {
       throw new BadRequestException('User already exists');
     }
 
@@ -26,28 +27,37 @@ export class AppService {
     const password = createAuthDTO.password;
     const hash = await bcrypt.hash(password, saltOrRounds);
 
-    const dtoWithHashedPassword: AuthDto = { ...createAuthDTO, password: hash };
-    return await this.authRepository.save(dtoWithHashedPassword);
+    const newUser = this.authRepository.create({ ...createAuthDTO, password: hash });
+    return await this.authRepository.save(newUser);
   }
 
-  async validateUser(username: string, password: string,):Promise<User> { 
+  async validateUser(username: string, password: string): Promise<User> {
     const user = await this.authRepository.findOne({ where: { username } });
     if (!user) {
       throw new BadRequestException('User not found');
     }
     const passwordMatch = await bcrypt.compare(password, user.password);
-    
+
     if (!passwordMatch) {
       throw new BadRequestException('Password does not match');
     }
-    
+
     return user;
   }
 
-  async login(user:AuthDto):Promise<any>{
-    const {password, ...result} = user;
-    return{
-      accessToken: this.jwtService.sign(result),
+  async login(user: AuthDto, response: Response): Promise<any> {
+    const { username, password } = user;
+    const foundUser = await this.validateUser(username, password);
+    if (foundUser) {
+      const { password, ...result } = foundUser;
+      const token = this.jwtService.sign(result);
+      response.cookie('access_token', token, {
+        httpOnly: true,
+        // Other cookie options can be added here, such as expiration, domain, etc.
+      });
+      return {
+        accessToken: token,
+      };
     }
   }
 }

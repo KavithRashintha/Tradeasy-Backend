@@ -6,3 +6,4 @@ export class AuthDto{
     readonly contactNo: string;
     readonly role: string;
 }
+

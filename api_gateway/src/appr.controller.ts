@@ -7,8 +7,9 @@ import { CustomerRefundDTO } from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
-// import { AuthDto } from './models/authModel';
+import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
+import { AppService } from './app.service';
 
 @Controller()
 export class ApprController {
@@ -20,7 +21,8 @@ export class ApprController {
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
-    // @Inject('AUTH_MANAGEMENT') private authClient: ClientProxy
+    // @Inject('AUTH_MANAGEMENT') private authClient: ClientProxy,
+    private readonly authManagement: AppService
   ) { }
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -235,15 +237,15 @@ export class ApprController {
 
   //========================================================AUTHENTICATION=================================================================
 
-  // @Post('auth/signup')
-  // async signUp(@Body() payload: AuthDto) {
-  //   return this.authClient.send({ cmd: 'AUTH_SIGNUP' }, payload);
-  // }
-  //
-  // @Post('auth/login')
-  // async login(@Body() payload: AuthDto){
-  //   return this.authClient.send({cmd: 'AUTH_LOGIN'}, payload);
-  // }
+  @Post('auth/signup')
+  async signUp(@Body() payload: AuthDto) {
+    return await this.authManagement.createUser(payload);
+  }
+  
+  @Post('auth/login')
+  async login(@Body() username: string, password: string){
+    return await this.authManagement.validateUser(username, password);
+  }
 }
 
 

@@ -1,24 +1,28 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Controller, UseGuards, BadRequestException} from '@nestjs/common';
+import { Controller, Post, Body, BadRequestException, Res } from '@nestjs/common';
 import { AppService } from './app.service';
-import { MessagePattern, Payload } from '@nestjs/microservices';
 import { User } from './auth.entity';
 import { AuthDto } from './dto/auth.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
 
-@Controller()
+@Controller('auth')
 export class AppController {
   constructor(private readonly authManagement: AppService) {}
 
-  @MessagePattern({ cmd: 'AUTH_SIGNUP' })
-  async createUser(@Payload() createAuthDto: AuthDto): Promise<User> {
-    return await this.authManagement.createUser(createAuthDto);
+  @Post('signup')
+  async createUser(@Body() createAuthDto: AuthDto): Promise<User> {
+    try {
+      return await this.authManagement.createUser(createAuthDto);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
-  @UseGuards(AuthGuard('local'))
-  @MessagePattern({ cmd: 'AUTH_LOGIN' })
-  async validateUser(@Payload() authDto):Promise<any | BadRequestException>{ 
-    return await this.authManagement.validateUser(authDto.username, authDto.password); 
+  @Post('login')
+  async validateUser(@Body() authDto:AuthDto, @Res() res: Response): Promise<User | BadRequestException> {
+    try {
+      return await this.authManagement.login(authDto,res);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 }
