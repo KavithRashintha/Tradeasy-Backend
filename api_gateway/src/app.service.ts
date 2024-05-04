@@ -3,14 +3,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './auth.entity';
 import {AuthDto} from "./models/authModel";
 import { Repository } from 'typeorm';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { Response } from 'express';
+//import { Response } from 'express';
 
 @Injectable()
 export class AppService {
   constructor(
     @InjectRepository(User)
     private readonly authRepository: Repository<User>,
+    private jwtService: JwtService,
   ){}
   
   async createUser(createAuthDTO: AuthDto): Promise<User> {
@@ -39,6 +41,22 @@ export class AppService {
     }
 
     return user;
+  }
+
+  async login(user: AuthDto): Promise<any> {
+    const { username, password } = user;
+    const foundUser = await this.validateUser(username, password);
+    if (foundUser) {
+      const { password, ...result } = foundUser;
+      const token = this.jwtService.sign(result);
+      // response.cookie('access_token', token, {
+      //   httpOnly: true,
+      //   // Other cookie options can be added here, such as expiration, domain, etc.
+      // });
+      return {
+        accessToken: token,
+      };
+    }
   }
 
 }

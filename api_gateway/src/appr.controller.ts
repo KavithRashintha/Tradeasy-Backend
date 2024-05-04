@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
@@ -10,6 +10,8 @@ import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AppService } from './app.service';
+import {AuthGuard} from '@nestjs/passport';
+import {JwtGuard} from './guards/jwt.guards';
 
 @Controller()
 export class ApprController {
@@ -154,6 +156,7 @@ export class ApprController {
     return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id)
   }
 
+  //@UseGuards(AuthGuard('jwt'))
   @Get('supplier/getAllSuppliers')
   async getAllSuppliers() {
     return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});
@@ -186,6 +189,7 @@ export class ApprController {
   //   return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, customerPaymentDto);
   // }
 
+  @UseGuards(JwtGuard)
   @Get('payment/customerPayment/getAllCustomerPayments')
   async getAllCustomerPayments() {
     return await this.paymantClient.send({ cmd: 'GET_ALL_CUSTOMER_PAYMENTS' }, {});
@@ -243,8 +247,8 @@ export class ApprController {
   }
   
   @Post('auth/login')
-  async login(@Body() username: string, password: string){
-    return await this.authManagement.validateUser(username, password);
+  async validateUser(@Body() user: AuthDto){
+    return await this.authManagement.login(user);
   }
 }
 

@@ -6,6 +6,10 @@ import { OrderController } from "./order.controller";
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { User } from './auth.entity';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+//import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 
 @Module({
@@ -94,10 +98,20 @@ import { User } from './auth.entity';
       entities: [User],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User])
+
+    TypeOrmModule.forFeature([User]),
+
+    JwtModule.register({
+      secret: 'abc123',
+      signOptions: {
+        expiresIn: '1h'
+      },
+    }),
+    PassportModule
   ],
   // controllers: [ApprController],
   controllers: [ApprController, ProductController, OrderController],
-  providers: [AppService],
+  //providers: [AppService],
+  providers: [AppService, JwtStrategy],
 })
 export class AppModule { }
