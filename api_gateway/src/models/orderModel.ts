@@ -22,3 +22,10 @@ export class UpdateOrderDTO {
 
 }
 
+// update-order-status.dto.ts
+export class UpdateOrderStatusDTO {
+    readonly orderId: number;
+    readonly orderStatus: string;
+}
+
+

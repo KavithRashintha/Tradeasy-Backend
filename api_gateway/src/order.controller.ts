@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {RegisterOrderDTO} from "./models/orderModel";
+import {RegisterOrderDTO, UpdateOrderStatusDTO} from "./models/orderModel";
 import {UpdateOrderDTO} from "./models/orderModel";
 
 @Controller('order')
@@ -29,6 +29,15 @@ export class OrderController {
     async updateOrder(@Param('id') id: number, @Body() updateOrderDto: UpdateOrderDTO){
         return this.orderClient.send({ cmd: 'UPDATE_ORDER' }, { id, updateOrderDto });
     }
+
+    // order.controller.ts
+
+    @Put('update-status/:id')
+    async updateOrderStatus(@Param('id') id: number, @Body() updateOrderStatusDto: UpdateOrderStatusDTO) {
+        return this.orderClient.send({ cmd: 'UPDATE_ORDER_STATUS' }, { id, updateOrderStatusDto });
+
+    }
+
 
     @Delete('delete/:id')
     async deleteOrder(@Param('id') id: number){
