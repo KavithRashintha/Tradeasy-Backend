@@ -83,6 +83,11 @@ export class ApprController {
     return this.inventoryClient.send({ cmd: 'DELETE_INVENTORY_ITEM' }, id);
   }
 
+  @Get('inventory/getByCategory')
+  async getInventoryItemByCategory(@Query('productCategory') productCategory:string){
+    return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'}, productCategory);
+  }
+
 
   //====================================================REFUND_MANAGEMENT==================================================
 
