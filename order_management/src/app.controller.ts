@@ -4,7 +4,6 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { Order } from './order.entity';
 import {OrderDTO} from './DTO/OrderDTO';
 import {UpdateOrderDTO} from "./DTO/UpdateOrderDTO";
-import {UpdateOrderStatusDTO} from "./DTO/UpdateOrderStatusDTO";
 
 @Controller()
 export class AppController {
@@ -31,13 +30,6 @@ export class AppController {
   async updateOrder(@Payload() data: { id: number, updateOrderDto: UpdateOrderDTO }): Promise<Order> {
     const { id, updateOrderDto } = data;
     return await this.orderManagement.updateOrder(id, updateOrderDto);
-
-  }
-
-  @MessagePattern({ cmd: 'UPDATE_ORDER_STATUS' })
-  async updateOrderStatus(@Payload() data: { id: number; updateOrderStatusDto: UpdateOrderStatusDTO }): Promise<Order> {
-    const { id, updateOrderStatusDto } = data;
-    return await this.orderManagement.updateOrderStatus(id, updateOrderStatusDto);
 
   }
 

@@ -4,7 +4,7 @@ import { Order } from './order.entity';
 import { Repository } from 'typeorm';
 import {OrderDTO} from './DTO/OrderDTO';
 import {UpdateOrderDTO} from "./DTO/UpdateOrderDTO";
-import {UpdateOrderStatusDTO} from "./DTO/UpdateOrderStatusDTO";
+
 
 @Injectable()
 export class AppService {
@@ -32,13 +32,6 @@ export class AppService {
     await this.orderRepository.update(id, updateOrderDto);
     return await this.orderRepository.findOneById(id);
   }
-
-  async updateOrderStatus(id: number, updateOrderStatusDto: UpdateOrderStatusDTO): Promise<Order> {
-    await this.orderRepository.update(id, updateOrderStatusDto);
-    return await this.orderRepository.findOneById(id);
-  }
-
-
 
   async deleteOrder(id: number){
     const result = await this.orderRepository.delete(id);
