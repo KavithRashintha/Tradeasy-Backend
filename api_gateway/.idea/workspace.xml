@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="72922509-1f4c-420c-86a2-2f6a6542f41c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/inventoryModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/inventoryModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inventory_management/src/dto/UpdateInventoryItemDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/src/dto/UpdateInventoryItemDTO.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/dto/UpdateInventoryItemDTO.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/dto/UpdateInventoryItemDTO.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/dto/UpdateInventoryItemDTO.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/dto/UpdateInventoryItemDTO.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inventory_management/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/../inventory_management/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../refund_management/src/dto/customerRefundDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../refund_management/src/dto/customerRefundDTO.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../refund_management/src/refunds.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../refund_management/src/refunds.entity.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,22 +42,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Kavith3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/University/Projects/L2/Software Project/Work With TCP 4/Tradeasy-Backend/api_gateway&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\University\\Projects\\L2\\Software Project\\Work With TCP 4\\Tradeasy-Backend\\api_gateway\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Kavith3",
+    "last_opened_file_path": "D:/University/Projects/L2/Software Project/Work With TCP 4/Tradeasy-Backend/refund_management",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "D:\\University\\Projects\\L2\\Software Project\\Work With TCP 4\\Tradeasy-Backend\\api_gateway\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,7 +81,9 @@
       <workItem from="1714236042516" duration="5307000" />
       <workItem from="1714359354220" duration="4353000" />
       <workItem from="1714541086820" duration="4916000" />
-      <workItem from="1714624358953" duration="4250000" />
+      <workItem from="1714624358953" duration="6348000" />
+      <workItem from="1714796773856" duration="662000" />
+      <workItem from="1714841031642" duration="890000" />
     </task>
     <servers />
   </component>
