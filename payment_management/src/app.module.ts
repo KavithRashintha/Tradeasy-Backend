@@ -4,9 +4,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerPayments } from './payment.entity';
+import { StripeModule } from './stripe/stripe.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -18,6 +23,7 @@ import { CustomerPayments } from './payment.entity';
       synchronize: true,
     }),
     TypeOrmModule.forFeature([CustomerPayments]),
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

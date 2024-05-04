@@ -5,6 +5,9 @@ export class Discounts{
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({unique:true})
+    productId: string;
+
     @Column()
     productName: string;
 
@@ -13,4 +16,10 @@ export class Discounts{
 
     @Column()
     discountRate: number
+
+    @Column()
+    startDate: string;
+
+    @Column()
+    endDate: string;
 }

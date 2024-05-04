@@ -1,8 +1,9 @@
-import { Controller} from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { DiscountsDTO } from './dto/discountsDTO';
 import { Discounts } from './discount.entity';
+import { Query } from 'express-serve-static-core';
 
 @Controller()
 export class AppController {
@@ -11,6 +12,17 @@ export class AppController {
   @MessagePattern({cmd: 'CREATE_DISCOUNT'})
   async createDiscount(@Payload() discountsDTO: DiscountsDTO): Promise<Discounts>{
     return await this.discountManagement.createDiscount(discountsDTO);
+  }
+
+//   @MessagePattern({ cmd: 'SEARCH_DISCOUNT' })
+//   async searchAllDiscounts(@Payload() productName: string): Promise<Discounts[]> {
+//     console.log("getSearchDiscounts");
+//     return await this.discountManagement.searchAllDiscounts(productName);
+//  }
+
+  @MessagePattern({cmd: 'SEARCH_ALL_DISCOUNTS'})
+  async searchAllDiscounts(@Payload() query: Query): Promise<Discounts[]>{
+    return await this.discountManagement.searchAllDiscounts(query);
   }
 
   @MessagePattern({cmd: 'GET_ALL_DISCOUNTS'})

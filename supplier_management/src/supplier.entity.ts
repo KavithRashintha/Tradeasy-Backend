@@ -13,6 +13,9 @@ export class Supplier {
   supplierEmail: string;
 
   @Column()
+  nic: string;
+
+  @Column()
   supplierAddress: string;
 
   @Column()
@@ -20,4 +23,13 @@ export class Supplier {
 
   @Column()
   supplierPassword: string;
+
+  @Column()
+  paymentMethod: string;
+
+  @Column()
+  paymentDetails: string;
+
+  @Column()
+  profilePicture: string;
 }

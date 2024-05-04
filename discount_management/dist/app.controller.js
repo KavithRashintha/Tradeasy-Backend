@@ -24,6 +24,9 @@ let AppController = class AppController {
     async createDiscount(discountsDTO) {
         return await this.discountManagement.createDiscount(discountsDTO);
     }
+    async searchAllDiscounts(query) {
+        return await this.discountManagement.searchAllDiscounts(query);
+    }
     async getAllDiscounts() {
         return await this.discountManagement.getAllDiscounts();
     }
@@ -42,6 +45,13 @@ __decorate([
     __metadata("design:paramtypes", [discountsDTO_1.DiscountsDTO]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "createDiscount", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEARCH_ALL_DISCOUNTS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "searchAllDiscounts", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'GET_ALL_DISCOUNTS' }),
     __metadata("design:type", Function),

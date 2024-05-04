@@ -25,6 +25,7 @@
 /payment_management/node_modules/
 /payment_management/.idea
 /payment_management/dist
+/payment_management/.env
 
 
 /refund_management/node_modules/
@@ -38,3 +39,14 @@
 /discount_management/node_modules/
 /discount_management/.idea
 /discount_management/dist
+
+/nest-guardian/node_modules/
+/nest-guardian/.idea
+/nest-guardiant/dist
+
+/authentication/node_modules/
+/authentication/.idea
+/authentication/dist
+
+.idea/
+.vscode/

@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const discount_entity_1 = require("./discount.entity");
 const typeorm_2 = require("typeorm");
+const typeorm_3 = require("typeorm");
 let AppService = class AppService {
     constructor(discountManagement) {
         this.discountManagement = discountManagement;
@@ -27,6 +28,19 @@ let AppService = class AppService {
     }
     async getAllDiscounts() {
         return await this.discountManagement.find();
+    }
+    async searchAllDiscounts(query) {
+        console.log('Received query:', query);
+        const keyword = query.query.keyword;
+        try {
+            const filteredDiscounts = await this.discountManagement.find({ where: { productName: (0, typeorm_3.ILike)(`%${keyword}%`) } });
+            console.log('Filtered discounts:', filteredDiscounts);
+            return filteredDiscounts;
+        }
+        catch (error) {
+            console.error('Error occurred while searching discounts:', error);
+            return [];
+        }
     }
     async getDiscountById(id) {
         return await this.discountManagement.findOneById(id);

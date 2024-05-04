@@ -12,12 +12,17 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const payment_entity_1 = require("./payment.entity");
+const stripe_module_1 = require("./stripe/stripe.module");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true
+            }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
                 host: 'localhost',
@@ -29,6 +34,7 @@ exports.AppModule = AppModule = __decorate([
                 synchronize: true,
             }),
             typeorm_1.TypeOrmModule.forFeature([payment_entity_1.CustomerPayments]),
+            stripe_module_1.StripeModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

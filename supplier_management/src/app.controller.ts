@@ -4,7 +4,9 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import {SupplierDTO} from './dto/SupplierDTO';
 import { Supplier } from './supplier.entity';
 import { UpdateSupplierDTO } from './dto/UpdateSupplierDTO';
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt';
+import { Query } from 'express-serve-static-core';
+
 
 @Controller()
 export class AppController {
@@ -35,6 +37,11 @@ export class AppController {
   @MessagePattern({cmd: 'GET_ALL_SUPPLIERS'})
   async getAllSuppliers(): Promise<Supplier[]>{
     return await this.supplierManagement.getAllSuppliers();
+  }
+
+  @MessagePattern({cmd: 'SEARCH_ALL_SUPPLIERS'})
+  async searchAllSuppliers(@Payload() query: Query): Promise<Supplier[]>{
+    return await this.supplierManagement.searchAllSuppliers(query);
   }
 
   

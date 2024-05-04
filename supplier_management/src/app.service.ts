@@ -4,6 +4,9 @@ import { Supplier } from './supplier.entity';
 import { Repository } from 'typeorm';
 import {SupplierDTO} from './dto/SupplierDTO';
 import { UpdateSupplierDTO } from './dto/UpdateSupplierDTO';
+import { ILike } from "typeorm";
+import { Query } from 'express-serve-static-core';
+
 
 @Injectable()
 export class AppService {
@@ -24,6 +27,19 @@ export class AppService {
 
   async getAllSuppliers():Promise<Supplier[]>{
     return await this.supplierRepository.find();
+  }
+
+  async searchAllSuppliers(query: Query): Promise<Supplier[]> {
+    console.log('Received query:', query);
+    const keyword = (query.query as { keyword?: string }).keyword;
+    try {
+      const filteredSuppliers = await this.supplierRepository.find({ where: { supplierName: ILike(`%${keyword}%`) } });
+      console.log('Filtered suppliers:', filteredSuppliers);
+      return filteredSuppliers;
+    } catch (error) {
+      console.error('Error occurred while searching suppliers:', error);
+      return [];
+    }
   }
 
   async updateSupplier(id: number, updateSupplierDto: UpdateSupplierDTO): Promise<Supplier> {

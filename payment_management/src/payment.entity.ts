@@ -7,6 +7,9 @@ export class CustomerPayments {
     id: number;
 
     @Column()
+    customerId: string;
+
+    @Column()
     customerName: string;
 
     @Column()
@@ -16,8 +19,17 @@ export class CustomerPayments {
     email: string;
 
     @Column()
-    purchasedItems: string;
+    address: string;
+
+    @Column('text', { array: true })
+    purchasedItems: string[];
 
     @Column()
     totalAmount: number;
+
+    @Column({type:'date'})
+    date: Date;
+
+    @Column({type:'time'})
+    time: Date;
 }
