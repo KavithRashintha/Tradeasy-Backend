@@ -1,14 +1,20 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards,Res } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO } from "./models/refundModel";
-// import {RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
-// import { AuthDto } from './models/authModel';
+import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
+import { AppService } from './app.service';
+import {AuthGuard} from '@nestjs/passport';
+import {JwtGuard} from './guards/jwt.guard';
+import {RefreshJwtGuard} from './guards/refresh.jwt.guard';
+import {LocalAuthGuard} from './guards/local.guard';
+import { Response } from 'express';
+
 
 @Controller()
 export class ApprController {
@@ -16,11 +22,10 @@ export class ApprController {
     @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
     @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
     @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
-    // @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,   // Product Management Controller has been written on a separate file product.controller.ts
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
-    // @Inject('AUTH_MANAGEMENT') private authClient: ClientProxy
+    private readonly authManagement: AppService
   ) { }
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -83,11 +88,6 @@ export class ApprController {
     return this.inventoryClient.send({ cmd: 'DELETE_INVENTORY_ITEM' }, id);
   }
 
-  @Get('inventory/getByCategory')
-  async getInventoryItemByCategory(@Query('productCategory') productCategory:string){
-    return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'}, productCategory);
-  }
-
 
   //====================================================REFUND_MANAGEMENT==================================================
 
@@ -113,41 +113,6 @@ export class ApprController {
     return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
   }
 
-  @Get('refund/customerRefund/getRefundByStatus')
-  async getCustomerRefundByStatus(@Query('refundStatus') refundStatus:string){
-    return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'}, refundStatus);
-  }
-
-
-  //----------------------------------------------------PRODUCT_MANAGEMENT-----------------------------------------
-  // Product Management Controller has been written on a separate file product.controller.ts
-
-  // @Post('product/create')
-  // async createProduct(@Body() payload: RegisterProductDTO) {
-  //     return this.productClient.send({ cmd: 'CREATE_PRODUCT' }, payload);
-  // }
-
-  // @Get('product/findProduct/:id')
-  // async findProduct(@Param('id') id: any){
-  //     return this.productClient.send({cmd:'GET_PRODUCT'}, id)
-  // }
-
-
-  // @Get('product/getAllProducts')
-  // async getAllProducts(){
-  //     return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
-  // }
-
-  // @Put('product/update/:id')
-  // async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
-  //     return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
-  // }
-
-  // @Delete('product/delete/:id')
-  // async deleteProduct(@Param('id') id: number){
-  //     return this.productClient.send({cmd: 'DELETE_PRODUCT'}, id);
-  // }
-
 
   //===================================SUPPLIER_MANAGEMENT===========================================================================
   @Post('supplier/create')
@@ -160,6 +125,7 @@ export class ApprController {
     return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id)
   }
 
+  //@UseGuards(AuthGuard('jwt'))
   @Get('supplier/getAllSuppliers')
   async getAllSuppliers() {
     return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});
@@ -192,6 +158,7 @@ export class ApprController {
   //   return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, customerPaymentDto);
   // }
 
+  //@UseGuards(JwtGuard)
   @Get('payment/customerPayment/getAllCustomerPayments')
   async getAllCustomerPayments() {
     return await this.paymantClient.send({ cmd: 'GET_ALL_CUSTOMER_PAYMENTS' }, {});
@@ -243,17 +210,24 @@ export class ApprController {
 
   //========================================================AUTHENTICATION=================================================================
 
-  // @Post('auth/signup')
-  // async signUp(@Body() payload: AuthDto) {
-  //   return this.authClient.send({ cmd: 'AUTH_SIGNUP' }, payload);
-  // }
-  //
-  // @Post('auth/login')
-  // async login(@Body() payload: AuthDto){
-  //   return this.authClient.send({cmd: 'AUTH_LOGIN'}, payload);
-  // }
+  @Post('auth/signup')
+  async signUp(@Body() payload: AuthDto) {
+    return await this.authManagement.createUser(payload);
+  }
+  
+  @UseGuards(LocalAuthGuard)
+  @Post('auth/login')
+  async validateUser(@Body() user: AuthDto, @Res() res: Response){
+    const token = await this.authManagement.login(user);
+    res.json(token);
+    return token;
+  }
+
+  @UseGuards(RefreshJwtGuard)
+  @Post('auth/refresh')
+  async refreshToken(@Body() user: AuthDto, @Res() res: Response){
+    const token = await this.authManagement.login(user);
+    res.json(token);
+    return token;
+  }
 }
-
-
-
-

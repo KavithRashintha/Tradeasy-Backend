@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
+import {TypeOrmModule} from "@nestjs/typeorm";
 import { ApprController } from './appr.controller';
 import { ProductController } from './product.controller';
 import { OrderController } from "./order.controller";
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import {AuthController} from "./auth.controller";
+import { User } from './auth.entity';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
+
 
 @Module({
   imports: [
@@ -80,27 +86,31 @@ import {AuthController} from "./auth.controller";
         },
       },
 
-      // {
-      //   name: 'AUTH_MANAGEMENT',
-      //   transport: Transport.TCP,
-      //   options: {
-      //     host: '127.0.0.1',
-      //     port: 9009,
-      //   },
-      // },
-
-      {
-        name: 'AUTH_MANAGEMENT_2',
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 9010,
-        },
-      }
     ]),
+
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: '215016G',
+      database: 'Users',
+      entities: [User],
+      synchronize: true,
+    }),
+
+    TypeOrmModule.forFeature([User]),
+
+    JwtModule.register({
+      secret: 'abc123',
+      signOptions: {
+        expiresIn: '60s'
+      },
+    }),
+    PassportModule
   ],
   // controllers: [ApprController],
-  controllers: [ApprController, ProductController, OrderController, AuthController], //Separate Controller file for product Management CRUD and Order Managemennt CRUD Tuks#02
-  providers: [AppService],
+  controllers: [ApprController, ProductController, OrderController],
+  providers: [AppService, JwtStrategy, LocalStrategy],
 })
-export class AppModule { }
+export class AppModule {}
