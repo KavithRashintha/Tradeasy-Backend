@@ -6,20 +6,33 @@ export class Item {
   id: number;
 
   @Column()
-  itemDescription: string;
+  sellerId: number;
 
   @Column()
-  itemCategory: string;
+  productName: string;
 
   @Column()
-  itemQuantity: number;
+  productBrand: string;
 
   @Column()
-  itemUnitPrice: number;
+  productManufacturer: string;
 
   @Column()
-  manufacturedDate: string;
+  productCategory: string;
 
   @Column()
-  expireDate: string;
+  productDescription: string;
+
+  @Column('text', {array: true})
+  productImage: string[];
+
+  @Column()
+  productColour: string;
+
+  @Column()
+  productUnitPrice: number;
+
+  @Column()
+  productQuantity: number
+
 }
