@@ -34,4 +34,10 @@ export class AppService {
       return 'Successfully Deleted';
     }
   }
+  async getCustomerRefundByStatus(refundStatus:string):Promise<CustomerRefund[]>{
+    return await this.refundRepository
+        .createQueryBuilder('customer_refund')
+        .where('customer_refund.status = :refundStatus', {refundStatus})
+        .getMany();
+  }
 }

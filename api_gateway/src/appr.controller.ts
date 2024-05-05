@@ -113,7 +113,10 @@ export class ApprController {
     return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
   }
 
-
+  @Get('refund/customerRefund/getRefundByStatus')
+  async getCustomerRefundByStatus(@Query('refundStatus') refundStatus:string){
+    return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'}, refundStatus);
+  }
 
 
   //----------------------------------------------------PRODUCT_MANAGEMENT-----------------------------------------

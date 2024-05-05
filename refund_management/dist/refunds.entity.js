@@ -20,6 +20,14 @@ __decorate([
 ], CustomerRefund.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], CustomerRefund.prototype, "orderId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "customerName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], CustomerRefund.prototype, "contact", void 0);
 __decorate([
@@ -38,6 +46,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], CustomerRefund.prototype, "totalPrice", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)

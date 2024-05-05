@@ -29,4 +29,9 @@ export class AppController {
   async deleteCustomerRefund(@Payload() id:number){
     return await this.refundManagement.deleteCustomerRefund(id);
   }
+
+  @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'})
+  async getCustomerRefundByStatus(@Payload() refundStatus:string){
+    return await this.refundManagement.getCustomerRefundByStatus(refundStatus);
+  }
 }

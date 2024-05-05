@@ -6,6 +6,12 @@ export class CustomerRefund {
   id: number;
 
   @Column()
+  orderId: number;
+
+  @Column()
+  customerName: string;
+
+  @Column()
   contact: string;
 
   @Column()
@@ -19,6 +25,9 @@ export class CustomerRefund {
 
   @Column()
   totalPrice: number;
+
+  @Column()
+  date: string;
 
   @Column()
   status: string;
