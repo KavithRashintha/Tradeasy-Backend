@@ -49,6 +49,7 @@ export class AppService {
       const { password, ...result } = foundUser;
       const token = this.jwtService.sign(result);;
       return {
+        result,
         accessToken: token,
         refreshToken: this.jwtService.sign(result, {expiresIn: '7d'}),
       };
