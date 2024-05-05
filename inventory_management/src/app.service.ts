@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Item } from './inventory.entity';
-import { Repository } from 'typeorm';
+import {FindOptionsWhere, Repository} from 'typeorm';
 import { InventoryItemDTO } from './dto/InventoryItemDTO';
 import { UpdateInventoryItemDTO } from './dto/UpdateInventoryItemDTO';
+import {stringify} from "ts-jest";
+import {FindInventoryItemDTO} from "./dto/FindInventoryItemDTO";
 
 @Injectable()
 export class AppService {
@@ -43,4 +45,12 @@ export class AppService {
       return 'Successfully Deleted';
     }
   }
+
+  async getInventoryItemByCategory(productCategory:string):Promise<Item[]>{
+    return await this.itemRepository
+        .createQueryBuilder('item')
+        .where('item.productCategory = :productCategory', {productCategory})
+        .getMany();
+  }
+
 }
