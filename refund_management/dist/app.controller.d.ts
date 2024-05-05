@@ -8,4 +8,5 @@ export declare class AppController {
     getCustomerRefund(id: number): Promise<CustomerRefund>;
     getAllCustomerRefunds(): Promise<CustomerRefund[]>;
     deleteCustomerRefund(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
+    getCustomerRefundByStatus(refundStatus: string): Promise<CustomerRefund[]>;
 }

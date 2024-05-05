@@ -40,6 +40,12 @@ let AppService = class AppService {
             return 'Successfully Deleted';
         }
     }
+    async getCustomerRefundByStatus(refundStatus) {
+        return await this.refundRepository
+            .createQueryBuilder('customer_refund')
+            .where('customer_refund.status = :refundStatus', { refundStatus })
+            .getMany();
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([
