@@ -34,12 +34,7 @@ export class ApprController {
   async createCustomer(@Body() payload: RegisterCustomerDTO) {
     return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
   }
-
-  /*@Post('findCustomer')
-  async findCustomerById(@Body() payload:GetCustomerDTO) {
-    return this.customerClient.send({cmd:'GET_CUSTOMER'}, payload)
-  }*/
-
+  
   @Get('customer/findCustomer/:id')
   async findCustomer(@Param('id') id: any) {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id)

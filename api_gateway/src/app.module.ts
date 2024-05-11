@@ -109,7 +109,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     }),
     PassportModule
   ],
-  // controllers: [ApprController],
+  
   controllers: [ApprController, ProductController, OrderController],
   providers: [AppService, JwtStrategy, LocalStrategy],
 })
