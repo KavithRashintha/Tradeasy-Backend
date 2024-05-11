@@ -4,7 +4,7 @@ import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO } from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
-import { CustomerPaymentDTO, Data } from "./models/paymentModel";
+import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
@@ -153,8 +153,13 @@ export class ApprController {
 
   //----------------------------------------------------CUSTOMER_Payment_MANAGEMENT-----------------------------------------
 
+  @Post('payment/customerPayment/checkout')
+  async createCustomerPaymentSession(@Body() data: any){
+    return this.paymantClient.send({ cmd: 'CREATE_CHECKOUT_SESSION' }, data);
+  }
+
   @Post('payment/customerPayment/create')
-  async createCustomerPaymentSession(@Body() data: any) {
+  async saveCustomerPayments(@Body() data: Data): Promise<any>{
     return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, data);
   }
 
@@ -171,21 +176,33 @@ export class ApprController {
 
   @Get('payment/customerPayment/search')
   async searchAllPayments(@Query() query: ExpressQuery) {
-    return this.paymantClient.send({ cmd: 'SEARCH_ALL_PAYMENTS' }, {query});
+    return this.paymantClient.send({ cmd: 'SEARCH_ALL_CUSTOMER_PAYMENTS' }, {query});
+  }
+
+  //----------------------------------------------------SUPPLIER_Payment_MANAGEMENT-----------------------------------------
+
+  @Post('payment/supplierPayment/create')
+  async createSupplierPayment(@Body() supplierPaymentDTO: SupplierPaymentDTO){
+    return this.paymantClient.send({ cmd: 'CREATE_SUPPLIER_PAYMENT' }, supplierPaymentDTO);
+  }
+
+  @Get('payment/supplierPayment/getAll')
+  async getAllSupplierPayments() {
+    return await this.paymantClient.send({ cmd: 'GET_ALL_SUPPLIER_PAYMENTS' }, {});
+  }
+
+  @Get('payment/supplierPayment/search')
+  async searchAllSupplierPayments(@Query() query: ExpressQuery) {
+    return this.paymantClient.send({ cmd: 'SEARCH_ALL_SUPPLIER_PAYMENTS' }, {query});
   }
 
 
-  //====================================================PAYMENT_MANAGEMENT==================================================
+  //====================================================DISCOUNT_MANAGEMENT==================================================
 
   @Post('discounts/create')
   async createDiscount(@Body() discountsDTO: DiscountsDTO) {
     return this.discountClient.send({ cmd: 'CREATE_DISCOUNT' }, discountsDTO);
   }
-
-  // @Get('discounts/search')
-  // async searchAllDiscounts(@Body() payload: { productName: string }) {
-  //   return this.discountClient.send({ cmd: 'SEARCH_DISCOUNT' }, payload)
-  // }
 
   @Get('discounts/search')
   async searchAllDiscounts(@Query() query: ExpressQuery) {

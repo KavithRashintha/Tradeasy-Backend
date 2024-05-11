@@ -5,51 +5,41 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class CustomerPayments {
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column()
+    
+    @Column({ nullable: false })
     customerId: string;
 
-    @Column()
+    @Column({ nullable: false })
     customerName: string;
 
-    @Column()
-    contactNumber: string
+    @Column({ nullable: false })
+    customerEmail: string;
 
-    @Column()
-    email: string;
+    @Column({ nullable: false })
+    contactNo: string;
 
-    @Column()
-    address: string;
-
-    @Column('text', { array: true })
-    purchasedItems: string[];
-
-    @Column()
+    @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
     totalAmount: number;
-
-    @Column({type:'date'})
-    date: Date;
-
-    @Column({type:'time'})
-    time: Date;
 }
 
 
 @Entity()
-export class Checkouts {
+export class SupplierPayments {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    name: string;
+    @Column({ nullable: false})
+    supplierId: string;
 
-    @Column()
-    price: number;
+    @Column({ nullable: false })
+    supplierName: string;
 
-    @Column()
-    quantity: number;
+    @Column({ nullable: false })
+    date: string;
 
-    @Column({nullable: true})
-    description: string;
+    @Column({ nullable: false })
+    itemsPurchased: string;
 
+    @Column({ nullable: false })
+    billAmount: number;
 }

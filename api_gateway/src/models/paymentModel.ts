@@ -14,16 +14,22 @@ export class GetCustomerPaymentDTO{
     readonly id:number
 }
 
-
-// checkout.dto.ts
-
 export interface Data {
     price_data: {
         currency: string;
         product_data: {
             name: string;
+            images: string[];
         };
         unit_amount: number;
     };
     quantity: number;
+}
+
+export class SupplierPaymentDTO{
+    readonly supplierId: string;
+    readonly supplierName: string;
+    readonly date: string;
+    readonly itemsPurchased: string[];
+    readonly billAmount: number;
 }

@@ -21,6 +21,7 @@ export interface Data {
         currency: string;
         product_data: {
             name: string;
+            images: string[];
         };
         unit_amount: number;
     };

@@ -3,32 +3,54 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CustomerPaymentDTO, Data } from './dto/cutomerPaymentDTO';
-import { CustomerPayments } from './payment.entity';
+import { SupplierPaymentDTO } from './dto/supplierPaymentDTO';
+import { CustomerPayments, SupplierPayments} from './payment.entity';
 import { Query } from 'express-serve-static-core';
 import { Cart } from './stripe/Cart.model';
 
 @Controller()
 export class AppController {
-  constructor(private readonly customerPaymentManagement: AppService) {}
+  constructor(private readonly PaymentManagement: AppService) {}
+
+  @MessagePattern({ cmd: 'CREATE_CHECKOUT_SESSION' })
+  async createCustomerPaymentSession(@Body() data: any): Promise<{ sessionUrl: string }>{
+    return await this.PaymentManagement.createCustomerPaymentSession(data);
+  }
 
   @MessagePattern({ cmd: 'CREATE_CUSTOMER_PAYMENT' })
-  async createCustomerPaymentSession(@Body() data: any) {
-    return await this.customerPaymentManagement.createCustomerPaymentSession(data);
+  async saveCustomerPayments(@Body() data: any): Promise<SupplierPayments>{
+    return this.PaymentManagement.saveCustomerPayments(data);
   }
 
   @MessagePattern({ cmd: 'GET_ALL_CUSTOMER_PAYMENTS' })
   async getAllCustomerPayments(): Promise<CustomerPayments[]> {
-    return await this.customerPaymentManagement.getAllCustomerPayments();
+    return await this.PaymentManagement.getAllCustomerPayments();
   }
 
   @MessagePattern({ cmd: 'GET_CUSTOMER_PAYMENT' })
   async getCustomerPaymentById(@Payload() id: any): Promise<CustomerPayments | null> {
-    return await this.customerPaymentManagement.getCustomerPaymentById(id);
+    return await this.PaymentManagement.getCustomerPaymentById(id);
   }
 
-  @MessagePattern({cmd: 'SEARCH_ALL_PAYMENTS'})
+  @MessagePattern({cmd: 'SEARCH_ALL_CUSTOMER_PAYMENTS'})
   async searchAllPayments(@Payload() query: Query): Promise<CustomerPayments[]>{
-    return await this.customerPaymentManagement.searchAllPayments(query);
+    return await this.PaymentManagement.searchAllPayments(query);
+  }
+
+  //Supplier Payments
+  @MessagePattern({cmd: 'CREATE_SUPPLIER_PAYMENT'})
+  async createSupplierPayment(@Payload() supplierPaymentDTO: SupplierPaymentDTO): Promise<SupplierPayments>{
+    return await this.PaymentManagement.createSupplierPayment(supplierPaymentDTO);
+  }
+
+  @MessagePattern({ cmd: 'GET_ALL_SUPPLIER_PAYMENTS' })
+  async getAllSupplierPayments(): Promise<SupplierPayments[]> {
+    return await this.PaymentManagement.getAllSupplierPayments();
+  }
+
+  @MessagePattern({cmd: 'SEARCH_ALL_SUPPLIER_PAYMENTS'})
+  async searchAllSupplierPayments(@Payload() query: Query): Promise<SupplierPayments[]>{
+    return await this.PaymentManagement.searchAllSupplierPayments(query);
   }
 
 }

@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CustomerPayments } from './payment.entity';
+import { CustomerPayments, SupplierPayments } from './payment.entity';
 import { StripeModule } from './stripe/stripe.module';
 import { ConfigModule } from '@nestjs/config';
 
@@ -19,10 +19,10 @@ import { ConfigModule } from '@nestjs/config';
       username: 'postgres',
       password: '215016G',
       database: 'Payment',
-      entities: [CustomerPayments],
+      entities: [CustomerPayments, SupplierPayments],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([CustomerPayments]),
+    TypeOrmModule.forFeature([CustomerPayments, SupplierPayments]),
     StripeModule,
   ],
   controllers: [AppController],
