@@ -4,7 +4,7 @@ import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO } from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
-import { CustomerPaymentDTO } from "./models/paymentModel";
+import { CustomerPaymentDTO, Data } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
@@ -153,10 +153,10 @@ export class ApprController {
 
   //----------------------------------------------------CUSTOMER_Payment_MANAGEMENT-----------------------------------------
 
-  // @Post('payment/customerPayment/create')
-  // async createCustomerPayment(@Body() customerPaymentDto: CustomerPaymentDTO) {
-  //   return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, customerPaymentDto);
-  // }
+  @Post('payment/customerPayment/create')
+  async createCustomerPaymentSession(@Body() data: any) {
+    return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, data);
+  }
 
   //@UseGuards(JwtGuard)
   @Get('payment/customerPayment/getAllCustomerPayments')

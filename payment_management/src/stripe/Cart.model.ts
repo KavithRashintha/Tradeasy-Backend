@@ -2,9 +2,7 @@ interface CartItem{
     name: string;
     price: number;
     quantity: number;
-    desccription: string;
-    _id: string;
-    __v: number;
+    description?: string;
 }
 
 export type Cart = CartItem[];

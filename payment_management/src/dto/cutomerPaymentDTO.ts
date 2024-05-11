@@ -10,3 +10,19 @@ export class CustomerPaymentDTO{
     readonly date: Date;
     readonly time:Date;
 }
+
+export class GetCustomerPaymentDTO{
+    readonly id:number
+}
+
+
+export interface Data {
+    price_data: {
+        currency: string;
+        product_data: {
+            name: string;
+        };
+        unit_amount: number;
+    };
+    quantity: number;
+}

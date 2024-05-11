@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+// /* eslint-disable prettier/prettier */
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -32,4 +32,24 @@ export class CustomerPayments {
 
     @Column({type:'time'})
     time: Date;
+}
+
+
+@Entity()
+export class Checkouts {
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column()
+    price: number;
+
+    @Column()
+    quantity: number;
+
+    @Column({nullable: true})
+    description: string;
+
 }
