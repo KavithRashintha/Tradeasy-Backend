@@ -56,15 +56,15 @@ export class AppService {
     }
   }  
 
-  async refreshToken(user: AuthDto): Promise<any> {
+  async refreshToken(user: AuthDto) {
     const { username, password } = user;
     const foundUser = await this.validateUser(username, password);
     if (foundUser) {
       const { password, ...result } = foundUser;
-      const token = this.jwtService.sign(result);
+      const token = this.jwtService.sign(result,{expiresIn: '7d'});
       
       return {
-        accessToken: token
+        refreshToken: token
       };
     }
   }
