@@ -9,12 +9,12 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: {
       host: '127.0.0.1',
-      port: 9008,
+      port: 9009,
     },
   });
 
   await app.startAllMicroservices();
-  await app.listen(9008);
+  await app.listen(9009);
   console.log(`App is running on port ${await app.getUrl()}`);
 }
 
