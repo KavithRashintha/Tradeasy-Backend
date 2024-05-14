@@ -86,15 +86,33 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         },
       },
 
+      {
+        name:'INVENTORY_REFUND_MANAGEMENT',
+        transport: Transport.TCP,
+        options:{
+          host: '127.0.0.1',
+          port:9009,
+        }
+      },
+  
+      {
+        name:'PURCHASE_ORDER_MANAGEMENT',
+        transport:Transport.TCP,
+        options:{
+          host:'127.0.0.1',
+          port:9010,
+        }
+      }
+      
     ]),
 
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '215016G',
-      database: 'Users',
+      type: process.env.TYPE,
+      host: process.env.HOST,
+      port: parseInt(process.env.PORT),
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [User],
       synchronize: true,
     }),
@@ -102,7 +120,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     TypeOrmModule.forFeature([User]),
 
     JwtModule.register({
-      secret: 'abc123',
+      secret: process.env.JWT_SECRET,
       signOptions: {
         expiresIn: '60s'
       },

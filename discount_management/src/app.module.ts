@@ -7,12 +7,12 @@ import {Discounts} from "./discount.entity";
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '215016G',
-      database: 'Discount',
+      type: process.env.TYPE,s
+      host: process.env.HOST,
+      port: parseInt(process.env.PORT),
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [Discounts],
       synchronize: true,
     }),

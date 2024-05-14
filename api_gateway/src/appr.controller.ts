@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuar
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
-import { CustomerRefundDTO } from "./models/refundModel";
+import { CustomerRefundDTO, InventoryRefundDTO } from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
@@ -14,7 +14,8 @@ import {JwtGuard} from './guards/jwt.guard';
 import {RefreshJwtGuard} from './guards/refresh.jwt.guard';
 import {LocalAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
-
+import { PurchaseOrderDTO } from './models/purchaseOrderModel';
+import { In } from 'typeorm';
 
 @Controller()
 export class ApprController {
@@ -25,7 +26,9 @@ export class ApprController {
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
-    private readonly authManagement: AppService
+    @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy,
+    @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryOrder: ClientProxy,
+    private authManagement: AppService
   ) { }
 
   //=================================CUSTOMER_MANAGEMENT=========================================================================
@@ -106,6 +109,50 @@ export class ApprController {
   @Delete('refund/customerRefund/delete/:id')
   async deleteCustomerRefund(@Param('id') id: number) {
     return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
+  }
+
+
+   //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
+   @Post('payment/inventoryPayment/create')
+   async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO)
+   {
+     return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
+   } 
+   @Get('payment/inventoryPayment/getAll')
+   async getAllInventoryPayments(){
+     return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
+   }
+   @Get('payment/inventoryPayment/get/:id')  
+   async getInventoryPaymentById(@Param('id') id:number){
+     return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
+   }
+ 
+
+  //================================================PURCHASE_ORDER__MANAGEMENT===========================================================================
+
+  @Post('purchaseOrder/create')
+  async createPurchaseOrder(@Body() purchaseOrderDTO: PurchaseOrderDTO){
+    return this.inventoryOrder.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
+  }
+
+  @Get('purchaseOrder/getAll')
+  async getAllPurchaseOrder(){
+    return this.inventoryOrder.send({cmd: 'GET_ALL_PURCHASE_ORDER'}, {});
+  }
+
+  @Get('purchaseOrder/get/:id')
+  async getPurchaseOrderById(@Param('id') id:number){
+    return this.inventoryOrder.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
+  }
+
+  @Delete('purchaseOrder/delete/:id')
+  async deletePurchaseOrder(@Param('id') id:number){
+    return this.inventoryOrder.send({cmd: 'DELETE_PURCHASE_ORDER'}, id);
+  }
+
+  @Get('purchaseOrder/getCountOfOrdersByStatus/:status')
+  async getCountOfOrdersByStatus(@Param('status') status: string){
+    return this.inventoryOrder.send({cmd: 'GET_COUNT_OF_ORDERS_BY_STATUS'}, status);
   }
 
 

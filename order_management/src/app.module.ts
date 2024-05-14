@@ -7,12 +7,12 @@ import { Order} from './order.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'backend123',
-      database: 'Order',
+      type: process.env.TYPE,
+      host: process.env.HOST,
+      port: parseInt(process.env.PORT),
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [Order],
       synchronize: true,
     }),
