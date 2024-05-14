@@ -83,6 +83,11 @@ export class ApprController {
     return this.inventoryClient.send({ cmd: 'DELETE_INVENTORY_ITEM' }, id);
   }
 
+  @Get('inventory/getByCategory')
+  async getInventoryItemByCategory(@Query('productCategory') productCategory:string){
+    return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'}, productCategory);
+  }
+
 
   //====================================================REFUND_MANAGEMENT==================================================
 
@@ -106,6 +111,11 @@ export class ApprController {
   @Delete('refund/customerRefund/delete/:id')
   async deleteCustomerRefund(@Param('id') id: number) {
     return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
+  }
+
+  @Get('refund/customerRefund/getRefundByStatus')
+  async getCustomerRefundByStatus(@Query('refundStatus') refundStatus:string){
+    return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'}, refundStatus);
   }
 
 
