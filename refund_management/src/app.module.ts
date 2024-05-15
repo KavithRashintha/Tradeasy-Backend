@@ -7,12 +7,12 @@ import { CustomerRefund } from './refunds.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: process.env.TYPE,
-      host: process.env.HOST,
-      port: parseInt(process.env.PORT),
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
+      type: 'postgres',
+      host: 'localhost',
+      port: 5433,
+      username: 'postgres',
+      password: 'Kviper0824@',
+      database: 'Refund',
       entities: [CustomerRefund],
       synchronize: true,
     }),

@@ -5,7 +5,6 @@ import {FindOptionsWhere, Repository} from 'typeorm';
 import { InventoryItemDTO } from './dto/InventoryItemDTO';
 import { UpdateInventoryItemDTO } from './dto/UpdateInventoryItemDTO';
 import {stringify} from "ts-jest";
-import {FindInventoryItemDTO} from "./dto/FindInventoryItemDTO";
 
 @Injectable()
 export class AppService {
@@ -51,6 +50,39 @@ export class AppService {
         .createQueryBuilder('item')
         .where('item.productCategory = :productCategory', {productCategory})
         .getMany();
+  }
+
+  async getNumberOfItems(): Promise<any>{
+    return await this.itemRepository.count();
+  }
+
+  async getNumberOfItemsForCategory():Promise<any>{
+    return await this.itemRepository
+        .createQueryBuilder('item')
+        .select('item.productCategory', 'category')
+        .addSelect('COUNT(item.id)', 'count')
+        .groupBy('item.productCategory')
+        .getRawMany();
+  }
+
+  async getTheItemsOfLowStock():Promise<any>{
+    return await this.itemRepository
+        .createQueryBuilder('item')
+        .select('item.productName, item.productQuantity')
+        .where('item.productQuantity < 20')
+        .getRawMany();
+  }
+
+  async getInventoryStatus():Promise<any>{
+    const numberOfItems = await this.getNumberOfItems();
+    const numberOfItemsForCategory = await this.getNumberOfItemsForCategory();
+    const itemsOfLowStock = await this.getTheItemsOfLowStock();
+
+    return {
+      numberOfItems,
+      numberOfItemsForCategory,
+      itemsOfLowStock
+    };
   }
 
 }

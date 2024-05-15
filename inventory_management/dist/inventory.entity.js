@@ -20,28 +20,44 @@ __decorate([
 ], Item.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Item.prototype, "itemDescription", void 0);
+    __metadata("design:type", Number)
+], Item.prototype, "sellerId", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Item.prototype, "itemCategory", void 0);
+], Item.prototype, "productName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productBrand", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productManufacturer", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productCategory", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productDescription", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text', { array: true }),
+    __metadata("design:type", Array)
+], Item.prototype, "productImage", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productColour", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Item.prototype, "itemQuantity", void 0);
+], Item.prototype, "productUnitPrice", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Item.prototype, "itemUnitPrice", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Item.prototype, "manufacturedDate", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Item.prototype, "expireDate", void 0);
+], Item.prototype, "productQuantity", void 0);
 exports.Item = Item = __decorate([
     (0, typeorm_1.Entity)()
 ], Item);

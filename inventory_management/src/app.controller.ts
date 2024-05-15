@@ -52,4 +52,9 @@ export class AppController {
   async getInventoryItemByCategory(@Payload() productCategory: string): Promise<Item[]> {
     return await this.inventoryManagement.getInventoryItemByCategory(productCategory);
   }
+
+  @MessagePattern({cmd: 'GET_INVENTORY_STATUS'})
+  async getNumberOfItems(): Promise<any>{
+    return await this.inventoryManagement.getInventoryStatus();
+  }
 }
