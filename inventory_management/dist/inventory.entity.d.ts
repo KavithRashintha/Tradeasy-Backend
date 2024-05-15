@@ -1,9 +1,13 @@
 export declare class Item {
     id: number;
-    itemDescription: string;
-    itemCategory: string;
-    itemQuantity: number;
-    itemUnitPrice: number;
-    manufacturedDate: string;
-    expireDate: string;
+    sellerId: number;
+    productName: string;
+    productBrand: string;
+    productManufacturer: string;
+    productCategory: string;
+    productDescription: string;
+    productImage: string[];
+    productColour: string;
+    productUnitPrice: number;
+    productQuantity: number;
 }

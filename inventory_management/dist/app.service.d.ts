@@ -10,4 +10,9 @@ export declare class AppService {
     getAllInventoryItems(): Promise<Item[]>;
     updateInventoryItem(id: number, updateInventoryItemDto: UpdateInventoryItemDTO): Promise<Item>;
     deleteInventoryItem(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
+    getInventoryItemByCategory(productCategory: string): Promise<Item[]>;
+    getNumberOfItems(): Promise<any>;
+    getNumberOfItemsForCategory(): Promise<any>;
+    getTheItemsOfLowStock(): Promise<any>;
+    getInventoryStatus(): Promise<any>;
 }

@@ -44,6 +44,40 @@ let AppService = class AppService {
             return 'Successfully Deleted';
         }
     }
+    async getInventoryItemByCategory(productCategory) {
+        return await this.itemRepository
+            .createQueryBuilder('item')
+            .where('item.productCategory = :productCategory', { productCategory })
+            .getMany();
+    }
+    async getNumberOfItems() {
+        return await this.itemRepository.count();
+    }
+    async getNumberOfItemsForCategory() {
+        return await this.itemRepository
+            .createQueryBuilder('item')
+            .select('item.productCategory', 'category')
+            .addSelect('COUNT(item.id)', 'count')
+            .groupBy('item.productCategory')
+            .getRawMany();
+    }
+    async getTheItemsOfLowStock() {
+        return await this.itemRepository
+            .createQueryBuilder('item')
+            .select('item.productName, item.productQuantity')
+            .where('item.productQuantity < 20')
+            .getRawMany();
+    }
+    async getInventoryStatus() {
+        const numberOfItems = await this.getNumberOfItems();
+        const numberOfItemsForCategory = await this.getNumberOfItemsForCategory();
+        const itemsOfLowStock = await this.getTheItemsOfLowStock();
+        return {
+            numberOfItems,
+            numberOfItemsForCategory,
+            itemsOfLowStock
+        };
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

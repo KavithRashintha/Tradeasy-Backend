@@ -91,6 +91,11 @@ export class ApprController {
     return this.inventoryClient.send({cmd: 'GET_INVENTORY_ITEM_BY_CATEGORY'}, productCategory);
   }
 
+  @Get('inventory/getInventoryStatus')
+  async getNumberOfItems(){
+    return this.inventoryClient.send({cmd: 'GET_INVENTORY_STATUS'}, {});
+  }
+
 
   //====================================================REFUND_MANAGEMENT==================================================
 
@@ -279,7 +284,7 @@ export class ApprController {
 
   //========================================================AUTHENTICATION=================================================================
 
-  @Post('auth/signup')
+  /*@Post('auth/signup')
   async signUp(@Body() payload: AuthDto) {
     return await this.authManagement.createUser(payload);
   }
@@ -298,5 +303,5 @@ export class ApprController {
     const token = await this.authManagement.login(user);
     res.json(token);
     return token;
-  }
+  }*/
 }
