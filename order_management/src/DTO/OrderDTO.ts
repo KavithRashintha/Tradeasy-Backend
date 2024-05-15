@@ -8,6 +8,6 @@ export class OrderDTO {
     readonly orderItems: string;
     readonly orderPrice: number;
     readonly orderStatus: string;
-    readonly orderCancelReason: string;
+    readonly orderCancelReason?: string;
 
 }

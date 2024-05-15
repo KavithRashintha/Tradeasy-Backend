@@ -9,11 +9,26 @@ export class Product {
   productName: string;
 
   @Column()
+  productBrand: string;
+
+  @Column()
+  productManufacture: string;
+
+  @Column()
+  productCategory: string;
+
+  @Column()
+  productDescription: string;
+
+  @Column()
   productImage: string;
+
+  @Column()
+  productColor: string;
 
   @Column()
   productQuantity: number;
 
   @Column()
-  productPrice: number;
+  productSellingPrice: number;
 }
