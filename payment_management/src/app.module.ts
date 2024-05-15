@@ -6,24 +6,27 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerPayments, SupplierPayments } from './payment.entity';
 import { StripeModule } from './stripe/stripe.module';
 import { ConfigModule } from '@nestjs/config';
-
+import { MulterModule } from '@nestjs/platform-express';
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true
     }),
     TypeOrmModule.forRoot({
-      type: process.env.TYPE,
-      host: process.env.HOST,
-      port: parseInt(process.env.PORT),
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
+      type: "postgres",
+      host: "localhost",
+      port: 5432,
+      username: "postgres",
+      password: "215016G",
+      database: "Payment",
       entities: [CustomerPayments, SupplierPayments],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([CustomerPayments, SupplierPayments]),
     StripeModule,
+    MulterModule.register({
+      dest: './uploads'
+    })
   ],
   controllers: [AppController],
   providers: [AppService],

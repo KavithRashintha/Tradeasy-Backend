@@ -42,4 +42,7 @@ export class SupplierPayments {
 
     @Column({ nullable: false })
     billAmount: number;
+
+    @Column({ nullable: false })
+    filePath: string;
 }

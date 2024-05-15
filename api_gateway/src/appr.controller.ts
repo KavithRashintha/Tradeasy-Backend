@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards,Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards, Res} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
@@ -16,6 +16,8 @@ import {LocalAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
 import { PurchaseOrderDTO } from './models/purchaseOrderModel';
 import { In } from 'typeorm';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Controller()
 export class ApprController {
@@ -24,7 +26,7 @@ export class ApprController {
     @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
     @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
-    @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
+    @Inject('PAYMENT_MANAGEMENT') private paymentClient: ClientProxy,
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
     @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy,
     @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryOrder: ClientProxy,
@@ -116,15 +118,15 @@ export class ApprController {
    @Post('payment/inventoryPayment/create')
    async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO)
    {
-     return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
+     return this.paymentClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
    } 
    @Get('payment/inventoryPayment/getAll')
    async getAllInventoryPayments(){
-     return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
+     return this.paymentClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
    }
    @Get('payment/inventoryPayment/get/:id')  
    async getInventoryPaymentById(@Param('id') id:number){
-     return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
+     return this.paymentClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
    }
  
 
@@ -197,47 +199,46 @@ export class ApprController {
 
   @Post('payment/customerPayment/checkout')
   async createCustomerPaymentSession(@Body() data: any){
-    return this.paymantClient.send({ cmd: 'CREATE_CHECKOUT_SESSION' }, data);
+    return this.paymentClient.send({ cmd: 'CREATE_CHECKOUT_SESSION' }, data);
   }
 
   @Post('payment/customerPayment/create')
   async saveCustomerPayments(@Body() data: Data): Promise<any>{
-    return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, data);
+    return this.paymentClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT' }, data);
   }
 
   //@UseGuards(JwtGuard)
   @Get('payment/customerPayment/getAllCustomerPayments')
   async getAllCustomerPayments() {
-    return await this.paymantClient.send({ cmd: 'GET_ALL_CUSTOMER_PAYMENTS' }, {});
+    return await this.paymentClient.send({ cmd: 'GET_ALL_CUSTOMER_PAYMENTS' }, {});
   }
 
   @Get('payment/customerPayment/get/:id')
   async getCustomerPaymentById(@Param('id') id: number) {
-    return await this.paymantClient.send({ cmd: 'GET_CUSTOMER_PAYMENT' }, id);
+    return await this.paymentClient.send({ cmd: 'GET_CUSTOMER_PAYMENT' }, id);
   }
 
   @Get('payment/customerPayment/search')
   async searchAllPayments(@Query() query: ExpressQuery) {
-    return this.paymantClient.send({ cmd: 'SEARCH_ALL_CUSTOMER_PAYMENTS' }, {query});
+    return this.paymentClient.send({ cmd: 'SEARCH_ALL_CUSTOMER_PAYMENTS' }, {query});
   }
 
   //----------------------------------------------------SUPPLIER_Payment_MANAGEMENT-----------------------------------------
 
   @Post('payment/supplierPayment/create')
   async createSupplierPayment(@Body() supplierPaymentDTO: SupplierPaymentDTO){
-    return this.paymantClient.send({ cmd: 'CREATE_SUPPLIER_PAYMENT' }, supplierPaymentDTO);
+    return this.paymentClient.send({ cmd: 'CREATE_SUPPLIER_PAYMENT' }, supplierPaymentDTO);
   }
 
   @Get('payment/supplierPayment/getAll')
   async getAllSupplierPayments() {
-    return await this.paymantClient.send({ cmd: 'GET_ALL_SUPPLIER_PAYMENTS' }, {});
+    return await this.paymentClient.send({ cmd: 'GET_ALL_SUPPLIER_PAYMENTS' }, {});
   }
 
   @Get('payment/supplierPayment/search')
   async searchAllSupplierPayments(@Query() query: ExpressQuery) {
-    return this.paymantClient.send({ cmd: 'SEARCH_ALL_SUPPLIER_PAYMENTS' }, {query});
+    return this.paymentClient.send({ cmd: 'SEARCH_ALL_SUPPLIER_PAYMENTS' }, {query});
   }
-
 
   //====================================================DISCOUNT_MANAGEMENT==================================================
 

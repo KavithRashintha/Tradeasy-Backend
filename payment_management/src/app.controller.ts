@@ -53,4 +53,10 @@ export class AppController {
     return await this.PaymentManagement.searchAllSupplierPayments(query);
   }
 
+  // @MessagePattern({cmd: 'FILE_UPLOAD'})
+  // async fileUpload(@Payload() fileData: any): Promise<any>{
+  //   console.log("filedata",fileData)
+  //   return await this.PaymentManagement.fileUpload(fileData);
+  // }
+
 }

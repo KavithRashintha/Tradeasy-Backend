@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CustomerPayments, SupplierPayments} from './payment.entity';
 import { Repository } from 'typeorm';
@@ -9,6 +9,8 @@ import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
 import {Stripe} from 'stripe';
 import { Cart } from './stripe/Cart.model';
+import * as fs from 'fs';
+import * as path from 'path';
 
 
 @Injectable()
@@ -82,9 +84,47 @@ export class AppService {
   }
 
   //Supplier Payments
+  // async createSupplierPayment(supplierPaymentDTO: SupplierPaymentDTO): Promise<SupplierPayments> {
+  //   const filePath = await this.saveFile(supplierPaymentDTO.filePath);
+  //   supplierPaymentDTO.filePath = filePath;
+
+  //   const newPayment = this.supplierPaymentManagement.create(supplierPaymentDTO);
+  //   return await this.supplierPaymentManagement.save(newPayment);
+  // }
+
+  // async saveFile(file: any): Promise<string> {
+  //   const uploadDir = 'uploads';
+  //   if (!fs.existsSync(uploadDir)) {
+  //     fs.mkdirSync(uploadDir);
+  //   }
+  //   const fileName = `${Date.now()}-${file.originalname}`;
+  //   const filePath = path.join(uploadDir, fileName);
+  //   await fs.promises.writeFile(filePath, file.buffer);
+  //   return filePath;
+  // }
+
   async createSupplierPayment(supplierPaymentDTO: SupplierPaymentDTO): Promise<SupplierPayments> {
+    // Check if the file data exists
+    if (!supplierPaymentDTO.receipt || !supplierPaymentDTO.receipt.buffer) {
+      throw new Error('File data is missing');
+    }
+
+    const filePath = await this.saveFile(supplierPaymentDTO.receipt);
+    supplierPaymentDTO.receipt = filePath;
+
     const newPayment = this.supplierPaymentManagement.create(supplierPaymentDTO);
     return await this.supplierPaymentManagement.save(newPayment);
+  }
+
+  async saveFile(file: Express.Multer.File): Promise<string> {
+    const uploadDir = 'uploads';
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+    const fileName = `${Date.now()}-${file.originalname}`;
+    const filePath = path.join(uploadDir, fileName);
+    await fs.promises.writeFile(filePath, file.buffer);
+    return filePath;
   }
 
   async getAllSupplierPayments(): Promise<SupplierPayments[]>{
@@ -103,6 +143,22 @@ export class AppService {
       return [];
     }
   }
+
+  // @UseInterceptors(FileInterceptor('file', {
+  //   storage: diskStorage({
+  //     destination: './uploads',
+  //     filename: (req, file, callback) => {
+  //       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+  //       const ext = extname(file.originalname);
+  //       const filename = `${uniqueSuffix}${ext}`;
+  //       callback(null, filename);
+  //     },
+  //   }),
+  // }))
+  // async fileUpload(@UploadedFile() file: Express.Multer.File): Promise<any> {
+  //   console.log("file", file);
+  //   return "File Uploaded";
+  // }
 
 }
 
