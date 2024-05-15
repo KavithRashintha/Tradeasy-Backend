@@ -227,6 +227,7 @@ export class ApprController {
 
   @Post('payment/supplierPayment/create')
   async createSupplierPayment(@Body() supplierPaymentDTO: SupplierPaymentDTO){
+    console.log(supplierPaymentDTO);
     return this.paymentClient.send({ cmd: 'CREATE_SUPPLIER_PAYMENT' }, supplierPaymentDTO);
   }
 
