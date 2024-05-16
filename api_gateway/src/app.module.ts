@@ -107,12 +107,12 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     ]),
 
     TypeOrmModule.forRoot({
-      type: process.env.TYPE,
-      host: process.env.HOST,
-      port: parseInt(process.env.PORT),
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
+      type: "postgres",
+      host: "localhost",
+      port: 5432,
+      username: "postgres",
+      password: "215016G",
+      database: "Users",
       entities: [User],
       synchronize: true,
     }),
@@ -120,7 +120,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     TypeOrmModule.forFeature([User]),
 
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      global: true,
+      secret: 'abc123',
       signOptions: {
         expiresIn: '60s'
       },
@@ -129,6 +130,10 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   ],
   
   controllers: [ApprController, ProductController, OrderController],
-  providers: [AppService, JwtStrategy, LocalStrategy],
+  providers: [
+    AppService, 
+    JwtStrategy, 
+    LocalStrategy,
+  ],
 })
 export class AppModule {}

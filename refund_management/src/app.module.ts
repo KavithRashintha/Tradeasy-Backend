@@ -9,9 +9,9 @@ import { CustomerRefund } from './refunds.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5433,
+      port: 5432,
       username: 'postgres',
-      password: 'Kviper0824@',
+      password: '215016G',
       database: 'Refund',
       entities: [CustomerRefund],
       synchronize: true,

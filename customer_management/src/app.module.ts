@@ -11,7 +11,7 @@ import { Customer } from './customer.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'password',
+      password: '215016G',
       database: 'Customer',
       entities: [Customer],
       synchronize: true,

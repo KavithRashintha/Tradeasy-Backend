@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards,Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards, Res, Req, HttpCode, HttpStatus } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
@@ -9,7 +9,6 @@ import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AppService } from './app.service';
-import {AuthGuard} from '@nestjs/passport';
 import {JwtGuard} from './guards/jwt.guard';
 import {RefreshJwtGuard} from './guards/refresh.jwt.guard';
 import {LocalAuthGuard} from './guards/local.guard';
@@ -182,7 +181,7 @@ export class ApprController {
     return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id)
   }
 
-  //@UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtGuard)
   @Get('supplier/getAllSuppliers')
   async getAllSuppliers() {
     return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});
@@ -284,24 +283,21 @@ export class ApprController {
 
   //========================================================AUTHENTICATION=================================================================
 
-  /*@Post('auth/signup')
+  @Post('auth/signup')
   async signUp(@Body() payload: AuthDto) {
     return await this.authManagement.createUser(payload);
   }
   
+  @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async validateUser(@Body() user: AuthDto, @Res() res: Response){
-    const token = await this.authManagement.login(user);
-    res.json(token);
-    return token;
+  async signIn(@Req() req){
+    return await this.authManagement.login(req.user);
   }
 
-  @UseGuards(RefreshJwtGuard)
-  @Post('auth/refresh')
-  async refreshToken(@Body() user: AuthDto, @Res() res: Response){
-    const token = await this.authManagement.login(user);
-    res.json(token);
-    return token;
-  }*/
+  @Post('auth/logout')
+  async logout(){
+    return await this.authManagement.logout(); 
+  }
+
 }
