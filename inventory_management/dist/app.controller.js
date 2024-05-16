@@ -43,6 +43,9 @@ let AppController = class AppController {
     async getNumberOfItems() {
         return await this.inventoryManagement.getInventoryStatus();
     }
+    async testFunction() {
+        return "Communication between services are working";
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -92,6 +95,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getNumberOfItems", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'TEST_FUNCTION' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "testFunction", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

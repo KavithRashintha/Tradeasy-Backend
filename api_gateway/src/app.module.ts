@@ -106,7 +106,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       
     ]),
 
-    TypeOrmModule.forRoot({
+    /*TypeOrmModule.forRoot({
       type: process.env.TYPE,
       host: process.env.HOST,
       port: parseInt(process.env.PORT),
@@ -117,7 +117,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       synchronize: true,
     }),
 
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User]),*/
 
     JwtModule.register({
       secret: process.env.JWT_SECRET,

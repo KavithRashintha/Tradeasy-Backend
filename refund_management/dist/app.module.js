@@ -12,12 +12,23 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const refunds_entity_1 = require("./refunds.entity");
+const microservices_1 = require("@nestjs/microservices");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            microservices_1.ClientsModule.register([
+                {
+                    name: 'INVENTORY_MANAGEMENT',
+                    transport: microservices_1.Transport.TCP,
+                    options: {
+                        host: '127.0.0.1',
+                        port: 9003,
+                    },
+                }
+            ]),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
                 host: 'localhost',

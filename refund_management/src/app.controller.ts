@@ -1,12 +1,16 @@
-import { Controller } from '@nestjs/common';
+import {Controller, Inject} from '@nestjs/common';
 import { AppService } from './app.service';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import {ClientProxy, MessagePattern, Payload} from '@nestjs/microservices';
 import { CustomerRefundDTO } from './dto/customerRefundDTO';
 import { CustomerRefund } from './refunds.entity';
 
 @Controller()
 export class AppController {
-  constructor(private readonly refundManagement: AppService) {}
+  constructor(
+      @Inject('INVENTORY_MANAGEMENT') private inventoryClient:ClientProxy,
+
+      private readonly refundManagement: AppService
+  ) {}
 
   @MessagePattern({ cmd: 'CREATE_CUSTOMER_REFUND' })
   async createCustomerRefund(
@@ -33,5 +37,10 @@ export class AppController {
   @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'})
   async getCustomerRefundByStatus(@Payload() refundStatus:string){
     return await this.refundManagement.getCustomerRefundByStatus(refundStatus);
+  }
+
+  @MessagePattern({cmd: 'CALLING_TEST_FUNCTION'})
+  async runTestFunction():Promise<any>{
+    return await this.inventoryClient.send({cmd: 'TEST_FUNCTION'}, {});
   }
 }
