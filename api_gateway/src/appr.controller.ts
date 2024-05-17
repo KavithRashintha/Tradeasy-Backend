@@ -125,6 +125,11 @@ export class ApprController {
     return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'}, refundStatus);
   }
 
+  @Get('refund/customerRefund/test')
+  async runTestFunction(){
+    return await this.refundClient.send({cmd: 'CALLING_TEST_FUNCTION'}, {});
+  }
+
 
    //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
    @Post('payment/inventoryPayment/create')
@@ -181,7 +186,7 @@ export class ApprController {
     return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id)
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('supplier/getAllSuppliers')
   async getAllSuppliers() {
     return this.supplierClient.send({ cmd: 'GET_ALL_SUPPLIERS' }, {});

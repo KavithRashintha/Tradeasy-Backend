@@ -19,12 +19,12 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'postgres',
-                host: 'localhost',
+                type: "postgres",
+                host: "localhost",
                 port: 5432,
-                username: 'postgres',
-                password: '215016G',
-                database: 'Discount',
+                username: "postgres",
+                password: "215016G",
+                database: "Discount",
                 entities: [discount_entity_1.Discounts],
                 synchronize: true,
             }),

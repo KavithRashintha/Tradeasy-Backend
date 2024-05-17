@@ -35,6 +35,9 @@ let AppController = class AppController {
     async getAllSuppliers() {
         return await this.supplierManagement.getAllSuppliers();
     }
+    async searchAllSuppliers(query) {
+        return await this.supplierManagement.searchAllSuppliers(query);
+    }
     async updateSupplier(data) {
         const { id, updateSupplierDto } = data;
         return await this.supplierManagement.updateSupplier(id, updateSupplierDto);
@@ -64,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getAllSuppliers", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEARCH_ALL_SUPPLIERS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "searchAllSuppliers", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'UPDATE_SUPPLIER' }),
     __param(0, (0, microservices_1.Payload)()),

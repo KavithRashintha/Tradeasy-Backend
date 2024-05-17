@@ -1,10 +1,18 @@
 import { AppService } from './app.service';
-import { CustomerPaymentDTO } from './dto/cutomerPaymentDTO';
-import { CustomerPayments } from './payment.entity';
+import { SupplierPaymentDTO } from './dto/supplierPaymentDTO';
+import { CustomerPayments, SupplierPayments } from './payment.entity';
+import { Query } from 'express-serve-static-core';
 export declare class AppController {
-    private readonly customerPaymentManagement;
-    constructor(customerPaymentManagement: AppService);
-    createCustomerPayment(customerPaymentDTO: CustomerPaymentDTO): Promise<CustomerPayments>;
+    private readonly PaymentManagement;
+    constructor(PaymentManagement: AppService);
+    createCustomerPaymentSession(data: any): Promise<{
+        sessionUrl: string;
+    }>;
+    saveCustomerPayments(data: any): Promise<SupplierPayments>;
     getAllCustomerPayments(): Promise<CustomerPayments[]>;
     getCustomerPaymentById(id: any): Promise<CustomerPayments | null>;
+    searchAllPayments(query: Query): Promise<CustomerPayments[]>;
+    createSupplierPayment(supplierPaymentDTO: SupplierPaymentDTO): Promise<SupplierPayments>;
+    getAllSupplierPayments(): Promise<SupplierPayments[]>;
+    searchAllSupplierPayments(query: Query): Promise<SupplierPayments[]>;
 }

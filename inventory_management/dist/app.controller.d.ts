@@ -15,4 +15,5 @@ export declare class AppController {
     deleteInventoryItem(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
     getInventoryItemByCategory(productCategory: string): Promise<Item[]>;
     getNumberOfItems(): Promise<any>;
+    testFunction(): Promise<any>;
 }

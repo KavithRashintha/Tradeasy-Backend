@@ -123,7 +123,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       global: true,
       secret: 'abc123',
       signOptions: {
-        expiresIn: '60s'
+        expiresIn: '7d'
       },
     }),
     PassportModule

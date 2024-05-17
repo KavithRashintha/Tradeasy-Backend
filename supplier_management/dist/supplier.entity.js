@@ -29,6 +29,10 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
+], Supplier.prototype, "nic", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], Supplier.prototype, "supplierAddress", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -38,6 +42,18 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Supplier.prototype, "supplierPassword", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: '' }),
+    __metadata("design:type", String)
+], Supplier.prototype, "paymentMethod", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: '' }),
+    __metadata("design:type", String)
+], Supplier.prototype, "paymentDetails", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: '' }),
+    __metadata("design:type", String)
+], Supplier.prototype, "profilePicture", void 0);
 exports.Supplier = Supplier = __decorate([
     (0, typeorm_1.Entity)()
 ], Supplier);

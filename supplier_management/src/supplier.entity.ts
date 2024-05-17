@@ -24,12 +24,12 @@ export class Supplier {
   @Column()
   supplierPassword: string;
 
-  @Column()
+  @Column({ default: '' })
   paymentMethod: string;
 
-  @Column()
+  @Column({ default: '' })
   paymentDetails: string;
 
-  @Column()
+  @Column({ default: '' })
   profilePicture: string;
 }

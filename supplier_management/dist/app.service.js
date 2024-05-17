@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const supplier_entity_1 = require("./supplier.entity");
 const typeorm_2 = require("typeorm");
+const typeorm_3 = require("typeorm");
 let AppService = class AppService {
     constructor(supplierRepository) {
         this.supplierRepository = supplierRepository;
@@ -30,6 +31,19 @@ let AppService = class AppService {
     }
     async getAllSuppliers() {
         return await this.supplierRepository.find();
+    }
+    async searchAllSuppliers(query) {
+        console.log('Received query:', query);
+        const keyword = query.query.keyword;
+        try {
+            const filteredSuppliers = await this.supplierRepository.find({ where: { supplierName: (0, typeorm_3.ILike)(`%${keyword}%`) } });
+            console.log('Filtered suppliers:', filteredSuppliers);
+            return filteredSuppliers;
+        }
+        catch (error) {
+            console.error('Error occurred while searching suppliers:', error);
+            return [];
+        }
     }
     async updateSupplier(id, updateSupplierDto) {
         await this.supplierRepository.update(id, updateSupplierDto);

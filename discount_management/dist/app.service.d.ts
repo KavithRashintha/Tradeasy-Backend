@@ -9,5 +9,6 @@ export declare class AppService {
     getAllDiscounts(): Promise<Discounts[]>;
     searchAllDiscounts(query: Query): Promise<Discounts[]>;
     getDiscountById(id: any): Promise<Discounts | null>;
+    deleteExpiredDiscounts(): Promise<void>;
     deleteDiscount(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
 }

@@ -19,6 +19,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Discounts.prototype, "id", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ unique: true }),
+    __metadata("design:type", String)
+], Discounts.prototype, "productId", void 0);
+__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Discounts.prototype, "productName", void 0);
@@ -30,6 +34,14 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Discounts.prototype, "discountRate", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Discounts.prototype, "startDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Discounts.prototype, "endDate", void 0);
 exports.Discounts = Discounts = __decorate([
     (0, typeorm_1.Entity)()
 ], Discounts);
