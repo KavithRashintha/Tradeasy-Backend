@@ -8,12 +8,12 @@ import { PurchaseOrder } from './purchaseorder.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: process.env.TYPE,
-      host: process.env.HOST,
-      port: parseInt(process.env.PORT),
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: '1217',
+      database: 'purchase_order_mgt',
       entities: [PurchaseOrder],
       synchronize: true,
     }),

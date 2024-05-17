@@ -32,4 +32,6 @@ export class AppController {
     async getCountOfOrdersByStatus(@Payload() status: string): Promise<number> {
       return this.purchasedOrder.getCountOfOrdersByStatus(status);
     }
+
+   
 }
