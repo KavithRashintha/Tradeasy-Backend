@@ -45,6 +45,14 @@ let AppService = class AppService {
             .where('purchaseOrder.status = :status', { status })
             .getCount();
     }
+    getCurrentMonthName() {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const currentMonthIndex = new Date().getMonth();
+        return months[currentMonthIndex];
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

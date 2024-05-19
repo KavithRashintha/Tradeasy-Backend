@@ -33,11 +33,21 @@ export class AppService {
           return 'Successfully Deleted';
         }
       }
+
       async getCountOfOrdersByStatus(status: string): Promise<number> {
         return await this.purchaseOrder.createQueryBuilder('purchaseOrder')
             .where('purchaseOrder.status = :status', { status })
             .getCount();
-    }
+      }
+
+    getCurrentMonthName(): string {
+      const months = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+      ];
+      const currentMonthIndex = new Date().getMonth(); // getMonth() is zero-indexed
+      return months[currentMonthIndex];
+  }
       
     }
 

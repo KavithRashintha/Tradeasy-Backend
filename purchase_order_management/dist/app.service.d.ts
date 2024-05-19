@@ -9,4 +9,5 @@ export declare class AppService {
     getPurchaseOrderById(purchase_id: number): Promise<PurchaseOrder>;
     deletePurchaseOrder(purchase_id: number): Promise<"Not Deleted" | "Successfully Deleted">;
     getCountOfOrdersByStatus(status: string): Promise<number>;
+    getCurrentMonthName(): string;
 }

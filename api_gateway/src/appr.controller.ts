@@ -251,6 +251,12 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.inventoryOrder.send({cmd: 'GET_COUNT_OF_ORDERS_BY_STATUS'}, status);
   }
 
+  //@UseGuards(JwtGuard)
+  @Get('purchaseOrder/getCurrentMonthName')
+  async getCurrentMonthName(){
+    return this.inventoryOrder.send({cmd: 'GET_CURRENT_MONTH_NAME'}, {});
+  }
+
 
   //===================================SUPPLIER_MANAGEMENT===========================================================================
   @UseGuards(JwtGuard)

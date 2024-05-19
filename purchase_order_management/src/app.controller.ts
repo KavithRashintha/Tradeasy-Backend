@@ -32,4 +32,9 @@ export class AppController {
     async getCountOfOrdersByStatus(@Payload() status: string): Promise<number> {
       return this.purchasedOrder.getCountOfOrdersByStatus(status);
     }
+
+   @MessagePattern({cmd: 'GET_CURRENT_MONTH_NAME'})
+    getCurrentMonthName(): string {
+      return this.purchasedOrder.getCurrentMonthName();
+    } 
 }
