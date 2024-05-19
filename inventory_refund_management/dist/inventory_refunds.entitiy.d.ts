@@ -3,8 +3,8 @@ export declare class InventoryRefund {
     supplier: string;
     item: string;
     phone: string;
-    quantity: number;
-    price: number;
+    quantity: string;
+    price: string;
     reason: string;
     status: string;
 }

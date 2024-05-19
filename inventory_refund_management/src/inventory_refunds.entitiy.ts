@@ -16,10 +16,10 @@ export class InventoryRefund {
     phone: string;  
 
   @Column()
-     quantity: number;  
+     quantity: string;  
        
   @Column()
-     price: number;  
+     price: string;  
      
   @Column()
      reason: string;  
