@@ -35,11 +35,21 @@ export class AppService {
       }
 
       async getCountOfOrdersByStatus(status: string): Promise<number> {
-        return await this.purchaseOrder.createQueryBuilder('purchaseOrder')
-            .where('purchaseOrder.status = :status', { status })
-            .getCount();
-      }
-
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1; //January =0
+    
+        const query = this.purchaseOrder.createQueryBuilder('purchase_order')
+            .andWhere(`EXTRACT(YEAR FROM purchase_order.createdDate) = :year`, { year: currentYear })
+            .andWhere(`EXTRACT(MONTH FROM purchase_order.createdDate) = :month`, { month: currentMonth });
+    
+        if (status !== 'total') {
+            query.andWhere('purchase_order.status = :status', { status });
+        }
+    
+        return await query.getCount();
+    }
+    
     getCurrentMonthName(): string {
       const months = [
           "January", "February", "March", "April", "May", "June",

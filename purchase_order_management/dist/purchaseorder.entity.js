@@ -42,6 +42,10 @@ __decorate([
     (0, typeorm_1.Column)({ default: 'pending' }),
     __metadata("design:type", String)
 ], PurchaseOrder.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: 'date' }),
+    __metadata("design:type", Date)
+], PurchaseOrder.prototype, "createdDate", void 0);
 exports.PurchaseOrder = PurchaseOrder = __decorate([
     (0, typeorm_1.Entity)()
 ], PurchaseOrder);

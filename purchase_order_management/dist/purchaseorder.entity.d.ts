@@ -6,4 +6,5 @@ export declare class PurchaseOrder {
     contact_number: string;
     items: string;
     status: string;
+    createdDate: Date;
 }
