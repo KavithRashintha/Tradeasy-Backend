@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn,CreateDateColumn } from "typeorm";
 
 
 @Entity()
@@ -27,5 +27,6 @@ export class InventoryRefund {
   @Column({default: 'pending'})
      status: string;    
      
-    
+  @CreateDateColumn({ type: 'date' })
+     createdDate: Date;         
 }

@@ -5,5 +5,6 @@ export class InventoryRefundDTO {
     readonly quantity:string;
     readonly price:string;
     readonly reason:string;
+    readonly createdDate: Date;
 
 }
