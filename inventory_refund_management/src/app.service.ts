@@ -32,5 +32,12 @@ export class AppService {
           return 'Successfully Deleted';
         }
       }
+
+      async getAllApprovedRefunds(): Promise<InventoryRefund[]> {
+        return await this.inventoryRefundManagement.find({
+            where: { status: 'completed' }
+        });
+      }
+
     }
 

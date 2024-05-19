@@ -163,6 +163,42 @@ export class ApprController {
     return await this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_COUNT'}, {});
   }
 
+ //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
+ //@UseGuards(JwtGuard)
+ @Post('refund/inventoryRefund/create')
+ async createInventoryRefund(@Body() inventoryRefundDTO:InventoryRefundDTO)
+  {
+    return this.inventoryRefund.send({cmd:'CREATE_INVENTORY_REFUND'},inventoryRefundDTO);
+  }
+ 
+//@UseGuards(JwtGuard)  
+@Get('refund/inventoryRefund/getAll')
+async getAllInventoryRefunds(){
+  return this.inventoryRefund.send({cmd:'GET_ALL_INVENTORY_REFUND'},{})
+}
+
+//@UseGuards(JwtGuard)
+@Get('refund/inventoryRefund/get/:id')
+async getInventoryRefundById(@Param('id') id:number){
+  return this.inventoryRefund.send({cmd:'GET_INVENTORY_REFUND_BY_ID'},id)
+}
+
+//@UseGuards(JwtGuard)
+@Delete('refund/inventoryRefund/delete/:id')
+async deleteInventoryRefund(@Param('id') id:number){  
+  return this.inventoryRefund.send({cmd:'DELETE_CUSTOMER_REFUND'},id)
+}
+
+//@UseGuards(JwtGuard)
+@Get('refund/approvedRefunds/getAll')
+  async getAllApprovedRefunds() {
+      return this.inventoryRefund.send({ cmd: 'GET_ALL_APPROVED_REFUNDS' }, {});
+  }
+
+
+
+
+
 
    //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
   @UseGuards(JwtGuard) 
