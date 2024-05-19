@@ -42,4 +42,9 @@ export class AppController {
   async runTestFunction():Promise<any>{
     return await this.inventoryClient.send({cmd: 'TEST_FUNCTION'}, {});
   }
+
+  @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_COUNT'})
+  async getCustomerRefundCount(){
+    return await this.refundManagement.getCustomerRefundCount();
+  } 
 }

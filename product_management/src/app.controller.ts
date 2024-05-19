@@ -37,4 +37,8 @@ export class AppController {
     return await this.productManagement.deleteProduct(id);
   }
 
+  @MessagePattern({cmd: 'GET_PRODUCTS_COUNT'})
+  async getProductsCount(){
+    return await this.productManagement.getProductsCount();
+  }
 }

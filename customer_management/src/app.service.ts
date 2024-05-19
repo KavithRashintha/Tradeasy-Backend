@@ -5,6 +5,8 @@ import { Repository } from 'typeorm';
 import {CustomerDTO} from './dto/CustomerDTO';
 import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
+import { ILike } from "typeorm";
+import { Query } from 'express-serve-static-core';
 
 @Injectable()
 export class AppService {
@@ -27,7 +29,6 @@ export class AppService {
   }
 
   async updateCustomer(id: number, updateCustomerDto: UpdateCustomerDTO): Promise<Customer> {
-    // @ts-ignore
     await this.customerRepository.update(id, updateCustomerDto);
     return await this.customerRepository.findOneById(id);
   }
@@ -39,5 +40,23 @@ export class AppService {
     }else{
       return "Successfully Deleted";
     }
+  }
+
+  async searchAllCustomers(query: Query): Promise<Customer[]> {
+    console.log('Received query:', query);
+    const keyword = (query.query as { keyword?: string }).keyword;
+    try {
+      const filteredCustomers = await this.customerRepository.find({ where: { customerName: ILike(`%${keyword}%`) } });
+      console.log('Filtered customers:', filteredCustomers);
+      return filteredCustomers;
+    } catch (error) {
+      console.error('Error occurred while searching customers:', error);
+      return [];
+    }
+  }
+
+  async getActiveCustomers(){
+    //return await this.customerRepository.find({where:{isActive:true}});
+    return await this.customerRepository.count();
   }
 }
