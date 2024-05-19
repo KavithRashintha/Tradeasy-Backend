@@ -8,8 +8,8 @@ export class Product {
   @Column()
   productName: string;
 
-  @Column()
-  productImage: string;
+  @Column("text", { array: true })
+  productImage: string[];
 
   @Column()
   productQuantity: number;
