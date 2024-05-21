@@ -10,15 +10,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import {ConfigModule} from '@nestjs/config';
-import { join } from 'path';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: join(__dirname, '../../../.env'),
-      isGlobal: true
-    }),
+    // ConfigModule.forRoot({
+    //   envFilePath: join(__dirname, '../../../.env'),
+    //   isGlobal: true
+    // }),
     ClientsModule.register([
       {
         name: 'CUSTOMER_MANAGEMENT',
