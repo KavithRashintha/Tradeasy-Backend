@@ -40,6 +40,14 @@
 /discount_management/.idea
 /discount_management/dist
 
+/inventory_refund_management/node_modules/
+/inventory_refund_management/.idea
+/inventory_refund_management/dist
+
+/purchase_order_management/node_modules/
+/purchase_order_management/.idea
+/purchase_order_management/dist
+
 /nest-guardian/node_modules/
 /nest-guardian/.idea
 /nest-guardiant/dist
