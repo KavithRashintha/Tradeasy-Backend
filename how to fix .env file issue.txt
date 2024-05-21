@@ -1,0 +1,31 @@
+Api Gateway already done
+
+1) Create bootstap.ts in src Folder
+
+bootstrap.ts
+import { join } from 'path';
+import * as dotenv from 'dotenv';
+
+// Load environment variables from the shared .env file
+dotenv.config({ path: join(__dirname, '../../.env') });
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
+}
+bootstrap();
+
+2)add env variables to app.module.ts
+
+3) edit package.json
+{
+  "scripts": {
+    "start:dev": "ts-node -r tsconfig-paths/register src/bootstrap.ts",
+    "start": "node dist/bootstrap.js"
+  }
+}
+
+
