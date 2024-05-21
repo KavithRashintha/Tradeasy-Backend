@@ -8,12 +8,12 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AppService {
-  /*constructor(
+  constructor(
     @InjectRepository(User)
     private readonly authRepository: Repository<User>,
     private jwtService: JwtService,
   ){}
-  
+
   async createUser(createAuthDTO: AuthDto): Promise<User> {
     const existingUser = await this.authRepository.findOne({ where: { username: createAuthDTO.username } });
     if (existingUser) {
@@ -54,7 +54,7 @@ export class AppService {
         refreshToken: this.jwtService.sign(result, {expiresIn: '7d'}),
       };
     }
-  }  
+  }
 
   async refreshToken(user: AuthDto): Promise<any> {
     const { username, password } = user;
@@ -62,10 +62,10 @@ export class AppService {
     if (foundUser) {
       const { password, ...result } = foundUser;
       const token = this.jwtService.sign(result);
-      
+
       return {
         accessToken: token
       };
     }
-  }*/
+  }
 }
