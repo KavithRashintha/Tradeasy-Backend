@@ -33,6 +33,9 @@ let AppController = class AppController {
     async deleteCustomerRefund(inventory_id) {
         return await this.inventoryRefundManagement.deleteCustomerRefund(inventory_id);
     }
+    async getAllApprovedRefunds() {
+        return this.inventoryRefundManagement.getAllApprovedRefunds();
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -62,6 +65,12 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "deleteCustomerRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_ALL_APPROVED_REFUNDS' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getAllApprovedRefunds", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

@@ -111,7 +111,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       host: "localhost",
       port: 5432,
       username: "postgres",
-      password: "215016G",
+      password: "1217",
       database: "Users",
       entities: [User],
       synchronize: true,

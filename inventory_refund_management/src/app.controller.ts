@@ -29,5 +29,10 @@ export class AppController {
   async deleteCustomerRefund(@Payload() inventory_id:number){
     return await this.inventoryRefundManagement.deleteCustomerRefund(inventory_id);
   }
+
+  @MessagePattern({cmd: 'GET_ALL_APPROVED_REFUNDS'})
+    async getAllApprovedRefunds(): Promise<InventoryRefund[]> {
+        return this.inventoryRefundManagement.getAllApprovedRefunds();
+    }
  
 }

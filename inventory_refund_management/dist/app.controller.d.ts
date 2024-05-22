@@ -8,4 +8,5 @@ export declare class AppController {
     getAllInventoryRefund(): Promise<InventoryRefund[]>;
     getInventoryRefundById(inventory_id: number): Promise<InventoryRefund>;
     deleteCustomerRefund(inventory_id: number): Promise<"Not Deleted" | "Successfully Deleted">;
+    getAllApprovedRefunds(): Promise<InventoryRefund[]>;
 }

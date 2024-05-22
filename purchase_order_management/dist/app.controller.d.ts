@@ -8,4 +8,5 @@ export declare class AppController {
     getPurchaseOrderById(purchase_id: number): Promise<PurchaseOrderDTO>;
     deletePurchaseOrder(purchase_id: number): Promise<"Not Deleted" | "Successfully Deleted">;
     getCountOfOrdersByStatus(status: string): Promise<number>;
+    getCurrentMonthName(): string;
 }

@@ -32,11 +32,11 @@ __decorate([
 ], InventoryRefund.prototype, "phone", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], InventoryRefund.prototype, "quantity", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], InventoryRefund.prototype, "price", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

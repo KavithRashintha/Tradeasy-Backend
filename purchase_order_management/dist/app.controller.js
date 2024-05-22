@@ -36,6 +36,9 @@ let AppController = class AppController {
     async getCountOfOrdersByStatus(status) {
         return this.purchasedOrder.getCountOfOrdersByStatus(status);
     }
+    getCurrentMonthName() {
+        return this.purchasedOrder.getCurrentMonthName();
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -72,6 +75,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getCountOfOrdersByStatus", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CURRENT_MONTH_NAME' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], AppController.prototype, "getCurrentMonthName", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

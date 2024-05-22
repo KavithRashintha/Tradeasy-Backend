@@ -40,6 +40,11 @@ let AppService = class AppService {
             return 'Successfully Deleted';
         }
     }
+    async getAllApprovedRefunds() {
+        return await this.inventoryRefundManagement.find({
+            where: { status: 'completed' }
+        });
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([
