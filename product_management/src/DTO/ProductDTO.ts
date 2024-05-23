@@ -7,7 +7,7 @@ export class ProductDTO {
     readonly productManufacture?: string;
     readonly productCategory?: string;
     readonly productDescription?: string;
-    readonly productImage?: string;
+    readonly productImage?: string[];
     readonly productColor?: string;
     readonly productQuantity: number;
     readonly productSellingPrice: number;

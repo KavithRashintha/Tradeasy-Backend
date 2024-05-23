@@ -20,8 +20,8 @@ export class Product {
   @Column()
   productDescription: string;
 
-  @Column()
-  productImage: string;
+  @Column("text", { array: true })
+  productImage: string[];
 
   @Column()
   productColor: string;

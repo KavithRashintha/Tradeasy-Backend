@@ -57,5 +57,4 @@ export class AppService {
       access_token: '',
     };
   }
-
 }
