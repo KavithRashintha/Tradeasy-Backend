@@ -12,4 +12,5 @@ export declare class AppController {
     deleteCustomerRefund(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
     getCustomerRefundByStatus(refundStatus: string): Promise<CustomerRefund[]>;
     runTestFunction(): Promise<any>;
+    getCustomerRefundCount(): Promise<number>;
 }

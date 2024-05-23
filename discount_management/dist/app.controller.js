@@ -11,14 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
 const discountsDTO_1 = require("./dto/discountsDTO");
-const express_serve_static_core_1 = require("express-serve-static-core");
 let AppController = class AppController {
     constructor(discountManagement) {
         this.discountManagement = discountManagement;
@@ -51,7 +49,7 @@ __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'SEARCH_ALL_DISCOUNTS' }),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_a = typeof express_serve_static_core_1.Query !== "undefined" && express_serve_static_core_1.Query) === "function" ? _a : Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "searchAllDiscounts", null);
 __decorate([

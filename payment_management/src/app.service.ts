@@ -11,6 +11,7 @@ import {Stripe} from 'stripe';
 import { Cart } from './stripe/Cart.model';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Multer } from 'multer';
 
 
 @Injectable()

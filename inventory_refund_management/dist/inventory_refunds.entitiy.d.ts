@@ -7,4 +7,5 @@ export declare class InventoryRefund {
     price: string;
     reason: string;
     status: string;
+    createdDate: Date;
 }

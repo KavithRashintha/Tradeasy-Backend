@@ -40,6 +40,9 @@ let AppController = class AppController {
     async runTestFunction() {
         return await this.inventoryClient.send({ cmd: 'TEST_FUNCTION' }, {});
     }
+    async getCustomerRefundCount() {
+        return await this.refundManagement.getCustomerRefundCount();
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -82,6 +85,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "runTestFunction", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER_REFUND_COUNT' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerRefundCount", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
