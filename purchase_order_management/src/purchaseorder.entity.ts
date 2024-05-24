@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn,CreateDateColumn } from "typeorm";
 
 @Entity()
 export class PurchaseOrder {
@@ -23,5 +23,7 @@ export class PurchaseOrder {
     @Column({default: 'pending'})
     status:string;  
     
+    @CreateDateColumn({ type: 'date' })
+    createdDate: Date;    
 
 }

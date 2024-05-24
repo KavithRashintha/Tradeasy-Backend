@@ -8,12 +8,12 @@ import { Supplier } from './supplier.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: process.env.TYPE,
-      host: process.env.HOST,
-      port: parseInt(process.env.PORT),
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
+      type: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: parseInt(process.env.POSTGRES_PORT, 10),
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: 'Supplier',
       entities: [Supplier],
       synchronize: true,
     }),

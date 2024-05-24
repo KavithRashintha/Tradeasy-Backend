@@ -11,7 +11,7 @@ import { Order} from './order.entity';
       port: parseInt(process.env.POSTGRES_PORT, 10),
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
-      database: process.env.DATABASE,
+      database: 'Order',
       entities: [Order],
       synchronize: true,
     }),

@@ -9,6 +9,9 @@ import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
 import {Stripe} from 'stripe';
 import { Cart } from './stripe/Cart.model';
+import * as fs from 'fs';
+import * as path from 'path';
+import { Multer } from 'multer';
 
 
 @Injectable()
@@ -82,9 +85,33 @@ export class AppService {
   }
 
   //Supplier Payments
+  // async createSupplierPayment(supplierPaymentDTO: SupplierPaymentDTO): Promise<SupplierPayments> {
+  //   const newPayment = this.supplierPaymentManagement.create(supplierPaymentDTO);
+  //   return await this.supplierPaymentManagement.save(newPayment);
+  // }
+
   async createSupplierPayment(supplierPaymentDTO: SupplierPaymentDTO): Promise<SupplierPayments> {
+    // Check if the file data exists
+    if (!supplierPaymentDTO.receipt || !supplierPaymentDTO.receipt.buffer) {
+      throw new Error('File data is missing');
+    }
+
+    const filePath = await this.saveFile(supplierPaymentDTO.receipt);
+    supplierPaymentDTO.receipt = filePath;
+
     const newPayment = this.supplierPaymentManagement.create(supplierPaymentDTO);
     return await this.supplierPaymentManagement.save(newPayment);
+  }
+
+  async saveFile(file: Express.Multer.File): Promise<string> {
+    const uploadDir = 'uploads';
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+    const fileName = `${Date.now()}-${file.originalname}`;
+    const filePath = path.join(uploadDir, fileName);
+    await fs.promises.writeFile(filePath, file.buffer);
+    return filePath;
   }
 
   async getAllSupplierPayments(): Promise<SupplierPayments[]>{

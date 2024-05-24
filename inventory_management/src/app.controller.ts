@@ -57,4 +57,9 @@ export class AppController {
   async getNumberOfItems(): Promise<any>{
     return await this.inventoryManagement.getInventoryStatus();
   }
+
+  @MessagePattern({cmd: 'TEST_FUNCTION'})
+  async testFunction(): Promise<any>{
+    return "Communication between services are working";
+  }
 }

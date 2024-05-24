@@ -3,6 +3,6 @@ export class UpdateCustomerDTO{
     readonly customerName: string;
     readonly customerEmail: string;
     readonly customerAddress: string;
-    readonly customerContact: number;
+    readonly customerContact: string;
     readonly customerPassword: string;
 }

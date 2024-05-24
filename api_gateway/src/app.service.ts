@@ -13,7 +13,7 @@ export class AppService {
     private readonly authRepository: Repository<User>,
     private jwtService: JwtService,
   ){}
-
+  
   async createUser(createAuthDTO: AuthDto): Promise<User> {
     const existingUser = await this.authRepository.findOne({ where: { username: createAuthDTO.username } });
     if (existingUser) {
@@ -28,44 +28,33 @@ export class AppService {
     return await this.authRepository.save(newUser);
   }
 
-  async validateUser(username: string, password: string): Promise<User> {
+  async validateUser(username: string, password: string) {
     const user = await this.authRepository.findOne({ where: { username } });
     if (!user) {
       throw new BadRequestException('User not found');
     }
-    const passwordMatch = await bcrypt.compare(password, user.password);
 
+    const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       throw new BadRequestException('Password does not match');
     }
-
-    return user;
+    
+    return user
   }
 
-  async login(user: AuthDto): Promise<any> {
-    const { username, password } = user;
-    const foundUser = await this.validateUser(username, password);
-    if (foundUser) {
-      const { password, ...result } = foundUser;
-      const token = this.jwtService.sign(result);;
-      return {
-        result,
-        accessToken: token,
-        refreshToken: this.jwtService.sign(result, {expiresIn: '7d'}),
-      };
-    }
+  async login(user: any) {
+    const { password, ...result} = user;
+    const token = this.jwtService.sign(result);
+    return {
+      id: user.id,
+      role: user.role,
+      access_token: token,
+    };
   }
 
-  async refreshToken(user: AuthDto): Promise<any> {
-    const { username, password } = user;
-    const foundUser = await this.validateUser(username, password);
-    if (foundUser) {
-      const { password, ...result } = foundUser;
-      const token = this.jwtService.sign(result);
-
-      return {
-        accessToken: token
-      };
-    }
+  async logout(){
+    return await{
+      access_token: '',
+    };
   }
 }

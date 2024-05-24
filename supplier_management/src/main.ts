@@ -1,4 +1,8 @@
-/* eslint-disable prettier/prettier */
+import * as dotenv from "dotenv";
+import {join} from "path";
+
+dotenv.config({ path: join(__dirname, '../../.env') });
+
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';

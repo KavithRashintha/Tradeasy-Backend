@@ -1,9 +1,9 @@
 import { Catch, Injectable } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Discounts } from './discount.entity';
-import { Repository } from 'typeorm';
+import { Repository, LessThan, ILike } from 'typeorm';
 import { DiscountsDTO } from './dto/discountsDTO';
-import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
 
 @Injectable()
@@ -18,30 +18,9 @@ export class AppService {
     return await this.discountManagement.save(newDiscount);
   }
 
-  // async searchDiscounts(query: string): Promise<Discounts[]> {
-  //   return this.discountManagement.createQueryBuilder('discount')
-  //     .where('discount.name LIKE :query', { query: `%${query}%` })
-  //     .getMany();
-  // }
-
   async getAllDiscounts(): Promise<Discounts[]> {
     return await this.discountManagement.find();
   }
-
-  // async searchAllDiscounts(query: Query): Promise<Discounts[]> {
-  //   console.log(query);
-  //   let filteredDiscounts: Discounts[] = [];
-  //   try{
-  //     if (query.keyword) {
-  //       filteredDiscounts = await this.discountManagement.find({ where: { productName:ILike(`%${query.keyword}%`) } });
-  //       //where.productName = ILike(`%${query.keyword}%`);
-  //     }
-  //   }catch(e){
-  //     console.error('Error occurred while searching discounts:', e);
-  //   }
-
-  //   return filteredDiscounts;
-  // }
 
   async searchAllDiscounts(query: Query): Promise<Discounts[]> {
     console.log('Received query:', query);
@@ -56,26 +35,19 @@ export class AppService {
     }
   }
 
-  // async searchAllDiscounts(productName?: string): Promise<Discounts[] > {
-  //   // Fetch all discounts
-  //   const allDiscounts = await this.discountManagement.find();
-
-  //   let filteredDiscounts: Discounts[] = [];
-
-  //   // Filter discounts if productName is provided
-  //   if (productName) {
-  //       filteredDiscounts = await this.discountManagement.find({ where: { productName: ILike(`%${productName}%`) } });
-  //   }
-
-  //   // Print both sets of results
-  //   //console.log('All Discounts:', allDiscounts);
-  //   console.log('Filtered Discounts:', filteredDiscounts);
-
-  //   return   filteredDiscounts;
-  // }
-
   async getDiscountById(id: any): Promise<Discounts | null> {
     return await this.discountManagement.findOneById(id);
+  }
+
+  @Cron('0 0 * * *')
+  async deleteExpiredDiscounts() {
+    try {
+      const currentDate = new Date();
+      await this.discountManagement.delete({ endDate: LessThan(currentDate.toISOString()) });
+      console.log('Expired discounts deleted successfully.');
+    } catch (error) {
+      console.error('Error deleting expired discounts:', error);
+    }
   }
 
   async deleteDiscount(id: number) {

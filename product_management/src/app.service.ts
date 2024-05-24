@@ -40,4 +40,8 @@ export class AppService {
       return "Successfully Deleted";
     }
   }
+
+  async getProductsCount(){
+    return await this.productRepository.count();
+  }
 }

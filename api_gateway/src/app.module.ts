@@ -123,15 +123,20 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     TypeOrmModule.forFeature([User]),
 
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      global: true,
+      secret: 'abc123',
       signOptions: {
-        expiresIn: '60s'
+        expiresIn: '7d'
       },
     }),
     PassportModule
   ],
   
   controllers: [ApprController, ProductController, OrderController],
-  providers: [AppService, JwtStrategy, LocalStrategy],
+  providers: [
+    AppService, 
+    JwtStrategy, 
+    LocalStrategy,
+  ],
 })
 export class AppModule {}

@@ -40,4 +40,8 @@ export class AppService {
         .where('customer_refund.status = :refundStatus', {refundStatus})
         .getMany();
   }
+
+  async getCustomerRefundCount(){
+    return await this.refundRepository.count();
+  }
 }
