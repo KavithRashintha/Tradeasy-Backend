@@ -1,8 +1,9 @@
 export class CustomerDTO {
   readonly id : number;
-  readonly customerName: string;
-  readonly customerEmail: string;
+  readonly username: string;
+  readonly email: string;
   readonly customerAddress: string;
-  readonly customerContact: string;
-  readonly customerPassword: string;
+  readonly contactNo: string;
+  readonly password: string;
+  readonly role: string;
 }

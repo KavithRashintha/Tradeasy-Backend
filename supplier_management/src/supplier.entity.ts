@@ -12,10 +12,10 @@ export class Supplier {
   @Column()
   supplierEmail: string;
 
-  @Column()
+  @Column({unique: true, default: ''})
   nic: string;
 
-  @Column()
+  @Column({default: ''})
   supplierAddress: string;
 
   @Column()

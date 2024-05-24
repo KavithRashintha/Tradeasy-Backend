@@ -1,9 +1,10 @@
 export class RegisterCustomerDTO {
-  readonly customerName: string;
-  readonly customerEmail: string;
+  readonly username: string;
+  readonly email: string;
   readonly customerAddress: string;
-  readonly customerContact: number;
-  readonly customerPassword: string;
+  readonly contactNo: number;
+  readonly password: string;
+  readonly role: string;
 }
 
 export class GetCustomerDTO{
@@ -12,9 +13,10 @@ export class GetCustomerDTO{
 
 export class UpdateCustomerDTO{
   readonly id: number;
-  readonly customerName: string;
-  readonly customerEmail: string;
+  readonly username: string;
+  readonly email: string;
   readonly customerAddress: string;
-  readonly customerContact: number;
-  readonly customerPassword: string;
+  readonly contactNo: number;
+  readonly password: string;
+  readonly role: string;
 }

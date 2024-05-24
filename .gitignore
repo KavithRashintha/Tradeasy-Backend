@@ -27,10 +27,8 @@
 /payment_management/dist
 /payment_management/.env
 
-
-/refund_management/node_modules/
-/refund_management/.idea
 /refund_management/dist
+/refund_management/node_modules/
 
 /supplier_management/node_modules/
 /supplier_management/.idea

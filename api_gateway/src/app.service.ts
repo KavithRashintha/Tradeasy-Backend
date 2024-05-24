@@ -1,7 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, Inject } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './auth.entity';
-import {AuthDto} from "./models/authModel";
+import { AuthDto } from './models/authModel';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -11,9 +12,11 @@ export class AppService {
   constructor(
     @InjectRepository(User)
     private readonly authRepository: Repository<User>,
+    @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
+    @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     private jwtService: JwtService,
-  ){}
-  
+  ) {}
+
   async createUser(createAuthDTO: AuthDto): Promise<User> {
     const existingUser = await this.authRepository.findOne({ where: { username: createAuthDTO.username } });
     if (existingUser) {
@@ -25,7 +28,16 @@ export class AppService {
     const hash = await bcrypt.hash(password, saltOrRounds);
 
     const newUser = this.authRepository.create({ ...createAuthDTO, password: hash });
-    return await this.authRepository.save(newUser);
+
+    if (createAuthDTO.role === 'customer') {
+      console.log("Sending create customer message:", newUser);
+      return await this.customerClient.send('CREATE_CUSTOMER', newUser).toPromise();
+    } else if (createAuthDTO.role === 'supplier') {
+      return await this.supplierClient.send('CREATE_SUPPLIER', newUser).toPromise();
+    } else {
+      return await this.authRepository.save(newUser);
+    }
+
   }
 
   async validateUser(username: string, password: string) {
@@ -38,12 +50,12 @@ export class AppService {
     if (!passwordMatch) {
       throw new BadRequestException('Password does not match');
     }
-    
-    return user
+
+    return user;
   }
 
   async login(user: any) {
-    const { password, ...result} = user;
+    const { password, ...result } = user;
     const token = this.jwtService.sign(result);
     return {
       id: user.id,
@@ -52,8 +64,8 @@ export class AppService {
     };
   }
 
-  async logout(){
-    return await{
+  async logout() {
+    return {
       access_token: '',
     };
   }

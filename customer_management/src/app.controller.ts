@@ -5,24 +5,18 @@ import {CustomerDTO} from './dto/CustomerDTO';
 import { Customer } from './customer.entity';
 import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
-import * as bcrypt from 'bcrypt'
 import { Query } from 'express-serve-static-core';
 
 @Controller()
 export class AppController {
-  constructor(private readonly customerManagement: AppService) {}
+  constructor(
+    private readonly customerManagement: AppService
+  ) {}
 
   @MessagePattern({ cmd: 'CREATE_CUSTOMER' })
-  async createCustomer(
-      @Payload() createCustomerDto: CustomerDTO,
-  ): Promise<Customer> {
-    const saltOrRounds = 10;
-    const password = createCustomerDto.customerPassword;
-    const hash = await bcrypt.hash(password, saltOrRounds);
-
-    const dtoWithHashedPassword: CustomerDTO = { ...createCustomerDto, customerPassword: hash };
-
-    return await this.customerManagement.createCustomer(dtoWithHashedPassword);
+  async createCustomer(createCustomerDto: CustomerDTO): Promise<Customer> {
+    console.log("cus.controller",createCustomerDto);
+    return await this.customerManagement.createCustomer(createCustomerDto);
   }
 
   @MessagePattern({ cmd: 'GET_CUSTOMER' })

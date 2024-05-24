@@ -16,13 +16,7 @@ export class AppController {
   async createSupplier(
       @Payload() createSupplierDto: SupplierDTO,
   ): Promise<Supplier> {
-    const saltOrRounds = 10;
-    const password = createSupplierDto.supplierPassword;
-    const hash = await bcrypt.hash(password, saltOrRounds);
-
-    const dtoWithHashedPassword: SupplierDTO = { ...createSupplierDto, supplierPassword: hash };
-
-    return await this.supplierManagement.createSupplier(dtoWithHashedPassword);
+    return await this.supplierManagement.createSupplier(createSupplierDto);
   }
 
 
