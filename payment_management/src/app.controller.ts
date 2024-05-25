@@ -18,7 +18,8 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'GET_CHECKOUT_SESSION' })
-  async getCheckoutSession(@Param('sessionId') sessionId: string){
+  async getCheckoutSession(@Payload() sessionId: string){
+    console.log('Session ID:', sessionId);
     return await this.PaymentManagement.getCheckoutSession(sessionId);
   }
 
