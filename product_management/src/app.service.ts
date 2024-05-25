@@ -13,7 +13,7 @@ export class AppService {
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
 
-    @InjectRepository(Product)
+    @InjectRepository(ProductReview)
     private readonly productReviewRepository: Repository<ProductReview>,
   ) {}
 

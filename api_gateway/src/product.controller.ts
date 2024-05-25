@@ -54,7 +54,7 @@ export class ProductController {
         return this.productClient.send({ cmd: 'CREATE_PRODUCT_REVIEW' }, payload);
     }
 
-    @UseGuards(JwtGuard)
+    // @UseGuards(JwtGuard)
     @Get('review/getAllProductsReview')
     async getAllProductsReview(){
         return this.productClient.send({cmd: 'GET_ALL_PRODUCTS_REVIEW'}, {});
