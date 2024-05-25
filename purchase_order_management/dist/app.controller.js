@@ -39,6 +39,9 @@ let AppController = class AppController {
     getCurrentMonthName() {
         return this.purchasedOrder.getCurrentMonthName();
     }
+    async searchAllOrders(query) {
+        return await this.purchasedOrder.searchAllOrders(query);
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -81,6 +84,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getCurrentMonthName", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEARCH_ALL_ORDERS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "searchAllOrders", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

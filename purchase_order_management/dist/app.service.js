@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const purchaseorder_entity_1 = require("./purchaseorder.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const typeorm_3 = require("typeorm");
 let AppService = class AppService {
     constructor(purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
@@ -59,6 +60,19 @@ let AppService = class AppService {
         ];
         const currentMonthIndex = new Date().getMonth();
         return months[currentMonthIndex];
+    }
+    async searchAllOrders(query) {
+        console.log('Received query:', query);
+        const keyword = query.query.keyword;
+        try {
+            const filteredorders = await this.purchaseOrder.find({ where: { supplier: (0, typeorm_3.ILike)(`%${keyword}%`) } });
+            console.log('Filtered orders:', filteredorders);
+            return filteredorders;
+        }
+        catch (error) {
+            console.error('Error occurred while searching orders:', error);
+            return [];
+        }
     }
 };
 exports.AppService = AppService;

@@ -46,6 +46,10 @@ __decorate([
     (0, typeorm_1.Column)({ default: 'pending' }),
     __metadata("design:type", String)
 ], InventoryRefund.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: 'date' }),
+    __metadata("design:type", Date)
+], InventoryRefund.prototype, "createdDate", void 0);
 exports.InventoryRefund = InventoryRefund = __decorate([
     (0, typeorm_1.Entity)()
 ], InventoryRefund);

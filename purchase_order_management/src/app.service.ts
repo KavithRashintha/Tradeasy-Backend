@@ -3,6 +3,8 @@ import { PurchaseOrder } from './purchaseorder.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PurchaseOrderDTO } from './dto/purchaseOrderDTO';
+import { Query } from 'express-serve-static-core'
+import { ILike } from 'typeorm';
 
 @Injectable()
 export class AppService {
@@ -57,6 +59,19 @@ export class AppService {
       ];
       const currentMonthIndex = new Date().getMonth(); // getMonth() is zero-indexed
       return months[currentMonthIndex];
+   }
+
+   async searchAllOrders(query: Query): Promise<PurchaseOrder[]> {
+    console.log('Received query:', query);
+    const keyword = (query.query as { keyword?: string }).keyword;
+    try {
+      const filteredorders = await this.purchaseOrder.find({ where: { supplier: ILike(`%${keyword}%`) } });
+      console.log('Filtered orders:', filteredorders);
+      return filteredorders;
+    } catch (error) {
+      console.error('Error occurred while searching orders:', error);
+      return [];
+    }
   }
       
     }
