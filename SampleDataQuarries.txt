@@ -56,66 +56,67 @@ localhost:9000/payment/customerPayment/create
 INSERT INTO public.product_review(
 	id, "productId", "productReviewerName", "productReviewDescription", "productReviewStarCount", "productReviewedDate")
 VALUES 
-    -- Reviews for Smartphone XYZ (Product ID: 1)
-    (1, 1, 'John Doe', 'Great phone, very fast and responsive.', 5, '2024-05-24'),
-    (2, 1, 'Jane Smith', 'The camera quality is amazing!', 4, '2024-05-25'),
-    (3, 1, 'Michael Johnson', 'Battery life could be better, but overall satisfied.', 4, '2024-05-26'),
+    -- Reviews for Smartphone XYZ (Product ID: '1')
+    (1, '1', 'John Doe', 'Great phone, very fast and responsive.', '5', '2024-05-24'),
+    (2, '1', 'Jane Smith', 'The camera quality is amazing!', '4', '2024-05-25'),
+    (3, '1', 'Michael Johnson', 'Battery life could be better, but overall satisfied.', '4', '2024-05-26'),
     
-    -- Reviews for Laptop ABC (Product ID: 2)
-    (4, 2, 'Emily Brown', 'Excellent performance, very happy with the purchase.', 5, '2024-05-24'),
-    (5, 2, 'Chris Wilson', 'The screen resolution is fantastic.', 5, '2024-05-25'),
+    -- Reviews for Laptop ABC (Product ID: '2')
+    (4, '2', 'Emily Brown', 'Excellent performance, very happy with the purchase.', '5', '2024-05-24'),
+    (5, '2', 'Chris Wilson', 'The screen resolution is fantastic.', '5', '2024-05-25'),
     
-    -- Reviews for Wireless Headphones (Product ID: 3)
-    (6, 3, 'Sarah Davis', 'Comfortable to wear for extended periods.', 4, '2024-05-24'),
-    (7, 3, 'Daniel Lee', 'Sound quality is decent for the price.', 3, '2024-05-26'),
+    -- Reviews for Wireless Headphones (Product ID: '3')
+    (6, '3', 'Sarah Davis', 'Comfortable to wear for extended periods.', '4', '2024-05-24'),
+    (7, '3', 'Daniel Lee', 'Sound quality is decent for the price.', '3', '2024-05-26'),
     
-    -- Reviews for Smartwatch DEF (Product ID: 4)
-    (8, 4, 'Olivia Martinez', 'Love the design and functionalities.', 5, '2024-05-24'),
-    (9, 4, 'James Thompson', 'Strap could be more durable, but overall good value.', 4, '2024-05-25'),
+    -- Reviews for Smartwatch DEF (Product ID: '4')
+    (8, '4', 'Olivia Martinez', 'Love the design and functionalities.', '5', '2024-05-24'),
+    (9, '4', 'James Thompson', 'Strap could be more durable, but overall good value.', '4', '2024-05-25'),
     
-    -- Reviews for Gaming Console (Product ID: 5)
-    (10, 5, 'Emma Garcia', 'Graphics are amazing, great for gaming enthusiasts.', 5, '2024-05-24'),
-    (11, 5, 'William Rodriguez', 'Controller feels a bit flimsy, but overall satisfied.', 4, '2024-05-26'),
+    -- Reviews for Gaming Console (Product ID: '5')
+    (10, '5', 'Emma Garcia', 'Graphics are amazing, great for gaming enthusiasts.', '5', '2024-05-24'),
+    (11, '5', 'William Rodriguez', 'Controller feels a bit flimsy, but overall satisfied.', '4', '2024-05-26'),
     
-    -- Reviews for Tablet GHI (Product ID: 6)
-    (12, 6, 'Ava Hernandez', 'Fast and responsive, great for multitasking.', 5, '2024-05-24'),
-    (13, 6, 'Ethan Moore', 'Screen size is perfect for watching movies.', 5, '2024-05-25'),
+    -- Reviews for Tablet GHI (Product ID: '6')
+    (12, '6', 'Ava Hernandez', 'Fast and responsive, great for multitasking.', '5', '2024-05-24'),
+    (13, '6', 'Ethan Moore', 'Screen size is perfect for watching movies.', '5', '2024-05-25'),
     
-    -- Reviews for Digital Camera (Product ID: 7)
-    (14, 7, 'Sophia Lopez', 'Impressed with the picture quality.', 5, '2024-05-24'),
-    (15, 7, 'Noah Clark', 'Easy to use interface, great for beginners.', 4, '2024-05-26'),
+    -- Reviews for Digital Camera (Product ID: '7')
+    (14, '7', 'Sophia Lopez', 'Impressed with the picture quality.', '5', '2024-05-24'),
+    (15, '7', 'Noah Clark', 'Easy to use interface, great for beginners.', '4', '2024-05-26'),
     
-    -- Reviews for Bluetooth Speaker (Product ID: 8)
-    (16, 8, 'Isabella Lewis', 'Good sound quality for its size.', 4, '2024-05-24'),
-    (17, 8, 'Alexander Hill', 'Battery life could be longer, but overall satisfied.', 4, '2024-05-25'),
+    -- Reviews for Bluetooth Speaker (Product ID: '8')
+    (16, '8', 'Isabella Lewis', 'Good sound quality for its size.', '4', '2024-05-24'),
+    (17, '8', 'Alexander Hill', 'Battery life could be longer, but overall satisfied.', '4', '2024-05-25'),
     
-    -- Reviews for 4K Television (Product ID: 9)
-    (18, 9, 'Mia Green', 'Amazing picture quality, exceeded my expectations.', 5, '2024-05-24'),
-    (19, 9, 'Mason Baker', 'Smart features are easy to navigate.', 4, '2024-05-25'),
+    -- Reviews for 4K Television (Product ID: '9')
+    (18, '9', 'Mia Green', 'Amazing picture quality, exceeded my expectations.', '5', '2024-05-24'),
+    (19, '9', 'Mason Baker', 'Smart features are easy to navigate.', '4', '2024-05-25'),
     
-    -- Reviews for Smart Refrigerator (Product ID: 10)
-    (20, 10, 'Charlotte Young', 'Plenty of storage space and smart features.', 5, '2024-05-24'),
-    (21, 10, 'Harper Scott', 'Ice maker works like a charm.', 5, '2024-05-26'),
+    -- Reviews for Smart Refrigerator (Product ID: '10')
+    (20, '10', 'Charlotte Young', 'Plenty of storage space and smart features.', '5', '2024-05-24'),
+    (21, '10', 'Harper Scott', 'Ice maker works like a charm.', '5', '2024-05-26'),
     
-    -- Reviews for Gaming Mouse (Product ID: 11)
-    (22, 11, 'Liam Turner', 'Comfortable grip, highly customizable.', 4, '2024-05-24'),
-    (23, 11, 'Evelyn Ward', 'Scroll wheel feels a bit loose, but overall good.', 3, '2024-05-25'),
+    -- Reviews for Gaming Mouse (Product ID: '11')
+    (22, '11', 'Liam Turner', 'Comfortable grip, highly customizable.', '4', '2024-05-24'),
+    (23, '11', 'Evelyn Ward', 'Scroll wheel feels a bit loose, but overall good.', '3', '2024-05-25'),
     
-    -- Reviews for Smart Light Bulb (Product ID: 12)
-    (24, 12, 'Abigail King', 'Easy to set up and control via app.', 5, '2024-05-24'),
-    (25, 12, 'Benjamin Perez', 'Could be brighter, but love the color options.', 4, '2024-05-25'),
+    -- Reviews for Smart Light Bulb (Product ID: '12')
+    (24, '12', 'Abigail King', 'Easy to set up and control via app.', '5', '2024-05-24'),
+    (25, '12', 'Benjamin Perez', 'Could be brighter, but love the color options.', '4', '2024-05-25'),
     
-    -- Reviews for Electric Kettle (Product ID: 13)
-    (26, 13, 'Amelia Garcia', 'Boils water quickly, very convenient.', 5, '2024-05-24'),
-    (27, 13, 'Logan Bailey', 'Handle gets hot after prolonged use, be cautious.', 3, '2024-05-26'),
+    -- Reviews for Electric Kettle (Product ID: '13')
+    (26, '13', 'Amelia Garcia', 'Boils water quickly, very convenient.', '5', '2024-05-24'),
+    (27, '13', 'Logan Bailey', 'Handle gets hot after prolonged use, be cautious.', '3', '2024-05-26'),
     
-    -- Reviews for Air Purifier (Product ID: 14)
-    (28, 14, 'Avery Evans', 'Noticeable improvement in air quality.', 5, '2024-05-24'),
-    (29, 14, 'Sofia Cox', 'Quiet operation, great for bedrooms.', 4, '2024-05-25'),
+    -- Reviews for Air Purifier (Product ID: '14')
+    (28, '14', 'Avery Evans', 'Noticeable improvement in air quality.', '5', '2024-05-24'),
+    (29, '14', 'Sofia Cox', 'Quiet operation, great for bedrooms.', '4', '2024-05-25'),
     
-    -- Reviews for Fitness Tracker (Product ID: 15)
-    (30, 15, 'Jackson Gray', 'Accurate heart rate monitoring, helps with fitness goals.', 4, '2024-05-24'),
-    (31, 15, 'Harper Hughes', 'Step tracking seems accurate, comfortable to wear.', 4, '2024-05-25');
+    -- Reviews for Fitness Tracker (Product ID: '15')
+    (30, '15', 'Jackson Gray', 'Accurate heart rate monitoring, helps with fitness goals.', '4', '2024-05-24'),
+    (31, '15', 'Harper Hughes', 'Step tracking seems accurate, comfortable to wear.', '4', '2024-05-25');
+
 
 
 
