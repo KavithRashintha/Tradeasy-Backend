@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {RegisterProductDTO} from "./models/productModel";
+import {CreateProductReviewDTO, RegisterProductDTO} from "./models/productModel";
 import {UpdateProductDTO} from "./models/productModel";
 import {JwtGuard} from './guards/jwt.guard';
 
@@ -44,6 +44,20 @@ export class ProductController {
     @Get('getProductsCount')
     async getProductsCount(){
         return this.productClient.send({cmd: 'GET_PRODUCTS_COUNT'}, {});
+    }
+
+
+
+    @UseGuards(JwtGuard)
+    @Post('review/create')
+    async createProductReview(@Body() payload: CreateProductReviewDTO) {
+        return this.productClient.send({ cmd: 'CREATE_PRODUCT_REVIEW' }, payload);
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('review/getAllProductsReview')
+    async getAllProductsReview(){
+        return this.productClient.send({cmd: 'GET_ALL_PRODUCTS_REVIEW'}, {});
     }
 }
 

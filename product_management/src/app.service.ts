@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from './product.entity';
+import {Product, ProductReview} from './product.entity';
 import { Repository } from 'typeorm';
 import {ProductDTO} from './DTO/ProductDTO';
 import {UpdateProductDTO} from "./DTO/UpdateProductDTO";
+import {CreateProductReviewDTO} from "./DTO/ProductReviewDTO";
 
 @Injectable()
 export class AppService {
@@ -11,6 +12,9 @@ export class AppService {
   constructor(
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
+
+    @InjectRepository(Product)
+    private readonly productReviewRepository: Repository<ProductReview>,
   ) {}
 
   async createProducts(createProductDTO: ProductDTO): Promise<Product> {
@@ -43,5 +47,16 @@ export class AppService {
 
   async getProductsCount(){
     return await this.productRepository.count();
+  }
+
+
+
+  async createProductsReview(createProductReviewDTO: CreateProductReviewDTO): Promise<ProductReview> {
+    const newProductReview = this.productRepository.create(createProductReviewDTO);
+    return await this.productReviewRepository.save(newProductReview);
+  }
+
+  async getAllProductsReview():Promise<ProductReview[]>{
+    return await this.productReviewRepository.find();
   }
 }

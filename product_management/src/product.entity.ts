@@ -32,3 +32,23 @@ export class Product {
   @Column()
   productSellingPrice: number;
 }
+
+
+
+@Entity()
+export class ProductReview {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  productId: string;
+
+  @Column()
+  productReviewerName: string;
+
+  @Column()
+  productReviewDescription: string;
+
+  @Column()
+  productReviewStarCount: string;
+}
