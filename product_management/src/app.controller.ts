@@ -1,9 +1,10 @@
 import {Controller, Get, Param} from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { Product } from './product.entity';
+import {Product, ProductReview} from './product.entity';
 import {ProductDTO} from './DTO/ProductDTO';
 import {UpdateProductDTO} from "./DTO/UpdateProductDTO";
+import {CreateProductReviewDTO} from "./DTO/ProductReviewDTO";
 
 @Controller()
 export class AppController {
@@ -40,5 +41,16 @@ export class AppController {
   @MessagePattern({cmd: 'GET_PRODUCTS_COUNT'})
   async getProductsCount(){
     return await this.productManagement.getProductsCount();
+  }
+
+  @MessagePattern({cmd: 'CREATE_PRODUCT_REVIEW'})
+  async createProductsReview(@Payload() createProductReviewDto: CreateProductReviewDTO,)
+      : Promise<ProductReview>{
+    return await this.productManagement.createProductsReview(createProductReviewDto);
+  }
+
+  @MessagePattern({cmd: 'GET_ALL_PRODUCTS_REVIEW'})
+  async getAllProductsReview(): Promise<ProductReview[]>{
+    return await this.productManagement.getAllProductsReview();
   }
 }

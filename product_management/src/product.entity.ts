@@ -32,3 +32,26 @@ export class Product {
   @Column()
   productSellingPrice: number;
 }
+
+
+
+@Entity()
+export class ProductReview {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ nullable: false })
+  productId: string;
+
+  @Column({ nullable: false })
+  productReviewerName: string;
+
+  @Column({ nullable: false })
+  productReviewDescription: string;
+
+  @Column({ nullable: false })
+  productReviewStarCount: string;
+
+  @Column({ nullable: false })
+  productReviewedDate: string;
+}
