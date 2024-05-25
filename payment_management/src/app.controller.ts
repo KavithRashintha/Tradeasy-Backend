@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Post, Body } from '@nestjs/common'; 
+import { Controller, Post, Body, Param } from '@nestjs/common'; 
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CustomerPaymentDTO, Data } from './dto/cutomerPaymentDTO';
@@ -15,6 +15,12 @@ export class AppController {
   @MessagePattern({ cmd: 'CREATE_CHECKOUT_SESSION' })
   async createCustomerPaymentSession(@Body() data: any): Promise<{ sessionUrl: string }>{
     return await this.PaymentManagement.createCustomerPaymentSession(data);
+  }
+
+  @MessagePattern({ cmd: 'GET_CHECKOUT_SESSION' })
+  async getCheckoutSession(@Payload() sessionId: string){
+    console.log('Session ID:', sessionId);
+    return await this.PaymentManagement.getCheckoutSession(sessionId);
   }
 
   @MessagePattern({ cmd: 'CREATE_CUSTOMER_PAYMENT' })

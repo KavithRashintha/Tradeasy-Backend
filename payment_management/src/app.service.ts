@@ -31,14 +31,14 @@ export class AppService {
     })
   }
 
-  async createCustomerPaymentSession(data:{lineItems: Data[]}){
-    const line_items:Data[] = data.lineItems.map(item =>(
+  async createCustomerPaymentSession(data:{lineItems: Data[], metadata:any}){
+    const line_items = data.lineItems.map(item =>(
       {
         price_data: {
           currency: item.price_data.currency,
           product_data: {
             name: item.price_data.product_data.name,
-            images: item.price_data.product_data.images
+            images: item.price_data.product_data.images[0]
           },
           unit_amount: item.price_data.unit_amount,
         },
@@ -51,11 +51,23 @@ export class AppService {
       line_items,
       success_url: 'http://localhost:3000/success',
       cancel_url: 'http://localhost:3000/cancel',
+      metadata: data.metadata
     });
-    console.log('Session url:', session.url);
+    //console.log('Session url:', session);
 
     return session;
   }
+
+async getCheckoutSession(sessionId: string) {
+  try {
+    const session = await this.stripe.checkout.sessions.retrieve(sessionId);
+    console.log("session:", session)
+    return session;
+  } catch (error) {
+    console.error('Error retrieving session details:', error);
+    throw new Error('Could not retrieve session details');
+  }
+}
 
   async saveCustomerPayments(paymentData: CustomerPayments): Promise<any> {
     console.log(paymentData)
