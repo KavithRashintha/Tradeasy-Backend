@@ -40,15 +40,18 @@ export class ProductReview {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   productId: string;
 
-  @Column()
+  @Column({ nullable: false })
   productReviewerName: string;
 
-  @Column()
+  @Column({ nullable: false })
   productReviewDescription: string;
 
-  @Column()
+  @Column({ nullable: false })
   productReviewStarCount: string;
+
+  @Column({ nullable: false })
+  productReviewedDate: string;
 }

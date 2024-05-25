@@ -4,4 +4,5 @@ export class CreateProductReviewDTO {
     readonly productReviewerName?: string;
     readonly productReviewDescription?: string;
     readonly productReviewStarCount?: string;
+    readonly productReviewedDate?: string;
 }

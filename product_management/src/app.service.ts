@@ -52,7 +52,8 @@ export class AppService {
 
 
   async createProductsReview(createProductReviewDTO: CreateProductReviewDTO): Promise<ProductReview> {
-    const newProductReview = this.productRepository.create(createProductReviewDTO);
+    const newProductReview = this.productReviewRepository.create(createProductReviewDTO);
+    console.log(createProductReviewDTO);
     return await this.productReviewRepository.save(newProductReview);
   }
 
