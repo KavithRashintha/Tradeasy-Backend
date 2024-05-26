@@ -18,6 +18,7 @@ export class AppService {
 
   async createCustomer(createCustomerDTO: CustomerDTO): Promise<Customer> {
     const newCustomer = this.customerRepository.create(createCustomerDTO);
+    console.log("cus.service",newCustomer);
     return await this.customerRepository.save(newCustomer);
   }
 
@@ -46,7 +47,7 @@ export class AppService {
     console.log('Received query:', query);
     const keyword = (query.query as { keyword?: string }).keyword;
     try {
-      const filteredCustomers = await this.customerRepository.find({ where: { customerName: ILike(`%${keyword}%`) } });
+      const filteredCustomers = await this.customerRepository.find({ where: { username: ILike(`%${keyword}%`) } });
       console.log('Filtered customers:', filteredCustomers);
       return filteredCustomers;
     } catch (error) {

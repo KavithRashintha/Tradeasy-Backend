@@ -5,18 +5,33 @@ export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  customerName: string;
+  // @Column()
+  // customerName: string;
 
-  @Column()
-  customerEmail: string;
+  // @Column()
+  // customerEmail: string;
 
-  @Column()
-  customerAddress: string;
+  // @Column()
+  // customerAddress: string;
 
-  @Column()
-  customerContact: string;
+  // @Column()
+  // customerContact: string;
 
-  @Column()
-  customerPassword: string;
+  // @Column()
+  // customerPassword: string;
+
+    @Column({unique:true, nullable: false})
+    username: string;
+
+    @Column()
+    password: string;
+
+    @Column({unique:true, nullable: false})
+    email: string;
+
+    @Column()
+    contactNo: string;
+
+    @Column()
+    role: string;
 }

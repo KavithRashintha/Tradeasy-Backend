@@ -1,4 +1,5 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, Inject } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './auth.entity';
 import {AuthDto} from "./models/authModel";
@@ -11,23 +12,40 @@ export class AppService {
   constructor(
     @InjectRepository(User)
     private readonly authRepository: Repository<User>,
+    @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
+    @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     private jwtService: JwtService,
   ){}
   
   async createUser(createAuthDTO: AuthDto): Promise<User> {
+    console.log("Creating user with data:", createAuthDTO);
+    
     const existingUser = await this.authRepository.findOne({ where: { username: createAuthDTO.username } });
     if (existingUser) {
+      console.error('User already exists');
       throw new BadRequestException('User already exists');
     }
-
+  
     const saltOrRounds = 10;
-    const password = createAuthDTO.password;
-    const hash = await bcrypt.hash(password, saltOrRounds);
-
+    const hash = await bcrypt.hash(createAuthDTO.password, saltOrRounds);
     const newUser = this.authRepository.create({ ...createAuthDTO, password: hash });
-    return await this.authRepository.save(newUser);
+  
+    try {
+      if (createAuthDTO.role === 'customer') {
+        console.log("Sending create customer message:", newUser);
+        return await this.customerClient.send('CREATE_CUSTOMER', newUser).toPromise();
+      } else if (createAuthDTO.role === 'supplier') {
+        console.log("Sending create supplier message:", newUser);
+        return await this.supplierClient.send('CREATE_SUPPLIER', newUser).toPromise();
+      } else {
+        return await this.authRepository.save(newUser);
+      }
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw new BadRequestException('Failed to create user');
+    }
   }
-
+  
   async validateUser(username: string, password: string) {
     const user = await this.authRepository.findOne({ where: { username } });
     if (!user) {
