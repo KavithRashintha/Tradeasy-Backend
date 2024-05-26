@@ -34,4 +34,10 @@ export class Customer {
 
     @Column()
     role: string;
+
+    @Column({default: ''})
+    address: string;
+
+    @Column({default: ''})
+    profilePicture: string;
 }

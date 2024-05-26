@@ -396,8 +396,16 @@ async deleteInventoryRefund(@Param('id') id:number){
 
   @Post('auth/signup')
   async signUp(@Body() payload: AuthDto) {
-    console.log("Received signup payload:", payload);
-    return await this.authManagement.createUser(payload);
+    
+    if(payload.role == 'customer'){
+      return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
+    }
+    else if(payload.role == 'supplier') {
+      return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
+    }
+    else{
+      return await this.authManagement.createUser(payload);
+    }
   }
   
   @HttpCode(HttpStatus.OK)

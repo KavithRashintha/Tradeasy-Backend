@@ -7,6 +7,8 @@ import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
 import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
+import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class AppService {
@@ -17,7 +19,10 @@ export class AppService {
   ) {}
 
   async createCustomer(createCustomerDTO: CustomerDTO): Promise<Customer> {
-    const newCustomer = this.customerRepository.create(createCustomerDTO);
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(createCustomerDTO.password, saltOrRounds);
+    const newCustomer = this.customerRepository.create({ ...createCustomerDTO, password: hash });
+
     console.log("cus.service",newCustomer);
     return await this.customerRepository.save(newCustomer);
   }

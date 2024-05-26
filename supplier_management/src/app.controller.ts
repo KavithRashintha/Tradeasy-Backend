@@ -13,16 +13,9 @@ export class AppController {
   constructor(private readonly supplierManagement: AppService) {}
 
   @MessagePattern({ cmd: 'CREATE_SUPPLIER' })
-  async createSupplier(
-      @Payload() createSupplierDto: SupplierDTO,
-  ): Promise<Supplier> {
-    const saltOrRounds = 10;
-    const password = createSupplierDto.supplierPassword;
-    const hash = await bcrypt.hash(password, saltOrRounds);
-
-    const dtoWithHashedPassword: SupplierDTO = { ...createSupplierDto, supplierPassword: hash };
-
-    return await this.supplierManagement.createSupplier(dtoWithHashedPassword);
+  async createSupplier(@Payload() createSupplierDto: SupplierDTO): Promise<Supplier> {
+    console.log("sup.controller",createSupplierDto);
+    return await this.supplierManagement.createSupplier(createSupplierDto);
   }
 
 

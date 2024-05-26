@@ -12,8 +12,6 @@ export class AppService {
   constructor(
     @InjectRepository(User)
     private readonly authRepository: Repository<User>,
-    @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
-    @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     private jwtService: JwtService,
   ){}
   
@@ -29,21 +27,8 @@ export class AppService {
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(createAuthDTO.password, saltOrRounds);
     const newUser = this.authRepository.create({ ...createAuthDTO, password: hash });
-  
-    try {
-      if (createAuthDTO.role === 'customer') {
-        console.log("Sending create customer message:", newUser);
-        return await this.customerClient.send('CREATE_CUSTOMER', newUser).toPromise();
-      } else if (createAuthDTO.role === 'supplier') {
-        console.log("Sending create supplier message:", newUser);
-        return await this.supplierClient.send('CREATE_SUPPLIER', newUser).toPromise();
-      } else {
-        return await this.authRepository.save(newUser);
-      }
-    } catch (error) {
-      console.error('Error creating user:', error);
-      throw new BadRequestException('Failed to create user');
-    }
+
+    return await this.authRepository.save(newUser);
   }
   
   async validateUser(username: string, password: string) {

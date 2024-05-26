@@ -6,23 +6,26 @@ export class Supplier {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  supplierName: string;
+  @Column({unique:true, nullable: false})
+  username: string;
 
   @Column()
-  supplierEmail: string;
+  password: string;
+
+  @Column({unique:true, nullable: false})
+  email: string;
 
   @Column()
+  contactNo: string;
+
+  @Column()
+  role: string;
+
+  @Column({ default: '' })
   nic: string;
 
-  @Column()
-  supplierAddress: string;
-
-  @Column()
-  supplierContact: string;
-
-  @Column()
-  supplierPassword: string;
+  @Column({ default: '' })
+  address: string;
 
   @Column({ default: '' })
   paymentMethod: string;
