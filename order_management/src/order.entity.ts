@@ -27,4 +27,10 @@ export class Order {
     @Column()
     orderCancelReason: string;
 
+    @Column()
+    orderCustomerId: string;
+
+    @Column()
+    orderDate: string;
+
 }

@@ -7,5 +7,7 @@ export class UpdateOrderDTO {
     readonly orderPrice?: number;
     readonly orderStatus?: string;
     readonly orderCancelReason?: string;
+    readonly orderCustomerId?: string;
+    readonly orderDate?: string;
 }
 
