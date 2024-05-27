@@ -43,7 +43,7 @@ export class ApprController {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id)
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('customer/findCustomerByUsername/:username')
   async findCustomerByUsername(@Param('username') username: any) {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER_BY_USERNAME' }, username)
@@ -412,21 +412,20 @@ async deleteInventoryRefund(@Param('id') id:number){
     else{
       return await this.authManagement.createUser(payload);
     }
-    //return await this.authManagement.createUser(payload);
   }
   
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   @Post('auth/customer/login')
   async customerSignIn(@Req() req){
-    return await this.authManagement.login(req.user);
+    return await this.authManagement.customerLogin(req.user);
   }
 
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   @Post('auth/supplier/login')
   async supplierSignIn(@Req() req){
-    return await this.authManagement.login(req.user);
+    return await this.authManagement.supplierLogin(req.user);
   }
 
   @HttpCode(HttpStatus.OK)

@@ -29,6 +29,10 @@ export class AppService {
     return await this.supplierRepository.findOneById(id);
   }
 
+  async findSupplierByUsername(username:string): Promise<Supplier | null>{
+    return await this.supplierRepository.findOne({ where: { username } });
+  }
+
   async getAllSuppliers():Promise<Supplier[]>{
     return await this.supplierRepository.find();
   }
