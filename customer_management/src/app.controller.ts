@@ -25,6 +25,13 @@ export class AppController {
     return await this.customerManagement.findCustomer(id);
   }
 
+  @MessagePattern({ cmd: 'GET_CUSTOMER_BY_USERNAME' })
+  async getCustomerByUsername(
+      @Payload() username:any
+  ): Promise<Customer | null> {
+    return await this.customerManagement.findCustomerByUsername(username);
+  }
+
   @MessagePattern({cmd: 'GET_ALL_CUSTOMERS'})
   async getAllCustomers(): Promise<Customer[]>{
     return await this.customerManagement.getAllCustomers();

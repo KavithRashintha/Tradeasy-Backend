@@ -9,8 +9,8 @@ import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AppService } from './app.service';
-import {JwtGuard} from './guards/jwt.guard';
-import {RefreshJwtGuard} from './guards/refresh.jwt.guard';
+import { JwtGuard} from './guards/jwt.guard';
+import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
 import {LocalAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
 import { PurchaseOrderDTO } from './models/purchaseOrderModel';
@@ -30,7 +30,7 @@ export class ApprController {
     private authManagement: AppService
   ) { }
 
-  //=================================CUSTOMER_MANAGEMENT=========================================================================
+  //===============================================CUSTOMER_MANAGEMENT=========================================================================
   @UseGuards(JwtGuard)
   @Post('customer/create')
   async createCustomer(@Body() payload: RegisterCustomerDTO) {
@@ -41,6 +41,12 @@ export class ApprController {
   @Get('customer/findCustomer/:id')
   async findCustomer(@Param('id') id: any) {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id)
+  }
+
+  //@UseGuards(JwtGuard)
+  @Get('customer/findCustomerByUsername/:username')
+  async findCustomerByUsername(@Param('username') username: any) {
+    return this.customerClient.send({ cmd: 'GET_CUSTOMER_BY_USERNAME' }, username)
   }
 
   @UseGuards(JwtGuard)
@@ -395,23 +401,38 @@ async deleteInventoryRefund(@Param('id') id:number){
   //========================================================AUTHENTICATION=================================================================
 
   @Post('auth/signup')
-  async signUp(@Body() payload: AuthDto) {
+  async adminSignUp(@Body() payload: AuthDto) {
     
     if(payload.role == 'customer'){
       return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
     }
-    else if(payload.role == 'supplier') {
+    else if(payload.role == 'supplier'){
       return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
     }
     else{
       return await this.authManagement.createUser(payload);
     }
+    //return await this.authManagement.createUser(payload);
   }
   
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
-  @Post('auth/login')
-  async signIn(@Req() req){
+  @Post('auth/customer/login')
+  async customerSignIn(@Req() req){
+    return await this.authManagement.login(req.user);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(LocalAuthGuard)
+  @Post('auth/supplier/login')
+  async supplierSignIn(@Req() req){
+    return await this.authManagement.login(req.user);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(LocalAuthGuard)
+  @Post('auth/admin/login')
+  async adminSignIn(@Req() req){
     return await this.authManagement.login(req.user);
   }
 

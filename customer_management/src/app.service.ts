@@ -30,6 +30,12 @@ export class AppService {
   async findCustomer(id:any): Promise<Customer | null>{
     return await this.customerRepository.findOneById(id);
   }
+
+  async findCustomerByUsername(username:string): Promise<Customer | null>{
+    return await this.customerRepository.findOne({ where: { username } });
+  }
+
+
   async getAllCustomers():Promise<Customer[]>{
     return await this.customerRepository.find();
   }

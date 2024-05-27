@@ -50,6 +50,7 @@ export class AppService {
     const token = this.jwtService.sign(result);
     return {
       id: user.id,
+      username: user.username,
       role: user.role,
       access_token: token,
     };
