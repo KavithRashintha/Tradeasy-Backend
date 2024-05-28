@@ -11,10 +11,11 @@ import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AppService } from './app.service';
 import { JwtGuard} from './guards/jwt.guard';
 import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
-import {LocalAuthGuard} from './guards/local.guard';
+import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
 import { PurchaseOrderDTO } from './models/purchaseOrderModel';
 import { In } from 'typeorm';
+import {RegisterAdminDTO, UpdateAdminDTO} from "./models/adminModel";
 
 @Controller()
 export class ApprController {
@@ -27,6 +28,8 @@ export class ApprController {
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
     @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy,
     @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryOrder: ClientProxy,
+    @Inject ('ADMIN_MANAGEMENT') private adminClient: ClientProxy,
+
     private authManagement: AppService
   ) { }
 
@@ -43,7 +46,7 @@ export class ApprController {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id)
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('customer/findCustomerByUsername/:username')
   async findCustomerByUsername(@Param('username') username: any) {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER_BY_USERNAME' }, username)
@@ -77,6 +80,55 @@ export class ApprController {
   @Get('customer/activeCustomers')
   async getActiveCustomers(){
     return this.customerClient.send({ cmd: 'GET_ACTIVE_CUSTOMERS' }, {});
+  }
+
+  //===============================================ADMIN_MANAGEMENT=========================================================================
+  @UseGuards(JwtGuard)
+  @Post('admin/create')
+  async createAdmin(@Body() payload: RegisterAdminDTO) {
+    return this.adminClient.send({ cmd: 'CREATE_ADMIN' }, payload);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('customer/findAdmin/:id')
+  async findAdmin(@Param('id') id: any) {
+    return this.adminClient.send({ cmd: 'GET_ADMIN' }, id)
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/findAdminByUsername/:username')
+  async findAdminByUsername(@Param('username') username: any) {
+    return this.adminClient.send({ cmd: 'GET_ADMIN_BY_USERNAME' }, username)
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/getAllAdmins')
+  async getAllAdmins() {
+    return this.adminClient.send({ cmd: 'GET_ALL_ADMINS' }, {});
+  }
+
+  @UseGuards(JwtGuard)
+  @Put('admin/update/:id')
+  async updateAdmin(@Param('id') id: number, @Body() updateAdminDto: UpdateAdminDTO) {
+    return this.adminClient.send({ cmd: 'UPDATE_ADMIN' }, { id, updateAdminDto });
+  }
+
+  @UseGuards(JwtGuard)
+  @Delete('admin/delete/:id')
+  async deleteAdmin(@Param('id') id: number) {
+    return this.adminClient.send({ cmd: 'DELETE_ADMIN' }, id);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/search')
+  async searchAllAdmins(@Query() query: ExpressQuery) {
+    return this.adminClient.send({ cmd: 'SEARCH_ALL_ADMINS' }, {query})
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/activeCustomers')
+  async getActiveAdmins(){
+    return this.adminClient.send({ cmd: 'GET_ACTIVE_ADMINS' }, {});
   }
 
 
@@ -410,30 +462,37 @@ async deleteInventoryRefund(@Param('id') id:number){
       return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
     }
     else{
-      return await this.authManagement.createUser(payload);
+      // return await this.authManagement.createUser(payload);
+      return this.adminClient.send({ cmd: 'CREATE_ADMIN' }, payload);
     }
-    //return await this.authManagement.createUser(payload);
   }
   
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(CustomerAuthGuard)
   @Post('auth/customer/login')
   async customerSignIn(@Req() req){
-    return await this.authManagement.login(req.user);
+    return await this.authManagement.customerLogin(req.user);
   }
 
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(SupplierAuthGuard)
   @Post('auth/supplier/login')
   async supplierSignIn(@Req() req){
-    return await this.authManagement.login(req.user);
+    return await this.authManagement.supplierLogin(req.user);
   }
 
+  // @HttpCode(HttpStatus.OK)
+  // @UseGuards(AdminAuthGuard)
+  // @Post('auth/admin/login')
+  // async adminSignIn(@Req() req){
+  //   return await this.authManagement.login(req.user);
+  // }
+
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(AdminAuthGuard)
   @Post('auth/admin/login')
   async adminSignIn(@Req() req){
-    return await this.authManagement.login(req.user);
+    return await this.authManagement.adminLogin(req.user);
   }
 
   @Post('auth/logout')

@@ -29,6 +29,7 @@ export class AppController {
   async getCustomerByUsername(
       @Payload() username:any
   ): Promise<Customer | null> {
+    console.log('controller.usn:',username);
     return await this.customerManagement.findCustomerByUsername(username);
   }
 

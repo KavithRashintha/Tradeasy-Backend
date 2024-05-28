@@ -5,10 +5,9 @@ import { ProductController } from './product.controller';
 import { OrderController } from "./order.controller";
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { User } from './auth.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { LocalStrategy } from './strategies/local.strategy';
+import {CustomerStrategy, AdminStrategy, SupplierStrategy} from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import {EmailController} from "./mail.controller";
 
@@ -114,22 +113,32 @@ import {EmailController} from "./mail.controller";
           host:'127.0.0.1',
           port:9011,
         }
+      },
+
+      {
+        name:'ADMIN_MANAGEMENT',
+        transport:Transport.TCP,
+        options:{
+          host:'127.0.0.1',
+          port:9012,
+        }
       }
       
     ]),
 
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT, 10),
-      username: process.env.POSTGRES_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
-      database: 'Users',
-      entities: [User],
-      synchronize: true,
-    }),
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   host: process.env.POSTGRES_HOST,
+    //   port: parseInt(process.env.POSTGRES_PORT, 10),
+    //   username: process.env.POSTGRES_USERNAME,
+    //   password: process.env.POSTGRES_PASSWORD,
+    //   database: 'Users',
+    //   entities: [User],
+    //   synchronize: true,
+    // }),
 
-    TypeOrmModule.forFeature([User]),
+
+    // TypeOrmModule.forFeature([User]),
 
     JwtModule.register({
       global: true,
@@ -145,7 +154,9 @@ import {EmailController} from "./mail.controller";
   providers: [
     AppService, 
     JwtStrategy, 
-    LocalStrategy,
+    AdminStrategy,
+    CustomerStrategy,
+    SupplierStrategy
   ],
 })
 export class AppModule {}

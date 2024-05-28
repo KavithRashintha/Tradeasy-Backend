@@ -52,5 +52,10 @@
 /mail_sender_service/.idea
 /mail_sender_service/dist
 
+
+/admin_management/node_modules/
+/admin_management/.idea
+/admin_management/dist
+
 .idea/
 .vscode/

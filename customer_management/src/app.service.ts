@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Customer } from './customer.entity';
 import { Repository } from 'typeorm';
@@ -32,6 +32,7 @@ export class AppService {
   }
 
   async findCustomerByUsername(username:string): Promise<Customer | null>{
+    console.log('service.usn:',username);
     return await this.customerRepository.findOne({ where: { username } });
   }
 
