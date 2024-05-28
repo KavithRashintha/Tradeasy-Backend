@@ -3,9 +3,11 @@ export class UpdateOrderDTO {
     readonly orderReceiverName?: string;
     readonly orderReceiverAddress?: string;
     readonly orderReceiverContact?: string;
-    readonly orderItems?: string;
+    readonly orderItems?: string[];
     readonly orderPrice?: number;
     readonly orderStatus?: string;
     readonly orderCancelReason?: string;
+    readonly orderCustomerId?: string;
+    readonly orderDate?: string;
 }
 

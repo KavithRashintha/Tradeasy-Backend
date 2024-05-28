@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #242F9B;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            line-height: 1.6;
+            color: #333333;
+        }
+        .signature {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #dddddd;
+            color: #666666;
+        }
+        .signature p {
+            margin: 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+            font-size: 12px;
+            color: #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            {{subject}}
+        </div>
+        <div class="content">
+            <p>Dear <strong>{{name}}</strong>,</p>
+            <p>
+                {{body}}
+            </p>
+            <div class="signature">
+                <p>Best regards,</p>
+                <p><strong>Treadeasy Team</strong></p>
+                <p>Treadeasy.com</p>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; 2024 Teadeasy. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
+
