@@ -10,7 +10,7 @@ export class EmailController {
     ) {}
 
     //For Normal Emails
-    // @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard)
     @Post('send')
     async sendGeneralEmail(@Body() payload: GeneralEmailDTO) {
         // console.log(payload);
@@ -18,7 +18,7 @@ export class EmailController {
     }
 
     //For Order Status Changed Emails
-    // @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard)
     @Post('send/orderStatus')
     async sendOrderStatusEmail(@Body() payload: OrderStatusChangeEmailDTO) {
         // console.log(payload);
