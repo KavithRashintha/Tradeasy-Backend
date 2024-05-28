@@ -13,7 +13,7 @@ export class AdminStrategy extends PassportStrategy(Strategy, 'admin') {
   }
 
   async validate(username: string, password: string): Promise<any> {
-    const user = await this.authService.validateUser(username, password);
+    const user = await this.authService.validateAdmin(username, password);
     if (!user) {
       throw new UnauthorizedException();
     }
