@@ -1,3 +1,4 @@
 export class GetCustomerDTO{
-    readonly id: number
+    readonly id: number;
+    readonly username: string;
 }

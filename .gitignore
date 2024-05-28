@@ -48,5 +48,14 @@
 /purchase_order_management/.idea
 /purchase_order_management/dist
 
+/mail_sender_service/node_modules/
+/mail_sender_service/.idea
+/mail_sender_service/dist
+
+
+/admin_management/node_modules/
+/admin_management/.idea
+/admin_management/dist
+
 .idea/
 .vscode/

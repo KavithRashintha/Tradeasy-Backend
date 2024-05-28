@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Customer } from './customer.entity';
 import { Repository } from 'typeorm';
@@ -7,6 +7,8 @@ import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
 import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
+import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class AppService {
@@ -17,13 +19,24 @@ export class AppService {
   ) {}
 
   async createCustomer(createCustomerDTO: CustomerDTO): Promise<Customer> {
-    const newCustomer = this.customerRepository.create(createCustomerDTO);
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(createCustomerDTO.password, saltOrRounds);
+    const newCustomer = this.customerRepository.create({ ...createCustomerDTO, password: hash });
+
+    console.log("cus.service",newCustomer);
     return await this.customerRepository.save(newCustomer);
   }
 
   async findCustomer(id:any): Promise<Customer | null>{
     return await this.customerRepository.findOneById(id);
   }
+
+  async findCustomerByUsername(username:string): Promise<Customer | null>{
+    console.log('service.usn:',username);
+    return await this.customerRepository.findOne({ where: { username } });
+  }
+
+
   async getAllCustomers():Promise<Customer[]>{
     return await this.customerRepository.find();
   }
@@ -46,7 +59,7 @@ export class AppService {
     console.log('Received query:', query);
     const keyword = (query.query as { keyword?: string }).keyword;
     try {
-      const filteredCustomers = await this.customerRepository.find({ where: { customerName: ILike(`%${keyword}%`) } });
+      const filteredCustomers = await this.customerRepository.find({ where: { username: ILike(`%${keyword}%`) } });
       console.log('Filtered customers:', filteredCustomers);
       return filteredCustomers;
     } catch (error) {

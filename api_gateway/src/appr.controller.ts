@@ -9,12 +9,13 @@ import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AppService } from './app.service';
-import {JwtGuard} from './guards/jwt.guard';
-import {RefreshJwtGuard} from './guards/refresh.jwt.guard';
-import {LocalAuthGuard} from './guards/local.guard';
+import { JwtGuard} from './guards/jwt.guard';
+import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
+import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
 import { PurchaseOrderDTO } from './models/purchaseOrderModel';
 import { In } from 'typeorm';
+import {RegisterAdminDTO, UpdateAdminDTO} from "./models/adminModel";
 
 @Controller()
 export class ApprController {
@@ -27,10 +28,12 @@ export class ApprController {
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
     @Inject ('INVENTORY_REFUND_MANAGEMENT') private inventoryRefund: ClientProxy,
     @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryOrder: ClientProxy,
+    @Inject ('ADMIN_MANAGEMENT') private adminClient: ClientProxy,
+
     private authManagement: AppService
   ) { }
 
-  //=================================CUSTOMER_MANAGEMENT=========================================================================
+  //===============================================CUSTOMER_MANAGEMENT=========================================================================
   @UseGuards(JwtGuard)
   @Post('customer/create')
   async createCustomer(@Body() payload: RegisterCustomerDTO) {
@@ -41,6 +44,12 @@ export class ApprController {
   @Get('customer/findCustomer/:id')
   async findCustomer(@Param('id') id: any) {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER' }, id)
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('customer/findCustomerByUsername/:username')
+  async findCustomerByUsername(@Param('username') username: any) {
+    return this.customerClient.send({ cmd: 'GET_CUSTOMER_BY_USERNAME' }, username)
   }
 
   @UseGuards(JwtGuard)
@@ -71,6 +80,55 @@ export class ApprController {
   @Get('customer/activeCustomers')
   async getActiveCustomers(){
     return this.customerClient.send({ cmd: 'GET_ACTIVE_CUSTOMERS' }, {});
+  }
+
+  //===============================================ADMIN_MANAGEMENT=========================================================================
+  @UseGuards(JwtGuard)
+  @Post('admin/create')
+  async createAdmin(@Body() payload: RegisterAdminDTO) {
+    return this.adminClient.send({ cmd: 'CREATE_ADMIN' }, payload);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('customer/findAdmin/:id')
+  async findAdmin(@Param('id') id: any) {
+    return this.adminClient.send({ cmd: 'GET_ADMIN' }, id)
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/findAdminByUsername/:username')
+  async findAdminByUsername(@Param('username') username: any) {
+    return this.adminClient.send({ cmd: 'GET_ADMIN_BY_USERNAME' }, username)
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/getAllAdmins')
+  async getAllAdmins() {
+    return this.adminClient.send({ cmd: 'GET_ALL_ADMINS' }, {});
+  }
+
+  @UseGuards(JwtGuard)
+  @Put('admin/update/:id')
+  async updateAdmin(@Param('id') id: number, @Body() updateAdminDto: UpdateAdminDTO) {
+    return this.adminClient.send({ cmd: 'UPDATE_ADMIN' }, { id, updateAdminDto });
+  }
+
+  @UseGuards(JwtGuard)
+  @Delete('admin/delete/:id')
+  async deleteAdmin(@Param('id') id: number) {
+    return this.adminClient.send({ cmd: 'DELETE_ADMIN' }, id);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/search')
+  async searchAllAdmins(@Query() query: ExpressQuery) {
+    return this.adminClient.send({ cmd: 'SEARCH_ALL_ADMINS' }, {query})
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/activeCustomers')
+  async getActiveAdmins(){
+    return this.adminClient.send({ cmd: 'GET_ACTIVE_ADMINS' }, {});
   }
 
 
@@ -164,32 +222,32 @@ export class ApprController {
   }
 
  //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
- //@UseGuards(JwtGuard)
+ @UseGuards(JwtGuard)
  @Post('refund/inventoryRefund/create')
  async createInventoryRefund(@Body() inventoryRefundDTO:InventoryRefundDTO)
   {
     return this.inventoryRefund.send({cmd:'CREATE_INVENTORY_REFUND'},inventoryRefundDTO);
   }
  
-//@UseGuards(JwtGuard)  
+@UseGuards(JwtGuard)  
 @Get('refund/inventoryRefund/getAll')
 async getAllInventoryRefunds(){
   return this.inventoryRefund.send({cmd:'GET_ALL_INVENTORY_REFUND'},{})
 }
 
-//@UseGuards(JwtGuard)
+@UseGuards(JwtGuard)
 @Get('refund/inventoryRefund/get/:id')
 async getInventoryRefundById(@Param('id') id:number){
   return this.inventoryRefund.send({cmd:'GET_INVENTORY_REFUND_BY_ID'},id)
 }
 
-//@UseGuards(JwtGuard)
+@UseGuards(JwtGuard)
 @Delete('refund/inventoryRefund/delete/:id')
 async deleteInventoryRefund(@Param('id') id:number){  
   return this.inventoryRefund.send({cmd:'DELETE_CUSTOMER_REFUND'},id)
 }
 
-//@UseGuards(JwtGuard)
+@UseGuards(JwtGuard)
 @Get('refund/approvedRefunds/getAll')
   async getAllApprovedRefunds() {
       return this.inventoryRefund.send({ cmd: 'GET_ALL_APPROVED_REFUNDS' }, {});
@@ -221,37 +279,37 @@ async deleteInventoryRefund(@Param('id') id:number){
  
 
   //================================================PURCHASE_ORDER__MANAGEMENT===========================================================================
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Post('purchaseOrder/create')
   async createPurchaseOrder(@Body() purchaseOrderDTO: PurchaseOrderDTO){
     return this.inventoryOrder.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('purchaseOrder/getAll')
   async getAllPurchaseOrder(){
     return this.inventoryOrder.send({cmd: 'GET_ALL_PURCHASE_ORDER'}, {});
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('purchaseOrder/get/:id')
   async getPurchaseOrderById(@Param('id') id:number){
     return this.inventoryOrder.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
   }
 
- // @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Delete('purchaseOrder/delete/:id')
   async deletePurchaseOrder(@Param('id') id:number){
     return this.inventoryOrder.send({cmd: 'DELETE_PURCHASE_ORDER'}, id);
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('purchaseOrder/getCountOfOrdersByStatus/:status')
   async getCountOfOrdersByStatus(@Param('status') status: string){
     return this.inventoryOrder.send({cmd: 'GET_COUNT_OF_ORDERS_BY_STATUS'}, status);
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('purchaseOrder/getCurrentMonthName')
   async getCurrentMonthName(){
     return this.inventoryOrder.send({cmd: 'GET_CURRENT_MONTH_NAME'}, {});
@@ -395,15 +453,46 @@ async deleteInventoryRefund(@Param('id') id:number){
   //========================================================AUTHENTICATION=================================================================
 
   @Post('auth/signup')
-  async signUp(@Body() payload: AuthDto) {
-    return await this.authManagement.createUser(payload);
+  async adminSignUp(@Body() payload: AuthDto) {
+    
+    if(payload.role == 'customer'){
+      return this.customerClient.send({ cmd: 'CREATE_CUSTOMER' }, payload);
+    }
+    else if(payload.role == 'supplier'){
+      return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
+    }
+    else{
+      // return await this.authManagement.createUser(payload);
+      return this.adminClient.send({ cmd: 'CREATE_ADMIN' }, payload);
+    }
   }
   
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
-  @Post('auth/login')
-  async signIn(@Req() req){
-    return await this.authManagement.login(req.user);
+  @UseGuards(CustomerAuthGuard)
+  @Post('auth/customer/login')
+  async customerSignIn(@Req() req){
+    return await this.authManagement.customerLogin(req.user);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(SupplierAuthGuard)
+  @Post('auth/supplier/login')
+  async supplierSignIn(@Req() req){
+    return await this.authManagement.supplierLogin(req.user);
+  }
+
+  // @HttpCode(HttpStatus.OK)
+  // @UseGuards(AdminAuthGuard)
+  // @Post('auth/admin/login')
+  // async adminSignIn(@Req() req){
+  //   return await this.authManagement.login(req.user);
+  // }
+
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(AdminAuthGuard)
+  @Post('auth/admin/login')
+  async adminSignIn(@Req() req){
+    return await this.authManagement.adminLogin(req.user);
   }
 
   @Post('auth/logout')

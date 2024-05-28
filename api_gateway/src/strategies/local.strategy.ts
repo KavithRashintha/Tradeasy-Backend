@@ -6,14 +6,46 @@ import { AppService } from "src/app.service";
 import { AuthDto } from '../models/authModel';
 
 @Injectable()
-export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
+export class AdminStrategy extends PassportStrategy(Strategy, 'admin') {
   constructor(private authService: AppService) {
     super({
     });
   }
 
-  async validate(username: string, password: string): Promise<any> { 
-    const user = await this.authService.validateUser(username, password); 
+  async validate(username: string, password: string): Promise<any> {
+    const user = await this.authService.validateAdmin(username, password);
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    return user;
+  }
+}
+
+@Injectable()
+export class CustomerStrategy extends PassportStrategy(Strategy, 'customer') {
+  constructor(private authService: AppService) {
+    super({
+    });
+  }
+
+  async validate(username: string, password: string): Promise<any> {
+    const user = await this.authService.validateCustomer(username, password);
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    return user;
+  }
+}
+
+@Injectable()
+export class SupplierStrategy extends PassportStrategy(Strategy, 'supplier') {
+  constructor(private authService: AppService) {
+    super({
+    });
+  }
+
+  async validate(username: string, password: string): Promise<any> {
+    const user = await this.authService.validateSupplier(username, password);
     if (!user) {
       throw new UnauthorizedException();
     }

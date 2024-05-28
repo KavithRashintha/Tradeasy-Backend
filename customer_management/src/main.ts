@@ -18,6 +18,8 @@ async function bootstrap() {
     },
   });
 
+  app.enableCors();
+
   await app.startAllMicroservices();
   await app.listen(9001);
   console.log(`App is running on port ${await app.getUrl()}`);

@@ -6,7 +6,7 @@ import {SupplierDTO} from './dto/SupplierDTO';
 import { UpdateSupplierDTO } from './dto/UpdateSupplierDTO';
 import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
-
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AppService {
@@ -17,12 +17,20 @@ export class AppService {
   ) {}
 
   async createSupplier(createSupplierDTO: SupplierDTO): Promise<Supplier> {
-    const newSupplier = this.supplierRepository.create(createSupplierDTO);
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(createSupplierDTO.password, saltOrRounds);
+    const newSupplier = this.supplierRepository.create({ ...createSupplierDTO, password: hash });
+
+    console.log("sup.service",newSupplier);
     return await this.supplierRepository.save(newSupplier);
   }
 
   async getSupplier(id:any): Promise<Supplier | null>{
     return await this.supplierRepository.findOneById(id);
+  }
+
+  async findSupplierByUsername(username:string): Promise<Supplier | null>{
+    return await this.supplierRepository.findOne({ where: { username } });
   }
 
   async getAllSuppliers():Promise<Supplier[]>{
@@ -33,7 +41,7 @@ export class AppService {
     console.log('Received query:', query);
     const keyword = (query.query as { keyword?: string }).keyword;
     try {
-      const filteredSuppliers = await this.supplierRepository.find({ where: { supplierName: ILike(`%${keyword}%`) } });
+      const filteredSuppliers = await this.supplierRepository.find({ where: { username: ILike(`%${keyword}%`) } });
       console.log('Filtered suppliers:', filteredSuppliers);
       return filteredSuppliers;
     } catch (error) {
