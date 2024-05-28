@@ -9,7 +9,7 @@ export class EmailController {
         @Inject('MAIL_SENDER_SERVICE') private emailClient: ClientProxy,
     ) {}
 
-    // @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard)
     @Post('send')
     async sendEmail(@Body() payload: EmailDTO) {
         // console.log(payload);
