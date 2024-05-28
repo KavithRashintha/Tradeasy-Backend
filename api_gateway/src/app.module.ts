@@ -10,6 +10,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import {EmailController} from "./mail.controller";
 
 @Module({
   imports: [
@@ -105,6 +106,14 @@ import { JwtStrategy } from './strategies/jwt.strategy';
           host:'127.0.0.1',
           port:9010,
         }
+      },
+      {
+        name:'MAIL_SENDER_SERVICE',
+        transport:Transport.TCP,
+        options:{
+          host:'127.0.0.1',
+          port:9011,
+        }
       }
       
     ]),
@@ -132,7 +141,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     PassportModule
   ],
   
-  controllers: [ApprController, ProductController, OrderController],
+  controllers: [ApprController, ProductController, OrderController, EmailController],
   providers: [
     AppService, 
     JwtStrategy, 
