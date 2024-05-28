@@ -1,6 +1,6 @@
 import {Body, Controller, Inject, Post, UseGuards} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {EmailDTO} from "./models/emailModel";
+import {OrderStatusChangeEmailDTO} from "./models/emailModel";
 import {JwtGuard} from './guards/jwt.guard';
 
 @Controller('email')
@@ -10,10 +10,10 @@ export class EmailController {
     ) {}
 
     @UseGuards(JwtGuard)
-    @Post('send')
-    async sendEmail(@Body() payload: EmailDTO) {
+    @Post('send/orderStatus')
+    async sendOrderStatusEmail(@Body() payload: OrderStatusChangeEmailDTO) {
         // console.log(payload);
-        return this.emailClient.send({ cmd: 'SEND_EMAIL' }, payload);
+        return this.emailClient.send({ cmd: 'SEND_EMAIL_ORDER_STATUS' }, payload);
     }
 }
 

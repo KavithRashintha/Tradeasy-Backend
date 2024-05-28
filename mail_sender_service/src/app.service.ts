@@ -1,16 +1,16 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { EmailDTO } from './DTO/EmailDTO';
+import { OrderStatusChangeEmailDTO } from './DTO/EmailDTO';
 
 @Injectable()
 export class AppService {
   constructor(private mailerService: MailerService) {}
 
-  async sendEmail(user: EmailDTO): Promise<{ success: boolean; message: string }> {
+  async sendOrderStatusChangeEmail(user: OrderStatusChangeEmailDTO): Promise<{ success: boolean; message: string }> {
     await this.mailerService.sendMail({
       to: user.receiverEmail,
       subject: user.emailSubject,
-      template: './template', // Ensure the path to your email template is correct
+      template: './orderStatusChangedTemplate', // Ensure the path to your email template is correct
       context: {
         subject: user.emailSubject,
         name: user.receiverName,
