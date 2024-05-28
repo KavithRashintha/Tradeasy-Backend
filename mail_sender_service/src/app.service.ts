@@ -12,6 +12,7 @@ export class AppService {
       subject: user.emailSubject,
       template: './template', // Ensure the path to your email template is correct
       context: {
+        subject: user.emailSubject,
         name: user.receiverName,
         body: user.emailBody,
       },
