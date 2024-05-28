@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException, Inject } from '@nestjs/common';
+import {Injectable, BadRequestException, Inject, UnauthorizedException} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './auth.entity';
@@ -12,7 +12,7 @@ import { lastValueFrom } from 'rxjs';
 export class AppService {
   constructor(
     @InjectRepository(User)
-    private readonly authRepository: Repository<User>,
+    private readonly adminRepository: Repository<User>,
     @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     private jwtService: JwtService,
@@ -21,7 +21,7 @@ export class AppService {
   async createUser(createAuthDTO: AuthDto): Promise<User> {
     console.log("Creating user with data:", createAuthDTO);
     
-    const existingUser = await this.authRepository.findOne({ where: { username: createAuthDTO.username } });
+    const existingUser = await this.adminRepository.findOne({ where: { username: createAuthDTO.username } });
     if (existingUser) {
       console.error('User already exists');
       throw new BadRequestException('User already exists');
@@ -29,13 +29,13 @@ export class AppService {
   
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(createAuthDTO.password, saltOrRounds);
-    const newUser = this.authRepository.create({ ...createAuthDTO, password: hash });
+    const newUser = this.adminRepository.create({ ...createAuthDTO, password: hash });
 
-    return await this.authRepository.save(newUser);
+    return await this.adminRepository.save(newUser);
   }
-  
+
   async validateUser(username: string, password: string) {
-    const user = await this.authRepository.findOne({ where: { username } });
+    const user = await this.adminRepository.findOne({ where: { username } });
     if (!user) {
       throw new BadRequestException('User not found');
     }
@@ -44,7 +44,7 @@ export class AppService {
     if (!passwordMatch) {
       throw new BadRequestException('Password does not match');
     }
-    
+
     return user
   }
 
@@ -60,8 +60,7 @@ export class AppService {
   }
 
   async validateCustomer(username: string, password: string) {
-    console.log('api', username);
-    const user = await lastValueFrom(this.customerClient.send('GET_CUSTOMER_BY_USERNAME', { username }));
+    const user = await lastValueFrom(this.customerClient.send({ cmd: 'GET_CUSTOMER_BY_USERNAME' }, username));
     if (!user) {
       throw new BadRequestException('User not found');
     }
@@ -70,7 +69,7 @@ export class AppService {
     if (!passwordMatch) {
       throw new BadRequestException('Password does not match');
     }
-    
+
     return user
   }
 
@@ -86,7 +85,8 @@ export class AppService {
   }
 
   async validateSupplier(username: string, password: string) {
-    const user = await lastValueFrom(this.supplierClient.send('VALIDATE_SUPPLIER', { username }));
+    const user = await lastValueFrom(this.supplierClient.send({ cmd: 'GET_SUPPLIER_BY_USERNAME' }, username));
+
     if (!user) {
       throw new BadRequestException('User not found');
     }

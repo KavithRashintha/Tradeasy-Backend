@@ -11,7 +11,7 @@ import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AppService } from './app.service';
 import { JwtGuard} from './guards/jwt.guard';
 import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
-import {LocalAuthGuard} from './guards/local.guard';
+import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
 import { PurchaseOrderDTO } from './models/purchaseOrderModel';
 import { In } from 'typeorm';
@@ -415,21 +415,21 @@ async deleteInventoryRefund(@Param('id') id:number){
   }
   
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(CustomerAuthGuard)
   @Post('auth/customer/login')
   async customerSignIn(@Req() req){
     return await this.authManagement.customerLogin(req.user);
   }
 
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(SupplierAuthGuard)
   @Post('auth/supplier/login')
   async supplierSignIn(@Req() req){
     return await this.authManagement.supplierLogin(req.user);
   }
 
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(AdminAuthGuard)
   @Post('auth/admin/login')
   async adminSignIn(@Req() req){
     return await this.authManagement.login(req.user);

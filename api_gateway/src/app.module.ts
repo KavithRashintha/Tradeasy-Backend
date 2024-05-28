@@ -8,7 +8,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { User } from './auth.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { LocalStrategy } from './strategies/local.strategy';
+import {CustomerStrategy, AdminStrategy, SupplierStrategy} from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
@@ -120,6 +120,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       synchronize: true,
     }),
 
+
     TypeOrmModule.forFeature([User]),
 
     JwtModule.register({
@@ -136,7 +137,9 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   providers: [
     AppService, 
     JwtStrategy, 
-    LocalStrategy,
+    AdminStrategy,
+    CustomerStrategy,
+    SupplierStrategy
   ],
 })
 export class AppModule {}
