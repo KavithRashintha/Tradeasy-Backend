@@ -21,16 +21,16 @@ export class Order {
     @Column()
     orderPrice: number;
 
-    @Column()
+    @Column({default: 'Pending'})
     orderStatus: string;
 
-    @Column()
+    @Column({default: ''})
     orderCancelReason: string;
 
     @Column()
     orderCustomerId: string;
 
     @Column()
-    orderDate: string;
+    orderDate: Date;
 
 }
