@@ -9,6 +9,8 @@ import {AppController} from "./app.controller";
   imports: [
     MailerModule.forRoot({
       transport: {
+        service: process.env.MAIL_SERVICE,
+        port: parseInt(process.env.MAIL_PORT, 10),
         host: process.env.MAIL_HOST,
         service: process.env.MAIL_SERVICE,
         port: parseInt(process.env.MAIL_PORT),
