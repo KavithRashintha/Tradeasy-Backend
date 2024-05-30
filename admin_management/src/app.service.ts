@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Admin } from './customer.entity';
+import { Admin } from './admin.entity';
 import { Repository } from 'typeorm';
 import {AdminDTO} from './dto/AdminDTO';
 import { GetAdminDTO } from './dto/GetAdminDTO';
@@ -21,10 +21,19 @@ export class AppService {
   async createAdmin(createAdminDTO: AdminDTO): Promise<Admin> {
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(createAdminDTO.password, saltOrRounds);
-    const newAdmin = this.adminRepository.create({ ...createAdminDTO, password: hash });
+    const newAdmin = this.adminRepository.create({ 
+      ...createAdminDTO,
+       password: hash,
+       lastLogin: new Date()
+   });
 
     console.log("cus.service",newAdmin);
     return await this.adminRepository.save(newAdmin);
+  }
+
+  async updateLastLogin(id: number, updateAdminDto: Partial<UpdateAdminDTO>): Promise<Admin> {
+    await this.adminRepository.update(id, updateAdminDto);
+    return await this.adminRepository.findOneById(id);
   }
 
   async findAdmin(id:any): Promise<Admin | null>{

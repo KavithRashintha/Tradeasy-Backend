@@ -11,54 +11,12 @@ import { lastValueFrom } from 'rxjs';
 @Injectable()
 export class AppService {
   constructor(
-    // @InjectRepository(User)
-    // private readonly adminRepository: Repository<User>,
     @Inject('ADMIN_MANAGEMENT') private adminClient: ClientProxy,
     @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     private jwtService: JwtService,
   ){}
   
-  // async createUser(createAuthDTO: AuthDto): Promise<User> {
-  //   console.log("Creating user with data:", createAuthDTO);
-  //
-  //   const existingUser = await this.adminRepository.findOne({ where: { username: createAuthDTO.username } });
-  //   if (existingUser) {
-  //     console.error('User already exists');
-  //     throw new BadRequestException('User already exists');
-  //   }
-  //
-  //   const saltOrRounds = 10;
-  //   const hash = await bcrypt.hash(createAuthDTO.password, saltOrRounds);
-  //   const newUser = this.adminRepository.create({ ...createAuthDTO, password: hash });
-  //
-  //   return await this.adminRepository.save(newUser);
-  // }
-  //
-  // async validateUser(username: string, password: string) {
-  //   const user = await this.adminRepository.findOne({ where: { username } });
-  //   if (!user) {
-  //     throw new BadRequestException('User not found');
-  //   }
-  //
-  //   const passwordMatch = await bcrypt.compare(password, user.password);
-  //   if (!passwordMatch) {
-  //     throw new BadRequestException('Password does not match');
-  //   }
-  //
-  //   return user
-  // }
-  //
-  // async login(user: any) {
-  //   const { password, ...result} = user;
-  //   const token = this.jwtService.sign(result);
-  //   return {
-  //     id: user.id,
-  //     username: user.username,
-  //     role: user.role,
-  //     access_token: token,
-  //   };
-  // }
 
   async validateAdmin(username: string, password: string) {
     const user = await lastValueFrom(this.adminClient.send({ cmd: 'GET_ADMIN_BY_USERNAME' }, username));
@@ -70,6 +28,8 @@ export class AppService {
     if (!passwordMatch) {
       throw new BadRequestException('Password does not match');
     }
+
+    await lastValueFrom(this.adminClient.send({ cmd: 'UPDATE_LAST_LOGIN' }, { id: user.id, lastLogin: new Date() }));
 
     return user
   }
@@ -98,6 +58,9 @@ export class AppService {
       throw new BadRequestException('Password does not match');
     }
 
+    await lastValueFrom(this.customerClient.send({ cmd: 'UPDATE_LAST_LOGIN' }, { id: user.id, lastLogin: new Date() }));
+
+
     return user
   }
 
@@ -123,6 +86,8 @@ export class AppService {
     if (!passwordMatch) {
       throw new BadRequestException('Password does not match');
     }
+
+    await lastValueFrom(this.supplierClient.send({ cmd: 'UPDATE_LAST_LOGIN' }, { id: user.id, lastLogin: new Date() }));
     
     return user
   }

@@ -49,7 +49,7 @@ export class AppService {
     const session = await this.stripe.checkout.sessions.create({
       mode: 'payment',
       line_items,
-      success_url: 'http://localhost:3000/success',
+      success_url: 'http://localhost:3000/redirect',
       cancel_url: 'http://localhost:3000/cancel',
       metadata: data.metadata
     });

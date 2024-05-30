@@ -2,7 +2,7 @@ import {Controller, Get, Param, } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import {AdminDTO} from './dto/AdminDTO';
-import { Admin } from './customer.entity';
+import { Admin } from './admin.entity';
 import { GetAdminDTO } from './dto/GetAdminDTO';
 import { UpdateAdminDTO } from './dto/UpdateAdminDTO';
 import * as bcrypt from 'bcrypt'
@@ -16,6 +16,13 @@ export class AppController {
   async createAdmin(createAdminDto: AdminDTO): Promise<Admin> {
     console.log("cus.controller",createAdminDto);
     return await this.adminManagement.createAdmin(createAdminDto);
+  }
+
+  @MessagePattern({  cmd: 'UPDATE_LAST_LOGIN' })
+  async updateLastLogin(@Payload() data: { id: number, lastLogin: Date }): Promise<Admin> {
+    const { id, lastLogin } = data;
+    console.log("cus.controller",data);
+    return await this.adminManagement.updateLastLogin(id, {lastLogin});
   }
 
   @MessagePattern({ cmd: 'GET_ADMIN' })

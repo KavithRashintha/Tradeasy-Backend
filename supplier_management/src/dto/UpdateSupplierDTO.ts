@@ -9,4 +9,5 @@ export class UpdateSupplierDTO{
     readonly paymentMethod: string;
     readonly paymentDetails: string;
     readonly profilePicture: string;
+    readonly lastLogin: Date;
 }

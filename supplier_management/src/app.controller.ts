@@ -18,6 +18,12 @@ export class AppController {
     return await this.supplierManagement.createSupplier(createSupplierDto);
   }
 
+  @MessagePattern({  cmd: 'UPDATE_LAST_LOGIN' })
+  async updateLastLogin(@Payload() data: { id: number, lastLogin: Date }): Promise<Supplier> {
+    const { id, lastLogin } = data;
+    console.log("cus.controller",data);
+    return await this.supplierManagement.updateLastLogin(id, {lastLogin});
+  }
 
   @MessagePattern({ cmd: 'GET_SUPPLIER' })
   async getSupplierById(

@@ -15,7 +15,10 @@ export class AppService {
   ) {}
 
   async createOrders(createOrderDTO: OrderDTO): Promise<Order> {
-    const newOrder = this.orderRepository.create(createOrderDTO);
+    const newOrder = this.orderRepository.create({
+      ...createOrderDTO,
+      orderDate: new Date()
+    });
     return await this.orderRepository.save(newOrder);
   }
 
