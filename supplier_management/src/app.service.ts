@@ -19,10 +19,19 @@ export class AppService {
   async createSupplier(createSupplierDTO: SupplierDTO): Promise<Supplier> {
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(createSupplierDTO.password, saltOrRounds);
-    const newSupplier = this.supplierRepository.create({ ...createSupplierDTO, password: hash });
+    const newSupplier = this.supplierRepository.create({ 
+      ...createSupplierDTO,
+       password: hash,
+       lastLogin: new Date()
+   });
 
     console.log("sup.service",newSupplier);
     return await this.supplierRepository.save(newSupplier);
+  }
+
+  async updateLastLogin(id: number, updateSupplierDto: Partial<UpdateSupplierDTO>): Promise<Supplier> {
+    await this.supplierRepository.update(id, updateSupplierDto);
+    return await this.supplierRepository.findOneById(id);
   }
 
   async getSupplier(id:any): Promise<Supplier | null>{

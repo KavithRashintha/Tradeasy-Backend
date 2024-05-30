@@ -7,4 +7,5 @@ export class UpdateCustomerDTO{
   readonly role: string;
   readonly address: string;
   readonly profilePicture: string;
+  readonly lastLogin: Date;
 }

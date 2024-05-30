@@ -18,6 +18,13 @@ export class AppController {
     return await this.customerManagement.createCustomer(createCustomerDto);
   }
 
+  @MessagePattern({  cmd: 'UPDATE_LAST_LOGIN' })
+  async updateLastLogin(@Payload() data: { id: number, lastLogin: Date }): Promise<Customer> {
+    const { id, lastLogin } = data;
+    console.log("cus.controller",data);
+    return await this.customerManagement.updateLastLogin(id, {lastLogin});
+  }
+
   @MessagePattern({ cmd: 'GET_CUSTOMER' })
   async getCustomerById(
       @Payload() id:any

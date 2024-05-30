@@ -21,10 +21,19 @@ export class AppService {
   async createCustomer(createCustomerDTO: CustomerDTO): Promise<Customer> {
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(createCustomerDTO.password, saltOrRounds);
-    const newCustomer = this.customerRepository.create({ ...createCustomerDTO, password: hash });
+    const newCustomer = this.customerRepository.create({
+       ...createCustomerDTO,
+        password: hash,
+        lastLogin: new Date()
+    });
 
     console.log("cus.service",newCustomer);
     return await this.customerRepository.save(newCustomer);
+  }
+
+  async updateLastLogin(id: number, updateCustomerDto: Partial<UpdateCustomerDTO>): Promise<Customer> {
+    await this.customerRepository.update(id, updateCustomerDto);
+    return await this.customerRepository.findOneById(id);
   }
 
   async findCustomer(id:any): Promise<Customer | null>{

@@ -120,7 +120,7 @@ import {EmailController} from "./mail.controller";
         transport:Transport.TCP,
         options:{
           host:'127.0.0.1',
-          port:9012,
+          port:9050,
         }
       }
       

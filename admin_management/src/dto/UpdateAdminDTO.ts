@@ -5,4 +5,6 @@ export class UpdateAdminDTO {
   readonly email: string;
   readonly contactNo: string;
   readonly role: string;
+  readonly profilepicture: string;
+  readonly lastLogin: Date;
 }

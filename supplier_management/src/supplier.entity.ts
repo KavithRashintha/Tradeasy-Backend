@@ -35,4 +35,7 @@ export class Supplier {
 
   @Column({ default: '' })
   profilePicture: string;
+
+  @Column({ type: 'timestamp',  default: () => 'CURRENT_TIMESTAMP' })
+  lastLogin: Date;
 }
