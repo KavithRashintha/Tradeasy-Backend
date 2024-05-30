@@ -1,6 +1,6 @@
 import {Body, Controller, Inject, Post, UseGuards} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {GeneralEmailDTO, OrderStatusChangeEmailDTO} from "./models/emailModel";
+import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO} from "./models/emailModel";
 import {JwtGuard} from './guards/jwt.guard';
 
 @Controller('email')
@@ -23,6 +23,21 @@ export class EmailController {
     async sendOrderStatusEmail(@Body() payload: OrderStatusChangeEmailDTO) {
         // console.log(payload);
         return this.emailClient.send({ cmd: 'SEND_EMAIL_ORDER_STATUS' }, payload);
+    }
+
+    //For OCustomer Warning Emails
+    @UseGuards(JwtGuard)
+    @Post('send/customerWarning')
+    async sendCustomerWarningEmail(@Body() payload: CustomerWarningEmailDTO) {
+        // console.log(payload);
+        return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_WARNING' }, payload);
+    }
+
+    @UseGuards(JwtGuard)
+    @Post('send/customerTermination')
+    async sendCustomerTerminationEmail(@Body() payload: CustomerTerminationEmailDTO) {
+        // console.log(payload);
+        return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_TERMINATION' }, payload);
     }
 }
 
