@@ -31,7 +31,6 @@ export class AppService {
   }
 
   async updateProduct(id: number, updateProductDto: UpdateProductDTO): Promise<Product> {
-
     await this.productRepository.update(id, updateProductDto);
     return await this.productRepository.findOneById(id);
   }
@@ -49,7 +48,14 @@ export class AppService {
     return await this.productRepository.count();
   }
 
+  async getProductsCategoryCount(): Promise<number> {
+    const result = await this.productRepository
+        .createQueryBuilder('product')
+        .select('COUNT(DISTINCT product.productCategory)', 'categoryCount')
+        .getRawOne();
 
+    return parseInt(result.categoryCount, 10);
+}
 
   async createProductsReview(createProductReviewDTO: CreateProductReviewDTO): Promise<ProductReview> {
     const newProductReview = this.productReviewRepository.create(createProductReviewDTO);

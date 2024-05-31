@@ -90,7 +90,7 @@ export class ApprController {
   }
 
   @UseGuards(JwtGuard)
-  @Get('customer/findAdmin/:id')
+  @Get('admin/findAdmin/:id')
   async findAdmin(@Param('id') id: any) {
     return this.adminClient.send({ cmd: 'GET_ADMIN' }, id)
   }

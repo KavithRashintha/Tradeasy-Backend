@@ -1,6 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO} from './DTO/EmailDTO';
+import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO} from './DTO/EmailDTO';
 
 @Injectable()
 export class AppService {
@@ -64,6 +64,25 @@ export class AppService {
   }
 
   async sendCustomerTerminationEmail(user: CustomerTerminationEmailDTO): Promise<{ success: boolean; message: string }> {
+    await this.mailerService.sendMail({
+      to: user.receiverEmail,
+      subject: user.emailSubject,
+      template: './generalTemplate', 
+      context: {
+        subject: user.emailSubject,
+        name: user.receiverName,
+        body: user.emailBody,
+      },
+    });
+
+    // Return a success message
+    return {
+      success: true,
+      message: 'Email sent successfully',
+    };
+  }
+
+  async sendSupplierTerminationEmail(user: SupplierTerminationEmailDTO): Promise<{ success: boolean; message: string }> {
     await this.mailerService.sendMail({
       to: user.receiverEmail,
       subject: user.emailSubject,
