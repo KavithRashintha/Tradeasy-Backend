@@ -43,6 +43,11 @@ export class AppController {
     return await this.productManagement.getProductsCount();
   }
 
+  @MessagePattern({cmd: 'GET_PRODUCTS_CATEGORY_COUNT'})
+  async getProductsCategoryCount(){
+    return await this.productManagement.getProductsCategoryCount();
+  }
+
   @MessagePattern({cmd: 'CREATE_PRODUCT_REVIEW'})
   async createProductsReview(@Payload() createProductReviewDto: CreateProductReviewDTO,)
       : Promise<ProductReview>{

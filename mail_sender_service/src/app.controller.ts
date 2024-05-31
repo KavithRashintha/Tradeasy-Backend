@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO} from './DTO/EmailDTO';
+import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO} from './DTO/EmailDTO';
 
 @Controller()
 export class AppController {
@@ -29,5 +29,11 @@ export class AppController {
   async sendCustomerTerminationEmail(@Payload() customerTerminationEmailDTO: CustomerTerminationEmailDTO) {
     console.log(customerTerminationEmailDTO);
     return await this.emailSenderService.sendCustomerTerminationEmail(customerTerminationEmailDTO);
+  }
+
+  @MessagePattern({ cmd: 'SEND_EMAIL_SUPPLIER_TERMINATION'})
+  async sendSupplierTerminationEmail(@Payload() supplierTerminationEmailDTO: SupplierTerminationEmailDTO) {
+    console.log(supplierTerminationEmailDTO);
+    return await this.emailSenderService.sendSupplierTerminationEmail(supplierTerminationEmailDTO);
   }
 }

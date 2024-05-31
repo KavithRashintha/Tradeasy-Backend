@@ -46,7 +46,11 @@ export class ProductController {
         return this.productClient.send({cmd: 'GET_PRODUCTS_COUNT'}, {});
     }
 
-
+    @UseGuards(JwtGuard)
+    @Get('getProductsCategoryCount')
+    async getProductsCategoryCount(){
+        return this.productClient.send({cmd: 'GET_PRODUCTS_CATEGORY_COUNT'}, {});
+    }
 
     @UseGuards(JwtGuard)
     @Post('review/create')

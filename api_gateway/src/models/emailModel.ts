@@ -25,3 +25,10 @@ export class CustomerTerminationEmailDTO {
     readonly emailBody?: string;
     readonly receiverEmail?: string;
 }
+
+export class SupplierTerminationEmailDTO {
+    readonly receiverName?: string;
+    readonly emailSubject?: string;
+    readonly emailBody?: string;
+    readonly receiverEmail?: string;
+}
