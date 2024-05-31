@@ -8,7 +8,7 @@ export class RegisterOrderDTO {
     readonly orderStatus: string;
     readonly orderCancelReason?: string;
     readonly orderCustomerId?: string;
-    readonly orderDate?: string;
+    readonly orderDate?: Date;
 
 }
 
@@ -22,7 +22,7 @@ export class UpdateOrderDTO {
     readonly orderStatus?: string;
     readonly orderCancelReason?: string;
     readonly orderCustomerId?: string;
-    readonly orderDate?: string;
+    readonly orderDate?: Date;
 }
 
 
