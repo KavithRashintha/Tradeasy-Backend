@@ -36,4 +36,10 @@ export class AppController {
     console.log(supplierTerminationEmailDTO);
     return await this.emailSenderService.sendSupplierTerminationEmail(supplierTerminationEmailDTO);
   }
+
+  @MessagePattern({ cmd: 'SEND_EMAIL_CUSTOMER_INVOICE'})
+  async sendCustomerInvoiceEmail(@Payload() customerInvoiceEmailDTO: CustomerInvoiceEmailDTO) {
+    console.log(customerInvoiceEmailDTO);
+    return await this.emailSenderService.sendCustomerInvoiceEmail(customerInvoiceEmailDTO);
+  }
 }

@@ -100,4 +100,23 @@ export class AppService {
       message: 'Email sent successfully',
     };
   }
+
+  async sendCustomerInvoiceEmail(user: CustomerInvoiceEmailDTO): Promise<{ success: boolean; message: string }> {
+    await this.mailerService.sendMail({
+      to: user.receiverEmail,
+      subject: user.emailSubject,
+      template: './generalTemplate', 
+      context: {
+        subject: user.emailSubject,
+        name: user.receiverName,
+        body: user.emailBody,
+      },
+    });
+
+    // Return a success message
+    return {
+      success: true,
+      message: 'Email sent successfully',
+    };
+  }
 }

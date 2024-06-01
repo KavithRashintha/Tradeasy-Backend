@@ -23,8 +23,13 @@ export class AppController {
     return await this.PaymentManagement.getCheckoutSession(sessionId);
   }
 
+  // @MessagePattern({ cmd: 'CREATE_CUSTOMER_PAYMENT_RECEIPT' })
+  // async saveCustomerPaymentReceipt(@Body() data: any): Promise<CustomerPayments>{
+  //   return this.PaymentManagement.saveCustomerPaymentReceipt(data);
+  // }
+
   @MessagePattern({ cmd: 'CREATE_CUSTOMER_PAYMENT' })
-  async saveCustomerPayments(@Body() data: any): Promise<SupplierPayments>{
+  async saveCustomerPayments(@Body() data: any): Promise<CustomerPayments>{
     return this.PaymentManagement.saveCustomerPayments(data);
   }
 

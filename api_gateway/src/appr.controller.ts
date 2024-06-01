@@ -374,6 +374,12 @@ async deleteInventoryRefund(@Param('id') id:number){
     return await this.paymantClient.send({ cmd: 'GET_CHECKOUT_SESSION' }, sessionId);
   }
 
+  // @UseGuards(JwtGuard)
+  // @Post('payment/customerPayment/receipt')
+  // async saveCustomerPaymentReceipt(@Body() data: Data): Promise<any>{
+  //   return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT_RECEIPT' }, data);
+  // }
+
   @UseGuards(JwtGuard)
   @Post('payment/customerPayment/create')
   async saveCustomerPayments(@Body() data: Data): Promise<any>{
