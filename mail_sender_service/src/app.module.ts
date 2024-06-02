@@ -12,8 +12,6 @@ import {AppController} from "./app.controller";
         service: process.env.MAIL_SERVICE,
         port: parseInt(process.env.MAIL_PORT, 10),
         host: process.env.MAIL_HOST,
-        service: process.env.MAIL_SERVICE,
-        port: parseInt(process.env.MAIL_PORT),
         secure: false,
         auth: {
           user: process.env.MAIL_USERNAME, 

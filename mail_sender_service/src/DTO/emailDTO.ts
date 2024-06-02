@@ -38,4 +38,12 @@ export class CustomerInvoiceEmailDTO {
     readonly emailSubject?: string;
     readonly emailBody?: string;
     readonly receiverEmail?: string;
+    readonly pdfFilePath?: any;
+}
+
+export class SupplierCredentialsEmailDTO {
+    readonly receiverName?: string;
+    readonly emailSubject?: string;
+    readonly emailBody?: string;
+    readonly receiverEmail?: string;
 }
