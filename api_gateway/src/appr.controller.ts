@@ -260,7 +260,7 @@ async deleteInventoryRefund(@Param('id') id:number){
   //@UseGuards(JwtGuard)
   @Get('purchaseOrder/search')
   async searchPurchaseOrders(@Query() query: ExpressQuery) {
-    return this.supplierClient.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})
+    return this.inventoryOrder.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})
   }
 
 
