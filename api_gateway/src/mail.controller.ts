@@ -1,6 +1,15 @@
-import {Body, Controller, Inject, Post, UseGuards} from '@nestjs/common';
+import {Body, Controller, Inject, Post, UseGuards,  UploadedFile, UseInterceptors} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Multer } from 'multer';
 import { ClientProxy } from '@nestjs/microservices';
-import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO} from "./models/emailModel";
+import {GeneralEmailDTO,
+        OrderStatusChangeEmailDTO, 
+        CustomerWarningEmailDTO, 
+        CustomerTerminationEmailDTO, 
+        SupplierTerminationEmailDTO, 
+        CustomerInvoiceEmailDTO,
+        SupplierCredentialsEmailDTO
+    } from "./models/emailModel";
 import {JwtGuard} from './guards/jwt.guard';
 
 @Controller('email')
@@ -18,10 +27,9 @@ export class EmailController {
     }
 
     //For Order Status Changed Emails
-    // @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard)
     @Post('send/orderStatus')
     async sendOrderStatusEmail(@Body() payload: OrderStatusChangeEmailDTO) {
-        // console.log(payload);
         return this.emailClient.send({ cmd: 'SEND_EMAIL_ORDER_STATUS' }, payload);
     }
 
@@ -29,22 +37,44 @@ export class EmailController {
     @UseGuards(JwtGuard)
     @Post('send/customerWarning')
     async sendCustomerWarningEmail(@Body() payload: CustomerWarningEmailDTO) {
-        // console.log(payload);
         return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_WARNING' }, payload);
     }
 
     @UseGuards(JwtGuard)
     @Post('send/customerTermination')
     async sendCustomerTerminationEmail(@Body() payload: CustomerTerminationEmailDTO) {
-        // console.log(payload);
         return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_TERMINATION' }, payload);
     }
 
     @UseGuards(JwtGuard)
     @Post('send/supplierTermination')
     async sendSupplierTerminationEmail(@Body() payload: SupplierTerminationEmailDTO) {
-        // console.log(payload);
         return this.emailClient.send({ cmd: 'SEND_EMAIL_SUPPLIER_TERMINATION' }, payload);
+    }
+
+    //For Customer Invoices
+    @UseGuards(JwtGuard)
+    @Post('send/customerInvoice')
+    @UseInterceptors(FileInterceptor('pdfFilePath'))
+    async sendCustomerInvoiceEmail(
+        @UploadedFile() file: Express.Multer.File,
+        @Body() payload: CustomerInvoiceEmailDTO
+    ) {
+        console.log("api:", payload);
+        console.log("api:", file);
+        const updatedPayload = {
+            ...payload,
+            pdfFilePath: file.path // or file.buffer depending on how you handle files
+        };
+        console.log("api:", updatedPayload);
+        return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_INVOICE' }, updatedPayload);
+    }
+
+    //For Supplier Credentials
+    @UseGuards(JwtGuard)
+    @Post('send/supplierCredentials')
+    async sendSupplierCredentials(@Body() payload: SupplierCredentialsEmailDTO) {
+        return this.emailClient.send({ cmd: 'SEND_EMAIL_SUPPLIER_CREDENTIALS' }, payload);
     }
 }
 

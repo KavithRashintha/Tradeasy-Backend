@@ -32,3 +32,18 @@ export class SupplierTerminationEmailDTO {
     readonly emailBody?: string;
     readonly receiverEmail?: string;
 }
+
+export class CustomerInvoiceEmailDTO {
+    readonly receiverName?: string;
+    readonly emailSubject?: string;
+    readonly emailBody?: string;
+    readonly receiverEmail?: string;
+    readonly pdfFilePath?: any;
+}
+
+export class SupplierCredentialsEmailDTO {
+    readonly receiverName?: string;
+    readonly emailSubject?: string;
+    readonly emailBody?: string;
+    readonly receiverEmail?: string;
+}

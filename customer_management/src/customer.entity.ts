@@ -5,21 +5,6 @@ export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column()
-  // customerName: string;
-
-  // @Column()
-  // customerEmail: string;
-
-  // @Column()
-  // customerAddress: string;
-
-  // @Column()
-  // customerContact: string;
-
-  // @Column()
-  // customerPassword: string;
-
     @Column({unique:true, nullable: false})
     username: string;
 

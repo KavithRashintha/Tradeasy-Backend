@@ -67,11 +67,41 @@ async getCheckoutSession(sessionId: string) {
     console.error('Error retrieving session details:', error);
     throw new Error('Could not retrieve session details');
   }
-}
+  }
+
+  // async saveCustomerPaymentReceipt(paymentDetails: any): Promise<any> {
+  //   console.log(paymentDetails);
+  //   try {
+  //       const paymentIntent = await this.stripe.paymentIntents.create({
+  //           amount: paymentDetails.amount,
+  //           currency: 'lkr',
+  //           payment_method: paymentDetails.paymentId,
+  //           confirm: true,
+  //       });
+  
+  //       if (paymentIntent.status === 'succeeded') {
+  //         await this.emailService.sendReceipt(
+  //           paymentDetails.email,
+  //           'Payment Receipt',
+  //           `Thank you for your purchase! Your payment ID is ${paymentIntent.id}.`
+  //         );
+  //         console.log("Mail sent");
+  //       }
+        
+  //       return paymentIntent;
+  //   } catch (error) {
+  //       console.error('Error creating payment intent:', error); // Log detailed error
+  //       throw new Error('Payment failed');
+  //   }
+  // }
+  
 
   async saveCustomerPayments(paymentData: CustomerPayments): Promise<any> {
     console.log(paymentData)
-    const newPayment = this.customerPaymentManagement.create(paymentData);
+    const newPayment = this.customerPaymentManagement.create({
+      ...paymentData,
+      date: new Date()
+    });
     return await this.customerPaymentManagement.save(newPayment);
   }
 

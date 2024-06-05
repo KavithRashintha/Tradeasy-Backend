@@ -20,6 +20,10 @@ export class CustomerPayments {
 
     @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
     totalAmount: number;
+
+    @Column ()
+    date: Date;
+    
 }
 
 
