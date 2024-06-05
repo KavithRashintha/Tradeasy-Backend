@@ -98,7 +98,10 @@ async getCheckoutSession(sessionId: string) {
 
   async saveCustomerPayments(paymentData: CustomerPayments): Promise<any> {
     console.log(paymentData)
-    const newPayment = this.customerPaymentManagement.create(paymentData);
+    const newPayment = this.customerPaymentManagement.create({
+      ...paymentData,
+      date: new Date()
+    });
     return await this.customerPaymentManagement.save(newPayment);
   }
 
