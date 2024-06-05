@@ -148,6 +148,7 @@ export class AppService {
   }
 
   async sendSupplierCredentials(user: SupplierCredentialsEmailDTO): Promise<{ success: boolean; message: string }> {
+    console.log(user);
     await this.mailerService.sendMail({
       to: user.receiverEmail,
       subject: user.emailSubject,

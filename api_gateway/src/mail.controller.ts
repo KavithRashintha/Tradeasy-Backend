@@ -64,7 +64,7 @@ export class EmailController {
         console.log("api:", file);
         const updatedPayload = {
             ...payload,
-            pdfFilePath: file.buffer // or file.buffer depending on how you handle files
+            pdfFilePath: file.path // or file.buffer depending on how you handle files
         };
         console.log("api:", updatedPayload);
         return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_INVOICE' }, updatedPayload);
