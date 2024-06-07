@@ -29,6 +29,7 @@ export class CustomerPayments {
 
 @Entity()
 export class SupplierPayments {
+    
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -46,4 +47,7 @@ export class SupplierPayments {
 
     @Column({ nullable: false })
     billAmount: number;
+
+    @Column({ default: '' })
+    receipt: string;
 }

@@ -4,5 +4,5 @@ export class SupplierPaymentDTO{
     readonly date: string;
     readonly itemsPurchased: string;
     readonly billAmount: number;
-    receipt: any;
+    receipt: string;
 }

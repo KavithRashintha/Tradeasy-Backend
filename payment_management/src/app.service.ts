@@ -133,13 +133,13 @@ async getCheckoutSession(sessionId: string) {
   // }
 
   async createSupplierPayment(supplierPaymentDTO: SupplierPaymentDTO): Promise<SupplierPayments> {
-    // Check if the file data exists
-    if (!supplierPaymentDTO.receipt || !supplierPaymentDTO.receipt.buffer) {
-      throw new Error('File data is missing');
-    }
+    // // Check if the file data exists
+    // if (!supplierPaymentDTO.receipt || !supplierPaymentDTO.receipt.buffer) {
+    //   throw new Error('File data is missing');
+    // }
 
-    const filePath = await this.saveFile(supplierPaymentDTO.receipt);
-    supplierPaymentDTO.receipt = filePath;
+    // const filePath = await this.saveFile(supplierPaymentDTO.receipt);
+    // supplierPaymentDTO.receipt = filePath;
 
     const newPayment = this.supplierPaymentManagement.create(supplierPaymentDTO);
     return await this.supplierPaymentManagement.save(newPayment);

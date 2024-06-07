@@ -32,4 +32,5 @@ export class SupplierPaymentDTO{
     readonly date: string;
     readonly itemsPurchased: string[];
     readonly billAmount: number;
+    readonly receipt: string;
 }
