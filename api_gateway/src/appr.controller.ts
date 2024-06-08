@@ -121,37 +121,37 @@ export class ApprController {
   //====================================================REFUND_MANAGEMENT==================================================
 
   //----------------------------------------------------CUSTOMER_REFUND_MANAGEMENT-----------------------------------------
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Post('refund/customerRefund/create')
   async createCustomerRefund(@Body() customerRefundDto: CustomerRefundDTO) {
     return this.refundClient.send({ cmd: 'CREATE_CUSTOMER_REFUND' }, customerRefundDto)
   }
 
-  @UseGuards(JwtGuard)
+ // @UseGuards(JwtGuard)
   @Get('refund/customerRefund/get/:id')
   async getCustomerRefund(@Param('id') id: number) {
     return this.refundClient.send({ cmd: 'GET_CUSTOMER_REFUND' }, id);
   }
 
-  @UseGuards(JwtGuard)
+ // @UseGuards(JwtGuard)
   @Get('refund/customerRefund/getAll')
   async getAllCustomerRefunds() {
     return this.refundClient.send({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' }, {})
   }
 
-  @UseGuards(JwtGuard)
+ // @UseGuards(JwtGuard)
   @Delete('refund/customerRefund/delete/:id')
   async deleteCustomerRefund(@Param('id') id: number) {
     return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
   }
 
-  @UseGuards(JwtGuard)
+ // @UseGuards(JwtGuard)
   @Get('refund/customerRefund/getRefundByStatus')
   async getCustomerRefundByStatus(@Query('refundStatus') refundStatus:string){
     return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'}, refundStatus);
   }
 
-  @UseGuards(JwtGuard)
+//@UseGuards(JwtGuard)
   @Get('refund/customerRefund/test')
   async runTestFunction(){
     return await this.refundClient.send({cmd: 'CALLING_TEST_FUNCTION'}, {});
