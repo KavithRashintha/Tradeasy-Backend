@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CustomerRefund } from './refunds.entity';
 import { Repository } from 'typeorm';
 import { CustomerRefundDTO } from './dto/customerRefundDTO';
+import { updateRefundStatusDTO } from './dto/updateRefundStatusDTO';
 
 @Injectable()
 export class AppService {
@@ -43,5 +44,14 @@ export class AppService {
 
   async getCustomerRefundCount(){
     return await this.refundRepository.count();
+  }
+
+  async updateRefundStatus(UpdateRefundStatusDto: updateRefundStatusDTO): Promise<CustomerRefund> {
+    const refund = await this.refundRepository.findOneById(UpdateRefundStatusDto.id);
+    if (!refund) {
+      throw new Error('Refund not found');
+    }
+    refund.status = UpdateRefundStatusDto.status;
+    return this.refundRepository.save(refund);
   }
 }

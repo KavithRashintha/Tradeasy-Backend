@@ -46,5 +46,10 @@ export class AppController {
   @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_COUNT'})
   async getCustomerRefundCount(){
     return await this.refundManagement.getCustomerRefundCount();
-  } 
+  }
+  
+  @MessagePattern({cmd: 'UPDATE_REFUND_STATUS'})
+  async updateRefundStatus(@Payload() updateRefundStatusDto: any): Promise<CustomerRefund> {
+    return await this.refundManagement.updateRefundStatus(updateRefundStatusDto);
+  }
 }
