@@ -2,6 +2,7 @@ import { Controller, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
 import { CustomerRefundDTO } from './dto/customerRefundDTO';
+import { updateRefundStatusDTO } from './dto/updateRefundStatusDTO';
 import { CustomerRefund } from './refunds.entity';
 
 @Controller()

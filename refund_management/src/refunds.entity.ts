@@ -29,6 +29,6 @@ export class CustomerRefund {
   @CreateDateColumn({ type: 'date' })
   date: Date;        
 
-  @Column()
+  @Column({default: 'pending'})
   status: string;
 }
