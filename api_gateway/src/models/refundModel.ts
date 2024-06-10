@@ -3,11 +3,16 @@ export class CustomerRefundDTO{
     readonly customerName: string;
     readonly contact: string;
     readonly item: string;
-    readonly quantity: number;
+    readonly quantity: string;
     readonly reason: string;
-    readonly totalPrice: number;
+    readonly totalPrice: string;
     readonly status: string
 }
+
+export class updateRefundStatusDTO {
+    readonly id: number;
+    readonly status: string;
+  }
 
 
 export class InventoryRefundDTO{

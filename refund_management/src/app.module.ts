@@ -19,12 +19,12 @@ import {ClientsModule, Transport} from "@nestjs/microservices";
     ]),
 
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT, 10),
-      username: process.env.POSTGRES_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
-      database: 'Refund',
+      type: "postgres",
+      host: "localhost",
+      port: 5432,
+      username: "postgres",
+      password: "1217",
+      database: "refund_mgt",
       entities: [CustomerRefund],
       synchronize: true,
     }),

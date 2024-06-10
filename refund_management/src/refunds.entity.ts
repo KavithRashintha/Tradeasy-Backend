@@ -18,13 +18,13 @@ export class CustomerRefund {
   item: string;
 
   @Column()
-  quantity: number;
+  quantity: string;
 
   @Column()
   reason: string;
 
   @Column()
-  totalPrice: number;
+  totalPrice: string;
 
   @CreateDateColumn({ type: 'date' })
   date: Date;        
