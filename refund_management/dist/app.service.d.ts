@@ -9,4 +9,5 @@ export declare class AppService {
     getAllCustomerRefunds(): Promise<CustomerRefund[]>;
     deleteCustomerRefund(id: number): Promise<"Not Deleted" | "Successfully Deleted">;
     getCustomerRefundByStatus(refundStatus: string): Promise<CustomerRefund[]>;
+    getCustomerRefundCount(): Promise<number>;
 }

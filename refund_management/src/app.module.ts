@@ -24,7 +24,7 @@ import {ClientsModule, Transport} from "@nestjs/microservices";
       port: 5432,
       username: "postgres",
       password: "1217",
-      database: "refund",
+      database: "refund_mgt",
       entities: [CustomerRefund],
       synchronize: true,
     }),

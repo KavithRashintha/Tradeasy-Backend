@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn,CreateDateColumn} from 'typeorm';
 
 @Entity()
 export class CustomerRefund {
@@ -18,16 +18,16 @@ export class CustomerRefund {
   item: string;
 
   @Column()
-  quantity: number;
+  quantity: string;
 
   @Column()
   reason: string;
 
   @Column()
-  totalPrice: number;
+  totalPrice: string;
 
-  @Column()
-  date: string;
+  @CreateDateColumn({ type: 'date' })
+  date: Date;   
 
   @Column()
   status: string;

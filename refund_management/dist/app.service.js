@@ -46,6 +46,9 @@ let AppService = class AppService {
             .where('customer_refund.status = :refundStatus', { refundStatus })
             .getMany();
     }
+    async getCustomerRefundCount() {
+        return await this.refundRepository.count();
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

@@ -36,7 +36,7 @@ __decorate([
 ], CustomerRefund.prototype, "item", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], CustomerRefund.prototype, "quantity", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -44,11 +44,11 @@ __decorate([
 ], CustomerRefund.prototype, "reason", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], CustomerRefund.prototype, "totalPrice", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    (0, typeorm_1.CreateDateColumn)({ type: 'date' }),
+    __metadata("design:type", Date)
 ], CustomerRefund.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

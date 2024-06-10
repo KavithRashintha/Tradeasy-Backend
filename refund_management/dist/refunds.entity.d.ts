@@ -4,9 +4,9 @@ export declare class CustomerRefund {
     customerName: string;
     contact: string;
     item: string;
-    quantity: number;
+    quantity: string;
     reason: string;
-    totalPrice: number;
-    date: string;
+    totalPrice: string;
+    date: Date;
     status: string;
 }
