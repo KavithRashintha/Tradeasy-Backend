@@ -3,9 +3,9 @@ export class CustomerRefundDTO {
   readonly customerName: string;
   readonly contact: string;
   readonly item: string;
-  readonly quantity: string;
+  readonly quantity: number;
   readonly reason: string;
-  readonly totalPrice: string;
+  readonly totalPrice: number;
   readonly date: Date;
   readonly status: string
 }
