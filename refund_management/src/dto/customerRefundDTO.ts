@@ -6,6 +6,6 @@ export class CustomerRefundDTO {
   readonly quantity: string;
   readonly reason: string;
   readonly totalPrice: string;
-  readonly date: Date;
+  readonly createdDate: Date;
   readonly status: string
 }

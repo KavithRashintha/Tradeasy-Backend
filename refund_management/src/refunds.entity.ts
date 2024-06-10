@@ -27,7 +27,8 @@ export class CustomerRefund {
   totalPrice: string;
 
   @CreateDateColumn({ type: 'date' })
-  date: Date;        
+  createdDate: Date;  
+     
 
   @Column({default: 'pending'})
   status: string;
