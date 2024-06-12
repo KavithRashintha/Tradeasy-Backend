@@ -12,6 +12,9 @@ export class CustomerRefund {
   customerName: string;
 
   @Column()
+  customerId: string;
+
+  @Column()
   contact: string;
 
   @Column()
