@@ -54,4 +54,8 @@ export class AppController {
     return await this.refundManagement.updateRefundStatus(updateRefundStatusDto);
   }
 
+  @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID'})
+  async getCustomerRefundsByCustomerId(@Payload() customerId: string): Promise<CustomerRefund[]> {
+    return await this.refundManagement.getCustomerRefundsByCustomerId(customerId);
+  }
 }

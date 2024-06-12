@@ -227,6 +227,12 @@ export class ApprController {
     return this.refundClient.send({ cmd: 'UPDATE_REFUND_STATUS' }, updateRefundStatusDto);
   }
 
+  //@UseGuards(JwtGuard)
+  @Get('refund/customerRefund/getByCustomerId')
+  async getCustomerRefundsByCustomerId(@Query('customerId') customerId: string) {
+    return this.refundClient.send({ cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID' }, customerId);
+  }
+
   
 
  //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------

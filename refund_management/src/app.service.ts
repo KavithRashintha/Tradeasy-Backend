@@ -55,5 +55,8 @@ export class AppService {
     return this.refundRepository.save(refund);
   }
 
+  async getCustomerRefundsByCustomerId(customerId: string): Promise<CustomerRefund[]> {
+    return await this.refundRepository.find({ where: { customerId } });
+  }
   
 }
