@@ -5,7 +5,7 @@ export class CustomerRefund {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({default: 0})
   orderId: number;
 
   @Column()
