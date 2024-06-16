@@ -38,5 +38,10 @@ export class AppController {
       return this.purchasedOrder.getCurrentMonthName();
     } 
 
+    @MessagePattern({cmd: 'SEARCH_ALL_ORDERS'})
+    async searchAllOrders(@Payload() query: Query): Promise<PurchaseOrderDTO[]>{
+      return await this.purchasedOrder.searchAllOrders(query);
+    }
+
     
 }
