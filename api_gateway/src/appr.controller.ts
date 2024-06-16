@@ -258,7 +258,7 @@ async getInventoryRefundById(@Param('id') id:number){
 //@UseGuards(JwtGuard)
 @Delete('refund/inventoryRefund/delete/:id')
 async deleteInventoryRefund(@Param('id') id:number){  
-  return this.inventoryRefund.send({cmd:'DELETE_CUSTOMER_REFUND'},id)
+  return this.inventoryRefund.send({cmd:'DELETE_INVENTORY_REFUND'},id)
 }
 
 //@UseGuards(JwtGuard)
@@ -266,8 +266,8 @@ async deleteInventoryRefund(@Param('id') id:number){
   async getAllApprovedRefunds() {
       return this.inventoryRefund.send({ cmd: 'GET_ALL_APPROVED_REFUNDS' }, {});
   }
-
-
+  
+  
 
 
 
@@ -335,6 +335,11 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.inventoryOrder.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})
   }
 
+  //@UseGuards(JwtGuard)
+  @Get('purchaseOrder/suppliersList')
+  async getSuppliersList() {
+      return this.inventoryRefund.send({ cmd: 'GET_SUPPLIERS_LIST' }, {});
+  }
   
 
 
