@@ -338,7 +338,13 @@ async deleteInventoryRefund(@Param('id') id:number){
   //@UseGuards(JwtGuard)
   @Get('purchaseOrder/suppliersList')
   async getSuppliersList() {
-      return this.inventoryRefund.send({ cmd: 'GET_SUPPLIERS_LIST' }, {});
+      return this.inventoryOrder.send({ cmd: 'GET_SUPPLIERS_LIST' }, {});
+  }
+
+  //@UseGuards(JwtGuard)
+  @Get('purchaseOrder/itemsList/:supplierId')
+  async getItemsList(@Param('supplierId') supplierId: string) {
+    return this.inventoryOrder.send({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' }, supplierId);
   }
   
 

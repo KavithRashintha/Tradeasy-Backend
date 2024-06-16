@@ -48,4 +48,9 @@ export class AppController {
         return this.purchasedOrder.getSuppliersList();
     }
     
+    @MessagePattern({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' })
+    async getItemsList(@Payload() supplierId: string): Promise<string[]> {
+      return this.purchasedOrder.getItemsList(supplierId);
+    }
+    
 }

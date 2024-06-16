@@ -84,7 +84,7 @@ export class AppService {
     return suppliers;
   }
 
-  async getDistinctItemsBySupplier(supplierId: string): Promise<string[]> {
+  async getItemsList(supplierId: string): Promise<string[]> {
     const result = await this.purchaseOrder
       .createQueryBuilder('purchaseOrder')
       .select('DISTINCT purchaseOrder.items', 'items')
