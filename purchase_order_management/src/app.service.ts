@@ -3,6 +3,8 @@ import { PurchaseOrder } from './purchaseorder.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PurchaseOrderDTO } from './dto/purchaseOrderDTO';
+import { Query } from 'express-serve-static-core';
+import { ILike } from 'typeorm';
 
 @Injectable()
 export class AppService {
