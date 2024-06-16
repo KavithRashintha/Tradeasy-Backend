@@ -329,7 +329,7 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.inventoryOrder.send({cmd: 'GET_CURRENT_MONTH_NAME'}, {});
   }
 
-  /@UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('purchaseOrder/search')
   async searchPurchaseOrders(@Query() query: ExpressQuery) {
     return this.inventoryOrder.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})

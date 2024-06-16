@@ -1,5 +1,6 @@
 export class PurchaseOrderDTO{
-    readonly supplier:string;
+    readonly supplierId:string;
+    readonly supplierName:string;
     readonly Address:string;
     readonly mail:string;
     readonly contact_number:string;

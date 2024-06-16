@@ -65,7 +65,7 @@ export class AppService {
     console.log('Received query:', query);
     const keyword = (query.query as { keyword?: string }).keyword;
     try {
-      const filteredorders = await this.purchaseOrder.find({ where: { supplier: ILike(`%${keyword}%`) } });
+      const filteredorders = await this.purchaseOrder.find({ where: { supplierName: ILike(`%${keyword}%`) } });
       console.log('Filtered orders:', filteredorders);
       return filteredorders;
     } catch (error) {

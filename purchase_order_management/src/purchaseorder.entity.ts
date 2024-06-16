@@ -6,7 +6,10 @@ export class PurchaseOrder {
     id: number;
 
     @Column()
-    supplier:string;
+    supplierId:string;
+
+    @Column()
+    supplierName:string;
 
     @Column()
     Address:string;
