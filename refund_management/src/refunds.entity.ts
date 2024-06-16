@@ -1,15 +1,18 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn,CreateDateColumn } from 'typeorm';
 
 @Entity()
 export class CustomerRefund {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({default: 0})
   orderId: number;
 
   @Column()
   customerName: string;
+
+  @Column()
+  customerId: string;
 
   @Column()
   contact: string;
@@ -18,17 +21,18 @@ export class CustomerRefund {
   item: string;
 
   @Column()
-  quantity: number;
+  quantity: string;
 
   @Column()
   reason: string;
 
   @Column()
-  totalPrice: number;
+  totalPrice: string;
 
-  @Column()
-  date: string;
+  @CreateDateColumn({ type: 'date' })
+  createdDate: Date;  
+     
 
-  @Column()
+  @Column({default: 'pending'})
   status: string;
 }

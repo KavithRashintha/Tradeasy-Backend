@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuar
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
-import { CustomerRefundDTO, InventoryRefundDTO } from "./models/refundModel";
+import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO } from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
@@ -179,47 +179,61 @@ export class ApprController {
   //====================================================REFUND_MANAGEMENT==================================================
 
   //----------------------------------------------------CUSTOMER_REFUND_MANAGEMENT-----------------------------------------
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Post('refund/customerRefund/create')
   async createCustomerRefund(@Body() customerRefundDto: CustomerRefundDTO) {
     return this.refundClient.send({ cmd: 'CREATE_CUSTOMER_REFUND' }, customerRefundDto)
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('refund/customerRefund/get/:id')
   async getCustomerRefund(@Param('id') id: number) {
     return this.refundClient.send({ cmd: 'GET_CUSTOMER_REFUND' }, id);
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('refund/customerRefund/getAll')
   async getAllCustomerRefunds() {
     return this.refundClient.send({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' }, {})
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Delete('refund/customerRefund/delete/:id')
   async deleteCustomerRefund(@Param('id') id: number) {
     return this.refundClient.send({ cmd: 'DELETE_CUSTOMER_REFUND' }, id);
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('refund/customerRefund/getRefundByStatus')
   async getCustomerRefundByStatus(@Query('refundStatus') refundStatus:string){
     return this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY'}, refundStatus);
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('refund/customerRefund/test')
   async runTestFunction(){
     return await this.refundClient.send({cmd: 'CALLING_TEST_FUNCTION'}, {});
   }
 
-  @UseGuards(JwtGuard)
+ // @UseGuards(JwtGuard)
   @Get('refund/customerRefundCount')
   async getCustomerRefundCount(){
     return await this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_COUNT'}, {});
   }
+
+  //@UseGuards(JwtGuard)
+  @Put('refund/customerRefund/updateStatus')
+  async updateRefundStatus(@Body() updateRefundStatusDto: any) {
+    return this.refundClient.send({ cmd: 'UPDATE_REFUND_STATUS' }, updateRefundStatusDto);
+  }
+
+  //@UseGuards(JwtGuard)
+  @Get('refund/customerRefund/getByCustomerId')
+  async getCustomerRefundsByCustomerId(@Query('customerId') customerId: string) {
+    return this.refundClient.send({ cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID' }, customerId);
+  }
+
+  
 
  //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
  @UseGuards(JwtGuard)

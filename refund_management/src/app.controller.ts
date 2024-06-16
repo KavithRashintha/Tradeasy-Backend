@@ -2,6 +2,7 @@ import { Controller, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
 import { CustomerRefundDTO } from './dto/customerRefundDTO';
+import { updateRefundStatusDTO } from './dto/updateRefundStatusDTO';
 import { CustomerRefund } from './refunds.entity';
 
 @Controller()
@@ -46,5 +47,15 @@ export class AppController {
   @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_COUNT'})
   async getCustomerRefundCount(){
     return await this.refundManagement.getCustomerRefundCount();
-  } 
+  }
+  
+  @MessagePattern({cmd: 'UPDATE_REFUND_STATUS'})
+  async updateRefundStatus(@Payload() updateRefundStatusDto: any): Promise<CustomerRefund> {
+    return await this.refundManagement.updateRefundStatus(updateRefundStatusDto);
+  }
+
+  @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID'})
+  async getCustomerRefundsByCustomerId(@Payload() customerId: string): Promise<CustomerRefund[]> {
+    return await this.refundManagement.getCustomerRefundsByCustomerId(customerId);
+  }
 }
