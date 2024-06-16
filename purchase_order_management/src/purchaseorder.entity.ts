@@ -6,7 +6,10 @@ export class PurchaseOrder {
     id: number;
 
     @Column()
-    supplier:string;
+    supplierId:string;
+
+    @Column()
+    supplierName:string;
 
     @Column()
     Address:string;
@@ -23,7 +26,7 @@ export class PurchaseOrder {
     @Column({default: 'pending'})
     status:string;  
     
-    @Column({ type: 'date' })
+    @CreateDateColumn({ type: 'date' })
     createdDate: Date;    
 
 }

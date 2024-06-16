@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PurchaseOrderDTO } from './dto/purchaseOrderDTO';
-
+import { Query } from 'express-serve-static-core';
 
 
 @Controller()
@@ -37,6 +37,11 @@ export class AppController {
     getCurrentMonthName(): string {
       return this.purchasedOrder.getCurrentMonthName();
     } 
+
+    @MessagePattern({cmd: 'SEARCH_ALL_ORDERS'})
+    async searchAllOrders(@Payload() query: Query): Promise<PurchaseOrderDTO[]>{
+      return await this.purchasedOrder.searchAllOrders(query);
+    }
 
     
 }
