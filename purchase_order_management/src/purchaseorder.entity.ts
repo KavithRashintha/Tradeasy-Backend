@@ -26,7 +26,7 @@ export class PurchaseOrder {
     @Column({default: 'pending'})
     status:string;  
     
-    @Column({ type: 'date' })
+    @CreateDateColumn({ type: 'date' })
     createdDate: Date;    
 
 }
