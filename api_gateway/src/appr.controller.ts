@@ -350,13 +350,13 @@ async deleteInventoryRefund(@Param('id') id:number){
 
 
   //===================================SUPPLIER_MANAGEMENT===========================================================================
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Post('supplier/create')
   async createSupplier(@Body() payload: RegisterSupplierDTO) {
     return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('supplier/getSupplier/:id')
   async getSupplier(@Param('id') id: any) {
     return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id)
