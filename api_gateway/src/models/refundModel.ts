@@ -18,7 +18,8 @@ export class updateRefundStatusDTO {
 
 
 export class InventoryRefundDTO{
-    readonly supplier:string;
+    readonly supplierName:string;
+    readonly supplierId:string;
     readonly item:string;
     readonly quantity:string;
     readonly price:string;

@@ -74,8 +74,25 @@ export class AppService {
     }
   }
 
+  async getSuppliersList(): Promise<{ id: string, name: string }[]> {
+    const suppliers = await this.purchaseOrder
+      .createQueryBuilder('inventory_refund')
+      .select('inventory_refund.supplierId', 'id')
+      .addSelect('inventory_refund.supplierName', 'name')
+      .distinct(true)
+      .getRawMany();
+    return suppliers;
+  }
 
+  async getItemsList(supplierId: string): Promise<string[]> {
+    const result = await this.purchaseOrder
+      .createQueryBuilder('purchaseOrder')
+      .select('DISTINCT purchaseOrder.items', 'items')
+      .where('purchaseOrder.supplierId = :supplierId', { supplierId })
+      .getRawMany();
 
+    return result.map(item => item.items);
+  }
 
 
 

@@ -42,6 +42,15 @@ export class AppController {
     async searchAllOrders(@Payload() query: Query): Promise<PurchaseOrderDTO[]>{
       return await this.purchasedOrder.searchAllOrders(query);
     }
-
+  
+    @MessagePattern({cmd: 'GET_SUPPLIERS_LIST'})
+    async getSuppliersList(): Promise<{ id: string, name: string }[]> {
+        return this.purchasedOrder.getSuppliersList();
+    }
+    
+    @MessagePattern({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' })
+    async getItemsList(@Payload() supplierId: string): Promise<string[]> {
+      return this.purchasedOrder.getItemsList(supplierId);
+    }
     
 }

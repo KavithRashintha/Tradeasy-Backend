@@ -6,8 +6,11 @@ export class InventoryRefund {
   @PrimaryGeneratedColumn()
      inventory_id: number;
 
+  @Column()
+       supplierId: string;   
+
   @Column() 
-     supplier: string;
+     supplierName: string;
 
   @Column() 
      item: string;
