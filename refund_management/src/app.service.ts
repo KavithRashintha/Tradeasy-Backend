@@ -4,6 +4,7 @@ import { CustomerRefund } from './refunds.entity';
 import { Repository } from 'typeorm';
 import { CustomerRefundDTO } from './dto/customerRefundDTO';
 import { updateRefundStatusDTO } from './dto/updateRefundStatusDTO';
+import { SubmitRefundDenialDto } from './dto/submitRefundDenialDTO';
 
 @Injectable()
 export class AppService {
@@ -59,4 +60,20 @@ export class AppService {
     return await this.refundRepository.find({ where: { customerId } });
   }
   
+  async submitRefundDenial(id: number, denialReason: string): Promise<CustomerRefund> {
+    console.log('ID:', id);
+    console.log('Denial Reason:', denialReason);
+
+    const refundRequest = await this.refundRepository.findOneBy({ id });
+    if (!refundRequest) {
+      throw new Error('Refund request not found');
+    }
+    refundRequest.denialReason = denialReason;
+    refundRequest.status = 'rejected'; // Update the status to rejected
+    return await this.refundRepository.save(refundRequest);
+  }
+
 }
+
+
+

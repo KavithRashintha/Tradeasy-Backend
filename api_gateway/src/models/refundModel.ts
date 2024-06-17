@@ -16,6 +16,15 @@ export class updateRefundStatusDTO {
     readonly status: string;
   }
 
+ 
+
+export class SubmitRefundDenialDto {
+   
+    readonly id: number;
+    readonly  denialReason: string;
+}
+
+
 
 export class InventoryRefundDTO{
     readonly supplierName:string;
