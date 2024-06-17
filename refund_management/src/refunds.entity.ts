@@ -35,4 +35,7 @@ export class CustomerRefund {
 
   @Column({default: 'pending'})
   status: string;
+
+  @Column({ nullable: true })
+    denialReason: string;
 }
