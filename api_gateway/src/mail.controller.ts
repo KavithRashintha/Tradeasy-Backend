@@ -8,7 +8,8 @@ import {GeneralEmailDTO,
         CustomerTerminationEmailDTO, 
         SupplierTerminationEmailDTO, 
         CustomerInvoiceEmailDTO,
-        SupplierCredentialsEmailDTO
+        SupplierCredentialsEmailDTO,
+        PurchaseOrderStatusEmailDTO
     } from "./models/emailModel";
 import {JwtGuard} from './guards/jwt.guard';
 
@@ -75,6 +76,13 @@ export class EmailController {
     @Post('send/supplierCredentials')
     async sendSupplierCredentials(@Body() payload: SupplierCredentialsEmailDTO) {
         return this.emailClient.send({ cmd: 'SEND_EMAIL_SUPPLIER_CREDENTIALS' }, payload);
+    }
+
+    //For Purchase Order Status Update
+    @UseGuards(JwtGuard)
+    @Post('send/purchaseOrderStatus')
+    async sendPurchaseOrderStatus(@Body() payload: PurchaseOrderStatusEmailDTO) {
+        return this.emailClient.send({ cmd: 'SEND_PURCHASE_ORDER_STATUS' }, payload);
     }
 }
 

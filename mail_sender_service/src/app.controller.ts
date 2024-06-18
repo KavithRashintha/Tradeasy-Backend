@@ -7,7 +7,8 @@ import {GeneralEmailDTO,
         CustomerTerminationEmailDTO, 
         SupplierTerminationEmailDTO,
         CustomerInvoiceEmailDTO,
-        SupplierCredentialsEmailDTO
+        SupplierCredentialsEmailDTO,
+        PurchaseOrderStatusEmailDTO
       } from './DTO/EmailDTO';
 
 @Controller()
@@ -53,5 +54,10 @@ export class AppController {
   @MessagePattern({ cmd: 'SEND_EMAIL_SUPPLIER_CREDENTIALS'})
   async sendSupplierCredentials(@Payload() supplierCredentialsEmailDTO: SupplierCredentialsEmailDTO) {
     return await this.emailSenderService.sendSupplierCredentials(supplierCredentialsEmailDTO);
+  }
+
+  @MessagePattern({ cmd: 'SEND_PURCHASE_ORDER_STATUS'})
+  async sendPurchaseOrderStatus(@Payload() purchaseOrderStatusEmailDTO: PurchaseOrderStatusEmailDTO) {
+    return await this.emailSenderService.sendPurchaseOrderStatus(purchaseOrderStatusEmailDTO);
   }
 }

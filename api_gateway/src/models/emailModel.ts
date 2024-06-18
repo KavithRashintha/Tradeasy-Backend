@@ -47,3 +47,10 @@ export class SupplierCredentialsEmailDTO {
     readonly emailBody?: string;
     readonly receiverEmail?: string;
 }
+
+export class PurchaseOrderStatusEmailDTO {
+    readonly receiverName?: string;
+    readonly emailSubject?: string;
+    readonly emailBody?: string;
+    readonly receiverEmail?: string;
+}
