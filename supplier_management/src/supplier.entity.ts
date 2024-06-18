@@ -39,3 +39,5 @@ export class Supplier {
   @Column({ type: 'timestamp',  default: () => 'CURRENT_TIMESTAMP' })
   lastLogin: Date;
 }
+
+
