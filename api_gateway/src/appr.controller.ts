@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuar
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
-import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO,SubmitRefundDenialDto} from "./models/refundModel";
+import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO,SubmitRefundDenialDto, UpdateInventoryRefundStatusDTO} from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
@@ -261,6 +261,12 @@ async getInventoryRefundById(@Param('id') id:number){
   return this.inventoryRefund.send({cmd:'GET_INVENTORY_REFUND_BY_ID'},id)
 }
 
+@UseGuards(JwtGuard)
+  @Put('refund/inventoryRefund/update/:id')
+  async updateInventoryRefunds(@Param('id') id: number, @Body() updateInventoryRefundStatusDTO: UpdateInventoryRefundStatusDTO) {
+    return this.inventoryRefund.send({ cmd: 'UPDATE_INVENTORY_REFUND' }, { id, updateInventoryRefundStatusDTO });
+}
+
 //@UseGuards(JwtGuard)
 @Delete('refund/inventoryRefund/delete/:id')
 async deleteInventoryRefund(@Param('id') id:number){  
@@ -275,24 +281,24 @@ async deleteInventoryRefund(@Param('id') id:number){
   
   
 
-   //----------------------------------------------------Inventory_PAYMENT_MANAGEMENT-----------------------------------------
-  @UseGuards(JwtGuard) 
-  @Post('payment/inventoryPayment/create')
-  async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO){
-    return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
-  }
+  //  //----------------------------------------------------Inventory_PAYMENT_MANAGEMENT-----------------------------------------
+  // @UseGuards(JwtGuard) 
+  // @Post('payment/inventoryPayment/create')
+  // async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO){
+  //   return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
+  // }
   
-  @UseGuards(JwtGuard)
-  @Get('payment/inventoryPayment/getAll')
-  async getAllInventoryPayments(){
-    return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
-  }
+  // @UseGuards(JwtGuard)
+  // @Get('payment/inventoryPayment/getAll')
+  // async getAllInventoryPayments(){
+  //   return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
+  // }
 
-  @UseGuards(JwtGuard)
-  @Get('payment/inventoryPayment/get/:id')  
-  async getInventoryPaymentById(@Param('id') id:number){
-    return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
-  }
+  // @UseGuards(JwtGuard)
+  // @Get('payment/inventoryPayment/get/:id')  
+  // async getInventoryPaymentById(@Param('id') id:number){
+  //   return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
+  // }
  
 
   //================================================PURCHASE_ORDER__MANAGEMENT===========================================================================

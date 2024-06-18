@@ -9,3 +9,7 @@ export class InventoryRefundDTO {
     readonly createdDate: Date;
 
 }
+
+export class UpdateInventoryRefundStatusDTO {
+    readonly status: string;
+}

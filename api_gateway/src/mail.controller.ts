@@ -9,7 +9,8 @@ import {GeneralEmailDTO,
         SupplierTerminationEmailDTO, 
         CustomerInvoiceEmailDTO,
         SupplierCredentialsEmailDTO,
-        PurchaseOrderStatusEmailDTO
+        PurchaseOrderStatusEmailDTO,
+        InventoryRefundStatusEmailDTO
     } from "./models/emailModel";
 import {JwtGuard} from './guards/jwt.guard';
 
@@ -83,6 +84,13 @@ export class EmailController {
     @Post('send/purchaseOrderStatus')
     async sendPurchaseOrderStatus(@Body() payload: PurchaseOrderStatusEmailDTO) {
         return this.emailClient.send({ cmd: 'SEND_PURCHASE_ORDER_STATUS' }, payload);
+    }
+
+    //For Inventory Refund Status Update
+    @UseGuards(JwtGuard)
+    @Post('send/pinventoryRefundStatus')
+    async sendInventoryRefundStatus(@Body() payload: InventoryRefundStatusEmailDTO) {
+        return this.emailClient.send({ cmd: 'SEND_INVENTORY_REFUND_STATUS' }, payload);
     }
 }
 

@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { InventoryRefundDTO } from './dto/inventoryRedundDTO';
+import { InventoryRefundDTO, UpdateInventoryRefundStatusDTO } from './dto/inventoryRedundDTO';
 import { InventoryRefund } from './inventory_refunds.entitiy';
 
 
@@ -23,6 +23,12 @@ export class AppController {
   @MessagePattern({ cmd: 'GET_INVENTORY_REFUND_BY_ID' })
   async getInventoryRefundById(@Payload() inventory_id:number): Promise<InventoryRefund>{
     return this.inventoryRefundManagement.getInventoryRefundById(inventory_id);
+  }
+
+  @MessagePattern({cmd: 'UPDATE_INVENTORY_REFUND'})
+  async updateInventoryRefunds(@Payload() data: { id: number, updateInventoryRefundStatusDTO: UpdateInventoryRefundStatusDTO }): Promise<InventoryRefund> {
+    const { id, updateInventoryRefundStatusDTO } = data;
+    return await this.inventoryRefundManagement.updateInventoryRefunds(id, updateInventoryRefundStatusDTO);
   }
 
   @MessagePattern({cmd: 'DELETE_INVENTORY_REFUND'})
