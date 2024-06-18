@@ -8,3 +8,7 @@ export class PurchaseOrderDTO{
     readonly status:string;
     readonly createdDate: Date;
 }
+
+export class UpdatePurchaseOrderDTO{
+    readonly status?:string;
+}

@@ -13,7 +13,7 @@ import { JwtGuard} from './guards/jwt.guard';
 import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
 import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
-import { PurchaseOrderDTO } from './models/purchaseOrderModel';
+import { PurchaseOrderDTO, UpdatePurchaseOrderDTO } from './models/purchaseOrderModel';
 import { In } from 'typeorm';
 import {RegisterAdminDTO, UpdateAdminDTO} from "./models/adminModel";
 
@@ -275,10 +275,7 @@ async deleteInventoryRefund(@Param('id') id:number){
   
   
 
-
-
-
-   //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
+   //----------------------------------------------------Inventory_PAYMENT_MANAGEMENT-----------------------------------------
   @UseGuards(JwtGuard) 
   @Post('payment/inventoryPayment/create')
   async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO){
@@ -315,6 +312,13 @@ async deleteInventoryRefund(@Param('id') id:number){
   @Get('purchaseOrder/get/:id')
   async getPurchaseOrderById(@Param('id') id:number){
     return this.inventoryOrder.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
+  }
+
+  @UseGuards(JwtGuard)
+  @Put('purchaseOrder/update/:id')
+  async updatePurchaseOrder(@Param('id') id: number, @Body() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO) {
+    console.log("api:",updatePurchaseOrderDTO)
+    return this.inventoryClient.send({ cmd: 'UPDATE_PURCHASE_ORDER' }, { id, updatePurchaseOrderDTO });
   }
 
   //@UseGuards(JwtGuard)
@@ -383,7 +387,6 @@ async deleteInventoryRefund(@Param('id') id:number){
   @UseGuards(JwtGuard)
   @Put('supplier/update/:id')
   async updateSupplier(@Param('id') id: number, @Body() updateSupplierDto: UpdateSupplierDTO) {
-    console.log("API - AC");
     return this.supplierClient.send({ cmd: 'UPDATE_SUPPLIER' }, { id, updateSupplierDto });
   }
 

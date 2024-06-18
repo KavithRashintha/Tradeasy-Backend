@@ -6,4 +6,9 @@ export class PurchaseOrderDTO{
     readonly contact_number:string;
     readonly items:string;
     readonly status:string;
+    readonly createdDate: Date;
+}
+
+export class UpdatePurchaseOrderDTO{
+    readonly status?:string;
 }
