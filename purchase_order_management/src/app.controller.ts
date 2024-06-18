@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { PurchaseOrder } from './purchaseorder.entity';
 import { PurchaseOrderDTO, UpdatePurchaseOrderDTO } from './dto/purchaseOrderDTO';
 import { Query } from 'express-serve-static-core';
 
@@ -24,7 +25,7 @@ export class AppController {
     }
 
     @MessagePattern({cmd: 'UPDATE_PURCHASE_ORDER'})
-    async updatePurchaseOrder(@Payload() data: { id: number, updatePurchaseOrderDTO: UpdatePurchaseOrderDTO }): Promise<UpdatePurchaseOrderDTO> {
+    async updatePurchaseOrder(@Payload() data: { id: number, updatePurchaseOrderDTO: UpdatePurchaseOrderDTO }): Promise<PurchaseOrder> {
       console.log("con:",data)
       const { id, updatePurchaseOrderDTO } = data;
       return await this.purchasedOrder.updatePurchaseOrder(id, updatePurchaseOrderDTO);

@@ -318,7 +318,7 @@ async deleteInventoryRefund(@Param('id') id:number){
   @Put('purchaseOrder/update/:id')
   async updatePurchaseOrder(@Param('id') id: number, @Body() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO) {
     console.log("api:",updatePurchaseOrderDTO)
-    return this.inventoryClient.send({ cmd: 'UPDATE_PURCHASE_ORDER' }, { id, updatePurchaseOrderDTO });
+    return this.inventoryOrder.send({ cmd: 'UPDATE_PURCHASE_ORDER' }, { id, updatePurchaseOrderDTO });
   }
 
   //@UseGuards(JwtGuard)
