@@ -17,7 +17,8 @@ export class AppService {
   async createOrders(createOrderDTO: OrderDTO): Promise<Order> {
     const newOrder = this.orderRepository.create({
       ...createOrderDTO,
-      orderDate: new Date()
+      orderDate: new Date(),
+      lastOrderStatusUpdatedDate: new Date() // Set the lastOrderStatusUpdatedDate to the current date when a new order is created
     });
     return await this.orderRepository.save(newOrder);
   }
@@ -32,7 +33,10 @@ export class AppService {
 
   async updateOrder(id: number, updateOrderDto: UpdateOrderDTO): Promise<Order> {
 
-    await this.orderRepository.update(id, updateOrderDto);
+    await this.orderRepository.update(id, {
+      ...updateOrderDto,
+      lastOrderStatusUpdatedDate: new Date()
+    });
     return await this.orderRepository.findOneById(id);
   }
 
