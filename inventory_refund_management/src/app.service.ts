@@ -35,7 +35,7 @@ export class AppService {
 
       async getAllApprovedRefunds(): Promise<InventoryRefund[]> {
         return await this.inventoryRefundManagement.find({
-            where: { status: 'Accepted' }
+            where: { status: 'completed' }
         });
       }
 

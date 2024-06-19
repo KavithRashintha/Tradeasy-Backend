@@ -62,11 +62,10 @@ export class AppController {
     
   }
 
-  
-@MessagePattern({cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID'})
-async getCustomerRefundsByCustomerId(@Payload() customerId: string): Promise<CustomerRefund[]> {
-  return await this.refundManagement.getCustomerRefundsByCustomerId(customerId);
-}
+  @MessagePattern({cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID'})
+  async getCustomerRefundsByCustomerId(@Payload() customerId: string): Promise<CustomerRefund[]> {
+    return await this.refundManagement.getCustomerRefundsByCustomerId(customerId);
+  }
   }
  
   
