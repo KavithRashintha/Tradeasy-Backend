@@ -18,11 +18,7 @@ export class updateRefundStatusDTO {
 
  
 
-export class SubmitRefundDenialDto {
-   
-    readonly id: number;
-    readonly  denialReason: string;
-}
+
 
 
 

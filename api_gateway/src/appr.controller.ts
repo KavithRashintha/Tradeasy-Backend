@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuar
 import { ClientProxy } from '@nestjs/microservices';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
-import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO,SubmitRefundDenialDto} from "./models/refundModel";
+import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO} from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
@@ -223,7 +223,7 @@ export class ApprController {
 
   //@UseGuards(JwtGuard)
   @Put('refund/customerRefund/updateStatus')
-  async updateRefundStatus(@Body() updateRefundStatusDto: any) {
+  async updateRefundStatus(@Body() updateRefundStatusDto: updateRefundStatusDTO) {
     return this.refundClient.send({ cmd: 'UPDATE_REFUND_STATUS' }, updateRefundStatusDto);
   }
 
@@ -234,12 +234,7 @@ export class ApprController {
   }
   
 
-  //@UseGuards(JwtGuard)
-  @Post('refund/customerRefund/submitDenial')
-  async submitRefundDenial(@Body() submitRefundDenialDto: SubmitRefundDenialDto) {
-    return this.refundClient.send({ cmd: 'SUBMIT_REFUND_DENIAL' }, submitRefundDenialDto);
-   
-  }
+ 
   
 
  //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
