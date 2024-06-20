@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {CreateProductReviewDTO, RegisterProductDTO} from "./models/productModel";
+import {CreateProductReviewDTO, ProductQuantityDTO, RegisterProductDTO} from "./models/productModel";
 import {UpdateProductDTO} from "./models/productModel";
 import {JwtGuard} from './guards/jwt.guard';
 
@@ -17,9 +17,15 @@ export class ProductController {
     }
 
     @UseGuards(JwtGuard)
-    @Get('findProduct/:id')
+    @Get(' /:id')
     async findProduct(@Param('id') id: any){
         return this.productClient.send({cmd:'GET_PRODUCT'}, id)
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('getByName/:productName')
+    async getProductByName(@Param('productName') productName: string){
+        return this.productClient.send({cmd: 'GET_PRODUCT_BY_NAME'}, productName);
     }
 
     @UseGuards(JwtGuard)
@@ -32,6 +38,12 @@ export class ProductController {
     @Put('update/:id')
     async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
         return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
+    }
+
+    @UseGuards(JwtGuard)
+    @Put('updateQuantity/:id')
+    async updateProductQuantity(@Param('id') id: number, @Body() productQuantityDto: ProductQuantityDTO){
+        return this.productClient.send({cmd: 'UPDATE_PRODUCT_QUANTITY'}, {id, productQuantityDto});
     }
 
     @UseGuards(JwtGuard)

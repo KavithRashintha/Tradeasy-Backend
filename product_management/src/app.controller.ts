@@ -5,6 +5,7 @@ import {Product, ProductReview} from './product.entity';
 import {ProductDTO} from './DTO/ProductDTO';
 import {UpdateProductDTO} from "./DTO/UpdateProductDTO";
 import {CreateProductReviewDTO} from "./DTO/ProductReviewDTO";
+import {ProductQuantityDTO} from "./DTO/ProductQuantityDTO";
 
 @Controller()
 export class AppController {
@@ -22,6 +23,11 @@ export class AppController {
     return await this.productManagement.findProduct(id);
   }
 
+  @MessagePattern({cmd: 'GET_PRODUCT_BY_NAME'})
+  async getProductByName(@Payload() productName:string): Promise<Product | null> {
+    return await this.productManagement.getProductByName(productName);
+  }
+
   @MessagePattern({cmd: 'GET_ALL_PRODUCTS'})
   async getAllProducts(): Promise<Product[]>{
     return await this.productManagement.getAllProducts();
@@ -31,6 +37,12 @@ export class AppController {
   async updateProduct(@Payload() data: { id: number, updateProductDto: UpdateProductDTO }): Promise<Product> {
     const { id, updateProductDto } = data;
     return await this.productManagement.updateProduct(id, updateProductDto);
+  }
+
+  @MessagePattern({cmd: 'UPDATE_PRODUCT_QUANTITY'})
+  async updateProductQuantity(@Payload() data: {id: number, productQuantityDto:ProductQuantityDTO}): Promise<Product> {
+    const {id, productQuantityDto} = data;
+    return await this.productManagement.updateProductQuantity(id, productQuantityDto);
   }
 
   @MessagePattern({cmd: 'DELETE_PRODUCT'})
