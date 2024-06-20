@@ -5,16 +5,17 @@ import { Repository } from 'typeorm';
 import {ProductDTO} from './DTO/ProductDTO';
 import {UpdateProductDTO} from "./DTO/UpdateProductDTO";
 import {CreateProductReviewDTO} from "./DTO/ProductReviewDTO";
+import {ProductQuantityDTO} from "./DTO/ProductQuantityDTO";
 
 @Injectable()
 export class AppService {
 
   constructor(
-    @InjectRepository(Product)
-    private readonly productRepository: Repository<Product>,
+      @InjectRepository(Product)
+      private readonly productRepository: Repository<Product>,
 
-    @InjectRepository(ProductReview)
-    private readonly productReviewRepository: Repository<ProductReview>,
+      @InjectRepository(ProductReview)
+      private readonly productReviewRepository: Repository<ProductReview>,
   ) {}
 
   async createProducts(createProductDTO: ProductDTO): Promise<Product> {
@@ -32,6 +33,17 @@ export class AppService {
 
   async updateProduct(id: number, updateProductDto: UpdateProductDTO): Promise<Product> {
     await this.productRepository.update(id, updateProductDto);
+    return await this.productRepository.findOneById(id);
+  }
+
+  async updateProductQuantity(id:number, productQuantitytDto:ProductQuantityDTO): Promise<Product>{
+    await this.productRepository
+        .createQueryBuilder()
+        .update(Product)
+        .set({ productQuantity: productQuantitytDto.productQuantity })
+        .where("id = :id", { id })
+        .execute();
+
     return await this.productRepository.findOneById(id);
   }
 
@@ -55,7 +67,20 @@ export class AppService {
         .getRawOne();
 
     return parseInt(result.categoryCount, 10);
-}
+  }
+
+  async getProductByName(productName: string): Promise<Product | null> {
+    const result = await this.productRepository
+        .createQueryBuilder('product')
+        .where('product.productName = :productName', { productName })
+        .getOne();
+
+    if (!result) {
+      return null;
+    }
+
+    return result;
+  }
 
   async createProductsReview(createProductReviewDTO: CreateProductReviewDTO): Promise<ProductReview> {
     const newProductReview = this.productReviewRepository.create(createProductReviewDTO);

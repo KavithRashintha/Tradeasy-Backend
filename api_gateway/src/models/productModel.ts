@@ -23,6 +23,10 @@ export class UpdateProductDTO {
     readonly productSellingPrice?: number;
 }
 
+export class ProductQuantityDTO{
+    readonly productQuantity: number;
+}
+
 export class CreateProductReviewDTO {
     readonly productId: string;
     readonly productReviewerName?: string;
