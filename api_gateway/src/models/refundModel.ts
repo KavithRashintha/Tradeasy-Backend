@@ -30,3 +30,7 @@ export class InventoryRefundDTO{
     readonly price:string;
     readonly reason:string;
 }
+
+export class UpdateInventoryRefundStatusDTO {
+    readonly status: string;
+}

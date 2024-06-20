@@ -54,3 +54,10 @@ export class PurchaseOrderStatusEmailDTO {
     readonly emailBody?: string;
     readonly receiverEmail?: string;
 }
+
+export class InventoryRefundStatusEmailDTO {
+    readonly receiverName?: string;
+    readonly emailSubject?: string;
+    readonly emailBody?: string;
+    readonly receiverEmail?: string;
+}

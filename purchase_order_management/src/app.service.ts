@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PurchaseOrder } from './purchaseorder.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PurchaseOrderDTO } from './dto/purchaseOrderDTO';
+import { PurchaseOrderDTO, UpdatePurchaseOrderDTO } from './dto/purchaseOrderDTO';
 import { Query } from 'express-serve-static-core';
 import { ILike } from 'typeorm';
 
@@ -25,6 +25,12 @@ export class AppService {
 
     async getPurchaseOrderById(purchase_id: number): Promise<PurchaseOrder> {
         return await this.purchaseOrder.findOneById(purchase_id);
+    }
+
+    async updatePurchaseOrder(id: number, updatePurchaseOrderDTO: UpdatePurchaseOrderDTO): Promise<PurchaseOrder> {
+      console.log("ser:",updatePurchaseOrderDTO)
+      await this.purchaseOrder.update(id, updatePurchaseOrderDTO);
+      return await this.purchaseOrder.findOneById(id);
     }
 
     async deletePurchaseOrder(purchase_id:number){

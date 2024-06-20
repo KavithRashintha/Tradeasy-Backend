@@ -13,7 +13,7 @@ import { JwtGuard} from './guards/jwt.guard';
 import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
 import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
-import { PurchaseOrderDTO } from './models/purchaseOrderModel';
+import { PurchaseOrderDTO, UpdatePurchaseOrderDTO } from './models/purchaseOrderModel';
 import { In } from 'typeorm';
 import {RegisterAdminDTO, UpdateAdminDTO} from "./models/adminModel";
 
@@ -257,6 +257,12 @@ async getInventoryRefundById(@Param('id') id:number){
   return this.inventoryRefund.send({cmd:'GET_INVENTORY_REFUND_BY_ID'},id)
 }
 
+@UseGuards(JwtGuard)
+  @Put('refund/inventoryRefund/update/:id')
+  async updateInventoryRefunds(@Param('id') id: number, @Body() updateInventoryRefundStatusDTO: UpdateInventoryRefundStatusDTO) {
+    return this.inventoryRefund.send({ cmd: 'UPDATE_INVENTORY_REFUND' }, { id, updateInventoryRefundStatusDTO });
+}
+
 //@UseGuards(JwtGuard)
 @Delete('refund/inventoryRefund/delete/:id')
 async deleteInventoryRefund(@Param('id') id:number){  
@@ -271,27 +277,24 @@ async deleteInventoryRefund(@Param('id') id:number){
   
   
 
-
-
-
-   //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
-  @UseGuards(JwtGuard) 
-  @Post('payment/inventoryPayment/create')
-  async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO){
-    return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
-  }
+  //  //----------------------------------------------------Inventory_PAYMENT_MANAGEMENT-----------------------------------------
+  // @UseGuards(JwtGuard) 
+  // @Post('payment/inventoryPayment/create')
+  // async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO){
+  //   return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
+  // }
   
-  @UseGuards(JwtGuard)
-  @Get('payment/inventoryPayment/getAll')
-  async getAllInventoryPayments(){
-    return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
-  }
+  // @UseGuards(JwtGuard)
+  // @Get('payment/inventoryPayment/getAll')
+  // async getAllInventoryPayments(){
+  //   return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
+  // }
 
-  @UseGuards(JwtGuard)
-  @Get('payment/inventoryPayment/get/:id')  
-  async getInventoryPaymentById(@Param('id') id:number){
-    return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
-  }
+  // @UseGuards(JwtGuard)
+  // @Get('payment/inventoryPayment/get/:id')  
+  // async getInventoryPaymentById(@Param('id') id:number){
+  //   return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
+  // }
  
 
   //================================================PURCHASE_ORDER__MANAGEMENT===========================================================================
@@ -311,6 +314,13 @@ async deleteInventoryRefund(@Param('id') id:number){
   @Get('purchaseOrder/get/:id')
   async getPurchaseOrderById(@Param('id') id:number){
     return this.inventoryOrder.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
+  }
+
+  @UseGuards(JwtGuard)
+  @Put('purchaseOrder/update/:id')
+  async updatePurchaseOrder(@Param('id') id: number, @Body() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO) {
+    console.log("api:",updatePurchaseOrderDTO)
+    return this.inventoryOrder.send({ cmd: 'UPDATE_PURCHASE_ORDER' }, { id, updatePurchaseOrderDTO });
   }
 
   //@UseGuards(JwtGuard)
@@ -379,7 +389,6 @@ async deleteInventoryRefund(@Param('id') id:number){
   @UseGuards(JwtGuard)
   @Put('supplier/update/:id')
   async updateSupplier(@Param('id') id: number, @Body() updateSupplierDto: UpdateSupplierDTO) {
-    console.log("API - AC");
     return this.supplierClient.send({ cmd: 'UPDATE_SUPPLIER' }, { id, updateSupplierDto });
   }
 
