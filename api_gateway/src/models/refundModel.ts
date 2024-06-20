@@ -1,5 +1,5 @@
 export class CustomerRefundDTO{
-    
+    readonly orderId: number;
     readonly customerName: string;
     readonly customerId:string;
     readonly contact: string;
@@ -18,11 +18,7 @@ export class updateRefundStatusDTO {
 
  
 
-export class SubmitRefundDenialDto {
-   
-    readonly id: number;
-    readonly  denialReason: string;
-}
+
 
 
 

@@ -4,7 +4,7 @@ import { CustomerRefund } from './refunds.entity';
 import { Repository } from 'typeorm';
 import { CustomerRefundDTO } from './dto/customerRefundDTO';
 import { updateRefundStatusDTO } from './dto/updateRefundStatusDTO';
-import { SubmitRefundDenialDto } from './dto/submitRefundDenialDTO';
+
 
 @Injectable()
 export class AppService {
@@ -47,12 +47,17 @@ export class AppService {
     return await this.refundRepository.count();
   }
 
-  async updateRefundStatus(UpdateRefundStatusDto: updateRefundStatusDTO): Promise<CustomerRefund> {
-    const refund = await this.refundRepository.findOneById(UpdateRefundStatusDto.id);
+  async updateRefundStatus(updateRefundStatusDto: updateRefundStatusDTO): Promise<CustomerRefund> {
+    const refund = await this.refundRepository.findOne({ where: { id: updateRefundStatusDto.id } });
     if (!refund) {
       throw new Error('Refund not found');
     }
-    refund.status = UpdateRefundStatusDto.status;
+    refund.status = updateRefundStatusDto.status;
+    if (updateRefundStatusDto.status === 'rejected') {
+      refund.denialReason = updateRefundStatusDto.denialReason;
+    } else {
+      refund.denialReason = '';
+    }
     return this.refundRepository.save(refund);
   }
 
@@ -60,19 +65,7 @@ export class AppService {
     return await this.refundRepository.find({ where: { customerId } });
   }
   
-  async submitRefundDenial(id: number, denialReason: string): Promise<CustomerRefund> {
-    console.log('ID:', id);
-    console.log('Denial Reason:', denialReason);
-
-    const refundRequest = await this.refundRepository.findOneBy({ id });
-    if (!refundRequest) {
-      throw new Error('Refund request not found');
-    }
-    refundRequest.denialReason = denialReason;
-    refundRequest.status = 'rejected'; // Update the status to rejected
-    return await this.refundRepository.save(refundRequest);
-  }
-
+  
 }
 
 

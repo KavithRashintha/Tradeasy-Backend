@@ -33,4 +33,7 @@ export class Order {
     @Column()
     orderDate: Date;
 
+    @Column()
+    lastOrderStatusUpdatedDate: Date;
+
 }
