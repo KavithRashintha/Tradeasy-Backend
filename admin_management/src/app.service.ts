@@ -50,10 +50,28 @@ export class AppService {
     return await this.adminRepository.find();
   }
 
+  // async updateAdmin(id: number, updateAdminDto: UpdateAdminDTO): Promise<Admin> {
+  //   await this.adminRepository.update(id, updateAdminDto);
+  //   return await this.adminRepository.findOneById(id);
+  // }
+
   async updateAdmin(id: number, updateAdminDto: UpdateAdminDTO): Promise<Admin> {
-    await this.adminRepository.update(id, updateAdminDto);
+    const updateAdminData = { ...updateAdminDto };
+    if (updateAdminData.password) {
+        const SALT_ROUNDS = 10;
+        const admin = await this.adminRepository.findOneById(id);
+
+        const isSamePassword = await bcrypt.compare(updateAdminData.password, admin.password);
+        
+        if (!isSamePassword) {
+            const hashedPassword = await bcrypt.hash(updateAdminData.password, SALT_ROUNDS);
+            updateAdminData.password = hashedPassword;
+        }
+    }
+
+    await this.adminRepository.update(id, updateAdminData);
     return await this.adminRepository.findOneById(id);
-  }
+}
   
   async deleteAdmin(id: number){
     const result = await this.adminRepository.delete(id);
