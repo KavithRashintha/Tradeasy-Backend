@@ -18,7 +18,7 @@ export class Order {
     @Column("text", { array: true })
     orderItems: string[];
 
-    @Column('decimal', { precision: 6, scale: 2 })
+    @Column('decimal', { precision: 20, scale: 2 })
     orderPrice: number;
 
     @Column({default: 'Pending'})
