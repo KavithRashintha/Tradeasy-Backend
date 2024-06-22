@@ -39,3 +39,37 @@ export class CustomerRefund {
   @Column({ nullable: true })
     denialReason: string;
 }
+
+
+@Entity()
+export class InventoryRefund {
+  @PrimaryGeneratedColumn()
+     inventory_id: number;
+
+  @Column()
+       supplierId: string;   
+
+  @Column() 
+     supplierName: string;
+
+  @Column() 
+     item: string;
+
+  @Column({default: 'pending'}) 
+    phone: string;  
+
+  @Column()
+     quantity: string;  
+       
+  @Column()
+     price: string;  
+     
+  @Column()
+     reason: string;  
+     
+  @Column({default: 'pending'})
+     status: string;    
+     
+  @CreateDateColumn({ type: 'date' })
+     createdDate: Date;         
+}

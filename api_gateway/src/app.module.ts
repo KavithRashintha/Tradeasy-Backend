@@ -88,15 +88,6 @@ import {EmailController} from "./mail.controller";
           port: 9008,
         },
       },
-
-      {
-        name:'INVENTORY_REFUND_MANAGEMENT',
-        transport: Transport.TCP,
-        options:{
-          host: '127.0.0.1',
-          port:9009,
-        }
-      },
   
       {
         name:'PURCHASE_ORDER_MANAGEMENT',

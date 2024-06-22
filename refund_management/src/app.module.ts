@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CustomerRefund} from './refunds.entity';
+import { CustomerRefund, InventoryRefund} from './refunds.entity';
 import {ClientsModule, Transport} from "@nestjs/microservices";
 
 @Module({
@@ -25,10 +25,10 @@ import {ClientsModule, Transport} from "@nestjs/microservices";
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: "Refund",
-      entities: [CustomerRefund],
+      entities: [CustomerRefund, InventoryRefund],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([CustomerRefund]),
+    TypeOrmModule.forFeature([CustomerRefund, InventoryRefund]),
   ],
   controllers: [AppController],
   providers: [AppService],
