@@ -28,7 +28,7 @@ export class ApprController {
     @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
     @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,
     @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
-    @Inject('ORDER_MANAGEMENT') private orderClient: ClientProxy,
+    @Inject('ORDER_MANAGEMENT') private orderClient: ClientProxy,     
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,

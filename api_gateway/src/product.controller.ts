@@ -1,7 +1,6 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {CreateProductReviewDTO, ProductQuantityDTO, RegisterProductDTO} from "./models/productModel";
-import {UpdateProductDTO} from "./models/productModel";
+import {CreateProductReviewDTO, ProductQuantityDTO, RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 import {JwtGuard} from './guards/jwt.guard';
 
 @Controller('product')
