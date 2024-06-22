@@ -80,36 +80,19 @@ export class AppService {
     }
   }
 
-  async getSuppliersList(): Promise<{ id: string, name: string }[]> {
-    const today = new Date();
-    const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
-    
-    const suppliers = await this.purchaseOrder
-      .createQueryBuilder('purchase_order')
-      .select('purchase_order.supplierId', 'id')
-      .addSelect('purchase_order.supplierName', 'name')
-      .where('purchase_order.createdDate BETWEEN :sevenDaysAgo AND :today', { sevenDaysAgo, today: new Date() })
-      .distinct(true)
-      .getRawMany();
-      
-    return suppliers;
+  async markAsDeparted(id: number): Promise<PurchaseOrder> {
+    const purchaseOrder = await this.purchaseOrder.findOne({ where: { id } });
+  
+    if (!purchaseOrder) {
+      throw new Error('Purchase order not found');
+    }
+  
+    purchaseOrder.status = 'Departed';
+    purchaseOrder.departedDate = new Date();
+  
+    return this.purchaseOrder.save(purchaseOrder);
   }
-
-  async getItemsList(supplierId: string): Promise<string[]> {
-    const today = new Date();
-    const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
-    
-    const result = await this.purchaseOrder
-      .createQueryBuilder('purchaseOrder')
-      .select('DISTINCT purchaseOrder.items', 'items')
-      .where('purchaseOrder.supplierId = :supplierId', { supplierId })
-      .andWhere('purchaseOrder.createdDate BETWEEN :sevenDaysAgo AND :today', { sevenDaysAgo, today: new Date() })
-      .getRawMany();
-
-    return result.map(item => item.items);
-  }
-
-
+  
       
     }
 

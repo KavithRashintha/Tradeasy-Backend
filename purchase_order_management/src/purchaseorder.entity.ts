@@ -23,10 +23,19 @@ export class PurchaseOrder {
     @Column()
     items:string;
 
+    @Column()
+    quantity:string;
+
+    @Column()
+    total_amount:string;
+
     @Column({default: 'Pending'})
     status:string;  
     
     @CreateDateColumn({ type: 'date' })
-    createdDate: Date;    
+    createdDate: Date; 
+    
+    @Column({ type: 'date', nullable: true })
+    departedDate: Date;
 
 }
