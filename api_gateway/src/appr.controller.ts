@@ -13,7 +13,7 @@ import { JwtGuard} from './guards/jwt.guard';
 import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
 import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
 import { Response } from 'express';
-import { PurchaseOrderDTO, UpdatePurchaseOrderDTO } from './models/purchaseOrderModel';
+import {RegisterOrderDTO, UpdateOrderDTO, PurchaseOrderDTO, UpdatePurchaseOrderDTO } from "./models/orderModel";
 import { In } from 'typeorm';
 import {RegisterAdminDTO, UpdateAdminDTO} from "./models/adminModel";
 
@@ -23,11 +23,11 @@ export class ApprController {
     @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
     @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
     @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
+    @Inject('ORDER_MANAGEMENT') private orderClient: ClientProxy,
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
-    @Inject ('PURCHASE_ORDER_MANAGEMENT') private inventoryOrder: ClientProxy,
-    @Inject ('ADMIN_MANAGEMENT') private adminClient: ClientProxy,
+    @Inject('ADMIN_MANAGEMENT') private adminClient: ClientProxy,
 
     private authManagement: AppService
   ) { }
@@ -220,20 +220,17 @@ export class ApprController {
     return await this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_COUNT'}, {});
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Put('refund/customerRefund/updateStatus')
   async updateRefundStatus(@Body() updateRefundStatusDto: updateRefundStatusDTO) {
     return this.refundClient.send({ cmd: 'UPDATE_REFUND_STATUS' }, updateRefundStatusDto);
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('refund/customerRefund/getByCustomerId')
   async getCustomerRefundsByCustomerId(@Query('customerId') customerId: string) {
     return this.refundClient.send({ cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID' }, customerId);
   }
-  
-
- 
   
 
  //----------------------------------------------------Inventory_REFUND_MANAGEMENT-----------------------------------------
@@ -273,101 +270,116 @@ async deleteInventoryRefund(@Param('id') id:number){
   async getAllApprovedRefunds() {
       return this.refundClient.send({ cmd: 'GET_ALL_APPROVED_REFUNDS' }, {});
   }
-  
-  
-
-  //  //----------------------------------------------------Inventory_PAYMENT_MANAGEMENT-----------------------------------------
-  // @UseGuards(JwtGuard) 
-  // @Post('payment/inventoryPayment/create')
-  // async createInventoryPayment(@Body() inventoryPaymentDTO:InventoryRefundDTO){
-  //   return this.paymantClient.send({cmd:'CREATE_INVENTORY_PAYMENT'},inventoryPaymentDTO);
-  // }
-  
-  // @UseGuards(JwtGuard)
-  // @Get('payment/inventoryPayment/getAll')
-  // async getAllInventoryPayments(){
-  //   return this.paymantClient.send({cmd:'GET_ALL_INVENTORY_PAYMENT'},{})
-  // }
-
-  // @UseGuards(JwtGuard)
-  // @Get('payment/inventoryPayment/get/:id')  
-  // async getInventoryPaymentById(@Param('id') id:number){
-  //   return this.paymantClient.send({cmd:'GET_INVENTORY_PAYMENT_BY_ID'},id)
-  // }
  
 
-  //================================================PURCHASE_ORDER__MANAGEMENT===========================================================================
-  //@UseGuards(JwtGuard)
+  //================================================ORDER__MANAGEMENT===========================================================================
+
+  //----------------------------------------------------Customer_Order_Management-----------------------------------------
+
+  @UseGuards(JwtGuard)
+    @Post('order/create')
+    async createProduct(@Body() payload: RegisterOrderDTO) {
+        return this.orderClient.send({ cmd: 'CREATE_ORDER' }, payload);
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('order/findOrder/:id')
+    async findOrder(@Param('id') id: any){
+        return this.orderClient.send({cmd:'GET_ORDER'}, id)
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('order/getAllOrders')
+    async getAllOrders(){
+        return this.orderClient.send({cmd: 'GET_ALL_ORDERS'}, {});
+    }
+
+    @UseGuards(JwtGuard)
+    @Put('order/update/:id')
+    async updateOrder(@Param('id') id: number, @Body() updateOrderDto: UpdateOrderDTO){
+        return this.orderClient.send({ cmd: 'UPDATE_ORDER' }, { id, updateOrderDto });
+    }
+
+    @UseGuards(JwtGuard)
+    @Delete('order/delete/:id')
+    async deleteOrder(@Param('id') id: number){
+        return this.orderClient.send({cmd: 'DELETE_ORDER'}, id);
+    }
+
+
+//----------------------------------------------------Inventory_Order_Management----------------------------------------------------
+
+  @UseGuards(JwtGuard)
   @Post('purchaseOrder/create')
   async createPurchaseOrder(@Body() purchaseOrderDTO: PurchaseOrderDTO){
-    return this.inventoryOrder.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
+    return this.orderClient.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
   }
 
- // @UseGuards(JwtGuard)
+ @UseGuards(JwtGuard)
   @Get('purchaseOrder/getAll')
   async getAllPurchaseOrder(){
-    return this.inventoryOrder.send({cmd: 'GET_ALL_PURCHASE_ORDER'}, {});
+    return this.orderClient.send({cmd: 'GET_ALL_PURCHASE_ORDER'}, {});
   }
 
- // @UseGuards(JwtGuard)
+ @UseGuards(JwtGuard)
   @Get('purchaseOrder/get/:id')
   async getPurchaseOrderById(@Param('id') id:number){
-    return this.inventoryOrder.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
+    return this.orderClient.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
   }
 
   @UseGuards(JwtGuard)
   @Put('purchaseOrder/update/:id')
   async updatePurchaseOrder(@Param('id') id: number, @Body() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO) {
     console.log("api:",updatePurchaseOrderDTO)
-    return this.inventoryOrder.send({ cmd: 'UPDATE_PURCHASE_ORDER' }, { id, updatePurchaseOrderDTO });
+    return this.orderClient.send({ cmd: 'UPDATE_PURCHASE_ORDER' }, { id, updatePurchaseOrderDTO });
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Delete('purchaseOrder/delete/:id')
   async deletePurchaseOrder(@Param('id') id:number){
-    return this.inventoryOrder.send({cmd: 'DELETE_PURCHASE_ORDER'}, id);
+    return this.orderClient.send({cmd: 'DELETE_PURCHASE_ORDER'}, id);
   }
 
- // @UseGuards(JwtGuard)
+ @UseGuards(JwtGuard)
   @Get('purchaseOrder/getCountOfOrdersByStatus/:status')
   async getCountOfOrdersByStatus(@Param('status') status: string){
-    return this.inventoryOrder.send({cmd: 'GET_COUNT_OF_ORDERS_BY_STATUS'}, status);
+    return this.orderClient.send({cmd: 'GET_COUNT_OF_ORDERS_BY_STATUS'}, status);
   }
 
- // @UseGuards(JwtGuard)
+ @UseGuards(JwtGuard)
   @Get('purchaseOrder/getCurrentMonthName')
   async getCurrentMonthName(){
-    return this.inventoryOrder.send({cmd: 'GET_CURRENT_MONTH_NAME'}, {});
+    return this.orderClient.send({cmd: 'GET_CURRENT_MONTH_NAME'}, {});
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('purchaseOrder/search')
   async searchPurchaseOrders(@Query() query: ExpressQuery) {
-    return this.inventoryOrder.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})
+    return this.orderClient.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('purchaseOrder/suppliersList')
   async getSuppliersList() {
-      return this.inventoryOrder.send({ cmd: 'GET_SUPPLIERS_LIST' }, {});
+      return this.orderClient.send({ cmd: 'GET_SUPPLIERS_LIST' }, {});
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('purchaseOrder/itemsList/:supplierId')
   async getItemsList(@Param('supplierId') supplierId: string) {
-    return this.inventoryOrder.send({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' }, supplierId);
+    return this.orderClient.send({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' }, supplierId);
   }
   
 
 
   //===================================SUPPLIER_MANAGEMENT===========================================================================
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Post('supplier/create')
   async createSupplier(@Body() payload: RegisterSupplierDTO) {
     return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
   }
 
-  //@UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   @Get('supplier/getSupplier/:id')
   async getSupplier(@Param('id') id: any) {
     return this.supplierClient.send({ cmd: 'GET_SUPPLIER' }, id)
@@ -398,7 +410,6 @@ async deleteInventoryRefund(@Param('id') id:number){
   }
 
 
-
   //====================================================PAYMENT_MANAGEMENT==================================================
 
   //----------------------------------------------------CUSTOMER_Payment_MANAGEMENT-----------------------------------------
@@ -414,12 +425,6 @@ async deleteInventoryRefund(@Param('id') id:number){
     console.log('Session ID:', sessionId);
     return await this.paymantClient.send({ cmd: 'GET_CHECKOUT_SESSION' }, sessionId);
   }
-
-  // @UseGuards(JwtGuard)
-  // @Post('payment/customerPayment/receipt')
-  // async saveCustomerPaymentReceipt(@Body() data: Data): Promise<any>{
-  //   return this.paymantClient.send({ cmd: 'CREATE_CUSTOMER_PAYMENT_RECEIPT' }, data);
-  // }
 
   @UseGuards(JwtGuard)
   @Post('payment/customerPayment/create')
@@ -445,7 +450,9 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.paymantClient.send({ cmd: 'SEARCH_ALL_CUSTOMER_PAYMENTS' }, {query});
   }
 
-  //----------------------------------------------------SUPPLIER_Payment_MANAGEMENT-----------------------------------------
+
+  //----------------------------------------------------SUPPLIER_Payment_MANAGEMENT--------------------------------------------------
+
   @UseGuards(JwtGuard)
   @Post('payment/supplierPayment/create')
   async createSupplierPayment(@Body() supplierPaymentDTO: SupplierPaymentDTO){
@@ -465,7 +472,8 @@ async deleteInventoryRefund(@Param('id') id:number){
   }
 
 
-  //====================================================DISCOUNT_MANAGEMENT==================================================
+  //====================================================DISCOUNT_MANAGEMENT==========================================================
+
   @UseGuards(JwtGuard)
   @Post('discounts/create')
   async createDiscount(@Body() discountsDTO: DiscountsDTO) {
@@ -509,7 +517,6 @@ async deleteInventoryRefund(@Param('id') id:number){
       return this.supplierClient.send({ cmd: 'CREATE_SUPPLIER' }, payload);
     }
     else{
-      // return await this.authManagement.createUser(payload);
       return this.adminClient.send({ cmd: 'CREATE_ADMIN' }, payload);
     }
   }
@@ -527,13 +534,6 @@ async deleteInventoryRefund(@Param('id') id:number){
   async supplierSignIn(@Req() req){
     return await this.authManagement.supplierLogin(req.user);
   }
-
-  // @HttpCode(HttpStatus.OK)
-  // @UseGuards(AdminAuthGuard)
-  // @Post('auth/admin/login')
-  // async adminSignIn(@Req() req){
-  //   return await this.authManagement.login(req.user);
-  // }
 
   @HttpCode(HttpStatus.OK)
   @UseGuards(AdminAuthGuard)
