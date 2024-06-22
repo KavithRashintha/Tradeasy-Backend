@@ -1,5 +1,14 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards, Res, Req, HttpCode, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, UseGuards, Res, Req, HttpCode, HttpStatus, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { AppService } from './app.service';
+import { Query as ExpressQuery } from 'express-serve-static-core';
+import { Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Multer } from 'multer';
+import { In } from 'typeorm';
+import { JwtGuard} from './guards/jwt.guard';
+import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
+import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO, UpdateInventoryRefundStatusDTO} from "./models/refundModel";
@@ -7,28 +16,24 @@ import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
-import { Query as ExpressQuery } from 'express-serve-static-core';
-import { AppService } from './app.service';
-import { JwtGuard} from './guards/jwt.guard';
-import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
-import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
-import { Response } from 'express';
 import {RegisterOrderDTO, UpdateOrderDTO, PurchaseOrderDTO, UpdatePurchaseOrderDTO } from "./models/orderModel";
-import { In } from 'typeorm';
 import {RegisterAdminDTO, UpdateAdminDTO} from "./models/adminModel";
+import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO, CustomerInvoiceEmailDTO, SupplierCredentialsEmailDTO, PurchaseOrderStatusEmailDTO, InventoryRefundStatusEmailDTO} from "./models/emailModel";
+import {CreateProductReviewDTO, ProductQuantityDTO, RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 
 @Controller()
 export class ApprController {
   constructor(
     @Inject('CUSTOMER_MANAGEMENT') private customerClient: ClientProxy,
     @Inject('INVENTORY_MANAGEMENT') private inventoryClient: ClientProxy,
+    @Inject('PRODUCT_MANAGEMENT') private productClient: ClientProxy,
     @Inject('REFUND_MANAGEMENT') private refundClient: ClientProxy,
     @Inject('ORDER_MANAGEMENT') private orderClient: ClientProxy,
     @Inject('SUPPLIER_MANAGEMENT') private supplierClient: ClientProxy,
     @Inject('PAYMENT_MANAGEMENT') private paymantClient: ClientProxy,
     @Inject('DISCOUNT_MANAGEMENT') private discountClient: ClientProxy,
     @Inject('ADMIN_MANAGEMENT') private adminClient: ClientProxy,
-
+    @Inject('MAIL_SENDER_SERVICE') private emailClient: ClientProxy,
     private authManagement: AppService
   ) { }
 
@@ -131,7 +136,7 @@ export class ApprController {
   }
 
 
-  //===================================INVENTORY_MANAGEMENT===========================================================================
+  //==========================================================INVENTORY_MANAGEMENT====================================================
   @UseGuards(JwtGuard)
   @Post('inventory/add')
   async addInventoryItem(@Body() payload: InventoryItemDTO) {
@@ -173,6 +178,76 @@ export class ApprController {
   async getNumberOfItems(){
     return this.inventoryClient.send({cmd: 'GET_INVENTORY_STATUS'}, {});
   }
+
+
+
+  //==========================================================PRODUCT_MANAGEMENT====================================================
+
+  @UseGuards(JwtGuard)
+    @Post('product/create')
+    async createProduct(@Body() payload: RegisterProductDTO) {
+        return this.productClient.send({ cmd: 'CREATE_PRODUCT' }, payload);
+    }
+
+    @UseGuards(JwtGuard)
+    @Get(' product/:id')
+    async findProduct(@Param('id') id: any){
+        return this.productClient.send({cmd:'GET_PRODUCT'}, id)
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('product/getByName/:productName')
+    async getProductByName(@Param('productName') productName: string){
+        return this.productClient.send({cmd: 'GET_PRODUCT_BY_NAME'}, productName);
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('product/getAllProducts')
+    async getAllProducts(){
+        return this.productClient.send({cmd: 'GET_ALL_PRODUCTS'}, {});
+    }
+
+    @UseGuards(JwtGuard)
+    @Put('product/update/:id')
+    async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDTO){
+        return this.productClient.send({ cmd: 'UPDATE_PRODUCT' }, { id, updateProductDto });
+    }
+
+    @UseGuards(JwtGuard)
+    @Put('product/updateQuantity/:id')
+    async updateProductQuantity(@Param('id') id: number, @Body() productQuantityDto: ProductQuantityDTO){
+        return this.productClient.send({cmd: 'UPDATE_PRODUCT_QUANTITY'}, {id, productQuantityDto});
+    }
+
+    @UseGuards(JwtGuard)
+    @Delete('product/delete/:id')
+    async deleteProduct(@Param('id') id: number){
+        return this.productClient.send({cmd: 'DELETE_PRODUCT'}, id);
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('product/getProductsCount')
+    async getProductsCount(){
+        return this.productClient.send({cmd: 'GET_PRODUCTS_COUNT'}, {});
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('product/getProductsCategoryCount')
+    async getProductsCategoryCount(){
+        return this.productClient.send({cmd: 'GET_PRODUCTS_CATEGORY_COUNT'}, {});
+    }
+
+    @UseGuards(JwtGuard)
+    @Post('product/review/create')
+    async createProductReview(@Body() payload: CreateProductReviewDTO) {
+        return this.productClient.send({ cmd: 'CREATE_PRODUCT_REVIEW' }, payload);
+    }
+
+    @UseGuards(JwtGuard)
+    @Get('product/review/getAllProductsReview')
+    async getAllProductsReview(){
+        return this.productClient.send({cmd: 'GET_ALL_PRODUCTS_REVIEW'}, {});
+    }
 
 
   //====================================================REFUND_MANAGEMENT==================================================
@@ -278,7 +353,7 @@ async deleteInventoryRefund(@Param('id') id:number){
 
   @UseGuards(JwtGuard)
     @Post('order/create')
-    async createProduct(@Body() payload: RegisterOrderDTO) {
+    async createProductOrder(@Body() payload: RegisterOrderDTO) {
         return this.orderClient.send({ cmd: 'CREATE_ORDER' }, payload);
     }
 
@@ -502,6 +577,82 @@ async deleteInventoryRefund(@Param('id') id:number){
   @Delete('discounts/delete/:id')
   async deleteDiscount(@Param('id') id: number) {
     return this.discountClient.send({ cmd: 'DELETE_DISCOUNT' }, id);
+  }
+
+
+  //====================================================MAIL_SENDER_SERVICE==============================================================
+
+  //For Normal Emails
+  @UseGuards(JwtGuard)
+  @Post('email/send')
+  async sendGeneralEmail(@Body() payload: GeneralEmailDTO) {
+      // console.log(payload);
+      return this.emailClient.send({ cmd: 'SEND_EMAIL_GENERAL' }, payload);
+  }
+
+  //For Order Status Changed Emails
+  @UseGuards(JwtGuard)
+  @Post('email/send/orderStatus')
+  async sendOrderStatusEmail(@Body() payload: OrderStatusChangeEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_EMAIL_ORDER_STATUS' }, payload);
+  }
+
+  //For OCustomer Warning Emails
+  @UseGuards(JwtGuard)
+  @Post('email/send/customerWarning')
+  async sendCustomerWarningEmail(@Body() payload: CustomerWarningEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_WARNING' }, payload);
+  }
+
+  @UseGuards(JwtGuard)
+  @Post('email/send/customerTermination')
+  async sendCustomerTerminationEmail(@Body() payload: CustomerTerminationEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_TERMINATION' }, payload);
+  }
+
+  @UseGuards(JwtGuard)
+  @Post('email/send/supplierTermination')
+  async sendSupplierTerminationEmail(@Body() payload: SupplierTerminationEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_EMAIL_SUPPLIER_TERMINATION' }, payload);
+  }
+
+  //For Customer Invoices
+  @UseGuards(JwtGuard)
+  @Post('email/send/customerInvoice')
+  @UseInterceptors(FileInterceptor('pdfFilePath'))
+  async sendCustomerInvoiceEmail(
+      @UploadedFile() file: Express.Multer.File,
+      @Body() payload: CustomerInvoiceEmailDTO
+  ) {
+      console.log("api:", payload);
+      console.log("api:", file);
+      const updatedPayload = {
+          ...payload,
+          pdfFilePath: file.path // or file.buffer depending on how you handle files
+      };
+      console.log("api:", updatedPayload);
+      return this.emailClient.send({ cmd: 'SEND_EMAIL_CUSTOMER_INVOICE' }, updatedPayload);
+  }
+
+  //For Supplier Credentials
+  @UseGuards(JwtGuard)
+  @Post('email/send/supplierCredentials')
+  async sendSupplierCredentials(@Body() payload: SupplierCredentialsEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_EMAIL_SUPPLIER_CREDENTIALS' }, payload);
+  }
+
+  //For Purchase Order Status Update
+  @UseGuards(JwtGuard)
+  @Post('email/send/purchaseOrderStatus')
+  async sendPurchaseOrderStatus(@Body() payload: PurchaseOrderStatusEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_PURCHASE_ORDER_STATUS' }, payload);
+  }
+
+  //For Inventory Refund Status Update
+  @UseGuards(JwtGuard)
+  @Post('email/send/pinventoryRefundStatus')
+  async sendInventoryRefundStatus(@Body() payload: InventoryRefundStatusEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_INVENTORY_REFUND_STATUS' }, payload);
   }
 
 

@@ -12,8 +12,7 @@ export class AppController {
   constructor(private readonly orderManagement: AppService) {}
 
   @MessagePattern({cmd: 'CREATE_ORDER'})
-  async createOrders(@Payload() createOrderDto: OrderDTO,)
-      : Promise<Order>{
+  async createOrders(@Payload() createOrderDto: OrderDTO): Promise<Order>{
     return await this.orderManagement.createOrders(createOrderDto);
   }
 

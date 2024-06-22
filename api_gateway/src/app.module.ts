@@ -2,21 +2,16 @@ import { Module } from '@nestjs/common';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import { ApprController } from './appr.controller';
 import { ProductController } from './product.controller';
-import { OrderController } from "./order.controller";
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import {CustomerStrategy, AdminStrategy, SupplierStrategy} from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import {EmailController} from "./mail.controller";
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   envFilePath: join(__dirname, '../../../.env'),
-    //   isGlobal: true
-    // }),
+
     ClientsModule.register([
       {
         name: 'CUSTOMER_MANAGEMENT',
@@ -88,15 +83,7 @@ import {EmailController} from "./mail.controller";
           port: 9008,
         },
       },
-  
-      {
-        name:'PURCHASE_ORDER_MANAGEMENT',
-        transport:Transport.TCP,
-        options:{
-          host:'127.0.0.1',
-          port:9010,
-        }
-      },
+
       {
         name:'MAIL_SENDER_SERVICE',
         transport:Transport.TCP,
@@ -141,7 +128,7 @@ import {EmailController} from "./mail.controller";
     PassportModule
   ],
   
-  controllers: [ApprController, ProductController, OrderController, EmailController],
+  controllers: [ApprController, ProductController],
   providers: [
     AppService, 
     JwtStrategy, 
