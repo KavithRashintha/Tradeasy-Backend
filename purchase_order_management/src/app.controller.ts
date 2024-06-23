@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PurchaseOrder } from './purchaseorder.entity';
@@ -51,14 +51,9 @@ export class AppController {
       return await this.purchasedOrder.searchAllOrders(query);
     }
   
-    @MessagePattern({cmd: 'GET_SUPPLIERS_LIST'})
-    async getSuppliersList(): Promise<{ id: string, name: string }[]> {
-        return this.purchasedOrder.getSuppliersList();
-    }
-    
-    @MessagePattern({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' })
-    async getItemsList(@Payload() supplierId: string): Promise<string[]> {
-      return this.purchasedOrder.getItemsList(supplierId);
-    }
-    
+    @MessagePattern({ cmd: 'MARK_PURCHASE_ORDER_AS_DEPARTED' })
+    async markPurchaseOrderAsDeparted(@Payload() id: number): Promise<PurchaseOrder> {
+    return await this.purchasedOrder.markAsDeparted(id);
+  }
+   
 }
