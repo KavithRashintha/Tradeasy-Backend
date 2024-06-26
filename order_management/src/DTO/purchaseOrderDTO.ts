@@ -7,6 +7,9 @@ export class PurchaseOrderDTO{
     readonly items:string;
     readonly status:string;
     readonly createdDate: Date;
+    readonly departedDate: Date;
+    readonly quantity:string;
+    readonly total_amount:string;
 }
 
 export class UpdatePurchaseOrderDTO{
