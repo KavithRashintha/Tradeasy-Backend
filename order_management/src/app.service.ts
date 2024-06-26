@@ -123,33 +123,17 @@ try {
 }
 }
 
-async getSuppliersList(): Promise<{ id: string, name: string }[]> {
-const today = new Date();
-const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
+async markAsDeparted(id: number): Promise<PurchaseOrder> {
+  const purchaseOrder = await this.inventoryOrderRepository.findOne({ where: { id } });
 
-const suppliers = await this.inventoryOrderRepository
-  .createQueryBuilder('purchase_order')
-  .select('purchase_order.supplierId', 'id')
-  .addSelect('purchase_order.supplierName', 'name')
-  .where('purchase_order.createdDate BETWEEN :sevenDaysAgo AND :today', { sevenDaysAgo, today: new Date() })
-  .distinct(true)
-  .getRawMany();
-  
-return suppliers;
-}
+  if (!purchaseOrder) {
+    throw new Error('Purchase order not found');
+  }
 
-async getItemsList(supplierId: string): Promise<string[]> {
-const today = new Date();
-const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
+  purchaseOrder.status = 'Departed';
+  purchaseOrder.departedDate = new Date();
 
-const result = await this.inventoryOrderRepository
-  .createQueryBuilder('purchaseOrder')
-  .select('DISTINCT purchaseOrder.items', 'items')
-  .where('purchaseOrder.supplierId = :supplierId', { supplierId })
-  .andWhere('purchaseOrder.createdDate BETWEEN :sevenDaysAgo AND :today', { sevenDaysAgo, today: new Date() })
-  .getRawMany();
-
-return result.map(item => item.items);
+  return this.inventoryOrderRepository.save(purchaseOrder);
 }
 
 }

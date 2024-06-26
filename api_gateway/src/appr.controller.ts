@@ -384,13 +384,13 @@ async deleteInventoryRefund(@Param('id') id:number){
 
 //----------------------------------------------------Inventory_Order_Management----------------------------------------------------
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Post('purchaseOrder/create')
   async createPurchaseOrder(@Body() purchaseOrderDTO: PurchaseOrderDTO){
     return this.orderClient.send({cmd: 'CREATE_PURCHASE_ORDER'}, purchaseOrderDTO);
   }
 
- @UseGuards(JwtGuard)
+ //@UseGuards(JwtGuard)
   @Get('purchaseOrder/getAll')
   async getAllPurchaseOrder(){
     return this.orderClient.send({cmd: 'GET_ALL_PURCHASE_ORDER'}, {});
@@ -433,16 +433,12 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.orderClient.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})
   }
 
-  @UseGuards(JwtGuard)
-  @Get('purchaseOrder/suppliersList')
-  async getSuppliersList() {
-      return this.orderClient.send({ cmd: 'GET_SUPPLIERS_LIST' }, {});
-  }
 
-  @UseGuards(JwtGuard)
-  @Get('purchaseOrder/itemsList/:supplierId')
-  async getItemsList(@Param('supplierId') supplierId: string) {
-    return this.orderClient.send({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' }, supplierId);
+
+ // @UseGuards(JwtGuard)
+  @Put('purchaseOrder/markAsDeparted/:id')
+  async markAsDeparted(@Param('id') id: number) {
+    return this.orderClient.send({ cmd: 'MARK_PURCHASE_ORDER_AS_DEPARTED' }, id);
   }
   
 
