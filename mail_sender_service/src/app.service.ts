@@ -1,15 +1,16 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import {GeneralEmailDTO, 
-        OrderStatusChangeEmailDTO, 
-        CustomerWarningEmailDTO, 
-        CustomerTerminationEmailDTO, 
-        SupplierTerminationEmailDTO,
-        CustomerInvoiceEmailDTO,
-        SupplierCredentialsEmailDTO,
-        PurchaseOrderStatusEmailDTO,
-        InventoryRefundStatusEmailDTO
-      } from './DTO/EmailDTO';
+import {
+  GeneralEmailDTO,
+  OrderStatusChangeEmailDTO,
+  CustomerWarningEmailDTO,
+  CustomerTerminationEmailDTO,
+  SupplierTerminationEmailDTO,
+  CustomerInvoiceEmailDTO,
+  SupplierCredentialsEmailDTO,
+  PurchaseOrderStatusEmailDTO,
+  InventoryRefundStatusEmailDTO
+} from './DTO/emailDTO';
 
 @Injectable()
 export class AppService {

@@ -1,0 +1,147 @@
+version: "3.8"
+
+services:
+  admin-management:
+    build:
+      context: ./admin_management
+    ports:
+      - "9050:9050"
+    env_file:
+      - .env
+    volumes:
+      - ./admin_management:/app
+    depends_on:
+      - postgres
+
+  api-gateway:
+    build:
+      context: ./api_gateway
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - ./api_gateway:/app
+    depends_on:
+      - postgres
+
+  customer-management:
+    build:
+      context: ./customer_management
+    ports:
+      - "9001:9001"
+    env_file:
+      - .env
+    volumes:
+      - ./customer_management:/app
+    depends_on:
+      - postgres
+
+  discount-management:
+    build:
+      context: ./discount_management
+    ports:
+      - "9008:9008"
+    env_file:
+      - .env
+    volumes:
+      - ./discount_management:/app
+    depends_on:
+      - postgres
+
+  inventory-management:
+    build:
+      context: ./inventory_management
+    ports:
+      - "9003:9003"
+    env_file:
+      - .env
+    volumes:
+      - ./inventory_management:/app
+    depends_on:
+      - postgres
+
+  order-management:
+    build:
+      context: ./order_management
+    ports:
+      - "9005:9005"
+    env_file:
+      - .env
+    volumes:
+      - ./order_management:/app
+    depends_on:
+      - postgres
+
+  payment-management:
+    build:
+      context: ./payment_management
+    ports:
+      - "9007:9007"
+    env_file:
+      - .env
+    volumes:
+      - ./payment_management:/app
+    depends_on:
+      - postgres
+
+  product-management:
+    build:
+      context: ./product_management
+    ports:
+      - "9002:9002"
+    env_file:
+      - .env
+    volumes:
+      - ./product_management:/app
+    depends_on:
+      - postgres
+
+  refund-management:
+    build:
+      context: ./refund_management
+    ports:
+      - "9004:9004"
+    env_file:
+      - .env
+    volumes:
+      - ./refund_management:/app
+    depends_on:
+      - postgres
+
+  supplier-management:
+    build:
+      context: ./supplier_management
+    ports:
+      - "9006:9006"
+    env_file:
+      - .env
+    volumes:
+      - ./supplier_management:/app
+    depends_on:
+      - postgres
+
+  mail-sender-service:
+    build:
+      context: ./mail_sender_service
+    ports:
+      - "9011:9011"
+    env_file:
+      - .env
+    volumes:
+      - ./mail_sender_service:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Kviper0824@
+    ports:
+      - "5433:5433"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
