@@ -1,0 +1,148 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Order Management
+
+INSERT INTO public."order"(
+    "orderId", "orderReceiverName", "orderReceiverAddress", "orderReceiverContact", "orderItems", "orderPrice", "orderStatus", "orderCancelReason", "orderCustomerId", "orderDate")
+VALUES
+    (1, 'John Doe', '123 Main St', '1234567890', ARRAY['1', '8', '15', '22'], 250, 'Accepted', '', '1', '2024-05-24'),
+    (2, 'Jane Smith', '456 Elm St', '9876543210', ARRAY['3', '9', '17', '25', '32'], 3140, 'Rejected', '', '2', '2024-05-24'),
+    (3, 'Bob Johnson', '789 Oak St', '4561237890', ARRAY['5', '11', '18', '27', '36', '41'], 3500, 'Pending', '', '3', '2024-05-24'),
+    (4, 'Alice Brown', '101 Pine St', '7894561230', ARRAY['7', '14', '21', '29', '38', '43', '44'], 9000, 'Departed', '', '4', '2024-05-24'),
+    (5, 'Emily Davis', '202 Cedar St', '3217896540', ARRAY['2', '12', '19', '26', '34'], 6600, 'In-Processing', '', '5', '2024-05-24'),
+    (6, 'Michael Wilson', '303 Maple St', '6543219870', ARRAY['4', '10', '16', '24', '33', '37'], 5175, 'Accepted', '', '6', '2024-05-24'),
+    (7, 'Jessica Martinez', '404 Birch St', '7896543210', ARRAY['6', '13', '20', '28', '35', '39', '45'], 1250, 'Rejected', '', '7', '2024-05-24'),
+    (8, 'David Anderson', '505 Walnut St', '9870123456', ARRAY['8', '15', '22', '30', '37'], 2990, 'Pending', '', '8', '2024-05-24'),
+    (9, 'Sarah Thompson', '606 Spruce St', '1237890456', ARRAY['1', '11', '18', '27', '39'], 2160, 'Departed', '', '9', '2024-05-24'),
+    (10, 'James Garcia', '707 Ash St', '4567890123', ARRAY['3', '9', '17', '25', '32', '41', '45'], 8050, 'In-Processing', '', '10', '2024-05-24'),
+    (11, 'Olivia Hernandez', '808 Cherry St', '7890123456', ARRAY['5', '12', '19', '26', '34'], 8150, 'Accepted', '', '1', '2024-05-24'),
+    (12, 'Daniel Lopez', '909 Pine St', '2345678901', ARRAY['7', '14', '21', '29', '38', '43'], 5400, 'Rejected', '', '2', '2024-05-24'),
+    (13, 'Sophia Gonzales', '1001 Oak St', '5432109876', ARRAY['2', '10', '16', '24', '33', '37', '44'], 1125, 'Pending', '', '3', '2024-05-24'),
+    (14, 'Aiden Perez', '2022 Elm St', '8901234567', ARRAY['4', '13', '20', '28', '35'], 3250, 'Departed', '', '4', '2024-05-24'),
+    (15, 'Mia Torres', '3033 Maple St', '0123456789', ARRAY['6', '15', '22', '30', '37', '45'], 2750, 'In-Processing', '', '5', '2024-05-24'),
+    (16, 'Liam Rivera', '4044 Birch St', '6789012345', ARRAY['1', '11', '18', '27', '39'], 7200, 'Accepted', '', '6', '2024-05-24'),
+    (17, 'Charlotte Moore', '5055 Walnut St', '1234509876', ARRAY['3', '9', '17', '25', '32', '41'], 4600, 'Rejected', '', '7', '2024-05-24'),
+    (18, 'Ethan Martin', '6066 Spruce St', '7890123456', ARRAY['5', '12', '19', '26', '34'], 5850, 'Pending', '', '8', '2024-05-24'),
+    (19, 'Amelia Nguyen', '7077 Ash St', '0123456789', ARRAY['7', '14', '21', '29', '38', '43'], 1375, 'Departed', '', '9', '2024-05-24'),
+    (20, 'Lucas King', '8088 Cherry St', '2345678901', ARRAY['2', '10', '16', '24', '33'], 2820, 'In-Processing', '', '10', '2024-05-24');
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Catalog/Product Management
+
+INSERT INTO public.product(
+	id, "productName", "productBrand", "productManufacture", "productCategory", "productDescription", "productImage", "productColor", "productQuantity", "productSellingPrice")
+VALUES 
+    (1, 'Smartphone XYZ', 'Brand A', 'Manufacturer A', 'Building Material', 'A high-end smartphone with excellent features', ARRAY['https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg', 'https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg'], 'Black', 50, 699.99),
+    (2, 'Laptop ABC', 'Brand B', 'Manufacturer B', 'Hardware and Tools', 'A powerful laptop for professionals', ARRAY['https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg', 'https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg'], 'Silver', 30, 999.99),
+    (3, 'Wireless Headphones', 'Brand C', 'Manufacturer C', 'Safety Equipments', 'Comfortable wireless headphones with superior sound quality', ARRAY['https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg'], 'Blue', 100, 199.99),
+    (4, 'Smartwatch DEF', 'Brand D', 'Manufacturer D', 'Electrical Supplies', 'A stylish smartwatch with various health tracking features', ARRAY['https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg', 'https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg'], 'Red', 75, 249.99),
+    (5, 'Gaming Console', 'Brand E', 'Manufacturer E', 'Plumbing Supplies', 'Next-gen gaming console with 4K support', ARRAY['https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg', 'https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg'], 'White', 20, 499.99),
+    (6, 'Bluetooth Speaker', 'Brand F', 'Manufacturer F', 'Interior Finishes', 'Portable Bluetooth speaker with powerful bass', ARRAY['https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg', 'https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg'], 'Black', 150, 99.99),
+    (7, 'Tablet GHI', 'Brand G', 'Manufacturer G', 'Landscaping Products', 'High-performance tablet with a sleek design', ARRAY['https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg', 'https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg'], 'Gold', 40, 399.99),
+    (8, 'Fitness Tracker', 'Brand H', 'Manufacturer H', 'Construction Chemicals', 'Fitness tracker with heart rate monitor', ARRAY['https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg'], 'Green', 200, 79.99),
+    (9, 'Drone', 'Brand I', 'Manufacturer I', 'Building Material', 'Quadcopter drone with HD camera', ARRAY['https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg', 'https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg'], 'White', 25, 499.99),
+    (10, 'Action Camera', 'Brand J', 'Manufacturer J', 'Hardware and Tools', 'Waterproof action camera with 4K recording', ARRAY['https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg', 'https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg'], 'Black', 60, 299.99),
+    (11, 'Smart Home Hub', 'Brand K', 'Manufacturer K', 'Safety Equipments', 'Smart home hub with voice control', ARRAY['https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg', 'https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg'], 'White', 80, 129.99),
+    (12, 'E-Reader', 'Brand L', 'Manufacturer L', 'Electrical Supplies', 'E-reader with glare-free display', ARRAY['https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg', 'https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg'], 'Black', 90, 149.99),
+    (13, 'VR Headset', 'Brand M', 'Manufacturer M', 'Plumbing Supplies', 'Immersive VR headset for gaming and media', ARRAY['https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg', 'https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg'], 'Blue', 35, 399.99),
+    (14, 'Smart Thermostat', 'Brand N', 'Manufacturer N', 'Interior Finishes', 'Smart thermostat with energy-saving features', ARRAY['https://images-cdn.ubuy.co.in/653dca4638b3b6351c03b03e-smart-watch-for-android-and-iphone.jpg', 'https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg'], 'White', 45, 199.99),
+    (15, 'Portable Charger', 'Brand O', 'Manufacturer O', 'Landscaping Products', 'High-capacity portable charger for all devices', ARRAY['https://m.media-amazon.com/images/I/71tTWyypTKL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/711pTh86caS._AC_UF894,1000_QL80_.jpg'], 'Black', 250, 49.99);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SingleProductpage Product Reviews
+localhost:9000/payment/customerPayment/create
+
+INSERT INTO public.product_review(
+	id, "productId", "productReviewerName", "productReviewDescription", "productReviewStarCount", "productReviewedDate")
+VALUES 
+    -- Reviews for Smartphone XYZ (Product ID: '1')
+    (1, '1', 'John Doe', 'Great phone, very fast and responsive.', '5', '2024-05-24'),
+    (2, '1', 'Jane Smith', 'The camera quality is amazing!', '4', '2024-05-25'),
+    (3, '1', 'Michael Johnson', 'Battery life could be better, but overall satisfied.', '4', '2024-05-26'),
+    
+    -- Reviews for Laptop ABC (Product ID: '2')
+    (4, '2', 'Emily Brown', 'Excellent performance, very happy with the purchase.', '5', '2024-05-24'),
+    (5, '2', 'Chris Wilson', 'The screen resolution is fantastic.', '5', '2024-05-25'),
+    
+    -- Reviews for Wireless Headphones (Product ID: '3')
+    (6, '3', 'Sarah Davis', 'Comfortable to wear for extended periods.', '4', '2024-05-24'),
+    (7, '3', 'Daniel Lee', 'Sound quality is decent for the price.', '3', '2024-05-26'),
+    
+    -- Reviews for Smartwatch DEF (Product ID: '4')
+    (8, '4', 'Olivia Martinez', 'Love the design and functionalities.', '5', '2024-05-24'),
+    (9, '4', 'James Thompson', 'Strap could be more durable, but overall good value.', '4', '2024-05-25'),
+    
+    -- Reviews for Gaming Console (Product ID: '5')
+    (10, '5', 'Emma Garcia', 'Graphics are amazing, great for gaming enthusiasts.', '5', '2024-05-24'),
+    (11, '5', 'William Rodriguez', 'Controller feels a bit flimsy, but overall satisfied.', '4', '2024-05-26'),
+    
+    -- Reviews for Tablet GHI (Product ID: '6')
+    (12, '6', 'Ava Hernandez', 'Fast and responsive, great for multitasking.', '5', '2024-05-24'),
+    (13, '6', 'Ethan Moore', 'Screen size is perfect for watching movies.', '5', '2024-05-25'),
+    
+    -- Reviews for Digital Camera (Product ID: '7')
+    (14, '7', 'Sophia Lopez', 'Impressed with the picture quality.', '5', '2024-05-24'),
+    (15, '7', 'Noah Clark', 'Easy to use interface, great for beginners.', '4', '2024-05-26'),
+    
+    -- Reviews for Bluetooth Speaker (Product ID: '8')
+    (16, '8', 'Isabella Lewis', 'Good sound quality for its size.', '4', '2024-05-24'),
+    (17, '8', 'Alexander Hill', 'Battery life could be longer, but overall satisfied.', '4', '2024-05-25'),
+    
+    -- Reviews for 4K Television (Product ID: '9')
+    (18, '9', 'Mia Green', 'Amazing picture quality, exceeded my expectations.', '5', '2024-05-24'),
+    (19, '9', 'Mason Baker', 'Smart features are easy to navigate.', '4', '2024-05-25'),
+    
+    -- Reviews for Smart Refrigerator (Product ID: '10')
+    (20, '10', 'Charlotte Young', 'Plenty of storage space and smart features.', '5', '2024-05-24'),
+    (21, '10', 'Harper Scott', 'Ice maker works like a charm.', '5', '2024-05-26'),
+    
+    -- Reviews for Gaming Mouse (Product ID: '11')
+    (22, '11', 'Liam Turner', 'Comfortable grip, highly customizable.', '4', '2024-05-24'),
+    (23, '11', 'Evelyn Ward', 'Scroll wheel feels a bit loose, but overall good.', '3', '2024-05-25'),
+    
+    -- Reviews for Smart Light Bulb (Product ID: '12')
+    (24, '12', 'Abigail King', 'Easy to set up and control via app.', '5', '2024-05-24'),
+    (25, '12', 'Benjamin Perez', 'Could be brighter, but love the color options.', '4', '2024-05-25'),
+    
+    -- Reviews for Electric Kettle (Product ID: '13')
+    (26, '13', 'Amelia Garcia', 'Boils water quickly, very convenient.', '5', '2024-05-24'),
+    (27, '13', 'Logan Bailey', 'Handle gets hot after prolonged use, be cautious.', '3', '2024-05-26'),
+    
+    -- Reviews for Air Purifier (Product ID: '14')
+    (28, '14', 'Avery Evans', 'Noticeable improvement in air quality.', '5', '2024-05-24'),
+    (29, '14', 'Sofia Cox', 'Quiet operation, great for bedrooms.', '4', '2024-05-25'),
+    
+    -- Reviews for Fitness Tracker (Product ID: '15')
+    (30, '15', 'Jackson Gray', 'Accurate heart rate monitoring, helps with fitness goals.', '4', '2024-05-24'),
+    (31, '15', 'Harper Hughes', 'Step tracking seems accurate, comfortable to wear.', '4', '2024-05-25');
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+product Discounts
+
+INSERT INTO public.discounts(
+	id, "productId", "productName", "sellingPrice", "discountRate", "startDate", "endDate")
+VALUES 
+    (1, 1, 'Smartphone XYZ', 699, 10, '2024-05-24', '2024-06-30'),
+    (2, 2, 'Laptop ABC', 999, 20, '2024-05-1', '2024-05-22'),
+    (3, 3, 'Wireless Headphones', 199, 20, '2024-05-22', '2024-06-30'),
+    (4, 4, 'Smartwatch DEF', 249, 25, '2024-06-01', '2024-06-30'),
+    (5, 5, 'Gaming Console', 499, 10, '2024-06-01', '2024-06-30'),
+    (6, 6, 'Tablet GHI', 299, 15, '2024-06-01', '2024-06-30'),
+    (7, 7, 'Digital Camera', 499, 20, '2024-06-01', '2024-06-30'),
+    (8, 8, 'Bluetooth Speaker', 149, 25, '2024-06-01', '2024-06-30'),
+    (9, 9, '4K Television', 799, 10, '2024-06-01', '2024-06-30'),
+    (10, 10, 'Smart Refrigerator', 1299, 15, '2024-06-01', '2024-06-30'),
+    (11, 11, 'Gaming Mouse', 79, 20, '2024-06-01', '2024-06-30'),
+    (12, 12, 'Smart Light Bulb', 19, 25, '2024-06-01', '2024-06-30'),
+    (13, 13, 'Electric Kettle', 39, 10, '2024-06-01', '2024-06-30'),
+    (14, 14, 'Air Purifier', 149, 15, '2024-06-01', '2024-06-30'),
+    (15, 15, 'Fitness Tracker', 99, 20, '2024-06-01', '2024-06-30');
+
+
+
