@@ -1,16 +1,17 @@
 import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import {GeneralEmailDTO, 
-        OrderStatusChangeEmailDTO, 
-        CustomerWarningEmailDTO, 
-        CustomerTerminationEmailDTO, 
-        SupplierTerminationEmailDTO,
-        CustomerInvoiceEmailDTO,
-        SupplierCredentialsEmailDTO,
-        PurchaseOrderStatusEmailDTO,
-        InventoryRefundStatusEmailDTO
-      } from './DTO/EmailDTO';
+import {
+  GeneralEmailDTO,
+  OrderStatusChangeEmailDTO,
+  CustomerWarningEmailDTO,
+  CustomerTerminationEmailDTO,
+  SupplierTerminationEmailDTO,
+  CustomerInvoiceEmailDTO,
+  SupplierCredentialsEmailDTO,
+  PurchaseOrderStatusEmailDTO,
+  InventoryRefundStatusEmailDTO
+} from './DTO/emailDTO';
 
 @Controller()
 export class AppController {
