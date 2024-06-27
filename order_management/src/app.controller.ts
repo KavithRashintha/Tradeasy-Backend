@@ -85,14 +85,6 @@ export class AppController {
       return await this.orderManagement.searchAllOrders(query);
     }
   
-    @MessagePattern({cmd: 'GET_SUPPLIERS_LIST'})
-    async getSuppliersList(): Promise<{ id: string, name: string }[]> {
-        return this.orderManagement.getSuppliersList();
-    }
     
-    @MessagePattern({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' })
-    async getItemsList(@Payload() supplierId: string): Promise<string[]> {
-      return this.orderManagement.getItemsList(supplierId);
-    }
 
 }
