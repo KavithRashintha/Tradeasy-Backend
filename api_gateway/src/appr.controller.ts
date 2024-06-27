@@ -433,17 +433,12 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.orderClient.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})
   }
 
-  @UseGuards(JwtGuard)
-  @Get('purchaseOrder/suppliersList')
-  async getSuppliersList() {
-      return this.orderClient.send({ cmd: 'GET_SUPPLIERS_LIST' }, {});
+  // @UseGuards(JwtGuard)
+  @Put('purchaseOrder/markAsDeparted/:id')
+  async markAsDeparted(@Param('id') id: number) {
+    return this.orderClient.send({ cmd: 'MARK_PURCHASE_ORDER_AS_DEPARTED' }, id);
   }
-
-  @UseGuards(JwtGuard)
-  @Get('purchaseOrder/itemsList/:supplierId')
-  async getItemsList(@Param('supplierId') supplierId: string) {
-    return this.orderClient.send({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' }, supplierId);
-  }
+  
   
 
 

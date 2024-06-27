@@ -23,6 +23,7 @@ export class updateRefundStatusDTO {
 
 
 export class InventoryRefundDTO{
+    readonly orderId: string;
     readonly supplierName:string;
     readonly supplierId:string;
     readonly item:string;

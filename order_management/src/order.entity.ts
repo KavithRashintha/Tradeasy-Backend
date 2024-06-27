@@ -68,4 +68,14 @@ export class PurchaseOrder {
     @CreateDateColumn({ type: 'date' })
     createdDate: Date;    
 
+    @Column()
+    quantity:string;
+
+    @Column()
+    total_amount:string;
+
+    @Column({ type: 'date', nullable: true })
+    departedDate: Date;
+
 }
+
