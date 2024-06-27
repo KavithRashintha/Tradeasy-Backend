@@ -31,6 +31,9 @@ export class Product {
 
   @Column()
   productSellingPrice: number;
+
+  @Column({default: 'Pending'})
+  productStatus: string;
 }
 
 

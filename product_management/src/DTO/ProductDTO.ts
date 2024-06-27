@@ -11,4 +11,5 @@ export class ProductDTO {
     readonly productColor?: string;
     readonly productQuantity: number;
     readonly productSellingPrice: number;
+    readonly productStatus?: string;
 }
