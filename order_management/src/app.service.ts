@@ -123,6 +123,20 @@ try {
 }
 }
 
+async markAsDeparted(id: number): Promise<PurchaseOrder> {
+  const purchaseOrder = await this.inventoryOrderRepository.findOne({ where: { id } });
 
+  if (!purchaseOrder) {
+    throw new Error('Purchase order not found');
+  }
+
+  purchaseOrder.status = 'Departed';
+  purchaseOrder.departedDate = new Date();
+
+  return this.inventoryOrderRepository.save(purchaseOrder);
+}
 
 }
+
+
+
