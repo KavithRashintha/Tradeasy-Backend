@@ -1,4 +1,17 @@
-FROM ubuntu:latest
-LABEL authors="wgkra"
+FROM node:18
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm rebuild bcrypt --build-from-source
+
+RUN  npm run build
+
+EXPOSE 9001
+
+CMD [ "npm", "run", "start:dev" ]
