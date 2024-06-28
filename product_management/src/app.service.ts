@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {Product, ProductReview} from './product.entity';
+import { Product, ProductReview } from './product.entity';
 import { Repository } from 'typeorm';
-import {ProductDTO} from './DTO/ProductDTO';
-import {UpdateProductDTO} from "./DTO/UpdateProductDTO";
-import {CreateProductReviewDTO} from "./DTO/ProductReviewDTO";
-import {ProductQuantityDTO} from "./DTO/ProductQuantityDTO";
+import { ProductDTO } from './DTO/ProductDTO';
+import { UpdateProductDTO } from "./DTO/UpdateProductDTO";
+import { CreateProductReviewDTO } from "./DTO/ProductReviewDTO";
+import { ProductQuantityDTO } from "./DTO/ProductQuantityDTO";
 
 @Injectable()
 export class AppService {
@@ -23,40 +23,43 @@ export class AppService {
     return await this.productRepository.save(newProduct);
   }
 
-  async findProduct(id:any): Promise<Product | null>{
-    return await this.productRepository.findOneById(id);
+  async findProduct(id: any): Promise<Product | null> {
+    const product = await this.productRepository.findOne({ where: { id } });
+    return product ? { ...product, productSellingPrice: parseFloat(product.productSellingPrice as any) } : null;
   }
 
-  async getAllProducts():Promise<Product[]>{
-    return await this.productRepository.find();
+  async getAllProducts(): Promise<Product[]> {
+    const products = await this.productRepository.find();
+    return products.map(product => ({
+      ...product,
+      productSellingPrice: parseFloat(product.productSellingPrice as any),
+    }));
   }
 
   async updateProduct(id: number, updateProductDto: UpdateProductDTO): Promise<Product> {
     await this.productRepository.update(id, updateProductDto);
-    return await this.productRepository.findOneById(id);
+    const product = await this.productRepository.findOne({ where: { id } });
+    return product ? { ...product, productSellingPrice: parseFloat(product.productSellingPrice as any) } : null;
   }
 
-  async updateProductQuantity(id:number, productQuantitytDto:ProductQuantityDTO): Promise<Product>{
+  async updateProductQuantity(id: number, productQuantityDto: ProductQuantityDTO): Promise<Product> {
     await this.productRepository
         .createQueryBuilder()
         .update(Product)
-        .set({ productQuantity: productQuantitytDto.productQuantity })
+        .set({ productQuantity: productQuantityDto.productQuantity })
         .where("id = :id", { id })
         .execute();
 
-    return await this.productRepository.findOneById(id);
+    const product = await this.productRepository.findOne({ where: { id } });
+    return product ? { ...product, productSellingPrice: parseFloat(product.productSellingPrice as any) } : null;
   }
 
-  async deleteProduct(id: number){
+  async deleteProduct(id: number) {
     const result = await this.productRepository.delete(id);
-    if(!result){
-      return "Not Deleted";
-    }else{
-      return "Successfully Deleted";
-    }
+    return result.affected ? "Successfully Deleted" : "Not Deleted";
   }
 
-  async getProductsCount(){
+  async getProductsCount() {
     return await this.productRepository.count();
   }
 
@@ -75,20 +78,15 @@ export class AppService {
         .where('product.productName = :productName', { productName })
         .getOne();
 
-    if (!result) {
-      return null;
-    }
-
-    return result;
+    return result ? { ...result, productSellingPrice: parseFloat(result.productSellingPrice as any) } : null;
   }
 
   async createProductsReview(createProductReviewDTO: CreateProductReviewDTO): Promise<ProductReview> {
     const newProductReview = this.productReviewRepository.create(createProductReviewDTO);
-    console.log(createProductReviewDTO);
     return await this.productReviewRepository.save(newProductReview);
   }
 
-  async getAllProductsReview():Promise<ProductReview[]>{
+  async getAllProductsReview(): Promise<ProductReview[]> {
     return await this.productReviewRepository.find();
   }
 }
