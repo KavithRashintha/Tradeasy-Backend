@@ -1,0 +1,183 @@
+e3c34af4868b621fadb45c39884d155c
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppController = void 0;
+const common_1 = require("@nestjs/common");
+const app_service_1 = require("./app.service");
+const microservices_1 = require("@nestjs/microservices");
+const customerRefundDTO_1 = require("./dto/customerRefundDTO");
+const updateRefundStatusDTO_1 = require("./dto/updateRefundStatusDTO");
+const inventoryRefundDTO_1 = require("./dto/inventoryRefundDTO");
+let AppController = class AppController {
+    constructor(inventoryClient, refundManagement) {
+        this.inventoryClient = inventoryClient;
+        this.refundManagement = refundManagement;
+    }
+    async createCustomerRefund(customerRefundDto) {
+        return await this.refundManagement.createCustomerRefund(customerRefundDto);
+    }
+    async getCustomerRefund(id) {
+        return await this.refundManagement.getCustomerRefund(id);
+    }
+    async getAllCustomerRefunds() {
+        return await this.refundManagement.getAllCustomerRefunds();
+    }
+    async deleteCustomerRefund(id) {
+        return await this.refundManagement.deleteCustomerRefund(id);
+    }
+    async getCustomerRefundByStatus(refundStatus) {
+        return await this.refundManagement.getCustomerRefundByStatus(refundStatus);
+    }
+    async runTestFunction() {
+        return await this.inventoryClient.send({ cmd: 'TEST_FUNCTION' }, {});
+    }
+    async getCustomerRefundCount() {
+        return await this.refundManagement.getCustomerRefundCount();
+    }
+    async updateRefundStatus(updateRefundStatusDto) {
+        return await this.refundManagement.updateRefundStatus(updateRefundStatusDto);
+    }
+    async getCustomerRefundsByCustomerId(customerId) {
+        return await this.refundManagement.getCustomerRefundsByCustomerId(customerId);
+    }
+    //==============================================INVENTORY REFUND MANAGEMENT==============================================================
+    async createInventoryRefund(inventoryRefundDTO) {
+        return this.refundManagement.createInventoryRefund(inventoryRefundDTO);
+    }
+    async getAllInventoryRefund() {
+        return this.refundManagement.getAllInventoryRefund();
+    }
+    async getInventoryRefundById(inventory_id) {
+        return this.refundManagement.getInventoryRefundById(inventory_id);
+    }
+    async updateInventoryRefunds(data) {
+        const { id, updateInventoryRefundStatusDTO } = data;
+        return await this.refundManagement.updateInventoryRefunds(id, updateInventoryRefundStatusDTO);
+    }
+    async deleteInventoryRefund(inventory_id) {
+        return await this.refundManagement.deleteInventoryRefund(inventory_id);
+    }
+    async getAllApprovedRefunds() {
+        return this.refundManagement.getAllApprovedRefunds();
+    }
+};
+exports.AppController = AppController;
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'CREATE_CUSTOMER_REFUND' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [customerRefundDTO_1.CustomerRefundDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "createCustomerRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER_REFUND' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_ALL_CUSTOMER_REFUNDS' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getAllCustomerRefunds", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'DELETE_CUSTOMER_REFUND' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "deleteCustomerRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER_REFUND_BY_CATEGORY' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerRefundByStatus", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'CALLING_TEST_FUNCTION' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "runTestFunction", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER_REFUND_COUNT' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerRefundCount", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'UPDATE_REFUND_STATUS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [updateRefundStatusDTO_1.updateRefundStatusDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "updateRefundStatus", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER_REFUND_BY_CUSTOMER_ID' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerRefundsByCustomerId", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'CREATE_INVENTORY_REFUND' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventoryRefundDTO_1.InventoryRefundDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "createInventoryRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_ALL_INVENTORY_REFUND' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getAllInventoryRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_INVENTORY_REFUND_BY_ID' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getInventoryRefundById", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'UPDATE_INVENTORY_REFUND' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "updateInventoryRefunds", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'DELETE_INVENTORY_REFUND' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "deleteInventoryRefund", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_ALL_APPROVED_REFUNDS' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getAllApprovedRefunds", null);
+exports.AppController = AppController = __decorate([
+    (0, common_1.Controller)(),
+    __param(0, (0, common_1.Inject)('INVENTORY_MANAGEMENT')),
+    __metadata("design:paramtypes", [microservices_1.ClientProxy,
+        app_service_1.AppService])
+], AppController);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxkaW51a1xcRGVza3RvcFxcTXkgRG9jc1xcUHJvamVjdHNcXFRyYWRlYXN5XFxUcmFkZWFzeS1CYWNrZW5kXFxyZWZ1bmRfbWFuYWdlbWVudFxcc3JjXFxhcHAuY29udHJvbGxlci50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7QUFBQSwyQ0FBb0Q7QUFDcEQsK0NBQTJDO0FBQzNDLHlEQUE2RTtBQUM3RSwrREFBNEQ7QUFDNUQsdUVBQW9FO0FBQ3BFLGlFQUE4RjtBQUt2RixJQUFNLGFBQWEsR0FBbkIsTUFBTSxhQUFhO0lBQ3hCLFlBQzBDLGVBQTJCLEVBQ2xELGdCQUE0QjtRQURMLG9CQUFlLEdBQWYsZUFBZSxDQUFZO1FBQ2xELHFCQUFnQixHQUFoQixnQkFBZ0IsQ0FBWTtJQUM1QyxDQUFDO0lBR0UsQUFBTixLQUFLLENBQUMsb0JBQW9CLENBQ2IsaUJBQW9DO1FBRS9DLE9BQU8sTUFBTSxJQUFJLENBQUMsZ0JBQWdCLENBQUMsb0JBQW9CLENBQUMsaUJBQWlCLENBQUMsQ0FBQztJQUM3RSxDQUFDO0lBR0ssQUFBTixLQUFLLENBQUMsaUJBQWlCLENBQVksRUFBUztRQUMxQyxPQUFPLE1BQU0sSUFBSSxDQUFDLGdCQUFnQixDQUFDLGlCQUFpQixDQUFDLEVBQUUsQ0FBQyxDQUFDO0lBQzNELENBQUM7SUFHSyxBQUFOLEtBQUssQ0FBQyxxQkFBcUI7UUFDekIsT0FBTyxNQUFNLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxxQkFBcUIsRUFBRSxDQUFDO0lBQzdELENBQUM7SUFHSyxBQUFOLEtBQUssQ0FBQyxvQkFBb0IsQ0FBWSxFQUFTO1FBQzdDLE9BQU8sTUFBTSxJQUFJLENBQUMsZ0JBQWdCLENBQUMsb0JBQW9CLENBQUMsRUFBRSxDQUFDLENBQUM7SUFDOUQsQ0FBQztJQUdLLEFBQU4sS0FBSyxDQUFDLHlCQUF5QixDQUFZLFlBQW1CO1FBQzVELE9BQU8sTUFBTSxJQUFJLENBQUMsZ0JBQWdCLENBQUMseUJBQXlCLENBQUMsWUFBWSxDQUFDLENBQUM7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b3VyY2VzIjpbIkM6XFxVc2Vyc1xcZGludWtcXERlc2t0b3BcXE15IERvY3NcXFByb2plY3RzXFxUcmFkZWFzeVxcVHJhZGVhc3ktQmFja2VuZFxccmVmdW5kX21hbmFnZW1lbnRcXHNyY1xcYXBwLmNvbnRyb2xsZXIudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29udHJvbGxlciwgSW5qZWN0IH0gZnJvbSAnQG5lc3Rqcy9jb21tb24nO1xyXG5pbXBvcnQgeyBBcHBTZXJ2aWNlIH0gZnJvbSAnLi9hcHAuc2VydmljZSc7XHJcbmltcG9ydCB7IENsaWVudFByb3h5LCBNZXNzYWdlUGF0dGVybiwgUGF5bG9hZCB9IGZyb20gJ0BuZXN0anMvbWljcm9zZXJ2aWNlcyc7XHJcbmltcG9ydCB7IEN1c3RvbWVyUmVmdW5kRFRPIH0gZnJvbSAnLi9kdG8vY3VzdG9tZXJSZWZ1bmREVE8nO1xyXG5pbXBvcnQgeyB1cGRhdGVSZWZ1bmRTdGF0dXNEVE8gfSBmcm9tICcuL2R0by91cGRhdGVSZWZ1bmRTdGF0dXNEVE8nO1xyXG5pbXBvcnQgeyBJbnZlbnRvcnlSZWZ1bmREVE8sIFVwZGF0ZUludmVudG9yeVJlZnVuZFN0YXR1c0RUTyB9IGZyb20gJy4vZHRvL2ludmVudG9yeVJlZnVuZERUTyc7XHJcbmltcG9ydCB7IEN1c3RvbWVyUmVmdW5kLCBJbnZlbnRvcnlSZWZ1bmQgfSBmcm9tICcuL3JlZnVuZHMuZW50aXR5JztcclxuXHJcblxyXG5AQ29udHJvbGxlcigpXHJcbmV4cG9ydCBjbGFzcyBBcHBDb250cm9sbGVyIHtcclxuICBjb25zdHJ1Y3RvcihcclxuICAgIEBJbmplY3QoJ0lOVkVOVE9SWV9NQU5BR0VNRU5UJykgcHJpdmF0ZSBpbnZlbnRvcnlDbGllbnQ6Q2xpZW50UHJveHksXHJcbiAgICBwcml2YXRlIHJlYWRvbmx5IHJlZnVuZE1hbmFnZW1lbnQ6IEFwcFNlcnZpY2VcclxuICApIHt9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7IGNtZDogJ0NSRUFURV9DVVNUT01FUl9SRUZVTkQnIH0pXHJcbiAgYXN5bmMgY3JlYXRlQ3VzdG9tZXJSZWZ1bmQoXHJcbiAgICBAUGF5bG9hZCgpIGN1c3RvbWVyUmVmdW5kRHRvOiBDdXN0b21lclJlZnVuZERUTyxcclxuICApOiBQcm9taXNlPEN1c3RvbWVyUmVmdW5kPiB7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5yZWZ1bmRNYW5hZ2VtZW50LmNyZWF0ZUN1c3RvbWVyUmVmdW5kKGN1c3RvbWVyUmVmdW5kRHRvKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnR0VUX0NVU1RPTUVSX1JFRlVORCd9KVxyXG4gIGFzeW5jIGdldEN1c3RvbWVyUmVmdW5kKEBQYXlsb2FkKCkgaWQ6bnVtYmVyKTpQcm9taXNlPEN1c3RvbWVyUmVmdW5kPiB7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5yZWZ1bmRNYW5hZ2VtZW50LmdldEN1c3RvbWVyUmVmdW5kKGlkKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7IGNtZDogJ0dFVF9BTExfQ1VTVE9NRVJfUkVGVU5EUycgfSlcclxuICBhc3luYyBnZXRBbGxDdXN0b21lclJlZnVuZHMoKTogUHJvbWlzZTxDdXN0b21lclJlZnVuZFtdPiB7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5yZWZ1bmRNYW5hZ2VtZW50LmdldEFsbEN1c3RvbWVyUmVmdW5kcygpO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHtjbWQ6ICdERUxFVEVfQ1VTVE9NRVJfUkVGVU5EJ30pXHJcbiAgYXN5bmMgZGVsZXRlQ3VzdG9tZXJSZWZ1bmQoQFBheWxvYWQoKSBpZDpudW1iZXIpe1xyXG4gICAgcmV0dXJuIGF3YWl0IHRoaXMucmVmdW5kTWFuYWdlbWVudC5kZWxldGVDdXN0b21lclJlZnVuZChpZCk7XHJcbiAgfVxyXG5cclxuICBATWVzc2FnZVBhdHRlcm4oe2NtZDogJ0dFVF9DVVNUT01FUl9SRUZVTkRfQllfQ0FURUdPUlknfSlcclxuICBhc3luYyBnZXRDdXN0b21lclJlZnVuZEJ5U3RhdHVzKEBQYXlsb2FkKCkgcmVmdW5kU3RhdHVzOnN0cmluZyl7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5yZWZ1bmRNYW5hZ2VtZW50LmdldEN1c3RvbWVyUmVmdW5kQnlTdGF0dXMocmVmdW5kU3RhdHVzKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnQ0FMTElOR19URVNUX0ZVTkNUSU9OJ30pXHJcbiAgYXN5bmMgcnVuVGVzdEZ1bmN0aW9uKCk6UHJvbWlzZTxhbnk+e1xyXG4gICAgcmV0dXJuIGF3YWl0IHRoaXMuaW52ZW50b3J5Q2xpZW50LnNlbmQoe2NtZDogJ1RFU1RfRlVOQ1RJT04nfSwge30pO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHtjbWQ6ICdHRVRfQ1VTVE9NRVJfUkVGVU5EX0NPVU5UJ30pXHJcbiAgYXN5bmMgZ2V0Q3VzdG9tZXJSZWZ1bmRDb3VudCgpe1xyXG4gICAgcmV0dXJuIGF3YWl0IHRoaXMucmVmdW5kTWFuYWdlbWVudC5nZXRDdXN0b21lclJlZnVuZENvdW50KCk7XHJcbiAgfVxyXG4gIFxyXG4gIEBNZXNzYWdlUGF0dGVybih7IGNtZDogJ1VQREFURV9SRUZVTkRfU1RBVFVTJyB9KVxyXG4gIGFzeW5jIHVwZGF0ZVJlZnVuZFN0YXR1cyhAUGF5bG9hZCgpIHVwZGF0ZVJlZnVuZFN0YXR1c0R0bzogdXBkYXRlUmVmdW5kU3RhdHVzRFRPKTogUHJvbWlzZTxDdXN0b21lclJlZnVuZD4ge1xyXG4gICAgcmV0dXJuIGF3YWl0IHRoaXMucmVmdW5kTWFuYWdlbWVudC51cGRhdGVSZWZ1bmRTdGF0dXModXBkYXRlUmVmdW5kU3RhdHVzRHRvKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnR0VUX0NVU1RPTUVSX1JFRlVORF9CWV9DVVNUT01FUl9JRCd9KVxyXG4gIGFzeW5jIGdldEN1c3RvbWVyUmVmdW5kc0J5Q3VzdG9tZXJJZChAUGF5bG9hZCgpIGN1c3RvbWVySWQ6IHN0cmluZyk6IFByb21pc2U8Q3VzdG9tZXJSZWZ1bmRbXT4ge1xyXG4gICAgcmV0dXJuIGF3YWl0IHRoaXMucmVmdW5kTWFuYWdlbWVudC5nZXRDdXN0b21lclJlZnVuZHNCeUN1c3RvbWVySWQoY3VzdG9tZXJJZCk7XHJcbiAgfVxyXG5cclxuICAvLz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1JTlZFTlRPUlkgUkVGVU5EIE1BTkFHRU1FTlQ9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxyXG5cclxuICBATWVzc2FnZVBhdHRlcm4oeyBjbWQ6ICdDUkVBVEVfSU5WRU5UT1JZX1JFRlVORCcgfSlcclxuICBhc3luYyBjcmVhdGVJbnZlbnRvcnlSZWZ1bmQoQFBheWxvYWQoKSBpbnZlbnRvcnlSZWZ1bmREVE86IEludmVudG9yeVJlZnVuZERUTyk6IFByb21pc2U8SW52ZW50b3J5UmVmdW5kPntcclxuICAgIHJldHVybiB0aGlzLnJlZnVuZE1hbmFnZW1lbnQuY3JlYXRlSW52ZW50b3J5UmVmdW5kKGludmVudG9yeVJlZnVuZERUTylcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7IGNtZDogJ0dFVF9BTExfSU5WRU5UT1JZX1JFRlVORCcgfSlcclxuICBhc3luYyBnZXRBbGxJbnZlbnRvcnlSZWZ1bmQoKTogUHJvbWlzZTxJbnZlbnRvcnlSZWZ1bmRbXT57XHJcbiAgICByZXR1cm4gdGhpcy5yZWZ1bmRNYW5hZ2VtZW50LmdldEFsbEludmVudG9yeVJlZnVuZCgpO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHsgY21kOiAnR0VUX0lOVkVOVE9SWV9SRUZVTkRfQllfSUQnIH0pXHJcbiAgYXN5bmMgZ2V0SW52ZW50b3J5UmVmdW5kQnlJZChAUGF5bG9hZCgpIGludmVudG9yeV9pZDpudW1iZXIpOiBQcm9taXNlPEludmVudG9yeVJlZnVuZD57XHJcbiAgICByZXR1cm4gdGhpcy5yZWZ1bmRNYW5hZ2VtZW50LmdldEludmVudG9yeVJlZnVuZEJ5SWQoaW52ZW50b3J5X2lkKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnVVBEQVRFX0lOVkVOVE9SWV9SRUZVTkQnfSlcclxuICBhc3luYyB1cGRhdGVJbnZlbnRvcnlSZWZ1bmRzKEBQYXlsb2FkKCkgZGF0YTogeyBpZDogbnVtYmVyLCB1cGRhdGVJbnZlbnRvcnlSZWZ1bmRTdGF0dXNEVE86IFVwZGF0ZUludmVudG9yeVJlZnVuZFN0YXR1c0RUTyB9KTogUHJvbWlzZTxJbnZlbnRvcnlSZWZ1bmQ+IHtcclxuICAgIGNvbnN0IHsgaWQsIHVwZGF0ZUludmVudG9yeVJlZnVuZFN0YXR1c0RUTyB9ID0gZGF0YTtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLnJlZnVuZE1hbmFnZW1lbnQudXBkYXRlSW52ZW50b3J5UmVmdW5kcyhpZCwgdXBkYXRlSW52ZW50b3J5UmVmdW5kU3RhdHVzRFRPKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnREVMRVRFX0lOVkVOVE9SWV9SRUZVTkQnfSlcclxuYXN5bmMgZGVsZXRlSW52ZW50b3J5UmVmdW5kKEBQYXlsb2FkKCkgaW52ZW50b3J5X2lkOiBudW1iZXIpIHtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLnJlZnVuZE1hbmFnZW1lbnQuZGVsZXRlSW52ZW50b3J5UmVmdW5kKGludmVudG9yeV9pZCk7XHJcbn1cclxuXHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnR0VUX0FMTF9BUFBST1ZFRF9SRUZVTkRTJ30pXHJcbiAgICBhc3luYyBnZXRBbGxBcHByb3ZlZFJlZnVuZHMoKTogUHJvbWlzZTxJbnZlbnRvcnlSZWZ1bmRbXT4ge1xyXG4gICAgICAgIHJldHVybiB0aGlzLnJlZnVuZE1hbmFnZW1lbnQuZ2V0QWxsQXBwcm92ZWRSZWZ1bmRzKCk7XHJcbiAgICB9XHJcbn1cclxuIFxyXG4gIFxyXG4gIFxyXG5cclxuIl0sInZlcnNpb24iOjN9

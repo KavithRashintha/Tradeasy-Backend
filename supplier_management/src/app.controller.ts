@@ -57,7 +57,7 @@ export class AppController {
   }
 
   @MessagePattern({cmd: 'DELETE_SUPPLIER'})
-  async deleteSupplier(@Payload() id:number){
+  async deleteSupplier(@Payload() id:number):Promise<'Not Deleted' | 'Successfully Deleted'>{
     return await this.supplierManagement.deleteSupplier(id);
   }
 }

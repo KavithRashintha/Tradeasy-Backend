@@ -1,0 +1,119 @@
+926af5c2a82557ee110e535841e0450a
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.InventoryRefund = exports.CustomerRefund = void 0;
+const typeorm_1 = require("typeorm");
+let CustomerRefund = class CustomerRefund {
+};
+exports.CustomerRefund = CustomerRefund;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], CustomerRefund.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 0 }),
+    __metadata("design:type", Number)
+], CustomerRefund.prototype, "orderId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "customerName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "customerId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "contact", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "item", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "quantity", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "reason", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "totalPrice", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: 'date' }),
+    __metadata("design:type", Date)
+], CustomerRefund.prototype, "createdDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 'pending' }),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], CustomerRefund.prototype, "denialReason", void 0);
+exports.CustomerRefund = CustomerRefund = __decorate([
+    (0, typeorm_1.Entity)()
+], CustomerRefund);
+let InventoryRefund = class InventoryRefund {
+};
+exports.InventoryRefund = InventoryRefund;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], InventoryRefund.prototype, "inventory_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "supplierId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "supplierName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "orderId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "item", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 'pending' }),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "phone", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "quantity", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "price", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "reason", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 'pending' }),
+    __metadata("design:type", String)
+], InventoryRefund.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: 'date' }),
+    __metadata("design:type", Date)
+], InventoryRefund.prototype, "createdDate", void 0);
+exports.InventoryRefund = InventoryRefund = __decorate([
+    (0, typeorm_1.Entity)()
+], InventoryRefund);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxkaW51a1xcRGVza3RvcFxcTXkgRG9jc1xcUHJvamVjdHNcXFRyYWRlYXN5XFxUcmFkZWFzeS1CYWNrZW5kXFxyZWZ1bmRfbWFuYWdlbWVudFxcc3JjXFxyZWZ1bmRzLmVudGl0eS50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxxQ0FBa0Y7QUFHM0UsSUFBTSxjQUFjLEdBQXBCLE1BQU0sY0FBYztDQXFDMUIsQ0FBQTtBQXJDWSx3Q0FBYztBQUV6QjtJQURDLElBQUEsZ0NBQXNCLEdBQUU7OzBDQUNkO0FBR1g7SUFEQyxJQUFBLGdCQUFNLEVBQUMsRUFBQyxPQUFPLEVBQUUsQ0FBQyxFQUFDLENBQUM7OytDQUNMO0FBR2hCO0lBREMsSUFBQSxnQkFBTSxHQUFFOztvREFDWTtBQUdyQjtJQURDLElBQUEsZ0JBQU0sR0FBRTs7a0RBQ1U7QUFHbkI7SUFEQyxJQUFBLGdCQUFNLEdBQUU7OytDQUNPO0FBR2hCO0lBREMsSUFBQSxnQkFBTSxHQUFFOzs0Q0FDSTtBQUdiO0lBREMsSUFBQSxnQkFBTSxHQUFFOztnREFDUTtBQUdqQjtJQURDLElBQUEsZ0JBQU0sR0FBRTs7OENBQ007QUFHZjtJQURDLElBQUEsZ0JBQU0sR0FBRTs7a0RBQ1U7QUFHbkI7SUFEQyxJQUFBLDBCQUFnQixFQUFDLEVBQUUsSUFBSSxFQUFFLE1BQU0sRUFBRSxDQUFDOzhCQUN0QixJQUFJO21EQUFDO0FBSWxCO0lBREMsSUFBQSxnQkFBTSxFQUFDLEVBQUMsT0FBTyxFQUFFLFNBQVMsRUFBQyxDQUFDOzs4Q0FDZDtBQUdiO0lBREQsSUFBQSxnQkFBTSxFQUFDLEVBQUUsUUFBUSxFQUFFLElBQUksRUFBRSxDQUFDOztvREFDSjt5QkFwQ1osY0FBYztJQUQxQixJQUFBLGdCQUFNLEdBQUU7R0FDSSxjQUFjLENBcUMxQjtBQUlNLElBQU0sZUFBZSxHQUFyQixNQUFNLGVBQWU7Q0FpQzNCLENBQUE7QUFqQ1ksMENBQWU7QUFFdkI7SUFERixJQUFBLGdDQUFzQixHQUFFOztxREFDRDtBQUduQjtJQURKLElBQUEsZ0JBQU0sR0FBRTs7bURBQ2U7QUFHckI7SUFERixJQUFBLGdCQUFNLEdBQUU7O3FEQUNlO0FBR3JCO0lBREYsSUFBQSxnQkFBTSxHQUFFOztnREFDVTtBQUdoQjtJQURGLElBQUEsZ0JBQU0sR0FBRTs7NkNBQ087QUFHZDtJQURELElBQUEsZ0JBQU0sRUFBQyxFQUFDLE9BQU8sRUFBRSxTQUFTLEVBQUMsQ0FBQzs7OENBQ2I7QUFHYjtJQURGLElBQUEsZ0JBQU0sR0FBRTs7aURBQ1c7QUFHakI7SUFERixJQUFBLGdCQUFNLEdBQUU7OzhDQUNRO0FBR2Q7SUFERixJQUFBLGdCQUFNLEdBQUU7OytDQUNTO0FBR2Y7SUFERixJQUFBLGdCQUFNLEVBQUMsRUFBQyxPQUFPLEVBQUUsU0FBUyxFQUFDLENBQUM7OytDQUNYO0FBR2Y7SUFERixJQUFBLDBCQUFnQixFQUFDLEVBQUUsSUFBSSxFQUFFLE1BQU0sRUFBRSxDQUFDOzhCQUNuQixJQUFJO29EQUFDOzBCQWhDVixlQUFlO0lBRDNCLElBQUEsZ0JBQU0sR0FBRTtHQUNJLGVBQWUsQ0FpQzNCIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZGludWtcXERlc2t0b3BcXE15IERvY3NcXFByb2plY3RzXFxUcmFkZWFzeVxcVHJhZGVhc3ktQmFja2VuZFxccmVmdW5kX21hbmFnZW1lbnRcXHNyY1xccmVmdW5kcy5lbnRpdHkudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29sdW1uLCBFbnRpdHksIFByaW1hcnlHZW5lcmF0ZWRDb2x1bW4sQ3JlYXRlRGF0ZUNvbHVtbiB9IGZyb20gJ3R5cGVvcm0nO1xyXG5cclxuQEVudGl0eSgpXHJcbmV4cG9ydCBjbGFzcyBDdXN0b21lclJlZnVuZCB7XHJcbiAgQFByaW1hcnlHZW5lcmF0ZWRDb2x1bW4oKVxyXG4gIGlkOiBudW1iZXI7XHJcblxyXG4gIEBDb2x1bW4oe2RlZmF1bHQ6IDB9KVxyXG4gIG9yZGVySWQ6IG51bWJlcjtcclxuXHJcbiAgQENvbHVtbigpXHJcbiAgY3VzdG9tZXJOYW1lOiBzdHJpbmc7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gIGN1c3RvbWVySWQ6IHN0cmluZztcclxuXHJcbiAgQENvbHVtbigpXHJcbiAgY29udGFjdDogc3RyaW5nO1xyXG5cclxuICBAQ29sdW1uKClcclxuICBpdGVtOiBzdHJpbmc7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gIHF1YW50aXR5OiBzdHJpbmc7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gIHJlYXNvbjogc3RyaW5nO1xyXG5cclxuICBAQ29sdW1uKClcclxuICB0b3RhbFByaWNlOiBzdHJpbmc7XHJcblxyXG4gIEBDcmVhdGVEYXRlQ29sdW1uKHsgdHlwZTogJ2RhdGUnIH0pXHJcbiAgY3JlYXRlZERhdGU6IERhdGU7ICBcclxuICAgICBcclxuXHJcbiAgQENvbHVtbih7ZGVmYXVsdDogJ3BlbmRpbmcnfSlcclxuICBzdGF0dXM6IHN0cmluZztcclxuXHJcbiAgQENvbHVtbih7IG51bGxhYmxlOiB0cnVlIH0pXHJcbiAgICBkZW5pYWxSZWFzb246IHN0cmluZztcclxufVxyXG5cclxuXHJcbkBFbnRpdHkoKVxyXG5leHBvcnQgY2xhc3MgSW52ZW50b3J5UmVmdW5kIHtcclxuICBAUHJpbWFyeUdlbmVyYXRlZENvbHVtbigpXHJcbiAgICAgaW52ZW50b3J5X2lkOiBudW1iZXI7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gICAgICAgc3VwcGxpZXJJZDogc3RyaW5nOyAgIFxyXG5cclxuICBAQ29sdW1uKCkgXHJcbiAgICAgc3VwcGxpZXJOYW1lOiBzdHJpbmc7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gICAgIG9yZGVySWQ6IHN0cmluZzsgICBcclxuXHJcbiAgQENvbHVtbigpIFxyXG4gICAgIGl0ZW06IHN0cmluZztcclxuXHJcbiAgQENvbHVtbih7ZGVmYXVsdDogJ3BlbmRpbmcnfSkgXHJcbiAgICBwaG9uZTogc3RyaW5nOyAgXHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gICAgIHF1YW50aXR5OiBzdHJpbmc7ICBcclxuICAgICAgIFxyXG4gIEBDb2x1bW4oKVxyXG4gICAgIHByaWNlOiBzdHJpbmc7ICBcclxuICAgICBcclxuICBAQ29sdW1uKClcclxuICAgICByZWFzb246IHN0cmluZzsgIFxyXG4gICAgIFxyXG4gIEBDb2x1bW4oe2RlZmF1bHQ6ICdwZW5kaW5nJ30pXHJcbiAgICAgc3RhdHVzOiBzdHJpbmc7ICAgIFxyXG4gICAgIFxyXG4gIEBDcmVhdGVEYXRlQ29sdW1uKHsgdHlwZTogJ2RhdGUnIH0pXHJcbiAgICAgY3JlYXRlZERhdGU6IERhdGU7ICAgICAgICAgXHJcbn1cclxuIl0sInZlcnNpb24iOjN9

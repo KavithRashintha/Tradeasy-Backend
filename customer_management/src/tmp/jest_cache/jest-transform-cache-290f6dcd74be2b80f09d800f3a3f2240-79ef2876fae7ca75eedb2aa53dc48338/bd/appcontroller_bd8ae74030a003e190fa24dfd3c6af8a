@@ -1,0 +1,123 @@
+0518f86f3c49a6888709ef4011d643c7
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppController = void 0;
+const common_1 = require("@nestjs/common");
+const app_service_1 = require("./app.service");
+const microservices_1 = require("@nestjs/microservices");
+const CustomerDTO_1 = require("./dto/CustomerDTO");
+let AppController = class AppController {
+    constructor(customerManagement) {
+        this.customerManagement = customerManagement;
+    }
+    async createCustomer(createCustomerDto) {
+        console.log("cus.controller", createCustomerDto);
+        return await this.customerManagement.createCustomer(createCustomerDto);
+    }
+    async updateLastLogin(data) {
+        const { id, lastLogin } = data;
+        console.log("cus.controller", data);
+        return await this.customerManagement.updateLastLogin(id, { lastLogin });
+    }
+    async getCustomerById(id) {
+        return await this.customerManagement.findCustomer(id);
+    }
+    async getCustomerByUsername(username) {
+        console.log('controller.usn:', username);
+        return await this.customerManagement.findCustomerByUsername(username);
+    }
+    async getAllCustomers() {
+        return await this.customerManagement.getAllCustomers();
+    }
+    async updateCustomer(data) {
+        const { id, updateCustomerDto } = data;
+        return await this.customerManagement.updateCustomer(id, updateCustomerDto);
+    }
+    async deleteCustomer(id) {
+        return await this.customerManagement.deleteCustomer(id);
+    }
+    async searchAllCustomers(query) {
+        return await this.customerManagement.searchAllCustomers(query);
+    }
+    async getActiveCustomers() {
+        return await this.customerManagement.getActiveCustomers();
+    }
+};
+exports.AppController = AppController;
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'CREATE_CUSTOMER' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [CustomerDTO_1.CustomerDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "createCustomer", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'UPDATE_LAST_LOGIN' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "updateLastLogin", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerById", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_CUSTOMER_BY_USERNAME' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getCustomerByUsername", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_ALL_CUSTOMERS' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getAllCustomers", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'UPDATE_CUSTOMER' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "updateCustomer", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'DELETE_CUSTOMER' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "deleteCustomer", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEARCH_ALL_CUSTOMERS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "searchAllCustomers", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'GET_ACTIVE_CUSTOMERS' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getActiveCustomers", null);
+exports.AppController = AppController = __decorate([
+    (0, common_1.Controller)(),
+    __metadata("design:paramtypes", [app_service_1.AppService])
+], AppController);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxkaW51a1xcRGVza3RvcFxcTXkgRG9jc1xcUHJvamVjdHNcXFRyYWRlYXN5XFxUcmFkZWFzeS1CYWNrZW5kXFxjdXN0b21lcl9tYW5hZ2VtZW50XFxzcmNcXGFwcC5jb250cm9sbGVyLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQUFBLDJDQUF3RDtBQUN4RCwrQ0FBMkM7QUFDM0MseURBQWdFO0FBQ2hFLG1EQUE4QztBQVF2QyxJQUFNLGFBQWEsR0FBbkIsTUFBTSxhQUFhO0lBQ3hCLFlBQTZCLGtCQUE4QjtRQUE5Qix1QkFBa0IsR0FBbEIsa0JBQWtCLENBQVk7SUFBRyxDQUFDO0lBR3pELEFBQU4sS0FBSyxDQUFDLGNBQWMsQ0FBQyxpQkFBOEI7UUFDakQsT0FBTyxDQUFDLEdBQUcsQ0FBQyxnQkFBZ0IsRUFBQyxpQkFBaUIsQ0FBQyxDQUFDO1FBQ2hELE9BQU8sTUFBTSxJQUFJLENBQUMsa0JBQWtCLENBQUMsY0FBYyxDQUFDLGlCQUFpQixDQUFDLENBQUM7SUFDekUsQ0FBQztJQUdLLEFBQU4sS0FBSyxDQUFDLGVBQWUsQ0FBWSxJQUFxQztRQUNwRSxNQUFNLEVBQUUsRUFBRSxFQUFFLFNBQVMsRUFBRSxHQUFHLElBQUksQ0FBQztRQUMvQixPQUFPLENBQUMsR0FBRyxDQUFDLGdCQUFnQixFQUFDLElBQUksQ0FBQyxDQUFDO1FBQ25DLE9BQU8sTUFBTSxJQUFJLENBQUMsa0JBQWtCLENBQUMsZUFBZSxDQUFDLEVBQUUsRUFBRSxFQUFDLFNBQVMsRUFBQyxDQUFDLENBQUM7SUFDeEUsQ0FBQztJQUdLLEFBQU4sS0FBSyxDQUFDLGVBQWUsQ0FDTixFQUFNO1FBRW5CLE9BQU8sTUFBTSxJQUFJLENBQUMsa0JBQWtCLENBQUMsWUFBWSxDQUFDLEVBQUUsQ0FBQyxDQUFDO0lBQ3hELENBQUM7SUFHSyxBQUFOLEtBQUssQ0FBQyxxQkFBcUIsQ0FDWixRQUFZO1FBRXpCLE9BQU8sQ0FBQyxHQUFHLENBQUMsaUJBQWlCLEVBQUMsUUFBUSxDQUFDLENBQUM7UUFDeEMsT0FBTyxNQUFNLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxzQkFBc0IsQ0FBQyxRQUFRLENBQUMsQ0FBQztJQUN4RSxDQUFDO0lBR0ssQUFBTixLQUFLLENBQUMsZUFBZTtRQUNuQixPQUFPLE1BQU0sSUFBSSxDQUFDLGtCQUFrQixDQUFDLGVBQWUsRUFBRSxDQUFDO0lBQ3pELENBQUM7SUFHSyxBQUFOLEtBQUssQ0FBQyxjQUFjLENBQVksSUFBMEQ7UUFDeEYsTUFBTSxFQUFFLEVBQUUsRUFBRSxpQkFBaUIsRUFBRSxHQUFHLElBQUksQ0FBQztRQUN2QyxPQUFPLE1BQU0sSUFBSSxDQUFDLGtCQUFrQixDQUFDLGNBQWMsQ0FBQyxFQUFFLEVBQUUsaUJBQWlCLENBQUMsQ0FBQztJQUM3RSxDQUFDO0lBR0ssQUFBTixLQUFLLENBQUMsY0FBYyxDQUFZLEVBQVM7UUFDdkMsT0FBTyxNQUFNLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxjQUFjLENBQUMsRUFBRSxDQUFDLENBQUM7SUFDMUQsQ0FBQztJQUdLLEFBQU4sS0FBSyxDQUFDLGtCQUFrQixDQUFZLEtBQVk7UUFDOUMsT0FBTyxNQUFNLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxrQkFBa0IsQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUNqRSxDQUFDO0lBR0ssQUFBTixLQUFLLENBQUMsa0JBQWtCO1FBQ3RCLE9BQU8sTUFBTSxJQUFJLENBQUMsa0JBQWtCLENBQUMsa0JBQWtCLEVBQUUsQ0FBQztJQUM1RCxDQUFDO0NBQ0YsQ0FBQTtBQXhEWSxzQ0FBYTtBQUlsQjtJQURMLElBQUEsOEJBQWMsRUFBQyxFQUFFLEdBQUcsRUFBRSxpQkFBaUIsRUFBRSxDQUFDOztxQ0FDSCx5QkFBVzs7bURBR2xEO0FBR0s7SUFETCxJQUFBLDhCQUFjLEVBQUMsRUFBRyxHQUFHLEVBQUUsbUJBQW1CLEVBQUUsQ0FBQztJQUN2QixXQUFBLElBQUEsdUJBQU8sR0FBRSxDQUFBOzs7O29EQUkvQjtBQUdLO0lBREwsSUFBQSw4QkFBYyxFQUFDLEVBQUUsR0FBRyxFQUFFLGNBQWMsRUFBRSxDQUFDO0lBRW5DLFdBQUEsSUFBQSx1QkFBTyxHQUFFLENBQUE7Ozs7b0RBR2I7QUFHSztJQURMLElBQUEsOEJBQWMsRUFBQyxFQUFFLEdBQUcsRUFBRSwwQkFBMEIsRUFBRSxDQUFDO0lBRS9DLFdBQUEsSUFBQSx1QkFBTyxHQUFFLENBQUE7Ozs7MERBSWI7QUFHSztJQURMLElBQUEsOEJBQWMsRUFBQyxFQUFDLEdBQUcsRUFBRSxtQkFBbUIsRUFBQyxDQUFDOzs7O29EQUcxQztBQUdLO0lBREwsSUFBQSw4QkFBYyxFQUFDLEVBQUMsR0FBRyxFQUFFLGlCQUFpQixFQUFDLENBQUM7SUFDbkIsV0FBQSxJQUFBLHVCQUFPLEdBQUUsQ0FBQTs7OzttREFHOUI7QUFHSztJQURMLElBQUEsOEJBQWMsRUFBQyxFQUFDLEdBQUcsRUFBRSxpQkFBaUIsRUFBQyxDQUFDO0lBQ25CLFdBQUEsSUFBQSx1QkFBTyxHQUFFLENBQUE7Ozs7bURBRTlCO0FBR0s7SUFETCxJQUFBLDhCQUFjLEVBQUMsRUFBQyxHQUFHLEVBQUUsc0JBQXNCLEVBQUMsQ0FBQztJQUNwQixXQUFBLElBQUEsdUJBQU8sR0FBRSxDQUFBOzs7O3VEQUVsQztBQUdLO0lBREwsSUFBQSw4QkFBYyxFQUFDLEVBQUMsR0FBRyxFQUFFLHNCQUFzQixFQUFDLENBQUM7Ozs7dURBRzdDO3dCQXZEVSxhQUFhO0lBRHpCLElBQUEsbUJBQVUsR0FBRTtxQ0FFc0Msd0JBQVU7R0FEaEQsYUFBYSxDQXdEekIiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiQzpcXFVzZXJzXFxkaW51a1xcRGVza3RvcFxcTXkgRG9jc1xcUHJvamVjdHNcXFRyYWRlYXN5XFxUcmFkZWFzeS1CYWNrZW5kXFxjdXN0b21lcl9tYW5hZ2VtZW50XFxzcmNcXGFwcC5jb250cm9sbGVyLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7Q29udHJvbGxlciwgR2V0LCBQYXJhbSwgfSBmcm9tICdAbmVzdGpzL2NvbW1vbic7XHJcbmltcG9ydCB7IEFwcFNlcnZpY2UgfSBmcm9tICcuL2FwcC5zZXJ2aWNlJztcclxuaW1wb3J0IHsgTWVzc2FnZVBhdHRlcm4sIFBheWxvYWQgfSBmcm9tICdAbmVzdGpzL21pY3Jvc2VydmljZXMnO1xyXG5pbXBvcnQge0N1c3RvbWVyRFRPfSBmcm9tICcuL2R0by9DdXN0b21lckRUTyc7XHJcbmltcG9ydCB7IEN1c3RvbWVyIH0gZnJvbSAnLi9jdXN0b21lci5lbnRpdHknO1xyXG5pbXBvcnQgeyBHZXRDdXN0b21lckRUTyB9IGZyb20gJy4vZHRvL0dldEN1c3RvbWVyRFRPJztcclxuaW1wb3J0IHsgVXBkYXRlQ3VzdG9tZXJEVE8gfSBmcm9tICcuL2R0by9VcGRhdGVDdXN0b21lckRUTyc7XHJcbmltcG9ydCAqIGFzIGJjcnlwdCBmcm9tICdiY3J5cHQnXHJcbmltcG9ydCB7IFF1ZXJ5IH0gZnJvbSAnZXhwcmVzcy1zZXJ2ZS1zdGF0aWMtY29yZSc7XHJcblxyXG5AQ29udHJvbGxlcigpXHJcbmV4cG9ydCBjbGFzcyBBcHBDb250cm9sbGVyIHtcclxuICBjb25zdHJ1Y3Rvcihwcml2YXRlIHJlYWRvbmx5IGN1c3RvbWVyTWFuYWdlbWVudDogQXBwU2VydmljZSkge31cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHsgY21kOiAnQ1JFQVRFX0NVU1RPTUVSJyB9KVxyXG4gIGFzeW5jIGNyZWF0ZUN1c3RvbWVyKGNyZWF0ZUN1c3RvbWVyRHRvOiBDdXN0b21lckRUTyk6IFByb21pc2U8Q3VzdG9tZXI+IHtcclxuICAgIGNvbnNvbGUubG9nKFwiY3VzLmNvbnRyb2xsZXJcIixjcmVhdGVDdXN0b21lckR0byk7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5jdXN0b21lck1hbmFnZW1lbnQuY3JlYXRlQ3VzdG9tZXIoY3JlYXRlQ3VzdG9tZXJEdG8pO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHsgIGNtZDogJ1VQREFURV9MQVNUX0xPR0lOJyB9KVxyXG4gIGFzeW5jIHVwZGF0ZUxhc3RMb2dpbihAUGF5bG9hZCgpIGRhdGE6IHsgaWQ6IG51bWJlciwgbGFzdExvZ2luOiBEYXRlIH0pOiBQcm9taXNlPEN1c3RvbWVyPiB7XHJcbiAgICBjb25zdCB7IGlkLCBsYXN0TG9naW4gfSA9IGRhdGE7XHJcbiAgICBjb25zb2xlLmxvZyhcImN1cy5jb250cm9sbGVyXCIsZGF0YSk7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5jdXN0b21lck1hbmFnZW1lbnQudXBkYXRlTGFzdExvZ2luKGlkLCB7bGFzdExvZ2lufSk7XHJcbiAgfVxyXG5cclxuICBATWVzc2FnZVBhdHRlcm4oeyBjbWQ6ICdHRVRfQ1VTVE9NRVInIH0pXHJcbiAgYXN5bmMgZ2V0Q3VzdG9tZXJCeUlkKFxyXG4gICAgICBAUGF5bG9hZCgpIGlkOmFueVxyXG4gICk6IFByb21pc2U8Q3VzdG9tZXIgfCBudWxsPiB7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5jdXN0b21lck1hbmFnZW1lbnQuZmluZEN1c3RvbWVyKGlkKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7IGNtZDogJ0dFVF9DVVNUT01FUl9CWV9VU0VSTkFNRScgfSlcclxuICBhc3luYyBnZXRDdXN0b21lckJ5VXNlcm5hbWUoXHJcbiAgICAgIEBQYXlsb2FkKCkgdXNlcm5hbWU6YW55XHJcbiAgKTogUHJvbWlzZTxDdXN0b21lciB8IG51bGw+IHtcclxuICAgIGNvbnNvbGUubG9nKCdjb250cm9sbGVyLnVzbjonLHVzZXJuYW1lKTtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmN1c3RvbWVyTWFuYWdlbWVudC5maW5kQ3VzdG9tZXJCeVVzZXJuYW1lKHVzZXJuYW1lKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnR0VUX0FMTF9DVVNUT01FUlMnfSlcclxuICBhc3luYyBnZXRBbGxDdXN0b21lcnMoKTogUHJvbWlzZTxDdXN0b21lcltdPntcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmN1c3RvbWVyTWFuYWdlbWVudC5nZXRBbGxDdXN0b21lcnMoKTtcclxuICB9XHJcbiAgXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHtjbWQ6ICdVUERBVEVfQ1VTVE9NRVInfSlcclxuICBhc3luYyB1cGRhdGVDdXN0b21lcihAUGF5bG9hZCgpIGRhdGE6IHsgaWQ6IG51bWJlciwgdXBkYXRlQ3VzdG9tZXJEdG86IFVwZGF0ZUN1c3RvbWVyRFRPIH0pOiBQcm9taXNlPEN1c3RvbWVyPiB7XHJcbiAgICBjb25zdCB7IGlkLCB1cGRhdGVDdXN0b21lckR0byB9ID0gZGF0YTtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmN1c3RvbWVyTWFuYWdlbWVudC51cGRhdGVDdXN0b21lcihpZCwgdXBkYXRlQ3VzdG9tZXJEdG8pO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHtjbWQ6ICdERUxFVEVfQ1VTVE9NRVInfSlcclxuICBhc3luYyBkZWxldGVDdXN0b21lcihAUGF5bG9hZCgpIGlkOm51bWJlcil7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5jdXN0b21lck1hbmFnZW1lbnQuZGVsZXRlQ3VzdG9tZXIoaWQpO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHtjbWQ6ICdTRUFSQ0hfQUxMX0NVU1RPTUVSUyd9KVxyXG4gIGFzeW5jIHNlYXJjaEFsbEN1c3RvbWVycyhAUGF5bG9hZCgpIHF1ZXJ5OiBRdWVyeSk6IFByb21pc2U8Q3VzdG9tZXJbXT57XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5jdXN0b21lck1hbmFnZW1lbnQuc2VhcmNoQWxsQ3VzdG9tZXJzKHF1ZXJ5KTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7Y21kOiAnR0VUX0FDVElWRV9DVVNUT01FUlMnfSlcclxuICBhc3luYyBnZXRBY3RpdmVDdXN0b21lcnMoKXtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmN1c3RvbWVyTWFuYWdlbWVudC5nZXRBY3RpdmVDdXN0b21lcnMoKTtcclxuICB9XHJcbn1cclxuIl0sInZlcnNpb24iOjN9

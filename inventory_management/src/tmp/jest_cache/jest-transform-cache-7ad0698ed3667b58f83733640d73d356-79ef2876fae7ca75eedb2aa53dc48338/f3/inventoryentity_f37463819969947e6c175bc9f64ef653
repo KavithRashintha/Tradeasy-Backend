@@ -1,0 +1,65 @@
+cf4f67cc2b82e4dfc2735d4b2b0cf24f
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Item = void 0;
+const typeorm_1 = require("typeorm");
+let Item = class Item {
+};
+exports.Item = Item;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Item.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Item.prototype, "sellerId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productBrand", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productManufacturer", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productCategory", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productDescription", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text', { array: true }),
+    __metadata("design:type", Array)
+], Item.prototype, "productImage", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Item.prototype, "productColour", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Item.prototype, "productUnitPrice", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Item.prototype, "productQuantity", void 0);
+exports.Item = Item = __decorate([
+    (0, typeorm_1.Entity)()
+], Item);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxkaW51a1xcRGVza3RvcFxcTXkgRG9jc1xcUHJvamVjdHNcXFRyYWRlYXN5XFxUcmFkZWFzeS1CYWNrZW5kXFxpbnZlbnRvcnlfbWFuYWdlbWVudFxcc3JjXFxpbnZlbnRvcnkuZW50aXR5LnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7OztBQUFBLHFDQUFpRTtBQUcxRCxJQUFNLElBQUksR0FBVixNQUFNLElBQUk7Q0FrQ2hCLENBQUE7QUFsQ1ksb0JBQUk7QUFFZjtJQURDLElBQUEsZ0NBQXNCLEdBQUU7O2dDQUNkO0FBR1g7SUFEQyxJQUFBLGdCQUFNLEdBQUU7O3NDQUNRO0FBR2pCO0lBREMsSUFBQSxnQkFBTSxHQUFFOzt5Q0FDVztBQUdwQjtJQURDLElBQUEsZ0JBQU0sR0FBRTs7MENBQ1k7QUFHckI7SUFEQyxJQUFBLGdCQUFNLEdBQUU7O2lEQUNtQjtBQUc1QjtJQURDLElBQUEsZ0JBQU0sR0FBRTs7NkNBQ2U7QUFHeEI7SUFEQyxJQUFBLGdCQUFNLEdBQUU7O2dEQUNrQjtBQUczQjtJQURDLElBQUEsZ0JBQU0sRUFBQyxNQUFNLEVBQUUsRUFBQyxLQUFLLEVBQUUsSUFBSSxFQUFDLENBQUM7OzBDQUNQO0FBR3ZCO0lBREMsSUFBQSxnQkFBTSxHQUFFOzsyQ0FDYTtBQUd0QjtJQURDLElBQUEsZ0JBQU0sR0FBRTs7OENBQ2dCO0FBR3pCO0lBREMsSUFBQSxnQkFBTSxHQUFFOzs2Q0FDYztlQWhDWixJQUFJO0lBRGhCLElBQUEsZ0JBQU0sR0FBRTtHQUNJLElBQUksQ0FrQ2hCIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZGludWtcXERlc2t0b3BcXE15IERvY3NcXFByb2plY3RzXFxUcmFkZWFzeVxcVHJhZGVhc3ktQmFja2VuZFxcaW52ZW50b3J5X21hbmFnZW1lbnRcXHNyY1xcaW52ZW50b3J5LmVudGl0eS50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb2x1bW4sIEVudGl0eSwgUHJpbWFyeUdlbmVyYXRlZENvbHVtbiB9IGZyb20gJ3R5cGVvcm0nO1xyXG5cclxuQEVudGl0eSgpXHJcbmV4cG9ydCBjbGFzcyBJdGVtIHtcclxuICBAUHJpbWFyeUdlbmVyYXRlZENvbHVtbigpXHJcbiAgaWQ6IG51bWJlcjtcclxuXHJcbiAgQENvbHVtbigpXHJcbiAgc2VsbGVySWQ6IG51bWJlcjtcclxuXHJcbiAgQENvbHVtbigpXHJcbiAgcHJvZHVjdE5hbWU6IHN0cmluZztcclxuXHJcbiAgQENvbHVtbigpXHJcbiAgcHJvZHVjdEJyYW5kOiBzdHJpbmc7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gIHByb2R1Y3RNYW51ZmFjdHVyZXI6IHN0cmluZztcclxuXHJcbiAgQENvbHVtbigpXHJcbiAgcHJvZHVjdENhdGVnb3J5OiBzdHJpbmc7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gIHByb2R1Y3REZXNjcmlwdGlvbjogc3RyaW5nO1xyXG5cclxuICBAQ29sdW1uKCd0ZXh0Jywge2FycmF5OiB0cnVlfSlcclxuICBwcm9kdWN0SW1hZ2U6IHN0cmluZ1tdO1xyXG5cclxuICBAQ29sdW1uKClcclxuICBwcm9kdWN0Q29sb3VyOiBzdHJpbmc7XHJcblxyXG4gIEBDb2x1bW4oKVxyXG4gIHByb2R1Y3RVbml0UHJpY2U6IG51bWJlcjtcclxuXHJcbiAgQENvbHVtbigpXHJcbiAgcHJvZHVjdFF1YW50aXR5OiBudW1iZXJcclxuXHJcbn1cclxuIl0sInZlcnNpb24iOjN9

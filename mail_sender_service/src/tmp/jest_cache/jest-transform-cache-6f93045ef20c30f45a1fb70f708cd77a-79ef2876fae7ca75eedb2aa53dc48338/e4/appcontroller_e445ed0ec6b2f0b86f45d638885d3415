@@ -1,0 +1,127 @@
+bf8b58bef370161d28657cdf5c8dfd97
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppController = void 0;
+const common_1 = require("@nestjs/common");
+const app_service_1 = require("./app.service");
+const microservices_1 = require("@nestjs/microservices");
+const emailDTO_1 = require("./DTO/emailDTO");
+let AppController = class AppController {
+    constructor(emailSenderService) {
+        this.emailSenderService = emailSenderService;
+    }
+    async sendGeneralEmail(generalEmailDto) {
+        console.log(generalEmailDto);
+        return await this.emailSenderService.sendGeneralEmail(generalEmailDto);
+    }
+    async sendOrderStatusChangeEmail(orderStatusChangeEmailDto) {
+        console.log(orderStatusChangeEmailDto);
+        return await this.emailSenderService.sendOrderStatusChangeEmail(orderStatusChangeEmailDto);
+    }
+    async sendCustomerWarningEmail(customerWarningEmailDTO) {
+        console.log(customerWarningEmailDTO);
+        return await this.emailSenderService.sendCustomerWarningEmail(customerWarningEmailDTO);
+    }
+    async sendCustomerTerminationEmail(customerTerminationEmailDTO) {
+        console.log(customerTerminationEmailDTO);
+        return await this.emailSenderService.sendCustomerTerminationEmail(customerTerminationEmailDTO);
+    }
+    async sendSupplierTerminationEmail(supplierTerminationEmailDTO) {
+        console.log(supplierTerminationEmailDTO);
+        return await this.emailSenderService.sendSupplierTerminationEmail(supplierTerminationEmailDTO);
+    }
+    async sendCustomerInvoiceEmail(customerInvoiceEmailDTO) {
+        console.log("app.con:", customerInvoiceEmailDTO);
+        return await this.emailSenderService.sendCustomerInvoiceEmail(customerInvoiceEmailDTO);
+    }
+    async sendSupplierCredentials(supplierCredentialsEmailDTO) {
+        return await this.emailSenderService.sendSupplierCredentials(supplierCredentialsEmailDTO);
+    }
+    async sendPurchaseOrderStatus(purchaseOrderStatusEmailDTO) {
+        return await this.emailSenderService.sendPurchaseOrderStatus(purchaseOrderStatusEmailDTO);
+    }
+    async sendInventoryRefundStatus(inventoryRefundStatusEmailDTO) {
+        return await this.emailSenderService.sendInventoryRefundStatus(inventoryRefundStatusEmailDTO);
+    }
+};
+exports.AppController = AppController;
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_EMAIL_GENERAL' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.GeneralEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendGeneralEmail", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_EMAIL_ORDER_STATUS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.OrderStatusChangeEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendOrderStatusChangeEmail", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_EMAIL_CUSTOMER_WARNING' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.CustomerWarningEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendCustomerWarningEmail", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_EMAIL_CUSTOMER_TERMINATION' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.CustomerTerminationEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendCustomerTerminationEmail", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_EMAIL_SUPPLIER_TERMINATION' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.SupplierTerminationEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendSupplierTerminationEmail", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_EMAIL_CUSTOMER_INVOICE' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.CustomerInvoiceEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendCustomerInvoiceEmail", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_EMAIL_SUPPLIER_CREDENTIALS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.SupplierCredentialsEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendSupplierCredentials", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_PURCHASE_ORDER_STATUS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.PurchaseOrderStatusEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendPurchaseOrderStatus", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: 'SEND_INVENTORY_REFUND_STATUS' }),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [emailDTO_1.InventoryRefundStatusEmailDTO]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "sendInventoryRefundStatus", null);
+exports.AppController = AppController = __decorate([
+    (0, common_1.Controller)(),
+    __metadata("design:paramtypes", [app_service_1.AppService])
+], AppController);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiQzpcXFVzZXJzXFxkaW51a1xcRGVza3RvcFxcTXkgRG9jc1xcUHJvamVjdHNcXFRyYWRlYXN5XFxUcmFkZWFzeS1CYWNrZW5kXFxtYWlsX3NlbmRlcl9zZXJ2aWNlXFxzcmNcXGFwcC5jb250cm9sbGVyLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQUFBLDJDQUE0QztBQUM1QywrQ0FBMkM7QUFDM0MseURBQWdFO0FBQ2hFLDZDQVV3QjtBQUdqQixJQUFNLGFBQWEsR0FBbkIsTUFBTSxhQUFhO0lBQ3hCLFlBQTZCLGtCQUE4QjtRQUE5Qix1QkFBa0IsR0FBbEIsa0JBQWtCLENBQVk7SUFBRyxDQUFDO0lBR3pELEFBQU4sS0FBSyxDQUFDLGdCQUFnQixDQUFZLGVBQWdDO1FBQ2hFLE9BQU8sQ0FBQyxHQUFHLENBQUMsZUFBZSxDQUFDLENBQUM7UUFDN0IsT0FBTyxNQUFNLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxnQkFBZ0IsQ0FBQyxlQUFlLENBQUMsQ0FBQztJQUN6RSxDQUFDO0lBR0ssQUFBTixLQUFLLENBQUMsMEJBQTBCLENBQVkseUJBQW9EO1FBQzlGLE9BQU8sQ0FBQyxHQUFHLENBQUMseUJBQXlCLENBQUMsQ0FBQztRQUN2QyxPQUFPLE1BQU0sSUFBSSxDQUFDLGtCQUFrQixDQUFDLDBCQUEwQixDQUFDLHlCQUF5QixDQUFDLENBQUM7SUFDN0YsQ0FBQztJQUdLLEFBQU4sS0FBSyxDQUFDLHdCQUF3QixDQUFZLHVCQUFnRDtRQUN4RixPQUFPLENBQUMsR0FBRyxDQUFDLHVCQUF1QixDQUFDLENBQUM7UUFDckMsT0FBTyxNQUFNLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyx3QkFBd0IsQ0FBQyx1QkFBdUIsQ0FBQyxDQUFDO0lBQ3pGLENBQUM7SUFHSyxBQUFOLEtBQUssQ0FBQyw0QkFBNEIsQ0FBWSwyQkFBd0Q7UUFDcEcsT0FBTyxDQUFDLEdBQUcsQ0FBQywyQkFBMkIsQ0FBQyxDQUFDO1FBQ3pDLE9BQU8sTUFBTSxJQUFJLENBQUMsa0JBQWtCLENBQUMsNEJBQTRC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O0dBRGhELGFBQWEsQ0FzRHpCIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZGludWtcXERlc2t0b3BcXE15IERvY3NcXFByb2plY3RzXFxUcmFkZWFzeVxcVHJhZGVhc3ktQmFja2VuZFxcbWFpbF9zZW5kZXJfc2VydmljZVxcc3JjXFxhcHAuY29udHJvbGxlci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb250cm9sbGVyIH0gZnJvbSAnQG5lc3Rqcy9jb21tb24nO1xyXG5pbXBvcnQgeyBBcHBTZXJ2aWNlIH0gZnJvbSAnLi9hcHAuc2VydmljZSc7XHJcbmltcG9ydCB7IE1lc3NhZ2VQYXR0ZXJuLCBQYXlsb2FkIH0gZnJvbSAnQG5lc3Rqcy9taWNyb3NlcnZpY2VzJztcclxuaW1wb3J0IHtcclxuICBHZW5lcmFsRW1haWxEVE8sXHJcbiAgT3JkZXJTdGF0dXNDaGFuZ2VFbWFpbERUTyxcclxuICBDdXN0b21lcldhcm5pbmdFbWFpbERUTyxcclxuICBDdXN0b21lclRlcm1pbmF0aW9uRW1haWxEVE8sXHJcbiAgU3VwcGxpZXJUZXJtaW5hdGlvbkVtYWlsRFRPLFxyXG4gIEN1c3RvbWVySW52b2ljZUVtYWlsRFRPLFxyXG4gIFN1cHBsaWVyQ3JlZGVudGlhbHNFbWFpbERUTyxcclxuICBQdXJjaGFzZU9yZGVyU3RhdHVzRW1haWxEVE8sXHJcbiAgSW52ZW50b3J5UmVmdW5kU3RhdHVzRW1haWxEVE9cclxufSBmcm9tICcuL0RUTy9lbWFpbERUTyc7XHJcblxyXG5AQ29udHJvbGxlcigpXHJcbmV4cG9ydCBjbGFzcyBBcHBDb250cm9sbGVyIHtcclxuICBjb25zdHJ1Y3Rvcihwcml2YXRlIHJlYWRvbmx5IGVtYWlsU2VuZGVyU2VydmljZTogQXBwU2VydmljZSkge31cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHsgY21kOiAnU0VORF9FTUFJTF9HRU5FUkFMJyB9KVxyXG4gIGFzeW5jIHNlbmRHZW5lcmFsRW1haWwoQFBheWxvYWQoKSBnZW5lcmFsRW1haWxEdG86IEdlbmVyYWxFbWFpbERUTykge1xyXG4gICAgY29uc29sZS5sb2coZ2VuZXJhbEVtYWlsRHRvKTtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmVtYWlsU2VuZGVyU2VydmljZS5zZW5kR2VuZXJhbEVtYWlsKGdlbmVyYWxFbWFpbER0byk7XHJcbiAgfVxyXG5cclxuICBATWVzc2FnZVBhdHRlcm4oeyBjbWQ6ICdTRU5EX0VNQUlMX09SREVSX1NUQVRVUycgfSlcclxuICBhc3luYyBzZW5kT3JkZXJTdGF0dXNDaGFuZ2VFbWFpbChAUGF5bG9hZCgpIG9yZGVyU3RhdHVzQ2hhbmdlRW1haWxEdG86IE9yZGVyU3RhdHVzQ2hhbmdlRW1haWxEVE8pIHtcclxuICAgIGNvbnNvbGUubG9nKG9yZGVyU3RhdHVzQ2hhbmdlRW1haWxEdG8pO1xyXG4gICAgcmV0dXJuIGF3YWl0IHRoaXMuZW1haWxTZW5kZXJTZXJ2aWNlLnNlbmRPcmRlclN0YXR1c0NoYW5nZUVtYWlsKG9yZGVyU3RhdHVzQ2hhbmdlRW1haWxEdG8pO1xyXG4gIH1cclxuICBcclxuICBATWVzc2FnZVBhdHRlcm4oeyBjbWQ6ICdTRU5EX0VNQUlMX0NVU1RPTUVSX1dBUk5JTkcnfSlcclxuICBhc3luYyBzZW5kQ3VzdG9tZXJXYXJuaW5nRW1haWwoQFBheWxvYWQoKSBjdXN0b21lcldhcm5pbmdFbWFpbERUTzogQ3VzdG9tZXJXYXJuaW5nRW1haWxEVE8pIHtcclxuICAgIGNvbnNvbGUubG9nKGN1c3RvbWVyV2FybmluZ0VtYWlsRFRPKTtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmVtYWlsU2VuZGVyU2VydmljZS5zZW5kQ3VzdG9tZXJXYXJuaW5nRW1haWwoY3VzdG9tZXJXYXJuaW5nRW1haWxEVE8pO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHsgY21kOiAnU0VORF9FTUFJTF9DVVNUT01FUl9URVJNSU5BVElPTid9KVxyXG4gIGFzeW5jIHNlbmRDdXN0b21lclRlcm1pbmF0aW9uRW1haWwoQFBheWxvYWQoKSBjdXN0b21lclRlcm1pbmF0aW9uRW1haWxEVE86IEN1c3RvbWVyVGVybWluYXRpb25FbWFpbERUTykge1xyXG4gICAgY29uc29sZS5sb2coY3VzdG9tZXJUZXJtaW5hdGlvbkVtYWlsRFRPKTtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmVtYWlsU2VuZGVyU2VydmljZS5zZW5kQ3VzdG9tZXJUZXJtaW5hdGlvbkVtYWlsKGN1c3RvbWVyVGVybWluYXRpb25FbWFpbERUTyk7XHJcbiAgfVxyXG5cclxuICBATWVzc2FnZVBhdHRlcm4oeyBjbWQ6ICdTRU5EX0VNQUlMX1NVUFBMSUVSX1RFUk1JTkFUSU9OJ30pXHJcbiAgYXN5bmMgc2VuZFN1cHBsaWVyVGVybWluYXRpb25FbWFpbChAUGF5bG9hZCgpIHN1cHBsaWVyVGVybWluYXRpb25FbWFpbERUTzogU3VwcGxpZXJUZXJtaW5hdGlvbkVtYWlsRFRPKSB7XHJcbiAgICBjb25zb2xlLmxvZyhzdXBwbGllclRlcm1pbmF0aW9uRW1haWxEVE8pO1xyXG4gICAgcmV0dXJuIGF3YWl0IHRoaXMuZW1haWxTZW5kZXJTZXJ2aWNlLnNlbmRTdXBwbGllclRlcm1pbmF0aW9uRW1haWwoc3VwcGxpZXJUZXJtaW5hdGlvbkVtYWlsRFRPKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7IGNtZDogJ1NFTkRfRU1BSUxfQ1VTVE9NRVJfSU5WT0lDRSd9KVxyXG4gIGFzeW5jIHNlbmRDdXN0b21lckludm9pY2VFbWFpbChAUGF5bG9hZCgpIGN1c3RvbWVySW52b2ljZUVtYWlsRFRPOiBDdXN0b21lckludm9pY2VFbWFpbERUTykge1xyXG4gICAgY29uc29sZS5sb2coXCJhcHAuY29uOlwiLGN1c3RvbWVySW52b2ljZUVtYWlsRFRPKTtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmVtYWlsU2VuZGVyU2VydmljZS5zZW5kQ3VzdG9tZXJJbnZvaWNlRW1haWwoY3VzdG9tZXJJbnZvaWNlRW1haWxEVE8pO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHsgY21kOiAnU0VORF9FTUFJTF9TVVBQTElFUl9DUkVERU5USUFMUyd9KVxyXG4gIGFzeW5jIHNlbmRTdXBwbGllckNyZWRlbnRpYWxzKEBQYXlsb2FkKCkgc3VwcGxpZXJDcmVkZW50aWFsc0VtYWlsRFRPOiBTdXBwbGllckNyZWRlbnRpYWxzRW1haWxEVE8pIHtcclxuICAgIHJldHVybiBhd2FpdCB0aGlzLmVtYWlsU2VuZGVyU2VydmljZS5zZW5kU3VwcGxpZXJDcmVkZW50aWFscyhzdXBwbGllckNyZWRlbnRpYWxzRW1haWxEVE8pO1xyXG4gIH1cclxuXHJcbiAgQE1lc3NhZ2VQYXR0ZXJuKHsgY21kOiAnU0VORF9QVVJDSEFTRV9PUkRFUl9TVEFUVVMnfSlcclxuICBhc3luYyBzZW5kUHVyY2hhc2VPcmRlclN0YXR1cyhAUGF5bG9hZCgpIHB1cmNoYXNlT3JkZXJTdGF0dXNFbWFpbERUTzogUHVyY2hhc2VPcmRlclN0YXR1c0VtYWlsRFRPKSB7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5lbWFpbFNlbmRlclNlcnZpY2Uuc2VuZFB1cmNoYXNlT3JkZXJTdGF0dXMocHVyY2hhc2VPcmRlclN0YXR1c0VtYWlsRFRPKTtcclxuICB9XHJcblxyXG4gIEBNZXNzYWdlUGF0dGVybih7IGNtZDogJ1NFTkRfSU5WRU5UT1JZX1JFRlVORF9TVEFUVVMnfSlcclxuICBhc3luYyBzZW5kSW52ZW50b3J5UmVmdW5kU3RhdHVzKEBQYXlsb2FkKCkgaW52ZW50b3J5UmVmdW5kU3RhdHVzRW1haWxEVE86IEludmVudG9yeVJlZnVuZFN0YXR1c0VtYWlsRFRPKSB7XHJcbiAgICByZXR1cm4gYXdhaXQgdGhpcy5lbWFpbFNlbmRlclNlcnZpY2Uuc2VuZEludmVudG9yeVJlZnVuZFN0YXR1cyhpbnZlbnRvcnlSZWZ1bmRTdGF0dXNFbWFpbERUTyk7XHJcbiAgfVxyXG5cclxufVxyXG4iXSwidmVyc2lvbiI6M30=
