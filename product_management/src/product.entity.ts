@@ -29,7 +29,7 @@ export class Product {
   @Column()
   productQuantity: number;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   productSellingPrice: number;
 
   @Column({default: 'Pending'})
