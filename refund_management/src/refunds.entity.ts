@@ -18,6 +18,9 @@ export class CustomerRefund {
   contact: string;
 
   @Column()
+  accountDetails: string;
+
+  @Column()
   item: string;
 
   @Column()
@@ -37,7 +40,7 @@ export class CustomerRefund {
   status: string;
 
   @Column({ nullable: true })
-    denialReason: string;
+   denialReason: string;
 }
 
 

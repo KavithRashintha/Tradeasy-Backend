@@ -29,7 +29,10 @@ export class Item {
   @Column()
   productColour: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2, transformer: {
+    to: (value: number) => value,
+    from: (value: string) => parseFloat(value),
+  }})
   productUnitPrice: number;
 
   @Column()
