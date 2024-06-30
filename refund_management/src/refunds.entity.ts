@@ -18,6 +18,9 @@ export class CustomerRefund {
   contact: string;
 
   @Column()
+  accountDetails: string;
+
+  @Column()
   item: string;
 
   @Column()
