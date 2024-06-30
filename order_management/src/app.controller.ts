@@ -40,6 +40,11 @@ export class AppController {
     return await this.orderManagement.deleteOrder(id);
   }
 
+  @MessagePattern({cmd: 'GET_ORDERS_COUNT'})
+  async getOrdersCount(){
+    return await this.orderManagement.getOrdersCount();
+  }
+
 
   //=============================================INVENTORY_ORDER_MANAGEMENT======================================================================
 

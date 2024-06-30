@@ -381,6 +381,12 @@ async deleteInventoryRefund(@Param('id') id:number){
         return this.orderClient.send({cmd: 'DELETE_ORDER'}, id);
     }
 
+    @UseGuards(JwtGuard)
+    @Get('order/getOrdersCount')
+    async getOrdersCount(){
+        return this.orderClient.send({cmd: 'GET_ORDERS_COUNT'}, {});
+    }
+
 
 //----------------------------------------------------Inventory_Order_Management----------------------------------------------------
 

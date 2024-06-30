@@ -54,6 +54,10 @@ export class AppService {
     }
   }
 
+  async getOrdersCount() {
+    return await this.customerOrderRepository.count();
+  }
+
 
   //=============================================INVENTORY_ORDER_MANAGEMENT======================================================================
 
