@@ -5,22 +5,29 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerPayments, SupplierPayments } from './payment.entity';
 import { StripeModule } from './stripe/stripe.module';
-import { ConfigModule } from '@nestjs/config';
+import {ConfigModule, ConfigService} from '@nestjs/config';
+import {join} from "path";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
+      envFilePath: join(__dirname, '../.env'),
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT, 10),
-      username: process.env.POSTGRES_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
-      database: 'Payment',
-      entities: [CustomerPayments, SupplierPayments],
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'postgres',
+        host: 'tradeasy-db.postgres.database.azure.com',
+        port: 5432,
+        username: 'tradeasy_postgres',
+        password: 'AdminPW01@',
+        database:  'payment',
+        entities: [CustomerPayments, SupplierPayments],
+        synchronize: true,
+        ssl: true
+      }),
+      inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([CustomerPayments, SupplierPayments]),
     StripeModule,

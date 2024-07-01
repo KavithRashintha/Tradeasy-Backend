@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import {join} from "path";
 
-dotenv.config({ path: join(__dirname, '../../.env') });
+dotenv.config({ path: join(__dirname, '../.env') });
 
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
@@ -19,7 +19,7 @@ async function bootstrap() {
   });
 
   await app.startAllMicroservices();
-  await app.listen(9004);
+  await app.listen(8004);
   console.log(`App is running on port ${await app.getUrl()}`);
 }
 
