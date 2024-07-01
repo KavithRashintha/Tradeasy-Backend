@@ -1,20 +1,32 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {TypeOrmModule} from "@nestjs/typeorm";
+
+import {join} from "path";
 import {Discounts} from "./discount.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT, 10),
-      username: process.env.POSTGRES_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
-      database: 'Discount',
-      entities: [Discounts],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: join(__dirname, '../.env'),
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'postgres',
+        host: 'tradeasy-db.postgres.database.azure.com',
+        port: 5432,
+        username: 'tradeasy_postgres',
+        password: 'AdminPW01@',
+        database:  'discount',
+        entities: [Discounts],
+        synchronize: true,
+        ssl: true
+      }),
+      inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([Discounts]),
   ],

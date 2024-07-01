@@ -18,7 +18,7 @@ async function bootstrap() {
   });
 
   app.useGlobalFilters(new HttpExceptionFilter());
-  await app.listen(9000);
+  await app.listen(9100);
   console.log(`App is running on port ${await app.getUrl()}`);
 }
 bootstrap();

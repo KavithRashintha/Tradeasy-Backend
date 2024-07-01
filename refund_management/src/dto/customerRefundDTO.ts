@@ -3,6 +3,7 @@ export class CustomerRefundDTO {
   readonly customerName: string;
   readonly customerId: string;
   readonly contact: string;
+  readonly accountDetails: string;
   readonly item: string;
   readonly quantity: string;
   readonly reason: string;

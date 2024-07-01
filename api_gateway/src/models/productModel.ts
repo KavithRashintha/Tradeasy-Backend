@@ -8,6 +8,8 @@ export class RegisterProductDTO {
     readonly productColor?: string;
     readonly productQuantity: number;
     readonly productSellingPrice: number;
+    readonly productStatus?: string;
+
 }
 
 export class UpdateProductDTO {
@@ -21,6 +23,7 @@ export class UpdateProductDTO {
     readonly productColor?: string;
     readonly productQuantity?: number;
     readonly productSellingPrice?: number;
+    readonly productStatus?: string;
 }
 
 export class ProductQuantityDTO{

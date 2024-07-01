@@ -40,6 +40,11 @@ export class AppController {
     return await this.orderManagement.deleteOrder(id);
   }
 
+  @MessagePattern({cmd: 'GET_ORDERS_COUNT'})
+  async getOrdersCount(){
+      return await this.orderManagement.getOrdersCount();
+  }
+
 
   //=============================================INVENTORY_ORDER_MANAGEMENT======================================================================
 
@@ -85,14 +90,9 @@ export class AppController {
       return await this.orderManagement.searchAllOrders(query);
     }
   
-    @MessagePattern({cmd: 'GET_SUPPLIERS_LIST'})
-    async getSuppliersList(): Promise<{ id: string, name: string }[]> {
-        return this.orderManagement.getSuppliersList();
-    }
-    
-    @MessagePattern({ cmd: 'GET_ITEMS_LIST_BY_SUPPLIER' })
-    async getItemsList(@Payload() supplierId: string): Promise<string[]> {
-      return this.orderManagement.getItemsList(supplierId);
-    }
+    @MessagePattern({ cmd: 'MARK_PURCHASE_ORDER_AS_DEPARTED' })
+    async markPurchaseOrderAsDeparted(@Payload() id: number): Promise<PurchaseOrder> {
+    return await this.orderManagement.markAsDeparted(id);
+  }
 
 }
