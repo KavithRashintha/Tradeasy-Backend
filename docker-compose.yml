@@ -1,0 +1,105 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    build:
+      context: ./api_gateway
+      dockerfile: Dockerfile
+    ports:
+      - "9100:9100"
+    networks:
+      - systemnetwork
+
+  admin-management:
+    build:
+      context: ./admin_management
+      dockerfile: Dockerfile
+    ports:
+      - "9050:9050"
+    networks:
+      - systemnetwork
+
+  customer-management:
+    build:
+      context: ./customer_management
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    networks:
+      - systemnetwork
+
+  discount-management:
+    build:
+      context: ./discount_management
+      dockerfile: Dockerfile
+    ports:
+      - "9008:9008"
+    networks:
+      - systemnetwork
+
+  inventory-management:
+    build:
+      context: ./inventory_management
+      dockerfile: Dockerfile
+    ports:
+      - "9003:9003"
+    networks:
+      - systemnetwork
+
+  main-sender-service:
+    build:
+      context: ./mail_sender_service
+      dockerfile: Dockerfile
+    ports:
+      - "9011:9011"
+    networks:
+      - systemnetwork
+
+  order-management:
+    build:
+      context: ./order_management
+      dockerfile: Dockerfile
+    ports:
+      - "9005:9005"
+    networks:
+      - systemnetwork
+
+  payment-management:
+    build:
+      context: ./payment_management
+      dockerfile: Dockerfile
+    ports:
+      - "9007:9007"
+    networks:
+      - systemnetwork
+
+  product-management:
+    build:
+      context: ./product_management
+      dockerfile: Dockerfile
+    ports:
+      - "9002:9002"
+    networks:
+      - systemnetwork
+
+  refund-management:
+    build:
+      context: ./refund_management
+      dockerfile: Dockerfile
+    ports:
+      - "9004:9004"
+    networks:
+      - systemnetwork
+
+  supplier-management:
+    build:
+      context: ./supplier_management
+      dockerfile: Dockerfile
+    ports:
+      - "9006:9006"
+    networks:
+      - systemnetwork
+
+networks:
+  systemnetwork:
+    driver: bridge
