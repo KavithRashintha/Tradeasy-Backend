@@ -92,7 +92,7 @@ export class AppController {
   
     @MessagePattern({ cmd: 'MARK_PURCHASE_ORDER_AS_DEPARTED' })
     async markPurchaseOrderAsDeparted(@Payload() id: number): Promise<PurchaseOrder> {
-    return await this.orderManagement.markAsDeparted(id);
+    return await this.orderManagement.markAsReceived(id);
   }
 
 }

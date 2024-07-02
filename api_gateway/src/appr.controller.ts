@@ -440,7 +440,7 @@ async deleteInventoryRefund(@Param('id') id:number){
   }
 
   // @UseGuards(JwtGuard)
-  @Put('purchaseOrder/markAsDeparted/:id')
+  @Put('purchaseOrder/markAsReceived/:id')
   async markAsDeparted(@Param('id') id: number) {
     return this.orderClient.send({ cmd: 'MARK_PURCHASE_ORDER_AS_DEPARTED' }, id);
   }
