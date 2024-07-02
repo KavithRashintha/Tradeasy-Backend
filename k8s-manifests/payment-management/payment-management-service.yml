@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-management
+  namespace: tradeasy
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 9007
+      targetPort: 9007
+  selector:
+    app: payment-management

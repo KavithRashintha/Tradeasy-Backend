@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-management
+  namespace: tradeasy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-management
+  template:
+    metadata:
+      labels:
+        app: payment-management
+    spec:
+      containers:
+        - name: payment-management
+          image: tradeasyacr.azurecr.io/tradeasy-backend-payment-management:latest
+          ports:
+            - containerPort: 9007
+          env:
+            - name: DATABASE_URL
+              value: "postgres://tradeasy_postgres:AdminPW01@@tradeasy-db.postgres.database.azure.com:5432/payment?schema=public"

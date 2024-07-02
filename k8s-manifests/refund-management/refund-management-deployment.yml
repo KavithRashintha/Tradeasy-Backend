@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: refund-management
+  namespace: tradeasy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: refund-management
+  template:
+    metadata:
+      labels:
+        app: refund-management
+    spec:
+      containers:
+        - name: refund-management
+          image: tradeasyacr.azurecr.io/tradeasy-backend-refund-management:latest
+          ports:
+            - containerPort: 9004
+          env:
+            - name: DATABASE_URL
+              value: "postgres://tradeasy_postgres:AdminPW01@@tradeasy-db.postgres.database.azure.com:5432/refund?schema=public"

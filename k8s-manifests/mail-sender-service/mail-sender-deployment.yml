@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mail-sender-service
+  namespace: tradeasy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mail-sender-service
+  template:
+    metadata:
+      labels:
+        app: mail-sender-service
+    spec:
+      containers:
+        - name: mail-sender-service
+          image: tradeasyacr.azurecr.io/tradeasy-backend-main-sender-service:latest
+          ports:
+            - containerPort: 9011
