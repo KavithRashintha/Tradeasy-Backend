@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-management
+  namespace: tradeasy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer-management
+  template:
+    metadata:
+      labels:
+        app: customer-management
+    spec:
+      containers:
+        - name: customer-management
+          image: tradeasyacr.azurecr.io/tradeasy-backend-customer-management:latest
+          ports:
+            - containerPort: 9001
+          env:
+            - name: DATABASE_URL
+              value: "postgres://tradeasy_postgres:AdminPW01@@tradeasy-db.postgres.database.azure.com:5432/customer?schema=public"

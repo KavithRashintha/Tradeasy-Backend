@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-management
+  namespace: tradeasy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-management
+  template:
+    metadata:
+      labels:
+        app: admin-management
+    spec:
+      containers:
+        - name: admin-management
+          image: tradeasyacr.azurecr.io/tradeasy-backend-admin-management:latest
+          ports:
+            - containerPort: 9050
+          env:
+            - name: DATABASE_URL
+              value: "postgres://tradeasy_postgres:AdminPW01@@tradeasy-db.postgres.database.azure.com:5432/admin?schema=public"
