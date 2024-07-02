@@ -442,7 +442,7 @@ async deleteInventoryRefund(@Param('id') id:number){
   
   @Put('purchaseOrder/markAsReceived/:id')
   async markAsReceived(@Param('id') id: number) {
-    return this.orderClient.send({ cmd: 'MARK_PURCHASE_ORDER_AS_RECEIVEED' }, id);
+    return this.orderClient.send({ cmd: 'MARK_PURCHASE_ORDER_AS_RECEIVED' }, id);
   }
   
   
