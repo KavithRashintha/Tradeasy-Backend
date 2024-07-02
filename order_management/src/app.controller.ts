@@ -90,9 +90,9 @@ export class AppController {
       return await this.orderManagement.searchAllOrders(query);
     }
   
-    @MessagePattern({ cmd: 'MARK_PURCHASE_ORDER_AS_DEPARTED' })
-    async markPurchaseOrderAsDeparted(@Payload() id: number): Promise<PurchaseOrder> {
-    return await this.orderManagement.markAsDeparted(id);
+    @MessagePattern({ cmd: 'MARK_PURCHASE_ORDER_AS_RECEIVED' })
+    async markAsReceived(@Payload() id: number): Promise<PurchaseOrder> {
+    return await this.orderManagement.markAsReceived(id);
   }
 
 }
