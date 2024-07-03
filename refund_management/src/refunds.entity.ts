@@ -56,6 +56,9 @@ export class InventoryRefund {
      supplierName: string;
 
   @Column()
+       supplierMail: string;   
+
+  @Column()
      orderId: string;   
 
   @Column() 

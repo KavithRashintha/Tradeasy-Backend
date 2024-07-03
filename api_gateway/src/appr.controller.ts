@@ -295,7 +295,7 @@ export class ApprController {
     return await this.refundClient.send({cmd: 'GET_CUSTOMER_REFUND_COUNT'}, {});
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Put('refund/customerRefund/updateStatus')
   async updateRefundStatus(@Body() updateRefundStatusDto: updateRefundStatusDTO) {
     return this.refundClient.send({ cmd: 'UPDATE_REFUND_STATUS' }, updateRefundStatusDto);
@@ -351,7 +351,7 @@ async deleteInventoryRefund(@Param('id') id:number){
 
   //----------------------------------------------------Customer_Order_Management-----------------------------------------
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
     @Post('order/create')
     async createProductOrder(@Body() payload: RegisterOrderDTO) {
         return this.orderClient.send({ cmd: 'CREATE_ORDER' }, payload);
@@ -402,13 +402,13 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.orderClient.send({cmd: 'GET_ALL_PURCHASE_ORDER'}, {});
   }
 
- @UseGuards(JwtGuard)
+ //@UseGuards(JwtGuard)
   @Get('purchaseOrder/get/:id')
   async getPurchaseOrderById(@Param('id') id:number){
     return this.orderClient.send({cmd: 'GET_PURCHASE_ORDER_BY_ID'}, id);
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Put('purchaseOrder/update/:id')
   async updatePurchaseOrder(@Param('id') id: number, @Body() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO) {
     console.log("api:",updatePurchaseOrderDTO)
@@ -421,19 +421,19 @@ async deleteInventoryRefund(@Param('id') id:number){
     return this.orderClient.send({cmd: 'DELETE_PURCHASE_ORDER'}, id);
   }
 
- @UseGuards(JwtGuard)
+ //@UseGuards(JwtGuard)
   @Get('purchaseOrder/getCountOfOrdersByStatus/:status')
   async getCountOfOrdersByStatus(@Param('status') status: string){
     return this.orderClient.send({cmd: 'GET_COUNT_OF_ORDERS_BY_STATUS'}, status);
   }
 
- @UseGuards(JwtGuard)
+ //@UseGuards(JwtGuard)
   @Get('purchaseOrder/getCurrentMonthName')
   async getCurrentMonthName(){
     return this.orderClient.send({cmd: 'GET_CURRENT_MONTH_NAME'}, {});
   }
 
-  @UseGuards(JwtGuard)
+  //@UseGuards(JwtGuard)
   @Get('purchaseOrder/search')
   async searchPurchaseOrders(@Query() query: ExpressQuery) {
     return this.orderClient.send({ cmd: 'SEARCH_ALL_ORDERS' }, {query})

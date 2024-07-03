@@ -2,6 +2,7 @@ export class InventoryRefundDTO {
     readonly orderId: string;
     readonly supplierName:string;
     readonly supplierId:string;
+    readonly supplierMail:string;
     readonly item:string;
     readonly quantity:string;
     readonly price:string;
