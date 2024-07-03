@@ -7,6 +7,7 @@ import { GetAdminDTO } from './dto/GetAdminDTO';
 import { UpdateAdminDTO } from './dto/UpdateAdminDTO';
 import * as bcrypt from 'bcrypt'
 import { Query } from 'express-serve-static-core';
+import {ShopReviewDTO} from "./dto/ShopReviewDTO";
 
 @Controller()
 export class AppController {
@@ -64,5 +65,15 @@ export class AppController {
   @MessagePattern({cmd: 'GET_ACTIVE_ADMINS'})
   async getActiveAdmins(){
     return await this.adminManagement.getActiveAdmin();
+  }
+
+  @MessagePattern({cmd: 'CREATE_SHOP_REVIEW'})
+  async createShopReview(@Payload() shopReviewDto: ShopReviewDTO): Promise<ShopReviewDTO>{
+    return await this.adminManagement.createShopReview(shopReviewDto);
+  }
+
+  @MessagePattern({cmd: 'GET_ALL_SHOP_REVIEWS'})
+  async getAllShopReviews(): Promise<ShopReviewDTO[]>{
+    return this.adminManagement.getAllShopReviews();
   }
 }

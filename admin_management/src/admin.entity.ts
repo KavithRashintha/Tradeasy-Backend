@@ -29,3 +29,19 @@ export class Admin {
     @Column({ type: 'timestamp',  default: () => 'CURRENT_TIMESTAMP' })
     lastLogin: Date;
 }
+
+@Entity()
+export class ShopReviews {
+
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({nullable:false})
+  customerName: string;
+
+  @Column({nullable:false})
+  starReviewCount: string;
+
+  @Column({nullable:false})
+  customerComment: string
+}

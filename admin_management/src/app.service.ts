@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Admin } from './admin.entity';
+import {Admin, ShopReviews} from './admin.entity';
 import { Repository } from 'typeorm';
 import {AdminDTO} from './dto/AdminDTO';
 import { GetAdminDTO } from './dto/GetAdminDTO';
@@ -8,6 +8,7 @@ import { UpdateAdminDTO } from './dto/UpdateAdminDTO';
 import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
 import * as bcrypt from 'bcrypt';
+import {ShopReviewDTO} from "./dto/ShopReviewDTO";
 
 
 @Injectable()
@@ -16,6 +17,9 @@ export class AppService {
   constructor(
       @InjectRepository(Admin)
       private readonly adminRepository: Repository<Admin>,
+
+      @InjectRepository(ShopReviews)
+      private readonly reviewRepository: Repository<ShopReviews>
   ) {}
 
   async createAdmin(createAdminDTO: AdminDTO): Promise<Admin> {
@@ -98,5 +102,13 @@ export class AppService {
   async getActiveAdmin(){
     //return await this.adminRepository.find({where:{isActive:true}});
     return await this.adminRepository.count();
+  }
+
+  async createShopReview(shopReviewDto:ShopReviewDTO): Promise<ShopReviews>{
+      return await this.reviewRepository.save(shopReviewDto);
+  }
+
+  async getAllShopReviews(): Promise<ShopReviewDTO[]>{
+      return this.reviewRepository.find();
   }
 }

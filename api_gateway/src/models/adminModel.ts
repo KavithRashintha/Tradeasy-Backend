@@ -18,3 +18,9 @@ export class UpdateAdminDTO{
     readonly contactNo: string;
     readonly role: string;
 }
+
+export class ShopReviewDTO{
+    readonly customerName: string;
+    readonly starReviewCount: string;
+    readonly customerComment: string;
+}

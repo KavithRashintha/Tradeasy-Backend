@@ -17,7 +17,7 @@ import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentMo
 import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import {RegisterOrderDTO, UpdateOrderDTO, PurchaseOrderDTO, UpdatePurchaseOrderDTO } from "./models/orderModel";
-import {RegisterAdminDTO, UpdateAdminDTO} from "./models/adminModel";
+import {RegisterAdminDTO, ShopReviewDTO, UpdateAdminDTO} from "./models/adminModel";
 import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO, CustomerInvoiceEmailDTO, SupplierCredentialsEmailDTO, PurchaseOrderStatusEmailDTO, InventoryRefundStatusEmailDTO} from "./models/emailModel";
 import {CreateProductReviewDTO, ProductQuantityDTO, RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 
@@ -133,6 +133,18 @@ export class ApprController {
   @Get('admin/activeCustomers')
   async getActiveAdmins(){
     return this.adminClient.send({ cmd: 'GET_ACTIVE_ADMINS' }, {});
+  }
+
+  @UseGuards(JwtGuard)
+  @Post('admin/createReview')
+  async createShopReview(@Body() shopReviewDto: ShopReviewDTO){
+      return this.adminClient.send({cmd: 'CREATE_SHOP_REVIEW'}, shopReviewDto);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/getAllShopReviews')
+  async getAllShopReviews(){
+      return this.adminClient.send({cmd: 'GET_ALL_SHOP_REVIEWS'}, {});
   }
 
 
