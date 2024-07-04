@@ -15,7 +15,7 @@ export class CustomerRefund {
   customerId: string;
 
   @Column()
-  contact: string;
+  email: string;
 
   @Column()
   accountDetails: string;
