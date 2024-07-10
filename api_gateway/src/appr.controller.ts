@@ -12,7 +12,7 @@ import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/loca
 import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO, ResetCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO, UpdateInventoryRefundStatusDTO} from "./models/refundModel";
-import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
+import { RegisterSupplierDTO, UpdateSupplierDTO, ResetSupplierDTO } from "./models/supplierModel";
 import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentModel";
 import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
@@ -494,6 +494,17 @@ async deleteInventoryRefund(@Param('id') id:number){
   @Get('supplier/search')
   async searchAllSuppliers(@Query() query: ExpressQuery) {
     return this.supplierClient.send({ cmd: 'SEARCH_ALL_SUPPLIERS' }, {query})
+  }
+
+  @Get('supplier/findSupplierByEmail/:email')
+  async findSupplierByEmail(@Param('email') email: any) {
+    return this.supplierClient.send({ cmd: 'GET_SUPPLIER_BY_EMAIL' }, email)
+  }
+
+  
+  @Put('supplier/reset/:id')
+  async resetSupplier(@Param('id') id: number, @Body() resetSupplierDTO: ResetSupplierDTO) {
+    return this.supplierClient.send({ cmd: 'RESET_SUPPLIER_PASSWORD' }, { id, resetSupplierDTO });
   }
 
   @UseGuards(JwtGuard)

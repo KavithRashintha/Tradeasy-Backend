@@ -11,3 +11,8 @@ export class SupplierDTO {
     readonly paymentDetails: string;
     readonly profilePicture: string;
   }
+
+  export class ResetSupplierDTO {
+    readonly id : number;
+    readonly password:string;
+  }

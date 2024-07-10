@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Supplier } from './supplier.entity';
 import { Repository } from 'typeorm';
-import {SupplierDTO} from './dto/SupplierDTO';
+import {SupplierDTO, ResetSupplierDTO} from './dto/SupplierDTO';
 import { UpdateSupplierDTO } from './dto/UpdateSupplierDTO';
 import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
@@ -40,6 +40,25 @@ export class AppService {
 
   async findSupplierByUsername(username:string): Promise<Supplier | null>{
     return await this.supplierRepository.findOne({ where: { username } });
+  }
+
+  async findSupplierByEmail(email: string): Promise<Supplier | null> {
+    const query = this.supplierRepository.createQueryBuilder('supplier')
+        .where('supplier.email = :email', { email })
+        .getOne();
+
+    const supplier = await query;
+    console.log('Found supplier:', supplier);
+
+    return supplier;
+  }
+
+  async resetSupplier(id: number, resetSupplierDTO: ResetSupplierDTO): Promise<Supplier> {
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(resetSupplierDTO.password, saltOrRounds);
+    
+    await this.supplierRepository.update(id, { password: hash });
+    return await this.supplierRepository.findOneById(id);
   }
 
   async getAllSuppliers():Promise<Supplier[]>{

@@ -1,7 +1,7 @@
 import {Controller, Get, Param} from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import {SupplierDTO} from './dto/SupplierDTO';
+import {SupplierDTO, ResetSupplierDTO} from './dto/SupplierDTO';
 import { Supplier } from './supplier.entity';
 import { UpdateSupplierDTO } from './dto/UpdateSupplierDTO';
 import * as bcrypt from 'bcrypt';
@@ -47,6 +47,21 @@ export class AppController {
   @MessagePattern({cmd: 'SEARCH_ALL_SUPPLIERS'})
   async searchAllSuppliers(@Payload() query: Query): Promise<Supplier[]>{
     return await this.supplierManagement.searchAllSuppliers(query);
+  }
+
+  @MessagePattern({ cmd: 'GET_SUPPLIER_BY_EMAIL' })
+  async findSupplierByEmail(
+      @Payload() email:any
+  ): Promise<Supplier | null> {
+    console.log('controller.usn:',email);
+    return await this.supplierManagement.findSupplierByEmail(email);
+  }
+
+  @MessagePattern({ cmd: 'RESET_SUPPLIER_PASSWORD' })
+  async resetSupplier(@Payload() data: { id: number, resetSupplierDTO: ResetSupplierDTO }): Promise<Supplier> {
+    const { id, resetSupplierDTO } = data;
+    console.log("cus.controller",resetSupplierDTO);
+    return await this.supplierManagement.resetSupplier(id, resetSupplierDTO);
   }
 
   
