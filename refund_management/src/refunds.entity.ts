@@ -15,7 +15,7 @@ export class CustomerRefund {
   customerId: string;
 
   @Column()
-  contact: string;
+  email: string;
 
   @Column()
   accountDetails: string;
@@ -54,6 +54,9 @@ export class InventoryRefund {
 
   @Column() 
      supplierName: string;
+
+  @Column()
+       supplierMail: string;   
 
   @Column()
      orderId: string;   
