@@ -19,6 +19,13 @@ export class CustomerWarningEmailDTO {
     readonly receiverEmail?: string;
 }
 
+export class ResetPasswordEmailDTO {
+    readonly receiverName?: string;
+    readonly emailSubject?: string;
+    readonly emailBody?: string;
+    readonly receiverEmail?: string;
+}
+
 export class CustomerTerminationEmailDTO {
     readonly receiverName?: string;
     readonly emailSubject?: string;

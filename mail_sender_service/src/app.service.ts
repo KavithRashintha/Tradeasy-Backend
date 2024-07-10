@@ -9,7 +9,8 @@ import {
   CustomerInvoiceEmailDTO,
   SupplierCredentialsEmailDTO,
   PurchaseOrderStatusEmailDTO,
-  InventoryRefundStatusEmailDTO
+  InventoryRefundStatusEmailDTO,
+  ResetPasswordEmailDTO
 } from './DTO/emailDTO';
 
 @Injectable()
@@ -192,6 +193,26 @@ export class AppService {
   }
 
   async sendInventoryRefundStatus(user: InventoryRefundStatusEmailDTO): Promise<{ success: boolean; message: string }> {
+    console.log(user);
+    await this.mailerService.sendMail({
+      to: user.receiverEmail,
+      subject: user.emailSubject,
+      template: './generalTemplate', 
+      context: {
+        subject: user.emailSubject,
+        name: user.receiverName,
+        body: user.emailBody,
+      },
+    });
+
+    // Return a success message
+    return {
+      success: true,
+      message: 'Email sent successfully',
+    };
+  }
+
+  async sendResetPassword(user: ResetPasswordEmailDTO): Promise<{ success: boolean; message: string }> {
     console.log(user);
     await this.mailerService.sendMail({
       to: user.receiverEmail,

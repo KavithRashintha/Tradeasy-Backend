@@ -10,7 +10,8 @@ import {
   CustomerInvoiceEmailDTO,
   SupplierCredentialsEmailDTO,
   PurchaseOrderStatusEmailDTO,
-  InventoryRefundStatusEmailDTO
+  InventoryRefundStatusEmailDTO,
+  ResetPasswordEmailDTO
 } from './DTO/emailDTO';
 
 @Controller()
@@ -66,6 +67,11 @@ export class AppController {
   @MessagePattern({ cmd: 'SEND_INVENTORY_REFUND_STATUS'})
   async sendInventoryRefundStatus(@Payload() inventoryRefundStatusEmailDTO: InventoryRefundStatusEmailDTO) {
     return await this.emailSenderService.sendInventoryRefundStatus(inventoryRefundStatusEmailDTO);
+  }
+
+  @MessagePattern({ cmd: 'SEND_RESET_PASSWORD'})
+  async sendResetPassword(@Payload() resetPasswordEmailDTO: ResetPasswordEmailDTO) {
+    return await this.emailSenderService.sendResetPassword(resetPasswordEmailDTO);
   }
 
 }

@@ -18,7 +18,7 @@ import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import {RegisterOrderDTO, UpdateOrderDTO, PurchaseOrderDTO, UpdatePurchaseOrderDTO } from "./models/orderModel";
 import {RegisterAdminDTO, ShopReviewDTO, UpdateAdminDTO} from "./models/adminModel";
-import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO, CustomerInvoiceEmailDTO, SupplierCredentialsEmailDTO, PurchaseOrderStatusEmailDTO, InventoryRefundStatusEmailDTO} from "./models/emailModel";
+import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO, CustomerInvoiceEmailDTO, SupplierCredentialsEmailDTO, PurchaseOrderStatusEmailDTO, InventoryRefundStatusEmailDTO, ResetPasswordEmailDTO} from "./models/emailModel";
 import {CreateProductReviewDTO, ProductQuantityDTO, RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 
 @Controller()
@@ -674,9 +674,15 @@ async deleteInventoryRefund(@Param('id') id:number){
 
   //For Inventory Refund Status Update
   @UseGuards(JwtGuard)
-  @Post('email/send/pinventoryRefundStatus')
+  @Post('email/send/inventoryRefundStatus')
   async sendInventoryRefundStatus(@Body() payload: InventoryRefundStatusEmailDTO) {
       return this.emailClient.send({ cmd: 'SEND_INVENTORY_REFUND_STATUS' }, payload);
+  }
+
+  //For Reset Password
+  @Post('email/send/resetPassword')
+  async sendResetPassword(@Body() payload: ResetPasswordEmailDTO) {
+      return this.emailClient.send({ cmd: 'SEND_RESET_PASSWORD' }, payload);
   }
 
 
