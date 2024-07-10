@@ -9,7 +9,7 @@ import { In } from 'typeorm';
 import { JwtGuard} from './guards/jwt.guard';
 import { RefreshJwtGuard} from './guards/refresh.jwt.guard';
 import {AdminAuthGuard, CustomerAuthGuard,SupplierAuthGuard} from './guards/local.guard';
-import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO } from './models/customerModel';
+import { GetCustomerDTO, RegisterCustomerDTO, UpdateCustomerDTO, ResetCustomerDTO } from './models/customerModel';
 import { InventoryItemDTO, UpdateInventoryItemDTO } from "./models/inventoryModel";
 import { CustomerRefundDTO, InventoryRefundDTO,updateRefundStatusDTO, UpdateInventoryRefundStatusDTO} from "./models/refundModel";
 import { RegisterSupplierDTO, UpdateSupplierDTO } from "./models/supplierModel";
@@ -66,6 +66,17 @@ export class ApprController {
   @Put('customer/update/:id')
   async updateCustomer(@Param('id') id: number, @Body() updateCustomerDto: UpdateCustomerDTO) {
     return this.customerClient.send({ cmd: 'UPDATE_CUSTOMER' }, { id, updateCustomerDto });
+  }
+
+  @Get('customer/findCustomerByEmail/:email')
+  async findCustomerByEmail(@Param('email') email: any) {
+    return this.customerClient.send({ cmd: 'GET_CUSTOMER_BY_EMAIL' }, email)
+  }
+
+  
+  @Put('customer/reset/:id')
+  async resetCustomer(@Param('id') id: number, @Body() resetCustomerDTO: ResetCustomerDTO) {
+    return this.customerClient.send({ cmd: 'RESET_CUSTOMER_PASSWORD' }, { id, resetCustomerDTO });
   }
 
   @UseGuards(JwtGuard)
@@ -684,6 +695,20 @@ async deleteInventoryRefund(@Param('id') id:number){
       return this.adminClient.send({ cmd: 'CREATE_ADMIN' }, payload);
     }
   }
+
+  // @Post('auth/reset')
+  // async passwordReset(@Body() payload: AuthDto) {
+    
+  //   if(payload.role == 'customer'){
+  //     return this.customerClient.send({ cmd: 'RESET_CUSTOMER_PASSWORD' }, payload);
+  //   }
+  //   else if(payload.role == 'supplier'){
+  //     return this.supplierClient.send({ cmd: 'RESET_SUPPLIER_PASSWORD' }, payload);
+  //   }
+  //   else{
+      
+  //   }
+  // }
   
   @HttpCode(HttpStatus.OK)
   @UseGuards(CustomerAuthGuard)

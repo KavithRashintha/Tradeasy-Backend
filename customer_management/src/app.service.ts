@@ -2,7 +2,7 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Customer } from './customer.entity';
 import { Repository } from 'typeorm';
-import {CustomerDTO} from './dto/CustomerDTO';
+import {CustomerDTO, ResetCustomerDTO} from './dto/CustomerDTO';
 import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
 import { ILike } from "typeorm";
@@ -22,14 +22,23 @@ export class AppService {
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(createCustomerDTO.password, saltOrRounds);
     const newCustomer = this.customerRepository.create({
-       ...createCustomerDTO,
-        password: hash,
-        lastLogin: new Date()
-    });
+      ...CustomerDTO,
+       password: hash,
+       lastLogin: new Date()
+   });
 
-    console.log("cus.service",newCustomer);
-    return await this.customerRepository.save(newCustomer);
+   console.log("cus.service",newCustomer);
+   return await this.customerRepository.save(newCustomer);
   }
+
+  async resetCustomer(id: number, resetCustomerDTO: ResetCustomerDTO): Promise<Customer> {
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(resetCustomerDTO.password, saltOrRounds);
+    
+    await this.customerRepository.update(id, { password: hash });
+    return await this.customerRepository.findOneById(id);
+}
+
 
   async updateLastLogin(id: number, updateCustomerDto: Partial<UpdateCustomerDTO>): Promise<Customer> {
     await this.customerRepository.update(id, updateCustomerDto);
@@ -44,6 +53,18 @@ export class AppService {
     console.log('service.usn:',username);
     return await this.customerRepository.findOne({ where: { username } });
   }
+
+
+  async findCustomerByEmail(email: string): Promise<Customer | null> {
+    const query = this.customerRepository.createQueryBuilder('customer')
+        .where('customer.email = :email', { email })
+        .getOne();
+
+    const customer = await query;
+    console.log('Found customer:', customer);
+
+    return customer;
+}
 
 
   async getAllCustomers():Promise<Customer[]>{

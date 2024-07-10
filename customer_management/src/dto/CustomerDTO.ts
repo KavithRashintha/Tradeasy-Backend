@@ -9,3 +9,8 @@ export class CustomerDTO {
   readonly profilePicture: string;
   readonly lastLogin: Date;
 }
+
+export class ResetCustomerDTO {
+  readonly id : number;
+  readonly password:string;
+}

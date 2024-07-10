@@ -22,3 +22,8 @@ export class UpdateCustomerDTO{
   readonly address: string;
   readonly profilePicture: string;
 }
+
+export class ResetCustomerDTO{
+  readonly id: number;
+  readonly password:string;
+}

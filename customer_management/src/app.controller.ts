@@ -1,7 +1,7 @@
 import {Controller, Get, Param, } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import {CustomerDTO} from './dto/CustomerDTO';
+import {CustomerDTO, ResetCustomerDTO} from './dto/CustomerDTO';
 import { Customer } from './customer.entity';
 import { GetCustomerDTO } from './dto/GetCustomerDTO';
 import { UpdateCustomerDTO } from './dto/UpdateCustomerDTO';
@@ -17,6 +17,14 @@ export class AppController {
     console.log("cus.controller",createCustomerDto);
     return await this.customerManagement.createCustomer(createCustomerDto);
   }
+
+  @MessagePattern({ cmd: 'RESET_CUSTOMER_PASSWORD' })
+  async resetCustomer(@Payload() data: { id: number, resetCustomerDTO: ResetCustomerDTO }): Promise<Customer> {
+    const { id, resetCustomerDTO } = data;
+    console.log("cus.controller",resetCustomerDTO);
+    return await this.customerManagement.resetCustomer(id, resetCustomerDTO);
+  }
+ 
 
   @MessagePattern({  cmd: 'UPDATE_LAST_LOGIN' })
   async updateLastLogin(@Payload() data: { id: number, lastLogin: Date }): Promise<Customer> {
@@ -38,6 +46,14 @@ export class AppController {
   ): Promise<Customer | null> {
     console.log('controller.usn:',username);
     return await this.customerManagement.findCustomerByUsername(username);
+  }
+
+  @MessagePattern({ cmd: 'GET_CUSTOMER_BY_EMAIL' })
+  async getCustomerByEmail(
+      @Payload() email:any
+  ): Promise<Customer | null> {
+    console.log('controller.usn:',email);
+    return await this.customerManagement.findCustomerByEmail(email);
   }
 
   @MessagePattern({cmd: 'GET_ALL_CUSTOMERS'})
