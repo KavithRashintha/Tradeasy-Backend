@@ -22,7 +22,7 @@ export class AppService {
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(createCustomerDTO.password, saltOrRounds);
     const newCustomer = this.customerRepository.create({
-      ...CustomerDTO,
+      ...createCustomerDTO,
        password: hash,
        lastLogin: new Date()
    });
