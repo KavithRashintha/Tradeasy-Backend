@@ -17,7 +17,7 @@ import { CustomerPaymentDTO, Data, SupplierPaymentDTO } from "./models/paymentMo
 import { DiscountsDTO } from './models/discountModel';
 import { AuthDto } from './models/authModel';
 import {RegisterOrderDTO, UpdateOrderDTO, PurchaseOrderDTO, UpdatePurchaseOrderDTO } from "./models/orderModel";
-import {RegisterAdminDTO, ShopReviewDTO, UpdateAdminDTO} from "./models/adminModel";
+import {RegisterAdminDTO, ShopReviewDTO, SupplierFeedbackDTO, UpdateAdminDTO} from "./models/adminModel";
 import {GeneralEmailDTO, OrderStatusChangeEmailDTO, CustomerWarningEmailDTO, CustomerTerminationEmailDTO, SupplierTerminationEmailDTO, CustomerInvoiceEmailDTO, SupplierCredentialsEmailDTO, PurchaseOrderStatusEmailDTO, InventoryRefundStatusEmailDTO, ResetPasswordEmailDTO} from "./models/emailModel";
 import {CreateProductReviewDTO, ProductQuantityDTO, RegisterProductDTO, UpdateProductDTO} from "./models/productModel";
 
@@ -156,6 +156,18 @@ export class ApprController {
   @Get('admin/getAllShopReviews')
   async getAllShopReviews(){
       return this.adminClient.send({cmd: 'GET_ALL_SHOP_REVIEWS'}, {});
+  }
+
+  @UseGuards(JwtGuard)
+  @Post('admin/createSupplierFeedback')
+  async createSupplierFeedback(@Body() supplierFeedbackDto: SupplierFeedbackDTO){
+    return this.adminClient.send({cmd: 'CREATE_SUPPLIER_FEEDBACK'}, supplierFeedbackDto);
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('admin/getAllSupplierFeedbacks')
+  async getAllSupplierFeedbacks(){
+    return this.adminClient.send({cmd: 'GET_ALL_SUPPLIER_FEEDBACKS'}, {});
   }
 
 
