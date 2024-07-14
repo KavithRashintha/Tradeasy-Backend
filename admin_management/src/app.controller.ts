@@ -8,6 +8,7 @@ import { UpdateAdminDTO } from './dto/UpdateAdminDTO';
 import * as bcrypt from 'bcrypt'
 import { Query } from 'express-serve-static-core';
 import {ShopReviewDTO} from "./dto/ShopReviewDTO";
+import {SupplierFeedbackDTO} from "./dto/SupplierFeedbackDTO";
 
 @Controller()
 export class AppController {
@@ -76,4 +77,15 @@ export class AppController {
   async getAllShopReviews(): Promise<ShopReviewDTO[]>{
     return this.adminManagement.getAllShopReviews();
   }
+
+  @MessagePattern({cmd: 'CREATE_SUPPLIER_FEEDBACK'})
+  async createSupplierFeedback(@Payload() supplierFeedbackDto: SupplierFeedbackDTO): Promise<SupplierFeedbackDTO>{
+    return await this.adminManagement.createSupplierFeedback(supplierFeedbackDto);
+  }
+
+  @MessagePattern({cmd: 'GET_ALL_SUPPLIER_FEEDBACKS'})
+  async getAllSupplierFeedbacks(): Promise<SupplierFeedbackDTO[]>{
+    return await this.adminManagement.getAllSupplierFeedbacks();
+  }
+
 }

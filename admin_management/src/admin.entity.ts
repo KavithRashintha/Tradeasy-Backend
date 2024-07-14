@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Admin {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column({unique:true, nullable: false})
     username: string;
@@ -37,6 +37,9 @@ export class ShopReviews {
   id: number;
 
   @Column({nullable:false})
+  customerId: number;
+
+  @Column({nullable:false})
   customerName: string;
 
   @Column({nullable:false})
@@ -44,4 +47,28 @@ export class ShopReviews {
 
   @Column({nullable:false})
   customerComment: string
+
+  @Column({nullable:false})
+  date: string
+}
+
+@Entity()
+export class SupplierFeedbacks{
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({nullable:false})
+  sellerId: number;
+
+  @Column({nullable:false})
+  sellerName: string;
+
+  @Column({nullable:false})
+  starReviewCount: string;
+
+  @Column({nullable:false})
+  sellerComment: string;
+
+  @Column({nullable:false})
+  date: string;
 }

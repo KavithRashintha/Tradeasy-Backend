@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {Admin, ShopReviews} from './admin.entity';
+import {Admin, ShopReviews, SupplierFeedbacks} from './admin.entity';
 import { Repository } from 'typeorm';
 import {AdminDTO} from './dto/AdminDTO';
 import { GetAdminDTO } from './dto/GetAdminDTO';
@@ -9,6 +9,7 @@ import { ILike } from "typeorm";
 import { Query } from 'express-serve-static-core';
 import * as bcrypt from 'bcrypt';
 import {ShopReviewDTO} from "./dto/ShopReviewDTO";
+import {SupplierFeedbackDTO} from "./dto/SupplierFeedbackDTO";
 
 
 @Injectable()
@@ -19,7 +20,10 @@ export class AppService {
       private readonly adminRepository: Repository<Admin>,
 
       @InjectRepository(ShopReviews)
-      private readonly reviewRepository: Repository<ShopReviews>
+      private readonly reviewRepository: Repository<ShopReviews>,
+
+      @InjectRepository(SupplierFeedbacks)
+    private readonly feedbackRepository: Repository<SupplierFeedbacks>
   ) {}
 
   async createAdmin(createAdminDTO: AdminDTO): Promise<Admin> {
@@ -110,5 +114,13 @@ export class AppService {
 
   async getAllShopReviews(): Promise<ShopReviewDTO[]>{
       return this.reviewRepository.find();
+  }
+
+  async createSupplierFeedback(supplierFeedbackDto: SupplierFeedbackDTO): Promise<SupplierFeedbackDTO>{
+      return await this.feedbackRepository.save(supplierFeedbackDto);
+  }
+
+  async getAllSupplierFeedbacks(): Promise<SupplierFeedbackDTO[]>{
+      return await this.feedbackRepository.find();
   }
 }

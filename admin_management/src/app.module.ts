@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {Admin, ShopReviews} from './admin.entity';
+import {Admin, ShopReviews, SupplierFeedbacks} from './admin.entity';
 
 @Module({
   imports: [
@@ -13,10 +13,10 @@ import {Admin, ShopReviews} from './admin.entity';
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: 'Admin',
-      entities: [Admin, ShopReviews],
+      entities: [Admin, ShopReviews, SupplierFeedbacks],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Admin, ShopReviews]),
+    TypeOrmModule.forFeature([Admin, ShopReviews, SupplierFeedbacks]),
   ],
   controllers: [AppController],
   providers: [AppService],
