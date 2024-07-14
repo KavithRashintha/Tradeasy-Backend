@@ -72,7 +72,6 @@ export class ApprController {
   async findCustomerByEmail(@Param('email') email: any) {
     return this.customerClient.send({ cmd: 'GET_CUSTOMER_BY_EMAIL' }, email)
   }
-
   
   @Put('customer/reset/:id')
   async resetCustomer(@Param('id') id: number, @Body() resetCustomerDTO: ResetCustomerDTO) {
