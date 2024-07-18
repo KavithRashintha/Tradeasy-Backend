@@ -77,5 +77,7 @@ export class PurchaseOrder {
     @Column({ type: 'date', nullable: true })
     departedDate: Date;
 
+    @Column({ nullable: true })
+     order_cancel_reason: string;
 }
 

@@ -75,10 +75,25 @@ async getPurchaseOrderById(purchase_id: number): Promise<PurchaseOrder> {
 }
 
 async updatePurchaseOrder(id: number, updatePurchaseOrderDTO: UpdatePurchaseOrderDTO): Promise<PurchaseOrder> {
-  console.log("ser:",updatePurchaseOrderDTO)
-  await this.inventoryOrderRepository.update(id, updatePurchaseOrderDTO);
-  return await this.inventoryOrderRepository.findOneById(id);
+  console.log("ser:", updatePurchaseOrderDTO);
+  
+  const purchaseOrder = await this.inventoryOrderRepository.findOneById(id);
+  if (!purchaseOrder) {
+    throw new Error('Purchase order not found');
+  }
+
+  
+  purchaseOrder.status = updatePurchaseOrderDTO.status;
+  if (updatePurchaseOrderDTO.status === 'cancelled') {
+    purchaseOrder.order_cancel_reason = updatePurchaseOrderDTO.order_cancel_reason;
+  } else {
+    purchaseOrder.order_cancel_reason = '';
+  }
+
+  
+  return await this.inventoryOrderRepository.save(purchaseOrder);
 }
+
 
 async deletePurchaseOrder(purchase_id:number){
     const result = await this.inventoryOrderRepository.delete(purchase_id);
@@ -139,6 +154,8 @@ async markAsReceived(id: number): Promise<PurchaseOrder> {
 
   return this.inventoryOrderRepository.save(purchaseOrder);
 }
+
+
 
 }
 

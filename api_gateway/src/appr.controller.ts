@@ -409,11 +409,12 @@ async deleteInventoryRefund(@Param('id') id:number){
   }
 
   //@UseGuards(JwtGuard)
-  @Put('purchaseOrder/update/:id')
-  async updatePurchaseOrder(@Param('id') id: number, @Body() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO) {
-    console.log("api:",updatePurchaseOrderDTO)
-    return this.orderClient.send({ cmd: 'UPDATE_PURCHASE_ORDER' }, { id, updatePurchaseOrderDTO });
+  @Put('purchaseOrder/update')
+  async updatePurchaseOrder(@Body() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO){
+    return this.orderClient.send({cmd: 'UPDATE_PURCHASE_ORDER'}, updatePurchaseOrderDTO);
   }
+
+  
 
   @UseGuards(JwtGuard)
   @Delete('purchaseOrder/delete/:id')

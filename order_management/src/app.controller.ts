@@ -63,12 +63,10 @@ export class AppController {
       return this.orderManagement.getPurchaseOrderById(purchase_id);
     }
 
-    @MessagePattern({cmd: 'UPDATE_PURCHASE_ORDER'})
-    async updatePurchaseOrder(@Payload() data: { id: number, updatePurchaseOrderDTO: UpdatePurchaseOrderDTO }): Promise<PurchaseOrder> {
-      console.log("con:",data)
-      const { id, updatePurchaseOrderDTO } = data;
-      return await this.orderManagement.updatePurchaseOrder(id, updatePurchaseOrderDTO);
-    }
+    @MessagePattern({ cmd: 'UPDATE_PURCHASE_ORDER' })
+  async updatePurchaseOrder(@Payload() updatePurchaseOrderDTO: UpdatePurchaseOrderDTO): Promise<PurchaseOrder> {
+    return await this.orderManagement.updatePurchaseOrder(updatePurchaseOrderDTO.id, updatePurchaseOrderDTO);
+  }
 
     @MessagePattern({cmd: 'DELETE_PURCHASE_ORDER'})
     async deletePurchaseOrder(@Payload() purchase_id: number){

@@ -45,7 +45,8 @@ export class PurchaseOrderDTO{
     
 }
 
-export class UpdatePurchaseOrderDTO{
-    readonly status?:string;
+export class UpdatePurchaseOrderDTO {
+    readonly id: number;
+    readonly status: string;
+    readonly order_cancel_reason?: string;
 }
-

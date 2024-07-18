@@ -10,13 +10,24 @@ export class PurchaseOrderDTO{
     readonly departedDate: Date;
     readonly quantity:string;
     readonly total_amount:string;
-}
-
-export class UpdatePurchaseOrderDTO{
-    readonly status?:string;
+    readonly order_cancel_reason : string;
 }
 
 
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
+export class UpdatePurchaseOrderDTO {
+  @IsNotEmpty()
+  id: number;
+
+  @IsNotEmpty()
+  @IsString()
+  status: string;
+
+  @IsOptional()
+  @IsString()
+  order_cancel_reason?: string;
+}
 
 
 
